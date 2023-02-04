@@ -1,0 +1,64 @@
+\documentclass[type=doctor,oneside]{fduthesis}
+
+\fdusetup{
+  style = {
+    font = libertinus,
+    cjk-font = none,
+    fullwidth-stop = mapping,
+    bib-backend = bibtex,
+    bib-resource = {main.bib},
+  },
+  info = {
+    title = {论文标题},
+    title* = {Thesis Title},
+    author = {曾祥东},
+    supervisor = {孔令欣\quad 教授},
+    major = {理论物理},
+    degree = academic,
+    department = {物理学系},
+    student-id = {18110190010},
+    % date = {2023 年 1 月 1 日},
+    keywords = {不确定关系, 量子力学, 理论物理},
+    keywords* = {Uncertainty principle, quantum mechanics, theoretical physics},
+    clc = {O413.1},
+  }
+}
+
+\ExplSyntaxOn
+\__fdu_setCJKmainfont:nn  { FZShuSong-Z01   } { BoldFont = FZXiaoBiaoSong-B05 }
+\__fdu_setCJKsansfont:n   { FZHei-B01       }
+\__fdu_setCJKmonofont:n   { FZFangSong-Z02  }
+\__fdu_set_cjk_font_kai:n { FZKai-Z03       }
+\ExplSyntaxOff
+
+\setCJKfamilyfont{punct}{Source Han Serif SC}
+\xeCJKsetup{PunctFamily=punct, PunctStyle=kaiming}
+
+\usepackage{graphicx}
+
+\newcommand{\id}{\mathrm{id}}
+
+\begin{document}
+
+\frontmatter
+
+% \tableofcontents
+% \listoffigures
+
+% \begin{abstract}
+%   中文摘要
+% \end{abstract}
+
+% \begin{abstract*}
+%   English abstract
+% \end{abstract*}
+
+\mainmatter
+
+\include{includes/1-string-net}
+\include{includes/2-tensor-network}
+\include{includes/3-strange-correlators}
+\include{includes/4-virasoro}
+\include{includes/5-holographic-tensor-network}
+
+\end{document}
