@@ -29,14 +29,52 @@
 \__fdu_setCJKsansfont:n   { FZHei-B01       }
 \__fdu_setCJKmonofont:n   { FZFangSong-Z02  }
 \__fdu_set_cjk_font_kai:n { FZKai-Z03       }
+
+\RenewDocumentCommand \makecoveri { }
+  {
+    \group_begin:
+      \thispagestyle { empty }
+      \xeCJKsetup { PunctStyle = quanjiao }
+      \UseInstance { fdu / cover } { cover-i-default }
+    \group_end:
+  }
+\RenewDocumentCommand \makecoveriii { }
+  {
+    \cleardoublepage
+    \tl_if_empty:NTF \l__fdu_declaration_page_tl
+      {
+        \group_begin:
+          \thispagestyle { empty }
+          \xeCJKsetup { PunctStyle = quanjiao }
+          \UseInstance { fdu / cover } { cover-iii-default }
+        \group_end:
+      }
+      { \includepdf { \l__fdu_declaration_page_tl } }
+  }
+\ctex_patch_cmd_all:NnnnTF \__fdu_abstract_end: { }
+  { \c__fdu_fwid_colon_tl }
+  { \c__fdu_fwid_colon_tl \enspace }
+  { } { }
 \ExplSyntaxOff
 
 \setCJKfamilyfont{punct}{Source Han Serif SC}
 \xeCJKsetup{PunctFamily=punct, PunctStyle=kaiming}
 
 \usepackage{graphicx}
+\usepackage{tikz}
+
+\usetikzlibrary{arrows.meta, decorations.markings}
+\tikzset{->-/.style={decoration={
+  markings,
+  mark=at position #1 with {\arrow{Stealth}}},
+  postaction={decorate}}}
 
 \newcommand{\id}{\mathrm{id}}
+\newcommand{\1}{\mathbf{1}}
+\newcommand{\ldual}[1]{{}^\vee\mspace{-2mu}#1}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\tr}{tr}
 
 \begin{document}
 

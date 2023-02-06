@@ -18,5 +18,5 @@
 *.pdf
 
 install.sh
-fduthesis.cls
-fduthesis.def
+fduthesis.*
+texcount.*
