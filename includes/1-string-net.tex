@@ -32,7 +32,7 @@
 \begin{equation}
   \tau_y \circ F_f = G_f \circ \tau_x, \quad \forall f\colon x\to y.
 \end{equation}
-若 $\tau$ 的每一分量 $\tau_x$ 均可逆（即存在 $\tau_x^{-1}$ 使得 $\tau^{-1}_x\circ\tau_x=\id_{F(x)}$ 且 $\tau_x\circ\tau^{-1}_x = \id_{G(x)}$），则称其为\emph{自然同构} (natural isomorphism)。如图~\ref{fig:natural-transformation}，自然变换可以用交换图来直观地表示。
+如图~\ref{fig:natural-transformation}，自然变换可以用交换图来直观地表示。若 $\tau$ 的每一分量 $\tau_x$ 均可逆（即存在 $\tau_x^{-1}$ 使得 $\tau^{-1}_x\circ\tau_x=\id_{F(x)}$ 且 $\tau_x\circ\tau^{-1}_x = \id_{G(x)}$），则称其为\emph{自然同构} (natural isomorphism)，我们用 $\similarrightarrow$ 来表示。
 
 \begin{figure}[htb]
   \centering
@@ -61,7 +61,7 @@
 %   因此 \verb|head| 函数是从 \verb|List| 到 \verb|Maybe| 的自然变换。
 % \end{example}
 
-为了更直观的描述范畴的概念，我们可以用带箭头的直线或曲线来表示对象，而用盒子来表示态射：
+\emph{弦图} (string diagram) 可以更直观地描述范畴的概念。其中，带箭头的直线或曲线代表对象，盒子代表态射：
 \begin{equation}
   f\colon x\to y \quad \coloneq \quad
   \input{includes/tikz/morphism.tex} \, .
@@ -80,12 +80,12 @@
   \item \emph{张量积} (tensor product) $\otimes\colon\mathcal{C}\times\mathcal{C}\to\mathcal{C}$ 和\emph{单位对象} (unit object) $\1\in\mathcal{C}$；
   \item \emph{结合子} (associator) $\alpha$，它是一个自然同构：
     \begin{equation}
-      \alpha_{x,y,z} \colon (x\otimes y)\otimes z \overset\sim\to x\otimes(y\otimes z), \quad \forall x,y,z \in \mathcal{C};
+      \alpha_{x,y,z} \colon (x\otimes y)\otimes z \similarrightarrow x\otimes(y\otimes z), \quad \forall x,y,z \in \mathcal{C};
     \end{equation}
   \item \emph{左右单位子} (left/right unitor)，同样也是自然同构：
     \begin{equation}
-      \lambda_x \colon \1\otimes x \overset\sim\to x, \quad
-      \rho_x    \colon x\otimes\1  \overset\sim\to x, \quad
+      \lambda_x \colon \1\otimes x \similarrightarrow x, \quad
+      \rho_x    \colon x\otimes\1  \similarrightarrow x, \quad
       \forall x \in \mathcal{C}.
     \end{equation}
 \end{itemize}
@@ -102,7 +102,7 @@
   \label{fig:pentagon-triangle-equation}
 \end{figure}
 
-如果上述定义中的 $\overset\sim\to$ 可以取为等号，我们称该张量范畴是\emph{严格} (strict) 的，此时 $\alpha$、$\lambda$ 和 $\rho$ 均为恒等变换。根据 MacLane \emph{一致性定理} (coherence theorem)，每个张量范畴都等价于一个严格张量范畴。因此我们之后可以只考虑严格张量范畴的情况。此时张量积表达式中的括号和单位对象都可以忽略。
+如果上述定义中的 $\similarrightarrow$ 可以取为等号，则称该张量范畴是\emph{严格} (strict) 的，此时 $\alpha$、$\lambda$ 和 $\rho$ 均为恒等变换。根据 MacLane \emph{一致性定理} (coherence theorem)，每个张量范畴都等价于一个严格张量范畴。因此我们之后可以只考虑严格张量范畴的情况。此时张量积表达式中的括号和单位对象都可以忽略。
 
 一个张量范畴也是一个\emph{幺半群} (monoid)，因为范畴的单位对象可以作为群的单位元，而张量积可以作为群乘法。所以张量范畴也被称为\emph{幺半范畴} (monoidal category)。
 
@@ -119,7 +119,7 @@
     (e_x\otimes\id_{x^\vee}) \circ (\id_{x^\vee}\otimes i_x) &= \id_{x^\vee}.
   \end{aligned}
 \end{equation}
-如果在示意图中省略单位元（对应于物理中的真空态），则 $e_x$ 和 $i_x$ 可以表示为
+如果在弦图中省略单位元（对应于物理中的真空态），则 $e_x$ 和 $i_x$ 可以表示为
 \begin{equation}
   \input{includes/tikz/dual-1.tex},
   \qquad
@@ -137,13 +137,13 @@
   e'_x \colon x\otimes \ldual{x}\to\1, \quad i'_x\colon \1\to\ldual{x}\otimes x.
   \label{eq:left-dual}
 \end{equation}
-这实际上只需要对上面的图沿水平方向做一下镜像操作。如果张量范畴 $\mathcal{C}$ 中的每个对象既有左对偶也有右对偶，则称 $\mathcal{C}$ 是\emph{刚性} (rigid) 的。
+这实际上只需要对上面的图沿水平方向做一下镜像操作。如果 $\mathcal{C}$ 中的每个对象既有左对偶也有右对偶，则称其为是\emph{刚性} (rigid) 的或\emph{自治} (autonomous) 的；而如果 $\forall x\in\mathcal{C}$，都有 $x=x^\vee$，则称 $\mathcal{C}$ 是\emph{自对偶} (self-dual) 的。
 
 \subsection{中枢与球状结构}
 
 我们知道有限维向量空间 $V$ 的二重对偶 $V^{\vee\vee}$ 同构于 $V$。这在张量范畴中的推广即为\emph{中枢} (pivotal) 结构，它是由以下的自然同构给出的：
 \begin{equation}
-  \delta_x \colon x \overset\sim\to x^{\vee\vee}, \quad \forall x\in\mathcal{C},
+  \delta_x \colon x \similarrightarrow x^{\vee\vee}, \quad \forall x\in\mathcal{C},
 \end{equation}
 且需满足
 \begin{equation}
@@ -153,12 +153,12 @@
 \end{equation}
 根据右对偶的定义，可有
 \begin{equation}
-  e_x\colon x^\vee\otimes x \overset\sim\to x^\vee\otimes x^{\vee\vee}\to\1, \quad
-  i_x\colon \1\to x\otimes x^\vee \overset\sim\to x^{\vee\vee}\otimes x^\vee.
+  e_x\colon x^\vee\otimes x \similarrightarrow x^\vee\otimes x^{\vee\vee}\to\1, \quad
+  i_x\colon \1\to x\otimes x^\vee \similarrightarrow x^{\vee\vee}\otimes x^\vee.
 \end{equation}
 对比式~\eqref{eq:left-dual}，可以发现 $x^{\vee\vee}$ 也是 $x^\vee$ 的左对偶。若令 $y=x^\vee$，即有 $\ldual{y}=y^\vee$，也就是说在中枢范畴中可以不再区分左右对偶。
 
-对于中枢范畴 $\mathcal{C}$ 中的自同态 $f\in\End_{\mathcal{C}}(x)$，我们可以定义\emph{左右迹} (left/right trace)：
+对于中枢范畴 $\mathcal{C}$ 中的自同态 $f\in\End_{\mathcal{C}}(x)$，可以定义\emph{左右迹} (left/right trace)：
 \begin{equation}
   \begin{aligned}
     \tr_{\text{L}} f &\colon \1 \xrightarrow{i_{x^\vee}} x^\vee\otimes x^{\vee\vee}
@@ -175,8 +175,9 @@
 \begin{equation}
   \dim_{\text{L}} x \coloneq \tr_{\text{L}}\id_x, \quad
   \dim_{\text{R}} x \coloneq \tr_{\text{R}}\id_x.
+  \label{eq:left-right-dimension}
 \end{equation}
-迹和维数可以用下面的图示来描述：
+迹和维数可以用下图来描述：
 \begin{equation}
   \tr_{\text{L}}  f = \input{includes/tikz/trace-1.tex} \, , \quad
   \tr_{\text{R}}  f = \input{includes/tikz/trace-2.tex} \, ; \quad
@@ -193,11 +194,54 @@
 \end{equation}
 其中 $x_i\in\mathcal{C}$ 是简单对象，$I$ 是非零简单对象的指标集，而系数 $n_i\in\mathbb{Z}_+$，则称 $\mathcal{C}$ 是一个\emph{半单范畴} (semi-simple category)。简单对象的例子包括向量空间范畴 $\mathbf{Vec}$ 中的一维空间（直线），以及 Abel 群范畴 $\mathbf{Ab}$ 中的单群。
 
-若张量范畴 $\mathcal{C}$ 同时也是半单的，则简单对象的张量积可以写成：
+若张量范畴 $\mathcal{C}$ 同时也是半单的，并且简单对象只有有限多个，那么这样的 $\mathcal{C}$ 称为\emph{融合范畴} (fusion category)。此时简单对象的张量积可以写成：
 \begin{equation}
-  x_i \otimes x_j = \bigoplus_k N_{ij}^k x_k,
+  x_a \otimes x_b = \bigoplus_c N_{ab}^c x_c,
 \end{equation}
-其中 $N_{ij}^k\in\mathbb{Z}_+$，称为\emph{融合系数} (fusion coefficient)。
+其中 $N_{ab}^c\in\mathbb{Z}_+$，称为\emph{融合系数} (fusion coefficient)。在物理学中一般可以假设 $N_{ab}^c$ 只能取到 0 或 1，即是否允许该融合发生。所有允许的融合称为 \emph{融合规则} (fusion rule)。融合范畴还要与张量范畴的结构相容，这意味着
+\begin{equation}
+  N_{\1 a}^b = N_{a\1}^b = \delta_{ab}, \quad
+  \sum_x N_{ax}^z N_{bc}^x = \sum_y N_{ab}^y N_{yc}^z.
+\end{equation}
+我们还要求融合范畴是刚性且自对偶的，此时可以证明
+\begin{equation}
+  N_{ab}^c = N_{ba}^c = N_{ac}^b = N_{ca}^b = N_{bc}^a = N_{cb}^a,
+\end{equation}
+即融合系数关于所有指标均对称。
+
+定义矩阵 $(N_a)_{bc}\coloneq N_{ab}^c$，根据 Perron--Frobenius 定理，可知 $N_a$ 存在最大的非负特征值，这定义为简单对象 $a$ 的\emph{量子维数} (quantum dimension)或 Perron--Frobenius 维数。可以证明，量子维数与式~\eqref{eq:left-right-dimension} 中通过迹定义的维数是相同的。
+
+融合的逆运算是\emph{拆分} (splitting)。简单对象的融合与拆分都可以用弦图来表示：
+\begin{equation}
+  \input{includes/tikz/fusion-tree-1.tex}
+  \in \Hom_{\mathcal{C}}(a\otimes b, c) \eqcolon V^{ab}_c, \quad
+  \input{includes/tikz/fusion-tree-2.tex}
+  \in \Hom_{\mathcal{C}}(c, a\otimes b) \eqcolon V_{ab}^c.
+\end{equation}
+由于 $\mathcal{C}$ 的刚性和自对偶性，我们可以省略弦图中的箭头。此时，$\Hom_{\mathcal{C}}(a\otimes b,c)$ 和 $\Hom_{\mathcal{C}}(c,a\otimes b)$ 都是向量空间，分别记为 $V^{ab}_c$ 和 $V_{ab}^c$，上面的“融合树”正是对应的基向量。这两个向量空间的维数相等，都等于融合系数 $N_{ab}^c$。
+
+下面我们考虑向量空间 $V^{abc}_d$，它表示从 $a\otimes b\otimes c$ 到 $d$ 的融合。由于 $\mathcal{C}$ 是严格的，$(a\otimes b)\otimes c$ 和 $a\otimes(b\otimes c)$ 的结果相同（都等于 $d$），但却会给出两种融合树的分支结构：
+\begin{equation}
+  \input{includes/tikz/f-symbol-1.tex}
+  \in \bigoplus_x V^{ab}_x \otimes V^{xc}_d \simeq V^{abc}_d, \quad
+  \input{includes/tikz/f-symbol-2.tex}
+  \in \bigoplus_x V^{ay}_d \otimes V^{bc}_y \simeq V^{abc}_d.
+\end{equation}
+联系这两组基的变换称为 \emph{$F$ 移动} ($F$-move)：
+\begin{equation}
+  \input{includes/tikz/f-symbol-1.tex}
+  = \sum_y \, \bigl[ F^{abc}_d \bigr]_{xy}
+  \input{includes/tikz/f-symbol-2.tex}.
+\end{equation}
+式中的系数 $[F^{abc}_d]_{xy}$ 称为 \emph{$F$ 符号} ($F$-symbol)，它一共有 6 个指标。
+
+一个融合范畴可由以下几组数据完全确定：
+
+\begin{itemize}
+  \item 简单对象的集合 $\{a,b,c,\ldots\}$；
+  \item 融合系数 $N_{ab}^c$ 或者对应的融合规则；
+  \item $F$ 符号 $[F^{abc}_d]_{xy}$。
+\end{itemize}
 
 \section{拓扑序}
 
