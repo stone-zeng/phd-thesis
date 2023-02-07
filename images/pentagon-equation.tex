@@ -1,5 +1,7 @@
 \documentclass{standalone}
 \usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta, decorations.markings}
+\tikzcdset{arrow style=tikz, diagrams={>=Stealth}}
 \begin{document}
 \begin{tikzcd}[row sep=tiny, column sep=-1em]
   & \Bigl( (w\otimes x) \otimes y \Bigr) \otimes z

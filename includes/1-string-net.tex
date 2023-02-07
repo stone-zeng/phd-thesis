@@ -130,6 +130,7 @@
   \input{includes/tikz/rigidity-axioms-1.tex},
   \qquad
   \input{includes/tikz/rigidity-axioms-2.tex}.
+  \label{eq:rigidity-axioms-diagrams}
 \end{equation}
 
 同理，我们还可以定义\emph{左对偶} (left dual)：
@@ -209,7 +210,7 @@
 \end{equation}
 即融合系数关于所有指标均对称。
 
-定义矩阵 $(N_a)_{bc}\coloneq N_{ab}^c$，根据 Perron--Frobenius 定理，可知 $N_a$ 存在最大的非负特征值，这定义为简单对象 $a$ 的\emph{量子维数} (quantum dimension)或 Perron--Frobenius 维数。可以证明，量子维数与式~\eqref{eq:left-right-dimension} 中通过迹定义的维数是相同的。
+定义矩阵 $(N_a)_{bc}\coloneq N_{ab}^c$，根据 Perron--Frobenius 定理，可知 $N_a$ 存在最大的非负特征值，这定义为简单对象 $a$ 的\emph{量子维数} (quantum dimension)或 Perron--Frobenius 维数 $d_a$。可以证明，量子维数与式~\eqref{eq:left-right-dimension} 中通过迹定义的维数是相同的。
 
 融合的逆运算是\emph{拆分} (splitting)。简单对象的融合与拆分都可以用弦图来表示：
 \begin{equation}
@@ -232,15 +233,35 @@
   \input{includes/tikz/f-symbol-1.tex}
   = \sum_y \, \bigl[ F^{abc}_d \bigr]_{xy}
   \input{includes/tikz/f-symbol-2.tex}.
+  \label{eq:f-move}
 \end{equation}
-式中的系数 $[F^{abc}_d]_{xy}$ 称为 \emph{$F$ 符号} ($F$-symbol)，它一共有 6 个指标。
+式中的系数 $[F^{abc}_d]_{xy}$ 称为 \emph{$F$ 符号} ($F$-symbol)，它一共有 6 个指标。$\mathcal{C}$ 中的 $F$ 符号并不是独立的。如图~\ref{fig:f-symbols-pentagon-equation} 所示，它们所满足的约束条件同样也是五边形方程。
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics{images/f-symbols-pentagon-equation.pdf}
+  \caption[$F$ 符号所满足的五边形方程]{$F$ 符号所满足的五边形方程，对应的融合空间是 $\Hom_{\mathcal{C}}(a\otimes b\otimes c\otimes d,e)$，即 $V^{abcd}_e$。}
+  \label{fig:f-symbols-pentagon-equation}
+\end{figure}
 
 一个融合范畴可由以下几组数据完全确定：
-
 \begin{itemize}
   \item 简单对象的集合 $\{a,b,c,\ldots\}$；
   \item 融合系数 $N_{ab}^c$ 或者对应的融合规则；
   \item $F$ 符号 $[F^{abc}_d]_{xy}$。
+\end{itemize}
+利用这些数据可以对任意弦图进行化简或求值。如果一个弦图没有端点（即“外腿”），那么它的化简结果将是一个复数。根据上文，我们可以进行的操作有：
+\begin{itemize}
+  \item 任意的连续变形，这是由刚性公理式~\eqref{eq:rigidity-axioms-diagrams} 和自对偶性保证的；
+  \item $F$ 移动，即式~\eqref{eq:f-move}；
+  \item 环路消除，这会得到相应的量子维数：
+    \begin{equation}
+      \input{includes/tikz/loop-removal-1.tex}
+      \! = d_a, \quad
+      \input{includes/tikz/loop-removal-2.tex}
+      \! = \delta_{ac} \sqrt{\frac{d_b d_{b'}}{d_a}} \enspace
+      \input{includes/tikz/loop-removal-3.tex}.
+    \end{equation}
 \end{itemize}
 
 \section{拓扑序}

@@ -1,0 +1,31 @@
+\documentclass[margin={-0.8cm 0 0 0}]{standalone}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta, decorations.markings}
+\tikzcdset{arrow style=tikz, diagrams={>=Stealth}}
+\begin{document}
+\def\Tree#1#2#3#4#5#6{
+  \def\x{0.25}
+  \def\y{0.2}
+  \begin{tikzpicture}[baseline=0.2cm]
+    \draw
+      (0,0) -- (-3*\x,3*\y) node [above] {$a$}
+      (#1)  -- (-\x,3*\y)   node [above] {$b$}
+      (#2)  -- (\x,3*\y)    node [above] {$c$}
+      (0,0) -- (3*\x,3*\y)  node [above] {$d$}
+      (0,0) -- (0,-1.5*\y)  node [below] {$e$}
+      (#3) node {\scriptsize $#5$}
+      (#4) node {\scriptsize $#6$};
+  \end{tikzpicture}
+}
+\def\A{\Tree{-2*\x,2*\y}{-\x,\y}{-2*\x,0.6*\y}{-\x,-0.3*\y}{f}{g}}
+\def\B{\Tree{-2*\x,2*\y}{2*\x,2*\y}{-2*\x,0.4*\y}{1.8*\x,0.4*\y}{f}{h}}
+\def\C{\Tree{0,2*\y}{-\x,\y}{0.1*\x,0.8*\y}{-\x,-0.3*\y}{j}{g}}
+\def\D{\Tree{\x,\y}{0,2*\y}{0,0.8*\y}{0.7*\x,-0.5*\y}{j}{i}}
+\def\E{\Tree{\x,\y}{2*\x,2*\y}{2*\x,0.7*\y}{0.7*\x,-0.5*\y}{h}{i}}
+\def\F#1#2#3#4#5#6{[F^{#1#2#3}_{#4}]_{#5#6}}
+\begin{tikzcd}[row sep=small, column sep=tiny]
+  & & \B \arrow[drr, "\F abhefi"] \\
+  \A \arrow[urr, "\F fcdegh"] \arrow[dr, start anchor={[xshift=-0.4cm, yshift=0.2cm]}, "\F abcgfj"] & & & & \E \\
+  & \C \arrow[rr, "\F ajdegi"] & & \D \arrow[ur, end anchor={[xshift=0.5cm, yshift=0.2cm]}, "\F bcdijh"]
+\end{tikzcd}
+\end{document}

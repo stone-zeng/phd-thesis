@@ -1,9 +1,13 @@
 \documentclass[type=doctor,oneside]{fduthesis}
 
+\usepackage{enumitem}
+\usepackage{tikz}
+
+% fduthesis
 \fdusetup{
   style = {
     font = libertinus,
-    cjk-font = none,
+    cjk-font = founder,
     fullwidth-stop = mapping,
     bib-backend = bibtex,
     bib-resource = {main.bib},
@@ -24,12 +28,32 @@
   }
 }
 
-\ExplSyntaxOn
-\__fdu_setCJKmainfont:nn  { FZShuSong-Z01   } { BoldFont = FZXiaoBiaoSong-B05 }
-\__fdu_setCJKsansfont:n   { FZHei-B01       }
-\__fdu_setCJKmonofont:n   { FZFangSong-Z02  }
-\__fdu_set_cjk_font_kai:n { FZKai-Z03       }
+% xeCJK
+\AtBeginDocument{
+  \setCJKfamilyfont{punct}{Source Han Serif SC}
+  \xeCJKsetup{PunctFamily=punct, PunctStyle=kaiming}
+}
 
+% enumitem
+\setlist{itemsep=0pt}
+
+% tikz
+\usetikzlibrary{arrows.meta, decorations.markings}
+\tikzset{
+  ->-/.style = {
+    decoration = {
+      markings,
+      mark = at position #1 with {\arrow{Stealth}},
+    },
+    postaction = {decorate},
+  },
+}
+
+% Hacks
+\ExplSyntaxOn
+\__fdu_patch_cmd:Nnn \__fdu_load_cjk_font_founder:
+  { \__fdu_setCJKmainfont:n  { FZShuSong-Z01 } }
+  { \__fdu_setCJKmainfont:nn { FZShuSong-Z01 } { BoldFont = FZXiaoBiaoSong-B05 } }
 \RenewDocumentCommand \makecoveri { }
   {
     \group_begin:
@@ -57,17 +81,7 @@
   { } { }
 \ExplSyntaxOff
 
-\setCJKfamilyfont{punct}{Source Han Serif SC}
-\xeCJKsetup{PunctFamily=punct, PunctStyle=kaiming}
-
-\usepackage{tikz}
-
-\usetikzlibrary{arrows.meta, decorations.markings}
-\tikzset{->-/.style={decoration={
-  markings,
-  mark=at position #1 with {\arrow{Stealth}}},
-  postaction={decorate}}}
-
+% Math commands
 \newcommand{\id}{\mathrm{id}}
 \newcommand{\1}{\mathbf{1}}
 \newcommand{\ldual}[1]{{}^\vee\mspace{-2mu}#1}
@@ -79,16 +93,16 @@
 
 \frontmatter
 
-% \tableofcontents
-% \listoffigures
+\tableofcontents
+\listoffigures
 
-% \begin{abstract}
-%   中文摘要
-% \end{abstract}
+\begin{abstract}
+  中文摘要
+\end{abstract}
 
-% \begin{abstract*}
-%   English abstract
-% \end{abstract*}
+\begin{abstract*}
+  English abstract
+\end{abstract*}
 
 \mainmatter
 
