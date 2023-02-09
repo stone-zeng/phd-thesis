@@ -64,11 +64,11 @@
 \emph{弦图} (string diagram) 可以更直观地描述范畴的概念。其中，带箭头的直线或曲线代表对象，盒子代表态射：
 \begin{equation}
   f\colon x\to y \quad \coloneq \quad
-  \input{includes/tikz/morphism.tex} \, .
+  \tikzinput{morphism} \, .
 \end{equation}
 这样态射的复合就可以表示为连在一起的两个盒子：
 \begin{equation}
-  \input{includes/tikz/composition.tex}.
+  \tikzinput{composition}.
 \end{equation}
 
 \section{张量范畴与融合范畴}
@@ -121,15 +121,15 @@
 \end{equation}
 如果在弦图中省略单位元（对应于物理中的真空态），则 $e_x$ 和 $i_x$ 可以表示为
 \begin{equation}
-  \input{includes/tikz/dual-1.tex},
+  \tikzinput{dual-1},
   \qquad
-  \input{includes/tikz/dual-2.tex}.
+  \tikzinput{dual-2}.
 \end{equation}
 这可以类比于量子力学中的湮灭与产生算符。（右对偶的）刚性公理则可表示为
 \begin{equation}
-  \input{includes/tikz/rigidity-axioms-1.tex},
+  \tikzinput{rigidity-axioms-1},
   \qquad
-  \input{includes/tikz/rigidity-axioms-2.tex}.
+  \tikzinput{rigidity-axioms-2}.
   \label{eq:rigidity-axioms-diagrams}
 \end{equation}
 
@@ -180,10 +180,10 @@
 \end{equation}
 迹和维数可以用下图来描述：
 \begin{equation}
-  \tr_{\text{L}}  f = \input{includes/tikz/trace-1.tex} \, , \quad
-  \tr_{\text{R}}  f = \input{includes/tikz/trace-2.tex} \, ; \quad
-  \dim_{\text{L}} x = \input{includes/tikz/dimension-1.tex} \!, \quad
-  \dim_{\text{R}} x = \input{includes/tikz/dimension-2.tex} \!.
+  \tr_{\text{L}}  f = \tikzinput{trace-1} \, , \quad
+  \tr_{\text{R}}  f = \tikzinput{trace-2} \, ; \quad
+  \dim_{\text{L}} x = \tikzinput{dimension-1} \!, \quad
+  \dim_{\text{R}} x = \tikzinput{dimension-2} \!.
 \end{equation}
 如果对于任意的 $f\in\End_{\mathcal{C}}(x)$ 都有 $\tr_{\text{L}}f=\tr_{\text{R}}f$，则称 $\mathcal{C}$ 是\emph{球状} (spherical) 的。
 
@@ -199,7 +199,7 @@
 \begin{equation}
   x_a \otimes x_b = \bigoplus_c N_{ab}^c x_c,
 \end{equation}
-其中 $N_{ab}^c\in\mathbb{Z}_+$，称为\emph{融合系数} (fusion coefficient)。在物理学中一般可以假设 $N_{ab}^c$ 只能取到 0 或 1，即是否允许该融合发生。所有允许的融合称为 \emph{融合规则} (fusion rule)。融合范畴还要与张量范畴的结构相容，这意味着
+其中 $N_{ab}^c\in\mathbb{Z}_+$，称为\emph{融合系数} (fusion coefficient)。在物理学中一般可以假设 $N_{ab}^c$ 只能取到 0 或 1，即是否允许该融合发生。所有允许的融合称为\emph{融合规则} (fusion rule)。融合范畴还要与张量范畴的结构相容，这意味着
 \begin{equation}
   N_{\1 a}^b = N_{a\1}^b = \delta_{ab}, \quad
   \sum_x N_{ax}^z N_{bc}^x = \sum_y N_{ab}^y N_{yc}^z.
@@ -214,25 +214,25 @@
 
 融合的逆运算是\emph{拆分} (splitting)。简单对象的融合与拆分都可以用弦图来表示：
 \begin{equation}
-  \input{includes/tikz/fusion-tree-1.tex}
+  \tikzinput{fusion-tree-1}
   \in \Hom_{\mathcal{C}}(a\otimes b, c) \eqcolon V^{ab}_c, \quad
-  \input{includes/tikz/fusion-tree-2.tex}
+  \tikzinput{fusion-tree-2}
   \in \Hom_{\mathcal{C}}(c, a\otimes b) \eqcolon V_{ab}^c.
 \end{equation}
 由于 $\mathcal{C}$ 的刚性和自对偶性，我们可以省略弦图中的箭头。此时，$\Hom_{\mathcal{C}}(a\otimes b,c)$ 和 $\Hom_{\mathcal{C}}(c,a\otimes b)$ 都是向量空间，分别记为 $V^{ab}_c$ 和 $V_{ab}^c$，上面的“融合树”正是对应的基向量。这两个向量空间的维数相等，都等于融合系数 $N_{ab}^c$。
 
 下面我们考虑向量空间 $V^{abc}_d$，它表示从 $a\otimes b\otimes c$ 到 $d$ 的融合。由于 $\mathcal{C}$ 是严格的，$(a\otimes b)\otimes c$ 和 $a\otimes(b\otimes c)$ 的结果相同（都等于 $d$），但却会给出两种融合树的分支结构：
 \begin{equation}
-  \input{includes/tikz/f-symbol-1.tex}
+  \tikzinput{f-symbol-1}
   \in \bigoplus_x V^{ab}_x \otimes V^{xc}_d \simeq V^{abc}_d, \quad
-  \input{includes/tikz/f-symbol-2.tex}
+  \tikzinput{f-symbol-2}
   \in \bigoplus_x V^{ay}_d \otimes V^{bc}_y \simeq V^{abc}_d.
 \end{equation}
 联系这两组基的变换称为 \emph{$F$ 移动} ($F$-move)：
 \begin{equation}
-  \input{includes/tikz/f-symbol-1.tex}
+  \tikzinput{f-symbol-1}
   = \sum_y \, \bigl[ F^{abc}_d \bigr]_{xy}
-  \input{includes/tikz/f-symbol-2.tex}.
+  \tikzinput{f-symbol-2}.
   \label{eq:f-move}
 \end{equation}
 式中的系数 $[F^{abc}_d]_{xy}$ 称为 \emph{$F$ 符号} ($F$-symbol)，它一共有 6 个指标。$\mathcal{C}$ 中的 $F$ 符号并不是独立的。如图~\ref{fig:f-symbols-pentagon-equation} 所示，它们所满足的约束条件同样也是五边形方程。
@@ -256,11 +256,11 @@
   \item $F$ 移动，即式~\eqref{eq:f-move}；
   \item 环路消除，这会得到相应的量子维数：
     \begin{equation}
-      \input{includes/tikz/loop-removal-1.tex}
+      \tikzinput{loop-removal-1}
       \! = d_a, \quad
-      \input{includes/tikz/loop-removal-2.tex}
+      \tikzinput{loop-removal-2}
       \! = \delta_{ac} \sqrt{\frac{d_b d_{b'}}{d_a}} \enspace
-      \input{includes/tikz/loop-removal-3.tex}.
+      \tikzinput{loop-removal-3}.
     \end{equation}
 \end{itemize}
 

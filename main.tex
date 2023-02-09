@@ -1,3 +1,7 @@
+%&fduthesis
+\input{precompile.tex}
+\endofdump
+
 \documentclass[type=doctor,oneside]{fduthesis}
 
 \usepackage{enumitem}
@@ -28,12 +32,6 @@
   }
 }
 
-% xeCJK
-\AtBeginDocument{
-  \setCJKfamilyfont{punct}{Source Han Serif SC}
-  \xeCJKsetup{PunctFamily=punct, PunctStyle=kaiming}
-}
-
 % enumitem
 \setlist{itemsep=0pt}
 
@@ -54,31 +52,7 @@
 \__fdu_patch_cmd:Nnn \__fdu_load_cjk_font_founder:
   { \__fdu_setCJKmainfont:n  { FZShuSong-Z01 } }
   { \__fdu_setCJKmainfont:nn { FZShuSong-Z01 } { BoldFont = FZXiaoBiaoSong-B05 } }
-\RenewDocumentCommand \makecoveri { }
-  {
-    \group_begin:
-      \thispagestyle { empty }
-      \xeCJKsetup { PunctStyle = quanjiao }
-      \UseInstance { fdu / cover } { cover-i-default }
-    \group_end:
-  }
-\RenewDocumentCommand \makecoveriii { }
-  {
-    \cleardoublepage
-    \tl_if_empty:NTF \l__fdu_declaration_page_tl
-      {
-        \group_begin:
-          \thispagestyle { empty }
-          \xeCJKsetup { PunctStyle = quanjiao }
-          \UseInstance { fdu / cover } { cover-iii-default }
-        \group_end:
-      }
-      { \includepdf { \l__fdu_declaration_page_tl } }
-  }
-\ctex_patch_cmd_all:NnnnTF \__fdu_abstract_end: { }
-  { \c__fdu_fwid_colon_tl }
-  { \c__fdu_fwid_colon_tl \enspace }
-  { } { }
+\def\hypersetup{\kvsetkeys{Hyp}}
 \ExplSyntaxOff
 
 % Math commands
@@ -88,6 +62,8 @@
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\tr}{tr}
+
+\newcommand{\tikzinput}[1]{\input{includes/tikz/#1.tex}}
 
 \begin{document}
 
