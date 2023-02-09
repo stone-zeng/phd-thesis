@@ -1,4 +1,4 @@
-\chapter{张量范畴与弦网模型}
+\chapter{张量融合范畴与弦网模型}
 
 \section{范畴论基础}
 
@@ -193,7 +193,7 @@
 \begin{equation}
   x = \bigoplus_{i\in I} n_i x_i, \quad \forall x \in \mathcal{C},
 \end{equation}
-其中 $x_i\in\mathcal{C}$ 是简单对象，$I$ 是非零简单对象的指标集，而系数 $n_i\in\mathbb{Z}_+$，则称 $\mathcal{C}$ 是一个\emph{半单范畴} (semi-simple category)。简单对象的例子包括向量空间范畴 $\mathbf{Vec}$ 中的一维空间（直线），以及 Abel 群范畴 $\mathbf{Ab}$ 中的单群。
+其中 $x_i\in\mathcal{C}$ 是简单对象，$I$ 是由非零简单对象（等价类）构成的指标集，而系数 $n_i\in\mathbb{Z}_+$，则称 $\mathcal{C}$ 是一个\emph{半单范畴} (semi-simple category)。简单对象的例子包括向量空间范畴 $\mathbf{Vec}$ 中的一维空间（直线），以及 Abel 群范畴 $\mathbf{Ab}$ 中的单群。
 
 若张量范畴 $\mathcal{C}$ 同时也是半单的，并且简单对象只有有限多个，那么这样的 $\mathcal{C}$ 称为\emph{融合范畴} (fusion category)。此时简单对象的张量积可以写成：
 \begin{equation}
@@ -210,7 +210,10 @@
 \end{equation}
 即融合系数关于所有指标均对称。
 
-定义矩阵 $(N_a)_{bc}\coloneq N_{ab}^c$，根据 Perron--Frobenius 定理，可知 $N_a$ 存在最大的非负特征值，这定义为简单对象 $a$ 的\emph{量子维数} (quantum dimension)或 Perron--Frobenius 维数 $d_a$。可以证明，量子维数与式~\eqref{eq:left-right-dimension} 中通过迹定义的维数是相同的。
+定义矩阵 $(N_a)_{bc}\coloneq N_{ab}^c$，根据 Perron--Frobenius 定理，可知 $N_a$ 存在最大的非负特征值，这定义为简单对象 $a$ 的\emph{量子维数} (quantum dimension)或 Perron--Frobenius 维数 $d_a$。可以证明，量子维数与式~\eqref{eq:left-right-dimension} 中通过迹定义的维数是相同的。融合范畴 $\mathcal{C}$ 的\emph{总量子维数} (total quantum dimension) 定义为
+\begin{equation}
+  D = \sqrt{\sum_{i\in I} d_i^2}.
+\end{equation}
 
 融合的逆运算是\emph{拆分} (splitting)。简单对象的融合与拆分都可以用弦图来表示：
 \begin{equation}
@@ -228,14 +231,14 @@
   \tikzinput{f-symbol-2}
   \in \bigoplus_x V^{ay}_d \otimes V^{bc}_y \simeq V^{abc}_d.
 \end{equation}
-联系这两组基的变换称为 \emph{$F$ 移动} ($F$-move)：
+联系这两组基的变换称为 \emph{$F$ 移动} ($F$ move)：
 \begin{equation}
   \tikzinput{f-symbol-1}
   = \sum_y \, \bigl[ F^{abc}_d \bigr]_{xy}
   \tikzinput{f-symbol-2}.
   \label{eq:f-move}
 \end{equation}
-式中的系数 $[F^{abc}_d]_{xy}$ 称为 \emph{$F$ 符号} ($F$-symbol)，它一共有 6 个指标。$\mathcal{C}$ 中的 $F$ 符号并不是独立的。如图~\ref{fig:f-symbols-pentagon-equation} 所示，它们所满足的约束条件同样也是五边形方程。
+式中的系数 $[F^{abc}_d]_{xy}$ 称为 \emph{$F$ 符号} ($F$ symbol)，它一共有 6 个指标。$\mathcal{C}$ 中的 $F$ 符号并不是独立的。如图~\ref{fig:f-symbols-pentagon-equation} 所示，它们所满足的约束条件同样也是五边形方程。
 
 \begin{figure}[htb]
   \centering
@@ -263,6 +266,139 @@
       \tikzinput{loop-removal-3}.
     \end{equation}
 \end{itemize}
+
+\subsection{融合范畴的例子}
+\label{subsec:fusion-category-examples}
+
+下面我们给出一些融合范畴的例子\cite{rowell2009classification}。这里只列出了非平凡的 $F$ 符号，对于其他合法的融合树，它们之间基变换的 $F$ 符号都等于 1。
+
+\paragraph{Semion}
+
+\begin{itemize}
+  \item 简单对象：$\{\1, s\}$；
+  \item 量子维数：$d_\1=d_s=1$；
+  \item 总量子维数：$D=\sqrt2$；
+  \item 融合规则：
+    \begin{fusionrules}{|c|cc|}
+      $\otimes$ & $\1$ & $s$  \\ \hline
+      $\1$      & $\1$ & $s$  \\
+      $s$       & $s$  & $\1$ \\
+    \end{fusionrules}
+  \item $F$ 符号：$[F^{sss}_s]_{\1\1}=-1$。
+\end{itemize}
+
+\paragraph{Fibonacci}
+
+\begin{itemize}
+  \item 简单对象：$\{\1, \tau\}$；
+  \item 量子维数：$d_\1=1, \, d_\tau=\varphi$；
+  \item 总量子维数：$D=\sqrt{\frac{5+\sqrt5}{2}}=2\cos\frac{\pi}{10}$；
+  \item 融合规则：
+    \begin{fusionrules}{|c|cc|}
+      $\otimes$ & $\1$   & $\tau$ \\ \hline
+      $\1$      & $\1$   & $\tau$ \\
+      $\tau$    & $\tau$ & $\1\oplus\tau$ \\
+    \end{fusionrules}
+  \item $F$ 符号：
+    $
+      [F^{\tau\tau\tau}_\tau]_{ij} = \dfrac1\varphi \begin{pmatrix} 1 & \sqrt\varphi \\ \sqrt\varphi & -1 \end{pmatrix}, \,
+      i,j \in \{\1, \tau\}
+    $。
+\end{itemize}
+
+这里的 $\varphi=(1+\sqrt5)/2$ 是黄金比例。
+
+\paragraph{Ising}
+
+\begin{itemize}
+  \item 简单对象：$\{\1, \sigma, \psi\}$；
+  \item 量子维数：$d_\1=d_\psi=1, \, d_\sigma=\sqrt2$；
+  \item 总量子维数：$D=2$；
+  \item 融合规则：
+    \begin{fusionrules}{|c|ccc|}
+      $\otimes$ & $\1$     & $\sigma$       & $\psi$   \\ \hline
+      $\1$      & $\1$     & $\sigma$       & $\psi$   \\
+      $\sigma$  & $\sigma$ & $\1\oplus\psi$ & $\sigma$ \\
+      $\psi$    & $\psi$   & $\sigma$       & $\1$     \\
+    \end{fusionrules}
+  \item $F$ 符号：
+    $
+      [F^{\psi\sigma\psi}_\sigma]_{\sigma\sigma} = [F^{\sigma\psi\sigma}_\psi]_{\sigma\sigma} = -1, \,
+      [F^{\sigma\sigma\sigma}_\sigma]_{ij} = -\dfrac{1}{\sqrt2} \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}, \, 
+      i,j \in \{\1, \psi\}
+    $。
+\end{itemize}
+
+\paragraph{Toric code}
+
+\begin{itemize}
+  \item 简单对象：$\{\1, e, m, f\}$；
+  \item 量子维数：$d_\1=d_e=d_m=d_f=1$；
+  \item 总量子维数：$D=2$；
+  \item 融合规则：
+    \begin{fusionrules}{|c|cccc|}
+      $\otimes$ & $\1$ & $e$  & $m$  & $f$  \\ \hline
+      $\1$      & $\1$ & $e$  & $m$  & $f$  \\
+      $e$       & $e$  & $\1$ & $f$  & $m$  \\
+      $m$       & $m$  & $f$  & $\1$ & $e$  \\
+      $f$       & $f$  & $m$  & $e$  & $\1$ \\
+    \end{fusionrules}
+  \item $F$ 符号：都等于 1。
+\end{itemize}
+
+\subsection{模张量范畴与共形场论}
+
+在二维共形场论 (conformal field theory, CFT) 的最小模型 (minimal model) 中，初级场 (primary field) 之间也存在融合规则\cite{francesco2012conformal}：
+\begin{equation}
+  \phi_{(r,s)} \times \phi_{(m,n)}
+  = \sum_{\substack{k=1+|r-m| \\ k+r+m=1 \bmod 2}}^{k_{\max}}
+    \sum_{\substack{l=1+|s-n| \\ l+s+n=1 \bmod 2}}^{l_{\max}} \phi_{(k,l)},
+\end{equation}
+式中
+\begin{equation}
+  \begin{aligned}
+    k_{\max} &= \min(r+m-1, 2p'-1-r-m), \\
+    l_{\max} &= \min(s+n-1, 2p-1-s-n),
+  \end{aligned}
+\end{equation}
+而 $p$ 和 $p'$ 是两个互素的整数，它们确定了最小模型 $\mathcal{M}(p,p')$。以二维临界 Ising 模型为例，它是最小模型 $\mathcal{M}(4,3)$，其中的初级场除了恒等算符 $\1$ 之外，还包括自旋 $\sigma$ 和能量密度 $\epsilon$。它们满足的融合规则为：
+\begin{equation}
+  \sigma\times\sigma = \1+\epsilon, \quad
+  \sigma\times\epsilon = \sigma, \quad
+  \epsilon\times\epsilon = \1.
+\end{equation}
+这与上面 Ising 融合范畴中（非平凡）的融合规则是完全一致的。
+
+事实上，我们在 \ref{subsec:fusion-category-examples} 小节中给出的这几个例子不仅是融合范畴，还是所谓\emph{模张量范畴} (modular tensor category, MTC)。它在融合范畴的基础上加入了\emph{编织} (braiding)、\emph{丝带} (ribbon) 的结构以及\emph{非简并} (non-degeneracy) 的条件，其中定义了\emph{扭转} (twist)：
+\begin{equation}
+  \theta_x = \tikzinput{twist} \, , \quad x \in \mathcal{C},
+\end{equation}
+\emph{$S$ 矩阵} ($S$ matrix)：
+\begin{equation}
+  S_{ij} = \frac1D \tikzinput{s-matrix}, \quad i,j \in I,
+\end{equation}
+\emph{Gauss 和} (Gauss sums)：
+\begin{equation}
+  p^{\pm} = \sum_{i\in I} \theta_i^{\pm1} d_{i}^2.
+\end{equation}
+Gauss 和与 $\mathcal{C}$ 的总量子维数相关：
+\begin{equation}
+  p^+ p^- = D^2,
+\end{equation}
+而其比值定义为
+\begin{equation}
+  \zeta = \left( \frac{p^+}{p^-} \right)^{1/6}.
+\end{equation}
+可以证明模张量范畴中融合系数与 $S$ 矩阵之间存在如下关系：
+\begin{equation}
+  N_{ij}^k = \sum_r \frac{S_{ir} S_{jr} S_{k^\vee r}}{S_{\1 r}},
+\end{equation}
+这被称为 \emph{Verlinde 公式} (Verlinde formula)。此外，还存在 \emph{Vafa 定理} (Vafa's theorem)，即 $\theta_i$ 和 $\zeta$ 都是单位根。此时令
+\begin{equation}
+  \theta_i = \ee^{2\pi\ii\Delta_i}, \quad
+  \zeta = \ee^{2\pi\ii c/24},
+\end{equation}
+可知式中 $\Delta_i$ 和 $c$ 都是有理数。它们正是\emph{有理共形场论} (rational CFT, RCFT) 中的\emph{共形维数} (conformal dimension) 和\emph{中心荷} (central charge)。
 
 \section{拓扑序}
 

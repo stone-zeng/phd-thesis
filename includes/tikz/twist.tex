@@ -1,0 +1,13 @@
+\begin{tikzpicture}[baseline=1.1cm]
+  \draw [->-=0.2]
+       (0,   2.40) node [right] {$x$}
+    -- (0,   1.80) .. controls (0,   1.20) and (0.2, 0.80)
+    .. (0.55,0.80) .. controls (0.75,0.80) and (0.9, 0.95)
+    .. (0.9, 1.20);
+  \filldraw [white] (0.09,1.20) circle (3pt);
+  \draw
+       (0.9, 1.20) .. controls (0.9, 1.45) and (0.75,1.60)
+    .. (0.55,1.60) .. controls (0.2, 1.60) and (0,   1.20)
+    .. (0,   0.60)
+    -- (0,   0.00);
+\end{tikzpicture}

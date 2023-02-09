@@ -1,6 +1,8 @@
 %&fduthesis
+%TC:ignore
 \input{precompile.tex}
 \endofdump
+%TC:endignore
 
 \documentclass[type=doctor,oneside]{fduthesis}
 
@@ -60,14 +62,28 @@
 }
 
 % Math commands
-\newcommand{\id}{\mathrm{id}}
-\newcommand{\1}{\mathbf{1}}
+\newcommand{\ee}{{\mathrm{e}}}
+\newcommand{\ii}{{\mathrm{i}}}
+\newcommand{\id}{{\mathrm{id}}}
+\newcommand{\1}{{\mathbb{1}}}
 \newcommand{\ldual}[1]{{}^\vee\mspace{-2mu}#1}
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\tr}{tr}
 
 \newcommand{\tikzinput}[1]{\input{includes/tikz/#1.tex}}
+
+%TC:envir fusionrules [ignore] text
+\newenvironment{fusionrules}[1]{%
+  \begingroup
+    \renewcommand{\arraystretch}{0.8}%
+    \begin{tabular}{#1}
+      \hline
+}{%
+      \hline
+    \end{tabular}
+  \endgroup
+}
 
 \begin{document}
 
