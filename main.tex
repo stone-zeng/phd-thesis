@@ -55,6 +55,14 @@
   { \__fdu_setCJKmainfont:n  { FZShuSong-Z01 } }
   { \__fdu_setCJKmainfont:nn { FZShuSong-Z01 } { BoldFont = FZXiaoBiaoSong-B05 } }
 \def\hypersetup{\kvsetkeys{Hyp}}
+\cs_set:Npn \fdu_allow_url_break:
+  {
+    \cs_set:Npn \UrlBreaks
+      {
+        \do \. \do \@ \do \\ \do \/ \do \! \do \_ \do \| \do \; \do \>
+        \do \] \do \) \do \, \do \? \do \& \do \' \do  + \do \= \do \#
+      }
+  }
 \ExplSyntaxOff
 
 \AtBeginDocument{

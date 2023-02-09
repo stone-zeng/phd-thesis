@@ -17,6 +17,8 @@
 
 *.pdf
 
-install.sh
 fduthesis.*
-texcount.*
+
+ref
+temp
+tools

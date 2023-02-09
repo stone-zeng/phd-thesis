@@ -2,7 +2,7 @@
 
 \section{范畴论基础}
 
-\emph{范畴论} (category theory) 用以抽象地刻画一些数学结构之间的关系，它主要描述了“对象”之间的作用，即\emph{映射} (mapping)。拓扑序理论中所研究的，正是带有了某些附加结构的范畴。
+\emph{范畴论} (category theory)\cite{baez2011physics,maclane2013categories} 用以抽象地刻画一些数学结构之间的关系，它主要描述了“对象”之间的作用，即\emph{映射} (mapping)。拓扑序理论中所研究的，正是带有了某些附加结构的范畴。
 
 一个\emph{范畴} $\mathcal{C}$ 由其中的\emph{对象} (object) $x\in\mathcal{C}$ 和这些对象之间的\emph{态射} (morphism) $f\colon x\to y$ 组成。对象之间的态射满足以下三个条件：
 \begin{itemize}
@@ -61,7 +61,7 @@
 %   因此 \verb|head| 函数是从 \verb|List| 到 \verb|Maybe| 的自然变换。
 % \end{example}
 
-\emph{弦图} (string diagram) 可以更直观地描述范畴的概念。其中，带箭头的直线或曲线代表对象，盒子代表态射：
+\emph{弦图} (string diagram) 可以更直观地描述范畴的概念。其中，带箭头的直线或曲线代表对象，盒子代表态射\cite{selinger2011survey,baez2011physics}：
 \begin{equation}
   f\colon x\to y \quad \coloneq \quad
   \tikzinput{morphism} \, .
@@ -75,7 +75,7 @@
 
 \subsection{张量范畴}
 
-我们可以在范畴中引入一些结构，使其具有新的特性。引入了张量积的范畴为\emph{张量范畴} (tensor category)。它最基本也最重要的例子是向量空间（或对应的范畴 $\mathbf{Vec}$），其中的张量积结构即为两个向量空间和相应线性变换的直积。一个张量范畴 $\mathcal{C}$ 由下面的条件定义：
+我们可以在范畴中引入一些结构，使其具有新的特性。引入了张量积的范畴为\emph{张量范畴} (tensor category)\cite{bakalov2001lectures,muger2008tensor,maclane2013categories,kong2022invitation}。它最基本也最重要的例子是向量空间（或对应的范畴 $\mathbf{Vec}$），其中的张量积结构即为两个向量空间和相应线性变换的直积。一个张量范畴 $\mathcal{C}$ 由下面的条件定义：
 \begin{itemize}
   \item \emph{张量积} (tensor product) $\otimes\colon\mathcal{C}\times\mathcal{C}\to\mathcal{C}$ 和\emph{单位对象} (unit object) $\1\in\mathcal{C}$；
   \item \emph{结合子} (associator) $\alpha$，它是一个自然同构：
@@ -102,7 +102,7 @@
   \label{fig:pentagon-triangle-equation}
 \end{figure}
 
-如果上述定义中的 $\similarrightarrow$ 可以取为等号，则称该张量范畴是\emph{严格} (strict) 的，此时 $\alpha$、$\lambda$ 和 $\rho$ 均为恒等变换。根据 MacLane \emph{一致性定理} (coherence theorem)，每个张量范畴都等价于一个严格张量范畴。因此我们之后可以只考虑严格张量范畴的情况。此时张量积表达式中的括号和单位对象都可以忽略。
+如果上述定义中的 $\similarrightarrow$ 可以取为等号，则称该张量范畴是\emph{严格} (strict) 的，此时 $\alpha$、$\lambda$ 和 $\rho$ 均为恒等变换。根据 MacLane \emph{一致性定理} (coherence theorem)，每个张量范畴都等价于一个严格张量范畴\cite{maclane2013categories}。因此我们之后可以只考虑严格张量范畴的情况。此时张量积表达式中的括号和单位对象都可以忽略。
 
 一个张量范畴也是一个\emph{幺半群} (monoid)，因为范畴的单位对象可以作为群的单位元，而张量积可以作为群乘法。所以张量范畴也被称为\emph{幺半范畴} (monoidal category)。
 
@@ -195,7 +195,7 @@
 \end{equation}
 其中 $x_i\in\mathcal{C}$ 是简单对象，$I$ 是由非零简单对象（等价类）构成的指标集，而系数 $n_i\in\mathbb{Z}_+$，则称 $\mathcal{C}$ 是一个\emph{半单范畴} (semi-simple category)。简单对象的例子包括向量空间范畴 $\mathbf{Vec}$ 中的一维空间（直线），以及 Abel 群范畴 $\mathbf{Ab}$ 中的单群。
 
-若张量范畴 $\mathcal{C}$ 同时也是半单的，并且简单对象只有有限多个，那么这样的 $\mathcal{C}$ 称为\emph{融合范畴} (fusion category)。此时简单对象的张量积可以写成：
+若张量范畴 $\mathcal{C}$ 同时也是半单的，并且简单对象只有有限多个，那么这样的 $\mathcal{C}$ 称为\emph{融合范畴} (fusion category)\cite{bakalov2001lectures,kitaev2006anyons,bruillard2016rank,aasen2020topological,lou2021dummy}。此时简单对象的张量积可以写成：
 \begin{equation}
   x_a \otimes x_b = \bigoplus_c N_{ab}^c x_c,
 \end{equation}
@@ -348,10 +348,10 @@
 
 \subsection{模张量范畴与共形场论}
 
-在二维共形场论 (conformal field theory, CFT) 的最小模型 (minimal model) 中，初级场 (primary field) 之间也存在融合规则\cite{francesco2012conformal}：
+在二维共形场论 (conformal field theory, CFT) 的最小模型 (minimal model) 中，初级场 (primary field) 之间也存在融合规则\cite{ginsparg1988applied,francesco2012conformal}：
 \begin{equation}
   \phi_{(r,s)} \times \phi_{(m,n)}
-  = \sum_{\substack{k=1+|r-m| \\ k+r+m=1 \bmod 2}}^{k_{\max}}
+  = \sum_{\substack{k=1+|r-m| \\ k+r+m=1 \bmod 2}}^{k_{\max}} \,
     \sum_{\substack{l=1+|s-n| \\ l+s+n=1 \bmod 2}}^{l_{\max}} \phi_{(k,l)},
 \end{equation}
 式中
@@ -369,13 +369,13 @@
 \end{equation}
 这与上面 Ising 融合范畴中（非平凡）的融合规则是完全一致的。
 
-事实上，我们在 \ref{subsec:fusion-category-examples} 小节中给出的这几个例子不仅是融合范畴，还是所谓\emph{模张量范畴} (modular tensor category, MTC)。它在融合范畴的基础上加入了\emph{编织} (braiding)、\emph{丝带} (ribbon) 的结构以及\emph{非简并} (non-degeneracy) 的条件，其中定义了\emph{扭转} (twist)：
+事实上，我们在 \ref{subsec:fusion-category-examples} 小节中给出的这几个例子不仅是融合范畴，还是所谓\emph{模张量范畴} (modular tensor category, MTC)\cite{bakalov2001lectures,kitaev2006anyons,bruillard2016rank,kong2022invitation}。它在融合范畴的基础上加入了\emph{编织} (braiding)、\emph{丝带} (ribbon) 的结构以及\emph{非简并} (non-degeneracy) 的条件，其中定义了\emph{扭转} (twist)：
 \begin{equation}
   \theta_x = \tikzinput{twist} \, , \quad x \in \mathcal{C},
 \end{equation}
 \emph{$S$ 矩阵} ($S$ matrix)：
 \begin{equation}
-  S_{ij} = \frac1D \tikzinput{s-matrix}, \quad i,j \in I,
+  S_{ij} = \frac1D \, \tikzinput{s-matrix}, \quad i,j \in I,
 \end{equation}
 \emph{Gauss 和} (Gauss sums)：
 \begin{equation}
@@ -389,11 +389,11 @@ Gauss 和与 $\mathcal{C}$ 的总量子维数相关：
 \begin{equation}
   \zeta = \left( \frac{p^+}{p^-} \right)^{1/6}.
 \end{equation}
-可以证明模张量范畴中融合系数与 $S$ 矩阵之间存在如下关系：
+可以证明模张量范畴中融合系数与 $S$ 矩阵之间存在如下关系\cite{verlinde1988fusion,bakalov2001lectures,huang2005vertex,bruillard2016rank}：
 \begin{equation}
   N_{ij}^k = \sum_r \frac{S_{ir} S_{jr} S_{k^\vee r}}{S_{\1 r}},
 \end{equation}
-这被称为 \emph{Verlinde 公式} (Verlinde formula)。此外，还存在 \emph{Vafa 定理} (Vafa's theorem)，即 $\theta_i$ 和 $\zeta$ 都是单位根。此时令
+这被称为 \emph{Verlinde 公式} (Verlinde formula)。此外，还存在 \emph{Vafa 定理} (Vafa's theorem)，即 $\theta_i$ 和 $\zeta$ 都是单位根\cite{bakalov2001lectures}。此时令
 \begin{equation}
   \theta_i = \ee^{2\pi\ii\Delta_i}, \quad
   \zeta = \ee^{2\pi\ii c/24},

@@ -68,7 +68,7 @@ FUNCTION {load.config}
   #0 'year.after.author :=
   #1 'period.after.author :=
   #1 'italic.book.title :=
-  #1 'sentence.case.title :=
+  #0 'sentence.case.title :=
   #0 'link.title :=
   #1 'title.in.journal :=
   #0 'show.patent.country :=
@@ -209,7 +209,7 @@ FUNCTION {bbl.pages.colon}
 
 FUNCTION {bbl.wide.space} { "\quad " }
 
-FUNCTION {bbl.slash} { "//\allowbreak " }
+FUNCTION {bbl.slash} { "\,//\,\allowbreak " }
 
 FUNCTION {bbl.sine.loco}
 { entry.lang lang.zh =
@@ -1721,6 +1721,7 @@ FUNCTION {monograph}
   format.urldate "" output.after
   output.url
   output.doi
+  output.eprint
   new.block
   format.note output
   fin.entry
@@ -1762,6 +1763,7 @@ FUNCTION {incollection}
   format.urldate "" output.after
   output.url
   output.doi
+  output.eprint
   new.block
   format.note output
   fin.entry
@@ -1945,7 +1947,7 @@ FUNCTION {preprint}
   #1 'entry.is.electronic :=
   title.in.journal
     { format.title "title" output.check
-      "J" set.entry.mark
+      "A" set.entry.mark
       format.mark "" output.after
       new.block
     }
@@ -2408,16 +2410,16 @@ FUNCTION {begin.bib}
   "  \DeclareUrlCommand\doi{\urlstyle{rm}}"
   write$ newline$
   "  \def\eprint#1#2{#2}"
-      write$ newline$
+  write$ newline$
   "\else"
   write$ newline$
   "  \def\doi#1{\href{https://doi.org/#1}{\nolinkurl{#1}}}"
   write$ newline$
   "  \let\eprint\href"
-      write$ newline$
+  write$ newline$
   "\fi"
-      write$ newline$
-    }
+  write$ newline$
+}
 
 FUNCTION {end.bib}
 { newline$
