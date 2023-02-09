@@ -55,6 +55,10 @@
 \def\hypersetup{\kvsetkeys{Hyp}}
 \ExplSyntaxOff
 
+\AtBeginDocument{
+  \setlength{\bibsep}{4pt plus 2pt minus 1pt}
+}
+
 % Math commands
 \newcommand{\id}{\mathrm{id}}
 \newcommand{\1}{\mathbf{1}}
@@ -87,5 +91,9 @@
 \include{includes/3-strange-correlators}
 \include{includes/4-virasoro}
 \include{includes/5-holographic-tensor-network}
+
+\backmatter
+
+\bibliography{main}
 
 \end{document}
