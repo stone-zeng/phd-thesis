@@ -2,7 +2,7 @@
 
 \section{范畴论基础}
 
-\emph{范畴论} (category theory)\cite{baez2011physics,maclane2013categories} 用以抽象地刻画一些数学结构之间的关系，它主要描述了“对象”之间的作用，即\emph{映射} (mapping)。拓扑序理论中所研究的，正是带有了某些附加结构的范畴。
+\emph{范畴论} (category theory)\cite{baez2011physics,maclane2013categories,beer2018categories} 用以抽象地刻画一些数学结构之间的关系，它主要描述了“对象”之间的作用，即\emph{映射} (mapping)。拓扑序理论中所研究的，正是带有了某些附加结构的范畴。
 
 一个\emph{范畴} $\mathcal{C}$ 由其中的\emph{对象} (object) $x\in\mathcal{C}$ 和这些对象之间的\emph{态射} (morphism) $f\colon x\to y$ 组成。对象之间的态射满足以下三个条件：
 \begin{itemize}
@@ -72,10 +72,11 @@
 \end{equation}
 
 \section{张量范畴与融合范畴}
+\label{sec:tensor-category-fusion-category}
 
 \subsection{张量范畴}
 
-我们可以在范畴中引入一些结构，使其具有新的特性。引入了张量积的范畴为\emph{张量范畴} (tensor category)\cite{bakalov2001lectures,muger2008tensor,maclane2013categories,kong2022invitation}。它最基本也最重要的例子是向量空间（或对应的范畴 $\mathbf{Vec}$），其中的张量积结构即为两个向量空间和相应线性变换的直积。一个张量范畴 $\mathcal{C}$ 由下面的条件定义：
+我们可以在范畴中引入一些结构，使其具有新的特性。引入了张量积的范畴为\emph{张量范畴} (tensor category)\cite{bakalov2001lectures,muger2008tensor,maclane2013categories,beer2018categories,kong2022invitation}。它最基本也最重要的例子是向量空间（或对应的范畴 $\mathbf{Vec}$），其中的张量积结构即为两个向量空间和相应线性变换的直积。一个张量范畴 $\mathcal{C}$ 由下面的条件定义：
 \begin{itemize}
   \item \emph{张量积} (tensor product) $\otimes\colon\mathcal{C}\times\mathcal{C}\to\mathcal{C}$ 和\emph{单位对象} (unit object) $\1\in\mathcal{C}$；
   \item \emph{结合子} (associator) $\alpha$，它是一个自然同构：
@@ -249,7 +250,7 @@
 
 一个融合范畴可由以下几组数据完全确定：
 \begin{itemize}
-  \item 简单对象的集合 $\{a,b,c,\ldots\}$；
+  \item 简单对象（等价类）的集合 $\{a,b,c,\ldots\}$；
   \item 融合系数 $N_{ab}^c$ 或者对应的融合规则；
   \item $F$ 符号 $[F^{abc}_d]_{xy}$。
 \end{itemize}
@@ -369,7 +370,7 @@
 \end{equation}
 这与上面 Ising 融合范畴中（非平凡）的融合规则是完全一致的。
 
-事实上，我们在 \ref{subsec:fusion-category-examples} 小节中给出的这几个例子不仅是融合范畴，还是所谓\emph{模张量范畴} (modular tensor category, MTC)\cite{bakalov2001lectures,kitaev2006anyons,bruillard2016rank,kong2022invitation}。它在融合范畴的基础上加入了\emph{编织} (braiding)、\emph{丝带} (ribbon) 的结构以及\emph{非简并} (non-degeneracy) 的条件，其中定义了\emph{扭转} (twist)：
+事实上，我们在 \ref{subsec:fusion-category-examples} 小节中给出的这几个例子不仅是融合范畴，还是所谓\emph{模张量范畴} (modular tensor category, MTC)\cite{bakalov2001lectures,kitaev2006anyons,bruillard2016rank,beer2018categories,kong2022invitation}。它在融合范畴的基础上加入了\emph{编织} (braiding)、\emph{丝带} (ribbon) 的结构以及\emph{非简并} (non-degeneracy) 的条件，其中定义了\emph{扭转} (twist)：
 \begin{equation}
   \theta_x = \tikzinput{twist} \, , \quad x \in \mathcal{C},
 \end{equation}
@@ -400,6 +401,85 @@ Gauss 和与 $\mathcal{C}$ 的总量子维数相关：
 \end{equation}
 可知式中 $\Delta_i$ 和 $c$ 都是有理数。它们正是\emph{有理共形场论} (rational CFT, RCFT) 中的\emph{共形维数} (conformal dimension) 和\emph{中心荷} (central charge)。
 
-\section{拓扑序}
+\section{拓扑序与弦网模型}
 
-\section{弦网模型}
+\subsection{拓扑序}
+
+在 Landau 相变理论中，不同的相可根据对称性来确定，并可通过\emph{序参量} (order parameter) 来刻画。相变则通过对称性破缺来描述。但在 20 世纪 80 年代以来，随着分数量子 Hall 效应、高温超导等现象的发现，人们意识到 Landau 的对称性破缺理论并不足以描述所有的物态。\emph{拓扑序} (topological order) 的提出即为了描述这些物态的性质，并对其进行分类。
+
+在 2+1D 中，拓扑序可由下面两条性质来确定\cite{zeng2019introduction}：
+\begin{itemize}
+  \item 基态的拓扑简并；
+  \item 非 Abel 的几何相。
+\end{itemize}
+
+\subsection{Toric code 模型}
+
+拓扑序的一个基本且重要的例子是 Toric code 模型\cite{kitaev2003fault}。它定义在一个二维正方形网格 (square lattice) 上，每条边上都存在一个自旋 $1/2$ 的自由度 $\sigma_i$。一般我们选取周期性边界条件，即环面拓扑。其 Hamilton 量定义为
+\begin{equation}
+  H = -\sum_\bm{v} A_\bm{v} - \sum_\bm{p} B_\bm{p}, \quad
+  A_\bm{v} = \prod_{i\in\operatorname{star}(\bm{v})} \sigma_i^x, \quad
+  B_\bm{p} = \prod_{i\in\operatorname{boundary}(\bm{p})} \sigma_i^z,
+  \label{eq:toric-code-hamiltonian}
+\end{equation}
+其中 $\sum_\bm{v}$ 和 $\sum_\bm{p}$ 分别表示对所有的顶点 (vertex) 和元格 (plaquette) 求和，如图~\ref{fig:toric-code-vertex-plaquette} 所示。
+
+\begin{figure}[htb]
+  % TODO: update image
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/temp/ToricCodeLattice.png}
+  \caption[Toric code 中的顶点和元格]{正方形网格上 Toric code 中的顶点 ($\bm{v}$) 和元格 ($\bm{p}$)，它们各包含 4 个自旋自由度。}
+  \label{fig:toric-code-vertex-plaquette}
+\end{figure}
+
+Toric code 中存在 $e$ 和 $m$ 两种激发态，分别由 $\sigma^z$ 和 $\sigma^x$ 组成的弦算符产生。$e$ 和 $m$ 分别绕对方一圈（e.g. $e$ 闭弦 + $m$ 开弦），会给出 -1 的相位。
+
+Toric code 存在 4 种任意子：$\1$、$e$、$m$、$f=e\times m$。它们的 fusion rules 如下……
+
+基态简并度与空间底流形的拓扑有关：$d=2^{2^g}=4^g$，其中 $g$ 为空间的\emph{亏格} (genus)。
+
+\subsection{弦网模型}
+
+\emph{弦网模型} (string-net model)\cite{levin2005string,levin2006detecting} 可以视为 Toric code 模型的一种推广，它是通过 \ref{sec:tensor-category-fusion-category} 节介绍的张量融合范畴来定义的\footnote{准确来说要求模张量范畴。}。弦网模型一般定义在一个三分支 (trivalent) 的网格上，网格的边上带有“弦”的自由度。对于一个具体的弦网模型，我们需要给出下列几组数据：
+\begin{itemize}
+  \item \emph{弦的类型}，按照量子力学的语言也被称为\emph{超选择分区} (superselection sector)，它相当于融合范畴中简单对象的集合；
+  \item \emph{弦的取向}，相当于指定了简单对象的对偶；
+  \item \emph{分支规则}，相当于融合规则，规定了哪些弦允许汇聚于一点。
+\end{itemize}
+
+根据张量融合范畴的精神，弦网模型的基态波函数 $\Phi$ 应该满足下面的约束条件：
+\begin{equation}
+  % TODO: update image and conventions
+  \includegraphics{images/temp/string-net-wave-function.pdf}
+\end{equation}
+这里的 $F^{ijm}_{kln}$ 是 $F$ 符号的另一种记法，它与 $F[...]$ 的关系将在 [...] 中给出。
+
+在六边形网格 (hexagonal lattice) 上定义的弦网模型，其 Hamilton 量由下式给出：
+\begin{equation}
+  H = -\sum_\bm{v} A_\bm{v} - \sum_\bm{p} B_\bm{p}.
+  \label{eq:string-net-hamiltonian}
+\end{equation}
+与式~\eqref{eq:toric-code-hamiltonian}，这里 $\bm{v}$ 和 $\bm{p}$ 也表示顶点和元格。$A_\bm{v}$ 称为\emph{电荷算符} (electric charge operator)：
+\begin{equation}
+  % A_\bm{v} \ket{...} = \delta_{ijk} \ket{...}
+  \includegraphics{images/temp/string-net-electric-charge.pdf}
+\end{equation}
+$B_\bm{p}$ 称为\emph{磁通量算符} (magnetic flux operator)：
+\begin{equation}
+  B_\bm{p} = \sum_{s=0}^N \frac{d_s}{D} B_\bm{p}^s,
+\end{equation}
+其中
+\begin{equation}
+  \begin{gathered}
+    % B_\bm{p}^s \ket{...} = \sum ... \ket{...}
+    \includegraphics{images/temp/string-net-magnetic-flux.pdf}, \\
+    B_{\bm{p},ghijkl}^{s,g'h'i'j'k'l'}(abcdef) =
+      F^{al^*g}_{s^*g'l'^*}
+      F^{bg^*h}_{s^*h'g'^*}
+      F^{ch^*i}_{s^*i'h'^*}
+      F^{di^*j}_{s^*j'i'^*}
+      F^{ej^*k}_{s^*k'j'^*}
+      F^{fk^*l}_{s^*l'k'^*}.
+  \end{gathered}
+\end{equation}
+可以验证 $A_\bm{v}$ 与 $B_\bm{p}$ 是对易的，因而 Hamilton 量式~\eqref{eq:string-net-hamiltonian} 严格可解。
