@@ -2,6 +2,87 @@
 
 \section{Virasoro 与 Kac--Moody 代数简介}
 
+\emph{共形场论} (conformal field theory, CFT) 即满足\emph{共形对称性} (conformal symmetry) 的量子场论。二维共形场论可以用很自然地用复平面上的坐标 $z$ 和 $\bar{z}$ 来描述。在共形映照 $z\to w(z)$、$\bar{z}\to\bar{w}(\bar{z})$ 下，满足
+\begin{equation}
+  \phi'(w,\bar{w}) = \left( \dv{w}{z} \right)^{-h} \left( \dv{\bar{w}}{\bar{z}} \right)^{-\bar{h}} \phi(z,\bar{z})
+  \label{eq:quasi-primary-field}
+\end{equation}
+这一变换关系的场 $\phi$ 称为\emph{准初级场} (quasi-primary field)，其中
+\begin{equation}
+  h = \frac12 \bigl( \Delta+s \bigr), \quad \bar{h} = \frac12 \bigl( \Delta-s \bigr)
+\end{equation}
+称为\emph{共形维数} (conformal dimension)，而 $\Delta$ 和 $s$ 分别称为\emph{标度维数} (scaling dimension) 和\emph{自旋} (spin)，它们确定了 $\phi$ 在标度和旋转变换下的性质。如果对任意的局部共形变换，式~\eqref{eq:quasi-primary-field} 都成立，则称 $\phi$ 为\emph{初级场} (primary field)。
+
+根据 Noether 定理，（连续）对称性对应了守恒流。因而我们可以为局部坐标变换定义\emph{能动量张量} (energy-momentum tensor)，也称\emph{应力张量} (stress tensor)。在共形对称性的条件下，能动量张量 $T^{\mu\nu}$ 可以取为对称且无迹的，即只剩下 $T(z)\coloneq T_{zz}(z)$ 和 $\bar{T}(\bar{z})\coloneq T_{\bar{z}\bar{z}}(\bar{z})$。$T$ 和 $\bar{T}$ 的共形维数分别为 $(h_T,\bar{h}_T)=(2,0)$ 和 $(h_{\bar{T}},\bar{h}_{\bar{T}})=(0,2)$，即
+\begin{equation}
+  \Delta_T = \Delta_{\bar{T}} = 2, \quad s_T = 2, \quad s_{\bar{T}} = -2.
+\end{equation}
+
+对于共形维数为 $(h,\bar{h})$ 初级场 $\phi$，能动量张量与它的\emph{算子积展开} (operator product expansion, OPE) 具有如下形式：
+\begin{equation}
+  \begin{aligned}
+    T(z) \, \phi(w,\bar{z}) &\sim
+      \frac{h}{(z-w)^2} \phi(w,\bar{z}) + \frac{1}{z-w} \partial_w\phi(w,\bar{z}), \\
+    \bar{T}(\bar{z}) \, \phi(w,\bar{z}) &\sim
+      \frac{\bar{h}}{(\bar{z}-\bar{w})^2} \phi(w,\bar{z}) + \frac{1}{\bar{z}-\bar{w}} \partial_{\bar{w}}\phi(w,\bar{z}).
+  \end{aligned}
+  \label{eq:t-phi-ope}
+\end{equation}
+而能动量张量与自身的 OPE 则可写为
+\begin{equation}
+  \begin{aligned}
+    T(z) \, T(w) &\sim
+      \frac{c/2}{(z-w)^4} + \frac{2}{(z-w)^2} T(w) + \frac{1}{z-w} \partial_w T(w), \\
+    \bar{T}(\bar{z}) \, \bar{T}(\bar{w}) &\sim
+        \frac{\bar{c}/2}{(\bar{z}-\bar{w})^4}
+      + \frac{2}{(\bar{z}-\bar{w})^2} \bar{T}(\bar{w})
+      + \frac{1}{\bar{z}-\bar{w}} \partial_{\bar{w}}\bar{T}(\bar{w}).
+  \end{aligned}
+\end{equation}
+其中 $(c,\bar{c})$ 称为\emph{中心荷} (central charge)。
+
+把能动量张量进行模展开，可以得到
+\begin{equation}
+  \begin{aligned}
+    T(z)             &= \sum_{n\in\mathbb{Z}} z^{-n-2} L_n, &\quad
+    L_n              &= \frac{1}{2\pi\ii} \oint z^{n+1} T(z) \, \dd z; \\
+    \bar{T}(\bar{z}) &= \sum_{n\in\mathbb{Z}} \bar{z}^{-n-2} \bar{L}_n, &\quad
+    \bar{L}_n        &= \frac{1}{2\pi\ii} \oint \bar{z}^{n+1} \bar{T}(\bar{z}) \, \dd\bar{z}.
+  \end{aligned}
+\end{equation}
+式中 $L_n$ 和 $\bar{L}_n$ 称为 \emph{Virasoro 算符} (Virasoro operators)，它们构成了 \emph{Virasoro 代数} (Virasoro algebra)：
+\begin{equation}
+  \begin{aligned}
+    \bigl[ L_n, L_m \bigr]
+      &= (n-m) L_{n+m} + \frac{c}{12} n \bigl( n^2-1 \bigr) \delta_{n+m,0}, \\
+    \bigl[ \bar{L}_n, \bar{L}_m \bigr]
+      &= (n-m) \bar{L}_{n+m} + \frac{\bar{c}}{12} n \bigl( n^2-1 \bigr) \delta_{n+m,0}, \\
+    \bigl[ L_n, \bar{L}_m \bigr] &= 0.
+  \end{aligned}
+  \label{eq:virasoro-algebra}
+\end{equation}
+
+二维共形场论可以进行\emph{径向量子化} (radial quantization)，此时圆柱面可以被映射到平面上；特别地，$t\to-\infty$ 时刻会被映射到坐标原点 $z=\bar{z}=0$。因此有\emph{态—算符对应} (state-operator correspondence)：
+\begin{equation}
+  \ket{\phi} = \lim_{z,\bar{z}\to\infty} \phi(z,\bar{z}) \ket{0},
+\end{equation}
+这意味着每一个场算符都可以生成一个对应的态。真空态 $\ket{0}$ 需要在全局共形变换下保持不变，这要求
+\begin{equation}
+  L_n \ket{0} = \bar{L}_n \ket{0} = 0, \quad n \geqslant -1.
+\end{equation}
+设初级场 $\phi$ 对应的态为 $\ket*{h,\bar{h}}\coloneq\phi(0,0)\ket{0}$。根据式~\eqref{eq:t-phi-ope}，可知
+\begin{equation}
+  L_0       \ket*{h,\bar{h}} = h       \ket*{h,\bar{h}}, \quad
+  \bar{L}_0 \ket*{h,\bar{h}} = \bar{h} \ket*{h,\bar{h}}, \quad
+  L_n \ket*{h,\bar{h}} = \bar{L}_n \ket*{h,\bar{h}} = 0 \enspace (n > 0).
+\end{equation}
+利用式~\eqref{eq:virasoro-algebra} 中的对易关系，有
+\begin{equation}
+  \bigl[ L_0, L_{-n} \bigr] = n L_{-n}, \quad
+  \bigl[ \bar{L}_0, \bar{L}_{-n} \bigr] = n \bar{L}_{-n}.
+\end{equation}
+可以看出 $L_{-n}\ket{0}$ 和 $\bar{L}_{-n}\ket{0}$ 分别是 $L_0$ 和 $\bar{L}_0$ 本征值为 $n$ 的本征态，因而 $L_{-n}$、$\bar{L}_{-n}$ 即可作为升算符，使得共形维数 $h$、$\bar{h}$ 增加 $n$。产生的这些态称为 $\ket*{h,\bar{h}}$ 的\emph{后代} (descendant)，它们实际上也可以通过对 $\phi$ 求导得到。
+
 \section{离散全纯性}
 
 \section{Virasoro 与 Kac--Moody 算符的构造}

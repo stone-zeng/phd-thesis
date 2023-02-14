@@ -163,14 +163,16 @@
 对于中枢范畴 $\mathcal{C}$ 中的自同态 $f\in\End_{\mathcal{C}}(x)$，可以定义\emph{左右迹} (left/right trace)：
 \begin{equation}
   \begin{aligned}
-    \tr_{\text{L}} f &\colon \1 \xrightarrow{i_{x^\vee}} x^\vee\otimes x^{\vee\vee}
-                                \xrightarrow{\id_{x^\vee}\otimes\delta_x^{-1}} x^\vee\otimes x
-                                \xrightarrow{\id_{x^\vee}\otimes f} x^\vee\otimes x
-                                \xrightarrow{e_x} \1, \\
-    \tr_{\text{R}} f &\colon \1 \xrightarrow{i_x} x\otimes x^\vee
-                                \xrightarrow{f\otimes\id_{x^\vee}} x\otimes x^\vee
-                                \xrightarrow{\delta_x\otimes\id_{x^\vee}} x^{\vee\vee}\otimes x^\vee
-                                \xrightarrow{e_{x^\vee}} \1.
+    \tr_{\text{L}} f &\colon \1
+      \xrightarrow{i_{x^\vee}} x^\vee\otimes x^{\vee\vee}
+      \xrightarrow{\id_{x^\vee}\otimes\delta_x^{-1}} x^\vee\otimes x
+      \xrightarrow{\id_{x^\vee}\otimes f} x^\vee\otimes x
+      \xrightarrow{e_x} \1, \\
+    \tr_{\text{R}} f &\colon \1
+      \xrightarrow{i_x} x\otimes x^\vee
+      \xrightarrow{f\otimes\id_{x^\vee}} x\otimes x^\vee
+      \xrightarrow{\delta_x\otimes\id_{x^\vee}} x^{\vee\vee}\otimes x^\vee
+      \xrightarrow{e_{x^\vee}} \1.
   \end{aligned}
 \end{equation}
 当 $f=\id_x$ 时，还可以定义\emph{左右维数} (left/right dimension)：
@@ -399,6 +401,7 @@ Gauss 和与 $\mathcal{C}$ 的总量子维数相关：
   \theta_i = \ee^{2\pi\ii\Delta_i}, \quad
   \zeta = \ee^{2\pi\ii c/24},
 \end{equation}
+% TODO: $\Delta_i$ conformal or scaling dimension?
 可知式中 $\Delta_i$ 和 $c$ 都是有理数。它们正是\emph{有理共形场论} (rational CFT, RCFT) 中的\emph{共形维数} (conformal dimension) 和\emph{中心荷} (central charge)。
 
 \section{拓扑序与弦网模型}
@@ -459,7 +462,7 @@ Toric code 存在 4 种任意子：$\1$、$e$、$m$、$f=e\times m$。它们的 
   H = -\sum_\bm{v} A_\bm{v} - \sum_\bm{p} B_\bm{p}.
   \label{eq:string-net-hamiltonian}
 \end{equation}
-与式~\eqref{eq:toric-code-hamiltonian}，这里 $\bm{v}$ 和 $\bm{p}$ 也表示顶点和元格。$A_\bm{v}$ 称为\emph{电荷算符} (electric charge operator)：
+与式~\eqref{eq:toric-code-hamiltonian} 类似，这里 $\bm{v}$ 和 $\bm{p}$ 也表示顶点和元格。$A_\bm{v}$ 称为\emph{电荷算符} (electric charge operator)：
 \begin{equation}
   % A_\bm{v} \ket{...} = \delta_{ijk} \ket{...}
   \includegraphics{images/temp/string-net-electric-charge.pdf}
