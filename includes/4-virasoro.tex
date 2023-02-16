@@ -1,19 +1,20 @@
-\chapter{Virasoro 与 Kac--Moody 代数的张量网络实现}
+\chapter{Virasoro 代数的张量网络实现}
 
-\section{Virasoro 与 Kac--Moody 代数简介}
+\section{二维共形场论回顾}
 
-\emph{共形场论} (conformal field theory, CFT) 即满足\emph{共形对称性} (conformal symmetry) 的量子场论。二维共形场论可以用很自然地用复平面上的坐标 $z$ 和 $\bar{z}$ 来描述。在共形映照 $z\to w(z)$、$\bar{z}\to\bar{w}(\bar{z})$ 下，满足
+\emph{共形场论} (conformal field theory, CFT)\cite{ginsparg1988applied,francesco2012conformal} 即满足\emph{共形对称性} (conformal symmetry) 的量子场论。二维共形场论可以用很自然地用复平面上的坐标 $z$ 和 $\bar{z}$ 来描述。根据 Cauchy--Riemann 条件，共形变换 $z\to w(z)$ 和 $\bar{z}\to\bar{w}(\bar{z})$ 是\emph{全纯} (holomorphic) 和\emph{反全纯} (anti-holomorphic) 的，即它们分别只是 $z$ 和 $\bar{z}$ 的函数。在这一共形变换下，满足
 \begin{equation}
-  \phi'(w,\bar{w}) = \left( \dv{w}{z} \right)^{-h} \left( \dv{\bar{w}}{\bar{z}} \right)^{-\bar{h}} \phi(z,\bar{z})
+  \phi(z,\bar{z}) \to \phi'(w,\bar{w}) =
+  \left( \dv{w}{z} \right)^{-h} \left( \dv{\bar{w}}{\bar{z}} \right)^{-\bar{h}} \phi(z,\bar{z})
   \label{eq:quasi-primary-field}
 \end{equation}
-这一变换关系的场 $\phi$ 称为\emph{准初级场} (quasi-primary field)，其中
+变换关系的场 $\phi$ 称为\emph{准初级场} (quasi-primary field)，其中
 \begin{equation}
   h = \frac12 \bigl( \Delta+s \bigr), \quad \bar{h} = \frac12 \bigl( \Delta-s \bigr)
 \end{equation}
-称为\emph{共形维数} (conformal dimension)，而 $\Delta$ 和 $s$ 分别称为\emph{标度维数} (scaling dimension) 和\emph{自旋} (spin)，它们确定了 $\phi$ 在标度和旋转变换下的性质。如果对任意的局部共形变换，式~\eqref{eq:quasi-primary-field} 都成立，则称 $\phi$ 为\emph{初级场} (primary field)。
+称为\emph{共形维数} (conformal dimension)，而 $\Delta$ 和 $s$ 分别称为\emph{标度维数} (scaling dimension) 和\emph{自旋} (spin)，它们反映了 $\phi$ 在标度和旋转变换下的性质。如果对任意的局部共形变换，式~\eqref{eq:quasi-primary-field} 都成立，则称 $\phi$ 为\emph{初级场} (primary field)。
 
-根据 Noether 定理，（连续）对称性对应了守恒流。因而我们可以为局部坐标变换定义\emph{能动量张量} (energy-momentum tensor)，也称\emph{应力张量} (stress tensor)。在共形对称性的条件下，能动量张量 $T^{\mu\nu}$ 可以取为对称且无迹的，即只剩下 $T(z)\coloneq T_{zz}(z)$ 和 $\bar{T}(\bar{z})\coloneq T_{\bar{z}\bar{z}}(\bar{z})$。$T$ 和 $\bar{T}$ 的共形维数分别为 $(h_T,\bar{h}_T)=(2,0)$ 和 $(h_{\bar{T}},\bar{h}_{\bar{T}})=(0,2)$，即
+根据 Noether 定理，（连续）对称性会与某种守恒流相对应。因而我们可以为一个一般的局部坐标变换定义\emph{能动量张量} (energy-momentum tensor)，也称\emph{应力张量} (stress tensor)。在共形对称性的条件下，能动量张量 $T^{\mu\nu}$ 可以取为对称且无迹的，即只保留 $T(z)\coloneq T_{zz}(z)$ 和 $\bar{T}(\bar{z})\coloneq T_{\bar{z}\bar{z}}(\bar{z})$，同时它们也是（反）全纯函数\cite{ginsparg1988applied,cardy2010conformal,francesco2012conformal}。$T$ 和 $\bar{T}$ 的共形维数分别为 $(h_T,\bar{h}_T)=(2,0)$ 和 $(h_{\bar{T}},\bar{h}_{\bar{T}})=(0,2)$，即
 \begin{equation}
   \Delta_T = \Delta_{\bar{T}} = 2, \quad s_T = 2, \quad s_{\bar{T}} = -2.
 \end{equation}
@@ -21,9 +22,9 @@
 对于共形维数为 $(h,\bar{h})$ 初级场 $\phi$，能动量张量与它的\emph{算子积展开} (operator product expansion, OPE) 具有如下形式：
 \begin{equation}
   \begin{aligned}
-    T(z) \, \phi(w,\bar{z}) &\sim
+    T(z) \phi(w,\bar{z}) &\sim
       \frac{h}{(z-w)^2} \phi(w,\bar{z}) + \frac{1}{z-w} \partial_w\phi(w,\bar{z}), \\
-    \bar{T}(\bar{z}) \, \phi(w,\bar{z}) &\sim
+    \bar{T}(\bar{z}) \phi(w,\bar{z}) &\sim
       \frac{\bar{h}}{(\bar{z}-\bar{w})^2} \phi(w,\bar{z}) + \frac{1}{\bar{z}-\bar{w}} \partial_{\bar{w}}\phi(w,\bar{z}).
   \end{aligned}
   \label{eq:t-phi-ope}
@@ -31,9 +32,9 @@
 而能动量张量与自身的 OPE 则可写为
 \begin{equation}
   \begin{aligned}
-    T(z) \, T(w) &\sim
+    T(z) T(w) &\sim
       \frac{c/2}{(z-w)^4} + \frac{2}{(z-w)^2} T(w) + \frac{1}{z-w} \partial_w T(w), \\
-    \bar{T}(\bar{z}) \, \bar{T}(\bar{w}) &\sim
+    \bar{T}(\bar{z}) \bar{T}(\bar{w}) &\sim
         \frac{\bar{c}/2}{(\bar{z}-\bar{w})^4}
       + \frac{2}{(\bar{z}-\bar{w})^2} \bar{T}(\bar{w})
       + \frac{1}{\bar{z}-\bar{w}} \partial_{\bar{w}}\bar{T}(\bar{w}).
@@ -62,9 +63,18 @@
   \label{eq:virasoro-algebra}
 \end{equation}
 
-二维共形场论可以进行\emph{径向量子化} (radial quantization)，此时圆柱面可以被映射到平面上；特别地，$t\to-\infty$ 时刻会被映射到坐标原点 $z=\bar{z}=0$。因此有\emph{态—算符对应} (state-operator correspondence)：
+二维共形场论可以进行\emph{径向量子化} (radial quantization)，即通过
 \begin{equation}
-  \ket{\phi} = \lim_{z,\bar{z}\to\infty} \phi(z,\bar{z}) \ket{0},
+  z = \exp\left( \frac{2\pi\xi}{l} \right), \quad \xi = t+\ii x
+\end{equation}
+将圆柱面映射到平面上。这样，时间 $t$、空间 $x$ 的平移变换就相当于复平面上的缩放与旋转变换，因此 Hamilton 算符 $H$ 和动量算符 $P$ 就可以表示为
+\begin{equation}
+  % TODO: why
+  H = L_0+\bar{L}_0, \quad P = \ii \bigl( L_0-\bar{L}_0 \bigr).
+\end{equation}
+另一方面，由于 $t\to-\infty$ 的等时面被映射到了坐标原点 $z=\bar{z}=0$，因而可有\emph{态—算符对应} (state-operator correspondence)：
+\begin{equation}
+  \ket{\phi} = \lim_{t\to-\infty}\phi(x,t) \ket{0} = \lim_{z,\bar{z}\to 0} \phi(z,\bar{z}) \ket{0},
 \end{equation}
 这意味着每一个场算符都可以生成一个对应的态。真空态 $\ket{0}$ 需要在全局共形变换下保持不变，这要求
 \begin{equation}
@@ -76,14 +86,39 @@
   \bar{L}_0 \ket*{h,\bar{h}} = \bar{h} \ket*{h,\bar{h}}, \quad
   L_n \ket*{h,\bar{h}} = \bar{L}_n \ket*{h,\bar{h}} = 0 \enspace (n > 0).
 \end{equation}
-利用式~\eqref{eq:virasoro-algebra} 中的对易关系，有
+代入式~\eqref{eq:virasoro-algebra} 中的对易关系，有
 \begin{equation}
   \bigl[ L_0, L_{-n} \bigr] = n L_{-n}, \quad
   \bigl[ \bar{L}_0, \bar{L}_{-n} \bigr] = n \bar{L}_{-n}.
 \end{equation}
-可以看出 $L_{-n}\ket{0}$ 和 $\bar{L}_{-n}\ket{0}$ 分别是 $L_0$ 和 $\bar{L}_0$ 本征值为 $n$ 的本征态，因而 $L_{-n}$、$\bar{L}_{-n}$ 即可作为升算符，使得共形维数 $h$、$\bar{h}$ 增加 $n$。产生的这些态称为 $\ket*{h,\bar{h}}$ 的\emph{后代} (descendant)，它们实际上也可以通过对 $\phi$ 求导得到。
+可以看出 $L_{-n}\ket{0}$ 和 $\bar{L}_{-n}\ket{0}$ 分别是 $L_0$ 和 $\bar{L}_0$ 本征值为 $n$ 的本征态，因而 $L_{-n}$、$\bar{L}_{-n}$ 即可作为升算符，使得共形维数 $h$、$\bar{h}$ 增加 $n$。产生的这些态称为 $\ket*{h,\bar{h}}$ 的\emph{后代} (descendant)，它们也可以通过对 $\phi$ 求导得到。
 
-\section{离散全纯性}
+将圆柱面的 $t\to\pm\infty$ 等时面“粘”在一起便可得到环面。环面的几何由参数 $\tau=\tau_1+\ii\tau_2$ 表示，它需要在变换
+\begin{equation}
+  \tau \to \frac{a\tau+b}{c\tau+d}, \quad \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in PSL(2,\mathbb{Z})
+\end{equation}
+下保持不变，其中 $PSL(2,\mathbb{Z})=SL(2,\mathbb{Z})/\mathbb{Z}_2$ 称为\emph{模群} (modular group)。此时配分函数可以写为
+\begin{align}
+  Z &= \tr \Bigl[ \exp \bigl( -2\pi\tau_2 H \bigr) \exp \bigl( 2\pi\ii\tau_1 P \bigr) \Bigr] \notag \\
+    &= \tr \Bigl[
+         \exp \Bigl( -2\pi   \tau_2 \Bigl( L_0 + \bar{L}_0 - \frac{c}{12} \Bigr) \Bigr)
+         \exp \Bigl(  2\pi\ii\tau_1 \bigl( L_0 - \bar{L}_0 \bigr) \Bigr)
+       \Bigr].
+\end{align}
+设场 $\phi_\alpha$ 的共形维数为 $(h_\alpha,\bar{h}_\alpha)$。由 Virasoro 代数可知
+\begin{align}
+  Z &= \sum_\alpha \exp \Bigl[
+         - 2\pi   \tau_2 \Bigl( h_0 + \bar{h}_0 - \frac{c}{12} \Bigr)
+         + 2\pi\ii\tau_1 \bigl( h_0 - \bar{h}_0 \bigr)
+       \Bigr] \notag \\
+    &= \sum_\alpha \exp \Bigl[
+         - 2\pi   \tau_2 \Bigl(\Delta_\alpha - \frac{c}{12} \Bigr)
+         + 2\pi\ii\tau_1 s_\alpha
+       \Bigr],
+\end{align}
+其中 $\Delta_\alpha$ 和 $s_\alpha$ 分别是场 $\phi_\alpha$ 的标度维数和自旋。
+
+\section{格点近似}
 
 \section{Virasoro 与 Kac--Moody 算符的构造}
 
