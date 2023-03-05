@@ -218,7 +218,7 @@
   D = \sqrt{\sum_{i\in I} d_i^2}.
 \end{equation}
 
-融合的逆运算是\emph{拆分} (splitting)。简单对象的融合与拆分都可以用弦图来表示：
+融合的逆运算是\emph{分裂} (splitting)。简单对象的融合与分裂都可以用弦图来表示：
 \begin{equation}
   \tikzinput{fusion-tree-1}
   \in \Hom_{\mathcal{C}}(a\otimes b, c) \eqcolon V^{ab}_c, \quad
@@ -425,13 +425,13 @@ Gauss 和与 $\mathcal{C}$ 的总量子维数相关：
   B_\bm{p} = \prod_{i\in\operatorname{boundary}(\bm{p})} \sigma_i^z,
   \label{eq:toric-code-hamiltonian}
 \end{equation}
-其中 $\sum_\bm{v}$ 和 $\sum_\bm{p}$ 分别表示对所有的顶点 (vertex) 和元格 (plaquette) 求和，如图~\ref{fig:toric-code-vertex-plaquette} 所示。
+其中 $\sum_\bm{v}$ 和 $\sum_\bm{p}$ 分别表示对所有的顶点 (vertex) 和方块\footnote{在其他网格中也可以是其他形状。} (plaquette) 求和，如图~\ref{fig:toric-code-vertex-plaquette} 所示。
 
 \begin{figure}[htb]
   % TODO: update image
   \centering
   \includegraphics[width=0.5\textwidth]{images/temp/ToricCodeLattice.png}
-  \caption[Toric code 中的顶点和元格]{正方形网格上 Toric code 中的顶点 ($\bm{v}$) 和元格 ($\bm{p}$)，它们各包含 4 个自旋自由度。}
+  \caption[Toric code 中的顶点和方块]{正方形网格上 Toric code 中的顶点 ($\bm{v}$) 和方块 ($\bm{p}$)，它们各包含 4 个自旋自由度。}
   \label{fig:toric-code-vertex-plaquette}
 \end{figure}
 
@@ -462,7 +462,7 @@ Toric code 存在 4 种任意子：$\1$、$e$、$m$、$f=e\times m$。它们的 
   H = -\sum_\bm{v} A_\bm{v} - \sum_\bm{p} B_\bm{p}.
   \label{eq:string-net-hamiltonian}
 \end{equation}
-与式~\eqref{eq:toric-code-hamiltonian} 类似，这里 $\bm{v}$ 和 $\bm{p}$ 也表示顶点和元格。$A_\bm{v}$ 称为\emph{电荷算符} (electric charge operator)：
+与式~\eqref{eq:toric-code-hamiltonian} 类似，这里 $\bm{v}$ 和 $\bm{p}$ 也表示顶点和方块。$A_\bm{v}$ 称为\emph{电荷算符} (electric charge operator)：
 \begin{equation}
   % A_\bm{v} \ket{...} = \delta_{ijk} \ket{...}
   \includegraphics{images/temp/string-net-electric-charge.pdf}
