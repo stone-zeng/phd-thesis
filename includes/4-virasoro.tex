@@ -6,7 +6,7 @@
 
 \subsection{共形对称性与能动量张量}
 
-二维共形场论可以用复平面上的坐标 $z$ 和 $\bar{z}$ 来描述。根据 Cauchy--Riemann 条件，共形变换 $z\to w(z)$ 和 $\bar{z}\to\bar{w}(\bar{z})$ 分别是\emph{全纯} (holomorphic) 和\emph{反全纯} (anti-holomorphic) 的，即它们只是 $z$ 和 $\bar{z}$ 的函数。在这一共形变换下，满足
+二维 CFT 可以用复平面上的坐标 $z$ 和 $\bar{z}$ 来描述。根据 Cauchy--Riemann 条件，共形变换 $z\to w(z)$ 和 $\bar{z}\to\bar{w}(\bar{z})$ 分别是\emph{全纯} (holomorphic) 和\emph{反全纯} (anti-holomorphic) 的，即它们只是 $z$ 和 $\bar{z}$ 的函数。在这一共形变换下，满足
 \begin{equation}
   \phi(z,\bar{z}) \to \phi'(w,\bar{w}) =
   \left( \dv{w}{z} \right)^{-h} \left( \dv{\bar{w}}{\bar{z}} \right)^{-\bar{h}} \phi(z,\bar{z})
@@ -48,7 +48,7 @@
 
 \subsection{Virasoro 代数}
 
-二维共形场论可以进行\emph{径向量子化} (radial quantization)，即通过
+二维 CFT 可以进行\emph{径向量子化} (radial quantization)，即通过
 \begin{equation}
   z = \exp\left( \frac{2\pi\xi}{l} \right), \quad \xi = t+\ii x
   \label{eq:radial-quantization}
@@ -80,12 +80,7 @@
   \end{aligned}
   \label{eq:virasoro-algebra}
 \end{equation}
-在径向量子化后，Hamilton 算符 $H$ 和动量算符 $P$ 可以用 Virasoro 算符表示为
-\begin{equation}
-  % TODO: why
-  H = L_0+\bar{L}_0, \quad P = \ii \bigl( L_0-\bar{L}_0 \bigr).
-\end{equation}
-另一方面，真空态 $\ket{0}$ 需要在全局共形变换下保持不变，这要求
+真空态 $\ket{0}$ 需要在全局共形变换下保持不变，这要求
 \begin{equation}
   L_n \ket{0} = \bar{L}_n \ket{0} = 0, \quad n \geqslant -1.
 \end{equation}
@@ -116,7 +111,12 @@
          \exp \Bigl(  2\pi\ii\tau_1 \bigl( L_0 - \bar{L}_0 \bigr) \Bigr)
        \Bigr].
 \end{align}
-设场 $\phi_\alpha$ 的共形维数为 $(h_\alpha,\bar{h}_\alpha)$。由 Virasoro 代数可知
+其中 $H$ 和 $P$ 分别是 Hamilton 算符和动量算符：
+\begin{equation}
+% TODO: why c/12; how about c-bar
+  H = L_0 + \bar{L}_0 - \frac{c}{12}, \quad P = \ii \bigl( L_0 - \bar{L}_0 \bigr),
+\end{equation}
+而 $c$ 是中心荷。设场 $\phi_\alpha$ 的共形维数为 $(h_\alpha,\bar{h}_\alpha)$，由 Virasoro 代数可知
 \begin{align}
   Z &= \sum_\alpha \exp \Bigl[
          - 2\pi   \tau_2 \Bigl( h_0 + \bar{h}_0 - \frac{c}{12} \Bigr)
@@ -130,8 +130,84 @@
 \end{align}
 其中 $\Delta_\alpha$ 和 $s_\alpha$ 分别是场 $\phi_\alpha$ 的标度维数和自旋。
 
-\section{格点近似}
+\subsection{格点近似}
 
-\section{Virasoro 与 Kac--Moody 算符的构造}
+% TODO:
+% 临界格点模型的配分函数可以通过张量网络来描述。以只包含最邻近相互作用的模型为例，其配分函数为
+% \begin{equation}
+%   Z = \sum_{\sigma_i} \prod_{\langle i,j \rangle} \ee^{-\beta E_{ij}}.
+% \end{equation}
+% 考虑一个方块附近的四个自由度 $\sigma_i$、$\sigma_j$、$\sigma_k$、$\sigma_l$，令
+% \begin{equation}
+%   A_{ijkl} = \ee^{-\beta (H_{ij}+H_{jk}+H_{kl}+H_{li})},
+% \end{equation}
+% 则 $Z$ 可以写成
+% \begin{equation}
+%   Z = ...
+% \end{equation}
+% 四个指标的张量 $A_{ijkl}$ 可以排列成一个 $m\times n$ 的网格
+
+% 由于在二维 CFT 中存在态—算符对应，不妨先假想一个以原点为圆心的圆盘，当我们在原点插入一个算符时，圆盘边界处便会产生一个量子态。如果插入的算符是初级场或其后代，那么对应的量子态将会是缩放算符 (dilation operator) 的本征态。利用式~\eqref{eq:radial-quantization} 的逆映射
+% \begin{equation}
+%   \xi = \frac{l}{2\pi} \log z
+% \end{equation}
+% 可将复平面变为圆柱，而此时的缩放算符即为沿圆柱轴向的路径积分。
+
+如图~\ref{fig:partition-function-tensor-network} 所示，临界格点模型的配分函数 $Z$ 可以通过张量网络来描述：
+\begin{equation}
+  Z = \sum_{i_n,j_n,k_n,l_n} \prod_{\alpha=1}^n A_{i_\alpha j_\alpha k_\alpha l_\alpha},
+\end{equation}
+其中 $A_{ijkl}$ 是四个指标的张量单元。如果把这个网格的两边“粘”起来，并且只取其中一层，就得到了相应的转移矩阵。同时可以发现，如果在平面的张量网络中插入一个算符，围绕算符边界的张量可以连成一个环，而这个环和圆柱上的转移矩阵（在极限意义下）是等价的。这实际上正是式~\eqref{eq:radial-quantization} 用张量网络语言的表述。因此，转移矩阵的本征态便可用来近似描述在平面上插入的算符。
+
+\begin{figure}[htb]
+  % TODO: update image
+  \centering
+  \includegraphics[width=0.6\textwidth]{images/temp/virasoro-transfermatrix.pdf}
+  \caption[格点模型配分函数的张量网络描述]{格点模型配分函数的张量网络描述。}
+  \label{fig:partition-function-tensor-network}
+\end{figure}
+
+下面我们来计算转移矩阵的本征值。考虑一个 $m\times n$ 网格上的临界格点模型，并且模型满足周期性边界条件。它的连续极限可以用一个环面上的 CFT 来描述，环面参数为 $\tau=\ii m/n$。根据式~\eqref{eq:torus-partition-function}，配分函数为
+\begin{equation}
+  Z = \sum_\alpha \exp \Bigl[
+        - 2\pi \frac mn \Bigl(\Delta_\alpha - \frac{c}{12} \Bigr)
+        + mnf + \mathcal{O} \Bigl( \frac{m}{n^\gamma} \Bigr)
+      \Bigr],
+\end{equation}
+其中 $f$ 是热力学极限下每一格点的自由能，而 $\mathcal{O}(m/n^\gamma)$ 则是有限尺寸效应带来的修正。配分函数的“一层”也就是转移矩阵：
+\begin{equation}
+  Z = \tr M^m,
+\end{equation}
+因此 $M$ 的本征值为
+\begin{equation}
+  \lambda_\alpha = \exp \Bigl[
+        - \frac{2\pi}{n} \Bigl(\Delta_\alpha - \frac{c}{12} \Bigr)
+        + nf + \mathcal{O} \Bigl( \frac{1}{n^\gamma} \Bigr)
+      \Bigr].
+\end{equation}
+由于真空态的标度维数总是 0，我们可以据此消去自由能和有限尺寸修正：
+\begin{equation}
+  \Delta_\alpha = \frac{n}{2\pi} \bigl( \log\lambda_0 - \log \lambda_\alpha \bigr).
+\end{equation}
+而如果可以确定能动量张量，还可以利用 $\Delta_T=2$ 的性质来标定 $\Delta_\alpha$：
+\begin{equation}
+  \Delta_\alpha = \frac{2}{\log\lambda_0 - \log\lambda_T} \bigl( \log\lambda_0 - \log \lambda_\alpha \bigr).
+\end{equation}
+
+自部分可以通过引入平移算符 $P$ 来得到。在圆柱上，可以写为 $\exp(2\pi\ii P/n)$，而其本征值为 $\exp(2\pi\ii s_\alpha/n)$。在具有平移对称性的模型中，$\exp(2\pi\ii P/n)$ 和转移矩阵 $M$ 对易，因此它们可以被同时对角化。
+
+\section{Virasoro 算符的构造}
+
+格点 Virasoro 算符可以表示为
+\begin{equation}
+  L_n       \sim \sum_{j=1}^N \ee^{ \ii j n \frac{2\pi}{N}} T(j), \quad
+  \bar{L}_n \sim \sum_{j=1}^N \ee^{-\ii j n \frac{2\pi}{N}} \bar{T}(j),
+  % \label{eq:lattice-virasoro-operators}
+\end{equation}
+其中 $T(j)$ 和 $\bar{T}(j)$ 是能动量张量位于 $j$ 处的格点表示。
+
+\subsection{Ising 模型}
+
+\subsection{Fibonacci 模型}
 
 \section{能动量张量的确定}
