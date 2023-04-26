@@ -1384,7 +1384,7 @@ FUNCTION {hyphenate}
     { t #1 #1 substring$ "-" =
         { wave.dash.in.pages
             { "～" * }
-            { "-" * }
+            { "--" * }
           if$
             { t #1 #1 substring$ "-" = }
             { t #2 global.max$ substring$ 't := }

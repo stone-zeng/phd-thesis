@@ -349,6 +349,63 @@
   \item $F$ 符号：都等于 1。
 \end{itemize}
 
+\subsection{更复杂的例子：\texorpdfstring{$\mathcal{A}_{k+1}$}{𝒜ₖ₊₁} 范畴}
+\label{subsec:A-k+1-category}
+
+$\mathcal{A}_{k+1}$ 范畴\cite{coquereaux2007racah,aasen2020topological,chen2022galois}也称 $\mathfrak{su}(2)_k$ 模型，它最初来自于对 Lie 代数表示的研究。该范畴中共有 $k+1$ 个简单对象，标记为 $0,\frac12,1,\ldots,\frac k2$，对应的量子维数为
+\begin{equation}
+  d_i = \frac{\sin\frac{(2i+1)\pi}{k+2}}{\sin\frac{\pi}{k+2}}, \quad i = 0,1,2,\ldots,k.
+\end{equation}
+计算可得总量子维数
+\begin{equation}
+  D = \frac12 \left( \cot^2 \frac{\pi}{2k+4} - 1 \right).
+\end{equation}
+融合规则由下式确定：
+\begin{equation}
+  N_{ab}^c = \begin{cases}
+    1, & a+b\geqslant c, \, b+c\geqslant a, \, c+a\geqslant b, \, a+b+c\leqslant k, \, a+b+c\in\mathbb{Z}; \\
+    0, & \text{otherwise}.
+  \end{cases}
+\end{equation}
+例如当 $k=1$ 和 2 时，融合规则分别为
+\begin{fusionrules}{|c|cc|}
+  $\otimes$ & 0 & ½ \\ \hline
+  0         & 0 & ½ \\
+  ½         & ½ & 0 \\
+\end{fusionrules}
+和
+\begin{fusionrules}{|c|ccc|}
+  $\otimes$ & 0 & ½          & 1 \\ \hline
+  0         & 0 & ½          & 1 \\
+  ½         & ½ & $0\oplus1$ & ½ \\
+  1         & 1 & ½          & 0 \\
+\end{fusionrules}。
+
+\begin{equation}
+  G^{abc}_{def} = \begin{Bmatrix} a & b & c \\ d & e & f \end{Bmatrix}_q (-1)^p,
+\end{equation}
+式中
+\begin{equation}
+  p = \frac{3(a+b+c+d+e+f)^2 - (a+d)^2 - (b+e)^2 - (c+f)^2}{2},
+\end{equation}
+而 $\{\cdots\}_q$ 称为 \emph{$q$-变形 Wigner $6j$ 符号} ($q$-deformed Wigner $6j$ symbol)，其定义为
+\begin{align}
+  \begin{Bmatrix} j_1 & j_2 & j_3 \\ j_4 & j_5 & j_6 \end{Bmatrix}_q
+  &= \Delta(j_1,j_2,j_3) \, \Delta(j_1,j_5,j_6) \, \Delta(j_4,j_2,j_6) \, \Delta(j_4,j_5,j_3) \notag \\
+  &\times \sum_{z=m}^M \frac{(-1)^z [z+1]!}{[z-a_1]![z-a_2]![z-a_3]! [b_1-z]![b_2-z]![b_3-z]!},
+\end{align}
+其中
+\begin{align}
+  q    &= \exp\frac{2\pi\ii}{k+2}, \\
+  [n]  &= \frac{q^{m/2} - q^{-m/2}}{q^{1/2} - q^{-1/2}} = \frac{\sin\frac{n\pi}{k+2}}{\sin\frac{\pi}{k+2}}, \\
+  [n]! &= \begin{cases}
+    \prod_{i=1}^{n} [n], & n \geqslant 1; \\
+    1                    & n = 0,
+  \end{cases} \\
+  \Delta(x,y,z) &= \sqrt{\frac{[x+y-z]! [y+z-x]! [z+x-y]!}{[x+y+z+1]!}},
+\end{align}
+此外 $a_1=j_1+j_2+j_3$，$a_2=j_1+j_5+j_6$，$a_3=j_2+j_4+j_6$，$a_4=j_3+j_4+j_5$，$b_1=j_1+j_2+j_4+j_5$，$b_2=j_2+j_3+j_5+j_6$，$b_3=j_1+j_3+j_4+j_6$，而对 $z$ 的求和为从 $m=\max\{a_1,a_2,a_3,a_4\}$ 到 $M=\min\{b_1,b_2,b_3\}$ 的整数。
+
 \subsection{模张量范畴与共形场论}
 
 在二维共形场论 (conformal field theory, CFT) 的最小模型 (minimal model) 中，初级场 (primary field) 之间也存在融合规则\cite{ginsparg1988applied,francesco2012conformal}：
@@ -372,7 +429,7 @@
 \end{equation}
 这与上面 Ising 融合范畴中（非平凡）的融合规则是完全一致的。
 
-事实上，我们在 \ref{subsec:fusion-category-examples} 小节中给出的这几个例子不仅是融合范畴，还是所谓\emph{模张量范畴} (modular tensor category, MTC)\cite{bakalov2001lectures,kitaev2006anyons,bruillard2016rank,beer2018categories,kong2022invitation}。它在融合范畴的基础上加入了\emph{编织} (braiding)、\emph{丝带} (ribbon) 的结构以及\emph{非简并} (non-degeneracy) 的条件，其中定义了\emph{扭转} (twist)：
+事实上，我们在 \ref{subsec:fusion-category-examples} 和 \ref{subsec:A-k+1-category} 小节中给出的这几个例子不仅是融合范畴，还是所谓\emph{模张量范畴} (modular tensor category, MTC)\cite{bakalov2001lectures,kitaev2006anyons,bruillard2016rank,beer2018categories,kong2022invitation}。它在融合范畴的基础上加入了\emph{编织} (braiding)、\emph{丝带} (ribbon) 的结构以及\emph{非简并} (non-degeneracy) 的条件，其中定义了\emph{扭转} (twist)：
 \begin{equation}
   \theta_x = \tikzinput{twist} \, , \quad x \in \mathcal{C},
 \end{equation}
