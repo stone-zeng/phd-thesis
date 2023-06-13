@@ -10,7 +10,7 @@
 %% https://github.com/zepinglee/gbt7714-bibtex-style
 %% Version: 2022/10/03 v2.1.5
 %% -------------------------------------------------------------------
-%% Copyright (C) 2016--2022 by Zeping Lee <zepinglee AT gmail.com>
+%% Copyright (C) 2016--2023 by Zeping Lee <zepinglee AT gmail.com>
 %% -------------------------------------------------------------------
 %% This file may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3c
@@ -1057,7 +1057,7 @@ FUNCTION {get.journal.title}
 }
 
 FUNCTION {check.arxiv.preprint}
-{ #1 #5 substring$ "l" change.case$ "arxiv" =
+{ #1 #5 substring$ purify$ "l" change.case$ "arxiv" =
     { #1 }
     { #0 }
   if$
@@ -1970,6 +1970,10 @@ FUNCTION {preprint}
   format.urldate "" output.after
   output.eprint
   output.url
+  show.preprint not eprint empty$ or
+    'output.doi
+    'skip$
+  if$
   new.block
   format.note output
   fin.entry
