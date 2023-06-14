@@ -157,6 +157,7 @@
 如图~\ref{fig:partition-function-tensor-network} 所示，临界格点模型的配分函数 $Z$ 可以通过张量网络来描述：
 \begin{equation}
   Z = \sum_{i_n,j_n,k_n,l_n} \prod_{\alpha=1}^n A_{i_\alpha j_\alpha k_\alpha l_\alpha},
+  \label{eq:partition-function-tensor-network}
 \end{equation}
 其中 $A_{ijkl}$ 是四个指标的张量单元。如果把这个网格的两边“粘”起来，并且只取其中一层，就得到了相应的转移矩阵。同时可以发现，如果在平面的张量网络中插入一个算符，围绕算符边界的张量可以连成一个环，而这个环和圆柱上的转移矩阵（在极限意义下）是等价的。这实际上正是式~\eqref{eq:radial-quantization} 用张量网络语言的表述。因此，转移矩阵的本征态便可用来近似描述在平面上插入的算符。
 
@@ -209,7 +210,7 @@
 
 对于一些具体的格点模型\cite{koo1994representations,milsted2017extraction}，能动量张量 $T$ 可以解析求出。然而在一般情况下，通过配分函数并不能直接得到 $T$ 的表达式。为此，我们需要利用张量网络来构造 Virasoro 算符的近似表示。
 
-如图~\ref{fig:virasoro-construction} 所示，考虑一个以 $A_{ijkl}$ 为单元构成的一般性的张量网络，其中连接维数 $\chi_A=d$。将 4 个 $A$ 张量连成一个环（圆柱），并对其进行精确对角化，即可按照 \ref{subsec:lattice-approximation} 小节中介绍的方案来确定本征态 $\ket{\phi_T}$ 以及相应的能动量张量 $T$。随后，我们可以把得到的 $T$ 插回由 $A$ 构成的圆环（即把 $j$ 位置处的 $A$ 张量用 $T$ 取代），再按照式~\eqref{eq:lattice-virasoro-operators} 乘上对应的系数 $\ee^{\pm2\pi\ii j n/N}$，这样就得到了格点上的 Virasoro 算符 $L_n$ 或 $\bar{L}_n$。
+如图~\ref{fig:virasoro-construction} 所示，考虑一个以 $A_{ijkl}$ 为单元构成的一般性的张量网络，其中连接维数 $\chi_A=d$。将 $A$ 张量连成一个圆柱得到转移矩阵，并对其进行精确对角化，即可按照 \ref{subsec:lattice-approximation} 小节中介绍的方案来确定本征态 $\ket*{\phi_T}$ 或 $\ket*{\phi_{\bar{T}}}$，以及相应的能动量张量 $T$ 或 $\bar{T}$。随后，我们可以把得到的 $T$ 或 $\bar{T}$ 插回由 $A$ 构成的圆柱（即把 $j$ 位置处的 $A$ 张量用 $T$ 或 $\bar{T}$ 取代），再根据式~\eqref{eq:lattice-virasoro-operators} 乘上对应的系数 $\ee^{\pm2\pi\ii j n/N}$，这样就得到了格点上的 Virasoro 算符 $L_n$ 或 $\bar{L}_n$。
 
 \begin{figure}[htb]
   % TODO: update image
@@ -219,8 +220,27 @@
   \label{fig:virasoro-construction}
 \end{figure}
 
-在实际计算中，仅使用 4 个张量构成的圆环，无论是确定能动量张量（圆环~I），还是构造 Virasoro 算符（圆环~II），往往都不能达到很好的精度。一种手段是增加圆环的大小，但为了保持张量缩并时的兼容性，圆环 I 的大小 $N_{\text{I}}$ 必须为 4 的倍数。此外在变形和缩并时，指标的顺序也需要特别注意。% TODO: order of legs
-另一种手段是对张量 $A$ 进行粗粒近似，如图~\ref{fig:virasoro-blocking} 所示。例如可以将 $4$ 个 $A$（$\eqcolon A^{(0)}$）组合成一个更大的 $A^{(1)}$，也可以重复这一过程使得 $A^{(i)}$ 逐渐接近不动点张量。在这一过程中，连接维数 $\chi_{A^{(i)}}=d^{2^i}$ 会迅速增大，因此需要其进行截断。这实际上就是利用 TRG 或者 TNR 等张量网络算法来寻找不动点张量的过程。
+% TODO: Kac-Moody algebra
+当模型具有额外对称性时，相应 CFT 中的 Virasoro 对称性可以推广为 Kac--Moody 对称性。我们可以用完全类似的方法来构造格点 Kac--Moody 算符：
+\begin{equation}
+  J_n       \sim \sum_{j=1}^N \ee^{ \ii j n \frac{2\pi}{N}} J(j), \quad
+  \bar{J}_n \sim \sum_{j=1}^N \ee^{-\ii j n \frac{2\pi}{N}} \bar{J}(j),
+\end{equation}
+其中 $J(j)$ 和 $\bar{J}(j)$ 是共形维数分别为 $(1,0)$ 和 $(0,1)$ 的流算符。
+
+\subsection{Ising 模型}
+
+二维正方格点上的 Ising 模型，其配分函数为
+\begin{equation}
+  Z = \sum_{\langle ij \rangle} \ee^{-\beta \sigma_i \sigma_j},
+\end{equation}
+其中 $\sigma\in\{-1,+1\}$ 是 Ising 自旋。它可以按式~\eqref{eq:partition-function-tensor-network} 的形式用张量网络表示，而对应的张量单元
+\begin{equation}
+  A^{(0)}_{ijkl} = \ee^{-\beta (\sigma_i\sigma_j + \sigma_j\sigma_k + \sigma_k\sigma_l + \sigma_l\sigma_i)}.
+\end{equation}
+在临界点处，$\beta=\beta_{\text{c}}=\log(1+\sqrt2)/2$。
+
+在实际计算中，可以对张量 $A$ 进行粗粒近似以提高精度，如图~\ref{fig:virasoro-blocking} 所示。例如可将 4 个 $A$（$\eqcolon A^{(0)}$）组合成一个更大的 $A^{(1)}$，也可不断重复使得 $A^{(i)}$ 逐渐接近不动点张量。在这一过程中，连接维数 $\chi_{A^{(i)}}=d^{2^i}$ 会迅速增大，因此往往还需要进行截断。实际上，这也就是利用 TRG\cite{levin2007tensor} 或者 TNR\cite{evenbly2015tensor,evenbly2017algorithms} 等张量网络算法来寻找不动点张量的操作。
 
 \begin{figure}[htb]
   % TODO: update image
@@ -230,15 +250,43 @@
   \label{fig:virasoro-blocking}
 \end{figure}
 
-% TODO: Kac-Moody algebra
-当模型具有额外对称性时，相应 CFT 中的 Virasoro 对称性可以推广为 Kac--Moody 对称性。我们可以用完全类似的方法来构造出格点上的 Kac--Moody 算符：
-\begin{equation}
-  J_n       \sim \sum_{j=1}^N \ee^{ \ii j n \frac{2\pi}{N}} J(j), \quad
-  \bar{J}_n \sim \sum_{j=1}^N \ee^{-\ii j n \frac{2\pi}{N}} \bar{J}(j),
-\end{equation}
-其中 $J(j)$ 和 $\bar{J}(j)$ 是共形维数分别为 $(1,0)$ 和 $(0,1)$ 的流算符。
+在确定能动量张量的过程中，为了使得 $T$ 或 $\bar{T}$ 之后能被插入到圆柱中，它们必须有 4 个指标。如果使用 4 个 $A^{(0)}$ 张量组成圆柱，虽然得到的本征态形状满足要求，但此时 $\ket*{\phi_T}$ 和 $\ket*{\phi_{\bar{T}}}$ 将会是简并的（由于 $-2\bmod4=+2$，计算得到的自旋都是 $+2$）。因此我们将使用 $N=8$ 的圆柱来进行精确对角化，找到标度维数 $\Delta\approx2$、自旋 $s=\pm2$ 的 $\ket*{\phi_T}$ 和 $\ket*{\phi_{\bar{T}}}$，并将它们从 8 个指标、$\chi=2$ 变形为 4 个指标、$\chi=4$ 的张量 $T$ 和 $\bar{T}$。需要说明的是，对于 Ising 模型，此时已经可以得到较好的精度，因此在这一步中我们没有使用粗粒近似后的 $A^{(i)}$ 张量。
 
-\subsection{Ising 模型}
+注意到此时 $T$ 和 $\bar{T}$ 的形状和 $A^{(1)}$ 是相同的，我们便可以按照图~\ref{fig:virasoro-construction} 的方法来构造 Virasoro 算符。这里我们仍然选取 $N=8$ 的圆柱，但组成它的张量单元都是经过粗粒近似的 $A^{(1)}$，其连接维数 $\chi=4$。
+
+\begin{figure}[htb]
+  % TODO: update image
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/temp/virasoro-operator.pdf}
+  \caption{Virasoro 算符作用于本征态上。}
+  \label{fig:virasoro-operator}
+\end{figure}
+
+为了检验这一方法的正确性，我们把得到的 Virasoro 算符 $L_n$ 和 $\bar{L}_n$ 进一步作用在 $N=8$、$\chi=4$ 圆柱的本征态 $\ket*{\phi_\alpha}$ 上（如图~\ref{fig:virasoro-operator} 所示）。在 CFT 中，Virasoro 算符起到升降算符的作用，使得
+\begin{equation}
+  L_n         \ket{\Delta_\alpha, s_\alpha} \propto \ket{\Delta_\alpha-n, s_\alpha-n}, \quad
+  L_{\bar{n}} \ket{\Delta_\alpha, s_\alpha} \propto \ket{\Delta_\alpha-n, s_\alpha+n}.
+\end{equation}
+因此只需考察矩阵元 $\langle\phi_\beta|L_n|\phi_\alpha\rangle$ 的值，即可判断 $L_n$ 和 $\bar{L}_n$ 是否能将 $\ket*{\phi_\alpha}$ 映射到相应的态上。我们的计算结果显示，在 Ising 模型中，对于 $N=8$、$\chi=4$ 圆柱的本征态，近似有
+\begin{equation}
+  \frac{\lVert \langle\phi_\beta|L_n|\phi_\alpha\rangle \rVert}{\lVert \ket*{\phi_\beta} \rVert \cdot \lVert L_n\ket*{\phi_\alpha} \rVert} \gtrsim 0.9, \quad
+  n=\pm1, \pm2.
+\end{equation}
+这说明通过本方法计算得到的格点 Virasoro 算符与 CFT 的理论预言基本是一致的，并且具有比较好的精度。在图~\ref{fig:virasoro-ising-spectra} 中，我们给出了这些格点 Virasoro 算符作用的示意图。矩阵元的数据可以在文献 \parencite{wang2022virasoro} 的补充材料中找到。我们观察到，在这些矩阵元中，有一些数据的精度相对较低（与正确值相差 1 到 2 个数量级）。造成这种问题的原因主要是格点模型的有限尺寸效应：一方面，在比较小的圆柱中，CFT 的不同本征态实际上是存在交叠的；另一方面，格点 Virasoro 算符也是通过对有限大小的圆柱进行精确对角化求得的，本身也存在一定误差。
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.4\textwidth]{images/temp/ising_lm1.pdf}    \quad
+  \includegraphics[width=0.4\textwidth]{images/temp/ising_lbarm1.pdf} \\
+  \includegraphics[width=0.4\textwidth]{images/temp/ising_l1.pdf}     \quad
+  \includegraphics[width=0.4\textwidth]{images/temp/ising_lbar1.pdf}  \\
+  \includegraphics[width=0.4\textwidth]{images/temp/ising_lm2.pdf}    \quad
+  \includegraphics[width=0.4\textwidth]{images/temp/ising_lbarm2.pdf} \\
+  \includegraphics[width=0.4\textwidth]{images/temp/ising_l2.pdf}     \quad
+  \includegraphics[width=0.4\textwidth]{images/temp/ising_lbar2.pdf}
+  \caption{Virasoro 算符在 Ising 模型的能谱上的作用示意图。}
+  \label{fig:virasoro-ising-spectra}
+\end{figure}
 
 \subsection{Fibonacci 模型}
 
