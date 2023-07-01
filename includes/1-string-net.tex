@@ -150,7 +150,7 @@
 且需满足
 \begin{equation}
   \delta_{x\otimes y} = \delta_x\otimes\delta_y, \quad
-  \delta_\1 = \id_\1, \quad
+  \delta_{\1} = \id_{\1}, \quad
   \delta_{x^\vee} = (\delta_x^\vee)^{-1}.
 \end{equation}
 根据右对偶的定义，可有
@@ -279,7 +279,7 @@
 
 \begin{itemize}
   \item 简单对象：$\{\1, s\}$；
-  \item 量子维数：$d_\1=d_s=1$；
+  \item 量子维数：$d_{\1}=d_s=1$；
   \item 总量子维数：$D=\sqrt2$；
   \item 融合规则：
     \begin{fusionrules}{|c|cc|}
@@ -294,7 +294,7 @@
 
 \begin{itemize}
   \item 简单对象：$\{\1, \tau\}$；
-  \item 量子维数：$d_\1=1, \, d_\tau=\varphi$；
+  \item 量子维数：$d_{\1}=1, \, d_\tau=\varphi$；
   \item 总量子维数：$D=\sqrt{\frac{5+\sqrt5}{2}}=2\cos\frac{\pi}{10}$；
   \item 融合规则：
     \begin{fusionrules}{|c|cc|}
@@ -315,7 +315,7 @@
 
 \begin{itemize}
   \item 简单对象：$\{\1, \sigma, \psi\}$；
-  \item 量子维数：$d_\1=d_\psi=1, \, d_\sigma=\sqrt2$；
+  \item 量子维数：$d_{\1}=d_\psi=1, \, d_\sigma=\sqrt2$；
   \item 总量子维数：$D=2$；
   \item 融合规则：
     \begin{fusionrules}{|c|ccc|}
@@ -336,7 +336,7 @@
 
 \begin{itemize}
   \item 简单对象：$\{\1, e, m, f\}$；
-  \item 量子维数：$d_\1=d_e=d_m=d_f=1$；
+  \item 量子维数：$d_{\1}=d_e=d_m=d_f=1$；
   \item 总量子维数：$D=2$；
   \item 融合规则：
     \begin{fusionrules}{|c|cccc|}
@@ -477,12 +477,12 @@ Gauss 和与 $\mathcal{C}$ 的总量子维数相关：
 
 拓扑序的一个基本且重要的例子是 Toric code 模型\cite{kitaev2003fault}。它定义在一个二维正方形网格 (square lattice) 上，每条边上都存在一个自旋 $1/2$ 的自由度 $\sigma_i$。一般我们选取周期性边界条件，即环面拓扑。其 Hamilton 量定义为
 \begin{equation}
-  H = -\sum_\bm{v} A_\bm{v} - \sum_\bm{p} B_\bm{p}, \quad
-  A_\bm{v} = \prod_{i\in\operatorname{star}(\bm{v})} \sigma_i^x, \quad
-  B_\bm{p} = \prod_{i\in\operatorname{boundary}(\bm{p})} \sigma_i^z,
+  H = -\sum_{\bm{v}} A_{\bm{v}} - \sum_{\bm{p}} B_{\bm{p}}, \quad
+  A_{\bm{v}} = \prod_{i\in\operatorname{star}(\bm{v})} \sigma_i^x, \quad
+  B_{\bm{p}} = \prod_{i\in\operatorname{boundary}(\bm{p})} \sigma_i^z,
   \label{eq:toric-code-hamiltonian}
 \end{equation}
-其中 $\sum_\bm{v}$ 和 $\sum_\bm{p}$ 分别表示对所有的顶点 (vertex) 和方块\footnote{在其他网格中也可以是其他形状。} (plaquette) 求和，如图~\ref{fig:toric-code-vertex-plaquette} 所示。
+其中 $\sum_{\bm{v}}$ 和 $\sum_{\bm{p}}$ 分别表示对所有的顶点 (vertex) 和方块\footnote{在其他网格中也可以是其他形状。} (plaquette) 求和，如图~\ref{fig:toric-code-vertex-plaquette} 所示。
 
 \begin{figure}[htb]
   % TODO: update image
@@ -516,22 +516,22 @@ Toric code 存在 4 种任意子：$\1$、$e$、$m$、$f=e\times m$。它们的 
 
 在六边形网格 (hexagonal lattice) 上定义的弦网模型，其 Hamilton 量由下式给出：
 \begin{equation}
-  H = -\sum_\bm{v} A_\bm{v} - \sum_\bm{p} B_\bm{p}.
+  H = -\sum_{\bm{v}} A_{\bm{v}} - \sum_{\bm{p}} B_{\bm{p}}.
   \label{eq:string-net-hamiltonian}
 \end{equation}
-与式~\eqref{eq:toric-code-hamiltonian} 类似，这里 $\bm{v}$ 和 $\bm{p}$ 也表示顶点和方块。$A_\bm{v}$ 称为\emph{电荷算符} (electric charge operator)：
+与式~\eqref{eq:toric-code-hamiltonian} 类似，这里 $\bm{v}$ 和 $\bm{p}$ 也表示顶点和方块。$A_{\bm{v}}$ 称为\emph{电荷算符} (electric charge operator)：
 \begin{equation}
-  % A_\bm{v} \ket{...} = \delta_{ijk} \ket{...}
+  % A_{\bm{v}} \ket{...} = \delta_{ijk} \ket{...}
   \includegraphics{images/temp/string-net-electric-charge.pdf}
 \end{equation}
-$B_\bm{p}$ 称为\emph{磁通量算符} (magnetic flux operator)：
+$B_{\bm{p}}$ 称为\emph{磁通量算符} (magnetic flux operator)：
 \begin{equation}
-  B_\bm{p} = \sum_{s=0}^N \frac{d_s}{D} B_\bm{p}^s,
+  B_{\bm{p}} = \sum_{s=0}^N \frac{d_s}{D} B_{\bm{p}}^s,
 \end{equation}
 其中
 \begin{equation}
   \begin{gathered}
-    % B_\bm{p}^s \ket{...} = \sum ... \ket{...}
+    % B_{\bm{p}}^s \ket{...} = \sum ... \ket{...}
     \includegraphics{images/temp/string-net-magnetic-flux.pdf}, \\
     B_{\bm{p},ghijkl}^{s,g'h'i'j'k'l'}(abcdef) =
       F^{al^*g}_{s^*g'l'^*}
@@ -542,4 +542,4 @@ $B_\bm{p}$ 称为\emph{磁通量算符} (magnetic flux operator)：
       F^{fk^*l}_{s^*l'k'^*}.
   \end{gathered}
 \end{equation}
-可以验证 $A_\bm{v}$ 与 $B_\bm{p}$ 是对易的，因而 Hamilton 量式~\eqref{eq:string-net-hamiltonian} 严格可解。
+可以验证 $A_{\bm{v}}$ 与 $B_{\bm{p}}$ 是对易的，因而 Hamilton 量式~\eqref{eq:string-net-hamiltonian} 严格可解。
