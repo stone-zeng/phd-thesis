@@ -1947,7 +1947,7 @@ FUNCTION {preprint}
   #1 'entry.is.electronic :=
   title.in.journal
     { format.title "title" output.check
-      "A" set.entry.mark
+      "EB" set.entry.mark
       format.mark "" output.after
       new.block
     }

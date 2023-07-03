@@ -103,7 +103,7 @@
 \begin{equation}
   \tau \to \frac{a\tau+b}{c\tau+d}, \quad \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in PSL(2,\mathbb{Z})
 \end{equation}
-下保持不变，其中 $PSL(2,\mathbb{Z})=SL(2,\mathbb{Z})/\mathbb{Z}_2$ 称为\emph{模群} (modular group)。此时配分函数可以写为
+下保持不变，其中 $PSL(2,\mathbb{Z})=SL(2,\mathbb{Z})/\mathbb{Z}_2$ 称为\emph{模群} (modular group)。此时配分函数可以写为\cite{cardy1986operator,francesco2012conformal}
 \begin{align}
   Z &= \tr \Bigl[ \exp \bigl( -2\pi\tau_2 H \bigr) \exp \bigl( 2\pi\ii\tau_1 P \bigr) \Bigr] \notag \\
     &= \tr \Bigl[
@@ -169,7 +169,7 @@
   \label{fig:partition-function-tensor-network}
 \end{figure}
 
-下面我们来计算转移矩阵的本征值。考虑一个 $m\times n$ 网格上的临界格点模型，并且模型满足周期性边界条件。它的连续极限可以用一个环面上的 CFT 来描述，环面参数为 $\tau=\ii m/n$。根据式~\eqref{eq:torus-partition-function}，配分函数为
+下面我们来计算转移矩阵的本征值。考虑一个 $m\times n$ 网格上的临界格点模型，并且模型满足周期性边界条件。它的连续极限可以用一个环面上的 CFT 来描述，环面参数为 $\tau=\ii m/n$。根据式~\eqref{eq:torus-partition-function}，配分函数为\cite{hauru2016topological}
 \begin{equation}
   Z = \sum_\alpha \exp \Bigl[
         - 2\pi \frac mn \Bigl(\Delta_\alpha - \frac{c}{12} \Bigr)
@@ -289,5 +289,7 @@
 \end{figure}
 
 \subsection{Fibonacci 模型}
+
+在很大程度上，Ising 模型具有一定的特殊性，例如有限尺寸效应影响较小。对于更一般的模型，无论是计算并确定圆柱本征态，还是构造对应的 Virasoro 算符，都比较困难。本小节我们将考察 $\mathbb{Z}_3$ parafermion CFT，它可以通过为 Fibonacci 拓扑序添加适当的边界条件而得到。
 
 \section{能动量张量的确定}

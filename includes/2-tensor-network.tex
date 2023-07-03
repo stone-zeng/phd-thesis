@@ -2,8 +2,83 @@
 
 \section{基本概念}
 
+\emph{张量网络} (tensor network)\cite{orus2014practical,bridgeman2017hand} 为凝聚态物理、量子信息、机器学习等领域提供了一套统一的描述框架。顾名思义，张量网络就是根据一定规则连接起来张量单元。这里的\emph{张量} (tensor) 可以简单理解为多维数组，即标量（0 维张量）、向量（1 维张量）、矩阵（2 维张量）的推广。
+
+如图~\ref{fig:tensors} 所示，张量网络常利用图形方式来描述，其中圆圈（也可用其他图形）表示张量，延伸出来的腿表示张量的指标。
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.6\textwidth]{images/temp/tensors.pdf}
+  \caption[张量单元]{三种张量单元，分别为向量、矩阵和三阶张量。}
+  \label{fig:tensors}
+\end{figure}
+
+\subsection{基本张量运算}
+
+常用的张量运算包括张量积、缩并、变形等。
+
+\emph{张量积} (tensor product) 其实就是把若干个张量并排放置，并保持指标不变：
+\begin{equation}
+  (A \otimes B)_{i_1,\dots,i_r,j_1,\dots,j_s} \coloneq A_{i_1,\dots,i_r} B_{j_1,\dots,j_s}.
+\end{equation}
+图形描述为
+\begin{equation}
+  [[TODO:]]
+\end{equation}
+
+张量的\emph{缩并} (contraction) 是向量内积、矩阵乘法的推广，即对两个张量的某些指标进行求和，得到一个新的张量：
+\begin{equation}
+  C_{abc} = \sum_k A_{abk} B_{kc} \eqcolon A_{abk} B_{kc}
+\end{equation}
+这里我们根据 Einstein 求和约定省略了求和号。张量缩并的图形描述为
+\begin{equation}
+  \mbox{\includegraphics[width=0.75\textwidth]{images/temp/contraction.pdf}}
+\end{equation}
+即把需要缩并的腿（指标）连接起来。
+
+同一个张量的指标也可以缩并，这样就得到了\emph{迹} (trace) 或\emph{偏迹} (partial trace)：
+\begin{equation}
+    (\tr_{x,y} A)_{i_1,\dots,i_{x-1},i_{x+1},\dots,i_{y-1},u_{y+1},\dots,i_r}
+  = A_{i_1,\dots,i_{x-1},k,i_{x+1},\dots,i_{y-1},k,i_{y+1},\dots,i_r}.
+\end{equation}
+其图形描述与缩并类似：
+\begin{equation}
+  [[TODO:]]
+\end{equation}
+利用图形语言很容易验证 $\tr(AB)=\tr(BA)$：
+\begin{equation}
+  [[TODO:]]
+\end{equation}
+
+张量的\emph{变形} (reshape) 相当于指标的重新组合，例如
+\begin{equation}
+  \mbox{\includegraphics[width=0.5\textwidth]{images/temp/reshape.pdf}}
+\end{equation}
+在数值计算中，把一般形状的张量变形为矩阵，往往可以利用特化的算法来加速计算。
+
+\subsection{张量分解}
+
+张量的\emph{分解} (decomposition) 可以理解为缩并的逆运算，最常用的是\emph{奇异值分解} (singular value decomposition, SVD)，即
+\begin{equation}
+  M_{ij} = \sum_{k=1}^{\min(m,n)} U_{ik} S_{kk} V_{kj} = \sum_k U_{ik} S_{kk} \bigl( V^\dagger \bigr)_{jk},
+\end{equation}
+其中 $M$ 为 $m\times n$ 矩阵，$S$ 为对角矩阵（如果行数、列数不等，则相应补零），$U$ 和 $V$ 为幺正矩阵，$V^\dagger$ 表示共轭转置。利用张量的变形，可以很容易地将 SVD 推广为一般形状的张量，用图形描述为
+\begin{equation}
+  [[TODO:]]
+\end{equation}
+
+奇异值分解可以用来得到张量的近似表示。将奇异值（$S$ 矩阵的对角元）按大小排列后，只保留前 $r$ 个值，就得到了秩为 $r$ 的近似张量：
+\begin{equation}
+  M_{ij} \approx \sum_{k=1}^r U_{ik} S_{kk} V_{kj}, \quad r < \min(m,n).
+\end{equation}
+并且可以证明，这种近似表示是所有秩为 $r$ 的张量中最优的。
+
+对于一个一般的张量，原则上我们总可以把它改写为若干个小张量的缩并形式，并保证自由度数目不变。这种改写并不能降低计算复杂度，但我们可以利用奇异值分解把这些小张量替换为对应的近似表示，这样就可以大幅减少总自由度的数目。
+
 \section{矩阵乘积态（MPS）算法}
 
 \section{重整化算法}
 
 \section{具体实现}
+
+\citet{harris2020array,virtanen2020scipy}
