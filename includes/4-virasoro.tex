@@ -196,7 +196,15 @@
   \Delta_\alpha = \frac{2}{\log\lambda_0 - \log\lambda_T} \bigl( \log\lambda_0 - \log \lambda_\alpha \bigr).
 \end{equation}
 
-自部分可以通过引入平移算符 $P$ 来得到。在圆柱上，可以写为 $\exp(2\pi\ii P/n)$，而其本征值为 $\exp(2\pi\ii s_\alpha/n)$。在具有平移对称性的模型中，$\exp(2\pi\ii P/n)$ 和转移矩阵 $M$ 对易，因此它们可以被同时对角化。
+自旋部分可以通过引入平移算符 $P$ 来得到。在圆柱上，可以写为 $\exp(2\pi\ii P/n)$，而其本征值为 $\exp(2\pi\ii s_\alpha/n)$。在具有平移对称性的模型中，$\exp(2\pi\ii P/n)$ 和转移矩阵 $M$ 对易，因此它们可以被同时对角化。平移算符 $P$ 的张量网络表示如图~\ref{fig:translation-operator} 所示，即把格点平移一个单位。
+
+\begin{figure}[htb]
+  % TODO: update image
+  \centering
+  \[ T_{i_1 i_2 \cdots i_n, \, j_1 j_2 \cdots j_n} = \text{...} \]
+  \caption[平移算符 $P$ 的张量网络表示]{平移算符 $P$ 的张量网络表示。}
+  \label{fig:translation-operator}
+\end{figure}
 
 \section{Virasoro 算符的构造}
 
@@ -210,7 +218,7 @@
 
 对于一些具体的格点模型\cite{koo1994representations,milsted2017extraction}，能动量张量 $T$ 可以解析求出。然而在一般情况下，通过配分函数并不能直接得到 $T$ 的表达式。为此，我们需要利用张量网络来构造 Virasoro 算符的近似表示。
 
-如图~\ref{fig:virasoro-construction} 所示，考虑一个以 $A_{ijkl}$ 为单元构成的一般性的张量网络，其中连接维数 $\chi_A=d$。将 $A$ 张量连成一个圆柱得到转移矩阵，并对其进行精确对角化，即可按照 \ref{subsec:lattice-approximation} 小节中介绍的方案来确定本征态 $\ket*{\phi_T}$ 或 $\ket*{\phi_{\bar{T}}}$，以及相应的能动量张量 $T$ 或 $\bar{T}$。随后，我们可以把得到的 $T$ 或 $\bar{T}$ 插回由 $A$ 构成的圆柱（即把 $j$ 位置处的 $A$ 张量用 $T$ 或 $\bar{T}$ 取代），再根据式~\eqref{eq:lattice-virasoro-operators} 乘上对应的系数 $\ee^{\pm2\pi\ii j n/N}$，这样就得到了格点上的 Virasoro 算符 $L_n$ 或 $\bar{L}_n$。
+如图~\ref{fig:virasoro-construction} 所示，考虑一个以 $A_{ijkl}$ 为单元构成的一般性的张量网络，其中连接维数 $\chi_A=d$。将 $A$ 张量连成一个圆柱得到转移矩阵、与平移算符相连，再对其进行精确对角化，即可按照 \ref{subsec:lattice-approximation} 小节中介绍的方案来确定本征态 $\ket*{\phi_T}$ 或 $\ket*{\phi_{\bar{T}}}$，以及相应的能动量张量 $T$ 或 $\bar{T}$。随后，我们可以把得到的 $T$ 或 $\bar{T}$ 插回由 $A$ 构成的圆柱（即把 $j$ 位置处的 $A$ 张量用 $T$ 或 $\bar{T}$ 取代），再根据式~\eqref{eq:lattice-virasoro-operators} 乘上对应的系数 $\ee^{\pm2\pi\ii j n/N}$，这样就得到了格点上的 Virasoro 算符 $L_n$ 或 $\bar{L}_n$。
 
 \begin{figure}[htb]
   % TODO: update image
@@ -232,13 +240,22 @@
 
 二维正方格点上的 Ising 模型，其配分函数为
 \begin{equation}
-  Z = \sum_{\langle ij \rangle} \ee^{-\beta \sigma_i \sigma_j},
+  Z = \sum_{\{\sigma\}} \ee^{-\beta H}
+    = \sum_{\{\sigma\}} \ee^{\beta \sum_{\langle ij \rangle} \sigma_i \sigma_j}
+    = \sum_{\{\sigma\}} \prod_{\langle ij \rangle} \ee^{\beta \sigma_i \sigma_j}
+    = \tr M^m,
 \end{equation}
-其中 $\sigma\in\{-1,+1\}$ 是 Ising 自旋。它可以按式~\eqref{eq:partition-function-tensor-network} 的形式用张量网络表示，而对应的张量单元
+其中 $\sigma\in\{-1,+1\}$ 是 Ising 自旋。它可以按式~\eqref{eq:partition-function-tensor-network} 的形式用张量网络表示，对应的张量单元为
 \begin{equation}
   A^{(0)}_{ijkl} = \ee^{-\beta (\sigma_i\sigma_j + \sigma_j\sigma_k + \sigma_k\sigma_l + \sigma_l\sigma_i)}.
 \end{equation}
-在临界点处，$\beta=\beta_{\text{c}}=\log(1+\sqrt2)/2$。
+在临界点处，$\beta=\beta_{\text{c}}=\log(1+\sqrt2)/2$。转移矩阵为
+\begin{equation}
+    M^{i_1 i_2 \cdots i_n}_{k_1 k_2 \cdots k_n}
+  = \sum_{j_1, j_2, \ldots, j_n} \prod_{\alpha=1}^n A^{(0)}_{i_\alpha j_\alpha k_\alpha j_{\alpha+1}}
+  = \text{[[TODO:]]}
+  % = \DiagramI.
+\end{equation}
 
 在实际计算中，可以对张量 $A$ 进行粗粒近似以提高精度，如图~\ref{fig:virasoro-blocking} 所示。例如可将 4 个 $A$（$\eqcolon A^{(0)}$）组合成一个更大的 $A^{(1)}$，也可不断重复使得 $A^{(i)}$ 逐渐接近不动点张量。在这一过程中，连接维数 $\chi_{A^{(i)}}=d^{2^i}$ 会迅速增大，因此往往还需要进行截断。实际上，这也就是利用 TRG\cite{levin2007tensor} 或者 TNR\cite{evenbly2015tensor,evenbly2017algorithms} 等张量网络算法来寻找不动点张量的操作。
 
@@ -250,7 +267,36 @@
   \label{fig:virasoro-blocking}
 \end{figure}
 
-在确定能动量张量的过程中，为了使得 $T$ 或 $\bar{T}$ 之后能被插入到圆柱中，它们必须有 4 个指标。如果使用 4 个 $A^{(0)}$ 张量组成圆柱，虽然得到的本征态形状满足要求，但此时 $\ket*{\phi_T}$ 和 $\ket*{\phi_{\bar{T}}}$ 将会是简并的（由于 $-2\bmod4=+2$，计算得到的自旋都是 $+2$）。因此我们将使用 $N=8$ 的圆柱来进行精确对角化，找到标度维数 $\Delta\approx2$、自旋 $s=\pm2$ 的 $\ket*{\phi_T}$ 和 $\ket*{\phi_{\bar{T}}}$，并将它们从 8 个指标、$\chi=2$ 变形为 4 个指标、$\chi=4$ 的张量 $T$ 和 $\bar{T}$。需要说明的是，对于 Ising 模型，此时已经可以得到较好的精度，因此在这一步中我们没有使用粗粒近似后的 $A^{(i)}$ 张量。
+在确定能动量张量的过程中，为了使得 $T$ 或 $\bar{T}$ 之后能被插入到圆柱中，它们必须有 4 个指标。如果使用 4 个 $A^{(0)}$ 张量组成转移矩阵，虽然得到的本征态形状满足要求，但此时 $\ket*{\phi_T}$ 和 $\ket*{\phi_{\bar{T}}}$ 将会是简并的（由于 $-2\bmod4=+2$，计算得到的自旋都是 $+2$）。因此我们将使用 $N=8$ 的转移矩阵来进行精确对角化以得到能谱数据（见表~\ref{tab:ising-spectrum}），并从中找到标度维数 $\Delta\approx2$、自旋 $s=\pm2$ 的 $\ket*{\phi_T}$ 和 $\ket*{\phi_{\bar{T}}}$，并将它们从 8 个指标、$\chi=2$ 变形为 4 个指标、$\chi=4$ 的张量 $T$ 和 $\bar{T}$。对于 Ising 模型，此时已经可以得到较好的精度，因此在这一步中我们没有使用粗粒近似后的 $A^{(i)}$ 张量。
+
+\begin{table}[htb]
+  \caption{Ising 模型的能谱数据。圆柱（转移矩阵）的尺寸由 4 取到 24，并且外推至无穷大。注意此处 $\Delta_\alpha$ 没有根据 $\Delta_T=2$ 的性质来进行标定。}
+  \label{tab:ising-spectrum}
+  \newcommand{\header}[2]{%
+    \textsubscript{\footnotesize#1}\,\textbackslash\,\textsuperscript{\footnotesize#2}}
+  \centering\footnotesize
+  \begin{tabular}{*{9}{c}}
+    \toprule
+      \header{自旋}{尺寸} & 4        & 8        & 12       & 16       & 20       & 24       & $\infty$     & 理论值 \\
+    \midrule
+      0                   & 0.123499 & 0.124606 & 0.124823 & 0.124900 & 0.124936 & 0.124955 & 0.12522\,(6) & $\frac18$     \\
+      0                   & 1.026740 & 1.006488 & 1.002868 & 1.001610 & 1.001030 & 1.000715 & 0.9961\,(11) & 1             \\
+      $\pm1$              & 1.245699 & 1.151345 & 1.136446 & 1.131388 & 1.129074 & 1.127824 & 1.107\,(5)   & $1{+}\frac18$ \\
+      $\pm1,\pm2$         & 2.569513 & 2.098365 & 2.041544 & 2.022974 & 2.014590 & 2.010090 & 1.916\,(30)  & 2             \\
+      0                   & 2.367899 & 2.178085 & 2.148069 & 2.137876 & 2.133212 & 2.130692 & 2.089\,(11)  & $2{+}\frac18$ \\
+      $\pm2$              & -        & 2.369005 & 2.223018 & 2.178379 & 2.158670 & 2.148201 & 2.043\,(19)  & $2{+}\frac18$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+除了直接考察能谱数据，我们还可以通过分析能动量张量的两点关联函数来检验其正确性，它们可以使用 iTEBD 算法来计算（见 [[TODO:]]）。首先，我们使用 $A$ 张量来构建一个无限一维链 (iMPS)，并将其转化为正则形式。接下来，我们通过对 iMPS 进行虚时演化来计算配分函数。再把 $T$ 插入配分函数中，即可计算得到关联函数，其结果如图~\ref{fig:ising-correlation-functions} 所示。可以发现 $T$ 的两点关联函数存在幂律行为，并且拟合得到的标度维数与表~\ref{tab:ising-spectrum} 中的能谱数据大致相符。
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{images/fibonacci/ising-correlation-function.pdf}
+  \caption[Ising 模型中能动量张量 $T$ 和 $L_{-1}\psi_\sigma$ 的两点关联函数]{Ising 模型中能动量张量 $T$（左图）和 $L_{-1}\psi_\sigma$（右图）的两点关联函数。为了避免计算本征值时有限尺寸效应导致的误差，以及 iTEBD 算法中的长程累积误差，我们只取 $x=10$ 到 100 区间的数据来拟合幂律公式 $y=Ax^{-2\Delta}$，此时分别得到 $\Delta=1.988$ 和 1.106。它们与 Ising 能谱的理论结果（$\Delta=2$ 和 $1+1/8$）基本相符。}
+  \label{fig:ising-correlation-functions}
+\end{figure}
 
 注意到此时 $T$ 和 $\bar{T}$ 的形状和 $A^{(1)}$ 是相同的，我们便可以按照图~\ref{fig:virasoro-construction} 的方法来构造 Virasoro 算符。这里我们仍然选取 $N=8$ 的圆柱，但组成它的张量单元都是经过粗粒近似的 $A^{(1)}$，其连接维数 $\chi=4$。
 
@@ -273,6 +319,8 @@
   n=\pm1, \pm2.
 \end{equation}
 这说明通过本方法计算得到的格点 Virasoro 算符与 CFT 的理论预言基本是一致的，并且具有比较好的精度。在图~\ref{fig:virasoro-ising-spectra} 中，我们给出了这些格点 Virasoro 算符作用的示意图。矩阵元的数据可以在文献 \parencite{wang2022virasoro} 的补充材料中找到。我们观察到，在这些矩阵元中，有一些数据的精度相对较低（与正确值相差 1 到 2 个数量级）。造成这种问题的原因主要是格点模型的有限尺寸效应：一方面，在比较小的圆柱中，CFT 的不同本征态实际上是存在交叠的；另一方面，格点 Virasoro 算符也是通过对有限大小的圆柱进行精确对角化求得的，本身也存在一定误差。
+
+Virasoro 算符的正确性同样可以通过两点关联函数来检验。在图~\ref{fig:ising-correlation-functions} 中，我们考察了 $L_{-1}\psi_\sigma$ 的关联函数，拟合得到的标度维数与理论值（$1+1/8$）也是基本一致的。
 
 \begin{figure}[htb]
   \centering
