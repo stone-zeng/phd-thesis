@@ -30,7 +30,7 @@
 \begin{equation}
   C_{abc} = \sum_k A_{abk} B_{kc} \eqcolon A_{abk} B_{kc}
 \end{equation}
-这里我们根据 Einstein 求和约定省略了求和号。张量缩并的图形描述为
+这里根据 Einstein 求和约定省略了求和号。张量缩并的图形描述为
 \begin{equation}
   \mbox{\includegraphics[width=0.75\textwidth]{images/temp/contraction.pdf}}
 \end{equation}
@@ -54,7 +54,7 @@
 \begin{equation}
   \mbox{\includegraphics[width=0.5\textwidth]{images/temp/reshape.pdf}}
 \end{equation}
-在数值计算中，把一般形状的张量变形为矩阵，往往可以利用特化的算法来加速计算。
+在数值计算中，把一般形状的张量变形为矩阵，往往可以利用为矩阵优化的算法来加速计算。
 
 \subsection{张量分解}
 
@@ -67,7 +67,7 @@
   [[TODO:]]
 \end{equation}
 
-奇异值分解可以用来得到张量的近似表示。将奇异值（$S$ 矩阵的对角元）按大小排列后，只保留前 $r$ 个值，就得到了秩为 $r$ 的近似张量：
+奇异值分解可以用来获得张量的近似表示。将奇异值（$S$ 矩阵的对角元）按大小排列后，只保留前 $r$ 个值，就得到了秩为 $r$ 的近似张量：
 \begin{equation}
   M_{ij} \approx \sum_{k=1}^r U_{ik} S_{kk} V_{kj}, \quad r < \min(m,n).
 \end{equation}
@@ -75,7 +75,7 @@
 
 对于一个一般的张量，原则上我们总可以把它改写为若干个小张量的缩并形式，并保证自由度数目不变。这种改写并不能降低计算复杂度，但我们可以利用奇异值分解把这些小张量替换为对应的近似表示，这样就可以大幅减少总自由度的数目。
 
-\section{矩阵乘积态（MPS）算法}
+\section{矩阵乘积态算法}
 
 \section{重整化算法}
 
