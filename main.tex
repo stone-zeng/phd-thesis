@@ -11,7 +11,6 @@
 \fdusetup{
   style = {
     font = libertinus,
-    cjk-font = founder,
     footnote-style = libertinus,
     fullwidth-stop = mapping,
     bib-backend = bibtex,
@@ -50,10 +49,12 @@
 
 % Hacks
 \ExplSyntaxOn
-\__fdu_patch_cmd:Nnn \__fdu_load_cjk_font_founder:
-  { \__fdu_setCJKmainfont:n  { FZShuSong-Z01 } }
-  { \__fdu_setCJKmainfont:nn { FZShuSong-Z01 } { BoldFont = FZXiaoBiaoSong-B05 } }
-\def\hypersetup{\kvsetkeys{Hyp}}
+\cs_set_protected:Npn \__fdu_load_cjk_font_fandol:
+  {
+    \__fdu_setCJKmainfont:nn  { HYShuSongErS } { BoldFont = HYZhongSongS }
+    \__fdu_setCJKsansfont:n   { HYZhongHeiS  }
+    \__fdu_set_cjk_font_kai:n { HYKaiTiS     }
+  }
 \cs_set:Npn \fdu_allow_url_break:
   {
     \cs_set:Npn \UrlBreaks
@@ -106,24 +107,21 @@
 \listoffigures
 \listoftables
 
-\begin{abstract}
-  中文摘要
-\end{abstract}
-
-\begin{abstract*}
-  English abstract
-\end{abstract*}
+\input{includes/abstracts}
 
 \mainmatter
 
-\include{includes/1-string-net}
-\include{includes/2-tensor-network}
-\include{includes/3-strange-correlators}
-\include{includes/4-virasoro}
-\include{includes/5-holographic-tensor-network}
+\input{includes/1-string-net}
+\input{includes/2-tensor-network}
+\input{includes/3-strange-correlators}
+\input{includes/4-virasoro}
+\input{includes/5-holographic-tensor-network}
 
 \backmatter
 
-\bibliography{main}
+\printbibliography
+
+\input{includes/academic-resume}
+\input{includes/acknowledgements}
 
 \end{document}
