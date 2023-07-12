@@ -266,13 +266,20 @@
   % TODO: update image
   \centering
   \includegraphics[width=0.9\textwidth]{images/temp/virasoro-blocking.pdf}
-  \caption{对张量 $A$ 进行粗粒近似。}
+  \caption[张量 $A$ 的粗粒近似]{对张量 $A$ 进行粗粒近似。}
   \label{fig:virasoro-blocking}
 \end{figure}
 
 \subsection{CFT 能谱与能动量张量}
 
-在确定能动量张量的过程中，为了使得 $T$ 或 $\bar{T}$ 之后能被插入到圆柱中，它们必须有 4 个指标。如果使用 4 个 $A^{(0)}$ 张量组成转移矩阵，虽然得到的本征态形状满足要求，但此时 $\ket*{\phi_T}$ 和 $\ket*{\phi_{\bar{T}}}$ 将会是简并的（由于 $-2\bmod4=+2$，计算得到的自旋都是 $+2$）。因此我们将使用 $N=8$ 的转移矩阵来进行精确对角化以得到能谱数据（见表~\ref{tab:ising-spectrum}），并从中找到标度维数 $\Delta\approx2$、自旋 $s=\pm2$ 的 $\ket*{\phi_T}$ 和 $\ket*{\phi_{\bar{T}}}$，并将它们从 8 个指标、$\chi=2$ 变形为 4 个指标、$\chi=4$ 的张量 $T$ 和 $\bar{T}$。对于 Ising 模型，此时已经可以得到较好的精度，因此在这一步中我们没有使用粗粒近似后的 $A^{(i)}$ 张量。
+在确定能动量张量的过程中，为了使得 $T$ 或 $\bar{T}$ 之后能被插入到圆柱中，它们必须有 4 个指标。如果使用 4 个 $A^{(0)}$ 张量组成转移矩阵，虽然得到的本征态形状满足要求，但此时 $\ket*{\phi_T}$ 和 $\ket*{\phi_{\bar{T}}}$ 将会是简并的（由于 $-2\bmod4=+2$，计算得到的自旋都是 $+2$）。因此我们将使用 $N=8$ 的转移矩阵来进行精确对角化以得到能谱数据（见图~\ref{fig:ising-spectrum} 和表~\ref{tab:ising-spectrum}），并从中找到标度维数 $\Delta\approx2$、自旋 $s=\pm2$ 的 $\ket*{\phi_T}$ 和 $\ket*{\phi_{\bar{T}}}$，并将它们从 8 个指标、$\chi=2$ 变形为 4 个指标、$\chi=4$ 的张量 $T$ 和 $\bar{T}$。对于 Ising 模型，此时已经可以得到较好的精度，因此在这一步中我们没有使用粗粒近似后的 $A^{(i)}$ 张量。
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.7\textwidth]{images/fibonacci/ising-spectrum.pdf}
+  \caption[Ising 模型的能谱]{Ising 模型的能谱，对应于 $n\to\infty$ 圆柱转移矩阵。其中初级场及能动量张量使用 CFT 中的相应算符来标记。}
+  \label{fig:ising-spectrum}
+\end{figure}
 
 \begin{sidewaystable}
   \centering
@@ -298,7 +305,7 @@
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\textwidth]{images/fibonacci/ising-correlation-function.pdf}
-  \caption[Ising 模型中能动量张量 $T$ 和 $L_{-1}\phi_\sigma$ 的两点关联函数]{Ising 模型中能动量张量 $T$（左图）和 $L_{-1}\phi_\sigma$（右图）的两点关联函数。为了避免计算本征值时有限尺寸效应导致的误差，以及 iTEBD 算法中的长程累积误差，我们只取 $x=10$ 到 100 区间的数据来拟合幂律公式 $y=Ax^{-2\Delta}$，此时分别得到 $\Delta=1.988$ 和 1.106。它们与 Ising 能谱的理论结果（$\Delta=2$ 和 $1+1/8$）基本相符。}
+  \caption[Ising 模型中的两点关联函数]{Ising 模型中能动量张量 $T$（左图）和 $L_{-1}\phi_\sigma$（右图）的两点关联函数。为了避免计算本征值时有限尺寸效应导致的误差，以及 iTEBD 算法中的长程累积误差，我们只取 $x=10$ 到 100 区间的数据来拟合幂律公式 $y=Ax^{-2\Delta}$，此时分别得到 $\Delta=1.988$ 和 1.106。它们与 Ising 能谱的理论结果（$\Delta=2$ 和 $1+1/8$）基本相符。}
   \label{fig:ising-correlation-functions}
 \end{figure}
 
@@ -310,7 +317,7 @@
   % TODO: update image
   \centering
   \includegraphics[width=0.5\textwidth]{images/temp/virasoro-operator.pdf}
-  \caption{Virasoro 算符作用于本征态上。}
+  \caption[Virasoro 算符作用于本征态上]{Virasoro 算符作用于本征态上。}
   \label{fig:virasoro-operator}
 \end{figure}
 
@@ -338,7 +345,7 @@ Virasoro 算符的正确性同样可以通过两点关联函数来检验。在�
   \includegraphics[width=0.45\textwidth]{images/temp/ising_lbarm2.pdf} \\
   \includegraphics[width=0.45\textwidth]{images/temp/ising_l2.pdf}     \quad
   \includegraphics[width=0.45\textwidth]{images/temp/ising_lbar2.pdf}
-  \caption{Virasoro 算符在 Ising 模型的能谱上的作用示意图。}
+  \caption[Virasoro 算符在 Ising 模型能谱上的作用示意图]{Virasoro 算符在 Ising 模型能谱上的作用示意图。}
   \label{fig:virasoro-ising-spectrum}
 \end{figure}
 
@@ -400,7 +407,7 @@ $F$ 符号为
 \begin{figure}[ht]
   % \input{includes/linear-operator.tex}
   \includegraphics[width=0.9\textwidth]{images/temp/fib-linear-operator.png}
-  \caption[利用线性算符方法实现矩阵乘法 $M\cdot v$]{对于 Fibonacci 弦网模型，利用线性算符方法实现矩阵乘法 $M\cdot v$。}
+  \caption[利用线性算符方法实现矩阵乘法]{对于 Fibonacci 弦网模型，利用线性算符方法实现矩阵乘法 $M\cdot v$。}
   \label{fig:fib-linear-operator}
 \end{figure}
 
@@ -436,7 +443,7 @@ $F$ 符号为
       \item[a] 这些能级带有二重简并。
       \item[b] 对于 $n=9$ 的情况，转移矩阵不够大，因此一些高能级的后代没有出现；同时，自旋 $\pm2$ 会退化为 $\pm1$。
     \end{tablenotes}
-    \caption[Fibonacci 模型的能谱数据]{Fibonacci 模型的能谱数据。真空态及其后代（标记为粗体）通过对角化带有幂等元的转移矩阵确定，见~[[TODO:]]。$n=\infty$ 处的数据通过对尺寸由 12 到 27 的圆柱（转移矩阵）本征值外推得到。}
+    \caption[Fibonacci 模型的能谱数据]{Fibonacci 模型的能谱数据。真空态及其后代（标记为粗体）通过对角化带有幂等元的转移矩阵确定，见 \ref{subsec:topological-projectors} 小节。$n=\infty$ 处的数据通过对尺寸由 12 到 27 的圆柱（转移矩阵）本征值外推得到。}
     \label{tab:fib-spectrum}
   \end{threeparttable}
 \end{sidewaystable}
@@ -445,7 +452,14 @@ $F$ 符号为
 \begin{equation}
   \Delta = A + \frac{B}{n}
 \end{equation}
-的形式趋近于其热力学极限值\cite{schuler2016universal}，然后我们在能谱中选择相应的数据以使拟合结果最优（即挑选出最接近拟合曲线的数据点，见图~\ref{fig:fib-fitting}）。计算出拟合参数 $A$ 后，令 $n\to\infty$ 即可得到 $\Delta^\infty$。这些数据列在表~\ref{tab:fib-spectrum} 的“$\infty$”列中。进一步，我们还根据式~\eqref{eq:scaling-dimension-rescale} 标定了能谱中的本征值，使得 $\Delta_{\1}=0$、$\Delta_T=2$，从而可以更为准确地估计标度维数。这些数据列在了“调整值”一列。
+的形式趋近于其热力学极限值\cite{schuler2016universal}，然后我们在能谱中选择相应的数据以使拟合结果最优（即挑选出最接近拟合曲线的数据点，见图~\ref{fig:fib-fitting}）。计算出拟合参数 $A$ 后，令 $n\to\infty$ 即可得到 $\Delta^\infty$。这些数据列在表~\ref{tab:fib-spectrum} 的“$\infty$”栏中。进一步，我们还根据式~\eqref{eq:scaling-dimension-rescale} 标定了能谱中的本征值，使得 $\Delta_{\1}=0$、$\Delta_T=2$，从而可以更为准确地估计标度维数。这些数据列在了“调整值”一栏，并且绘制在了图~\ref{fig:fib-spectrum} 中。
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.7\textwidth]{images/fibonacci/fib-spectrum.pdf}
+  \caption[Fibonacci 模型的能谱]{Fibonacci 模型的能谱，对应于 $n\to\infty$ 圆柱转移矩阵。“[[TODO:]]” 表明存在二重简并。图中的本征值进行了缩放处理，以使得 $\Delta_{\1}=0$ 和 $\Delta_T=2$。初级场使用对应的算符来标记，它们的共形维数分别为 $h_{\1}=0$，$h_\sigma=1/15$，$h_\epsilon=2/5$，$h_Z=2/3$，$h_X=7/5$ 以及 $h_Y=3$（与 $X$、$Y$ 对应的态本征值较大，在我们的计算中没有考虑）。CFT 配分函数为 $Z=|\chi_{\1}+\chi_Y|^2+|\chi_\epsilon+\chi_X|^2+2|\chi_\sigma|^2+2|\chi_Z|^2$\cite{vanhove2018mapping}。对应于 $|\chi_{\1}+\chi_Y|^2$ 的子空间，其中的本征态用橙色标记。}
+  \label{fig:fib-spectrum}
+\end{figure}
 
 在拟合中还可以考虑高阶修正项，如
 \begin{equation}
@@ -460,6 +474,38 @@ $F$ 符号为
   \label{fig:fib-fitting}
 \end{figure}
 
-\subsection{投影算符}
+\subsection{拓扑投影算符}
+\label{subsec:topological-projectors}
+
+然而，当太多能级混杂在一起时，上述的拟合方法也无法保证能够将各能级区分开来。例如，当两个能级的自旋相同、标度维数又很接近时，仅靠拟合优度是无法辨别的。为此，我们需要利用\emph{拓扑投影算符} (topological projectors)\cite{bultinck2017anyons,williamson2017symmetry,aasen2020topological}，它可以将转移矩阵投影到对应于特定拓扑荷 (topological charge) 的子空间。拓扑荷与格点模型的尺寸是无关的，因此在热力学极限下趋于能动量张量的本征态，即使在有限大小的系统中也仍然会保持在同一个分区 (sector) ，即包含了真空态的平凡分区。它们在特定的投影算符作用之下可以保留在能谱中，而其他态则会被移除（即投影到零值）。
+
+拓扑投影算符的构造与 Ocneanu \emph{管状代数} (tube algebra) 有关。拓扑序模型中的每种任意子都对应着 CFT 中的一个拓扑分区，换而言之 CFT 中的初级场及其后代组成的“家族” (family) 可按照对应的任意子类型进行分类。拓扑序中的弦算符则可作为投影算符，将转移矩阵投影到包含相应拓扑分区的子空间上。因为我们这里的工作主要关注能动量张量，而能动量张量与真空态属于同一分区，所以只需构造与任意子 $\1$ 相对应的弦算符。
+
+弦算符的一般形式可由 MPO 来描述，称为\emph{幂等元} (idempotents)\cite{bultinck2017anyons,williamson2017symmetry,vanhove2018mapping,lootens2019cardy,aasen2020topological}。构成这些 MPO 的矩阵单元为
+\begin{center}
+  \includegraphics[width=0.5\textwidth]{images/temp/idempotents-mpo.png}
+\end{center}
+其中 $G$ 可通过对四面体张量（$F$ 符号）进行归一化和对称化得到：
+\begin{equation}
+    G^{abc}_{ijk}
+  = \frac{1}{\sqrt{d_j d_c}} \bigl[ F^{aik}_b \bigr]_{jc}
+  = \frac{1}{\sqrt{d_a d_b d_c d_i d_j d_k}} \, [[jibcka]].
+\end{equation}
+对于大小为 $n$ 的圆柱转移矩阵，管状代数的基可由 $n-1$ 个橙色张量与一个红色张量首尾相连得到：
+\begin{center}
+  \includegraphics[width=0.5\textwidth]{images/temp/tube-algebra-basis.png}
+\end{center}
+注意图中省略了辅助指标，它们需要被正常缩并掉。
+
+幂等元的一般形式可表示为这些基的线性组合。在 Fibonacci 模型中，对应于 $\1$ 的弦算符幂等元为\cite{bultinck2017anyons}
+\begin{equation}
+  \mathcal{P}_1 = \frac{1}{\sqrt5}
+  \left( \frac{1}{\phi} \mathcal{T}^{\1}_{\1\1} + \sqrt{\phi} \mathcal{T}^\tau_{\tau\1} \right).
+\end{equation}
+它可以与转移矩阵、平移算符相连，再进行对角化便可得到只含真空态、能动量张量等的子能谱。这样，即使是在有限尺寸下，依然可以严格地找到能动量张量对应的本征态。我们在表~\ref{tab:fib-spectrum} 和图~\ref{fig:fib-spectrum} 中都对这些态做了高亮。
 
 \subsection{Virasoro 算符}
+
+\citet{zeng2022virasoro,chen2022exact}
+
+\section{本章小结}
