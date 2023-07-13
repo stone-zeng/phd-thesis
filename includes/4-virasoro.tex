@@ -210,6 +210,7 @@
 \end{figure}
 
 \section{Virasoro 算符的构造}
+\label{sec:virasoro-operators}
 
 类比连续情况下的式~\eqref{eq:virasoro-operators}，格点 Virasoro 算符可以表示为
 \begin{equation}
@@ -281,43 +282,24 @@
   \label{fig:ising-spectrum}
 \end{figure}
 
-\begin{sidewaystable}
-  \centering
-  \begin{tabular}{*{9}{c}}
-    \toprule
-      \diagbox{自旋}{标度维数}{圆柱尺寸}
-                  & 4        & 8        & 12       & 16       & 20       & 24       & $\infty$     & 理论值 \\
-    \midrule
-      0           & 0.123499 & 0.124606 & 0.124823 & 0.124900 & 0.124936 & 0.124955 & 0.12522\,(6) & $\frac18$     \\
-      0           & 1.026740 & 1.006488 & 1.002868 & 1.001610 & 1.001030 & 1.000715 & 0.9961\,(11) & 1             \\
-      $\pm1$      & 1.245699 & 1.151345 & 1.136446 & 1.131388 & 1.129074 & 1.127824 & 1.107\,(5)   & $1{+}\frac18$ \\
-      $\pm1,\pm2$ & 2.569513 & 2.098365 & 2.041544 & 2.022974 & 2.014590 & 2.010090 & 1.916\,(30)  & 2             \\
-      0           & 2.367899 & 2.178085 & 2.148069 & 2.137876 & 2.133212 & 2.130692 & 2.089\,(11)  & $2{+}\frac18$ \\
-      $\pm2$      & -        & 2.369005 & 2.223018 & 2.178379 & 2.158670 & 2.148201 & 2.043\,(19)  & $2{+}\frac18$ \\
-    \bottomrule
-  \end{tabular}
-  \caption[Ising 模型的能谱数据]{Ising 模型的能谱数据。圆柱（转移矩阵）的尺寸 $n$ 由 4 取到 24，并且外推至无穷大。注意此处 $\Delta_\alpha$ 没有根据 $\Delta_T=2$ 的性质来进行标定。}
-  \label{tab:ising-spectrum}
-\end{sidewaystable}
-
 除了直接考察能谱数据，我们还可以通过分析能动量张量的两点关联函数来检验其正确性，它们可以使用 iTEBD 算法来计算（见 [[TODO:]]）。首先，我们使用 $A$ 张量来构建一个无限一维链 (iMPS)，并将其转化为正则形式。接下来，我们通过对 iMPS 进行虚时演化来计算配分函数。再把 $T$ 插入配分函数中，即可计算得到关联函数，其结果如图~\ref{fig:ising-correlation-functions} 所示。可以发现 $T$ 的两点关联函数存在幂律行为，并且拟合得到的标度维数与表~\ref{tab:ising-spectrum} 中的能谱数据大致相符。
 
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\textwidth]{images/fibonacci/ising-correlation-function.pdf}
-  \caption[Ising 模型中的两点关联函数]{Ising 模型中能动量张量 $T$（左图）和 $L_{-1}\phi_\sigma$（右图）的两点关联函数。为了避免计算本征值时有限尺寸效应导致的误差，以及 iTEBD 算法中的长程累积误差，我们只取 $x=10$ 到 100 区间的数据来拟合幂律公式 $y=Ax^{-2\Delta}$，此时分别得到 $\Delta=1.988$ 和 1.106。它们与 Ising 能谱的理论结果（$\Delta=2$ 和 $1+1/8$）基本相符。}
+  \caption[Ising 模型中的两点关联函数]{Ising 模型中能动量张量 $T$（左图）和 $L_{-1}\phi_\sigma$（右图）的两点关联函数。为了避免计算本征值时有限尺寸效应导致的误差（影响 $x$ 较小的区间），以及 iTEBD 算法中的长程累积误差（影响 $x$ 较大的区间），我们只取 $x=10$ 到 100 区间的数据来拟合幂律公式 $y=Ax^{-2\Delta}$，此时分别得到 $\Delta=1.988$ 和 1.106。它们与 Ising 能谱的理论结果（$\Delta=2$ 和 $1+1/8$）基本相符。}
   \label{fig:ising-correlation-functions}
 \end{figure}
 
 \subsection{Virasoro 算符}
+\label{subsec:ising-virasoro-operator}
 
 注意到此时 $T$ 和 $\bar{T}$ 的形状和 $A^{(1)}$ 是相同的，我们便可以按照图~\ref{fig:virasoro-construction} 的方法来构造 Virasoro 算符。这里我们仍然选取 $N=8$ 的圆柱，但组成它的张量单元都是经过粗粒近似的 $A^{(1)}$，其连接维数 $\chi=4$。
 
 \begin{figure}[ht]
-  % TODO: update image
   \centering
-  \includegraphics[width=0.5\textwidth]{images/temp/virasoro-operator.pdf}
-  \caption[Virasoro 算符作用于本征态上]{Virasoro 算符作用于本征态上。}
+  \includegraphics[width=0.4\textwidth]{images/temp/virasoro-operator.pdf}
+  \caption[Virasoro 算符作用在本征态上]{Virasoro 算符作用在本征态上。}
   \label{fig:virasoro-operator}
 \end{figure}
 
@@ -331,22 +313,15 @@
   \frac{\lVert \langle\phi_\beta|L_n|\phi_\alpha\rangle \rVert}{\lVert \ket*{\phi_\beta} \rVert \cdot \lVert L_n\ket*{\phi_\alpha} \rVert} \gtrsim 0.9, \quad
   n=\pm1, \pm2.
 \end{equation}
-这说明通过本方法计算得到的格点 Virasoro 算符与 CFT 的理论预言基本是一致的，并且具有比较好的精度。在图~\ref{fig:virasoro-ising-spectrum} 中，我们给出了这些格点 Virasoro 算符作用的示意图。矩阵元的数据可以在文献 \parencite{wang2022virasoro} 的补充材料中找到。我们观察到，在这些矩阵元中，有一些数据的精度相对较低（与正确值相差 1 到 2 个数量级）。造成这种问题的原因主要是格点模型的有限尺寸效应：一方面，在比较小的圆柱中，CFT 的不同本征态实际上是存在交叠的；另一方面，格点 Virasoro 算符也是通过对有限大小的圆柱进行精确对角化求得的，本身也存在一定误差。
+这说明通过本方法计算得到的格点 Virasoro 算符与 CFT 的理论预言基本是一致的，并且具有比较好的精度。在图~\ref{fig:ising-virasoro} 和 \ref{fig:ising-virasoro-all} 中，我们给出了这些格点 Virasoro 算符作用的示意图。矩阵元的数据可以在文献 \parencite{wang2022virasoro} 的补充材料中找到。我们观察到，在这些矩阵元中，有一些数据的精度相对较低（与正确值相差 1 到 2 个数量级）。造成这种问题的原因主要是格点模型的有限尺寸效应：一方面，在比较小的圆柱中，CFT 的不同本征态实际上是存在交叠的；另一方面，格点 Virasoro 算符也是通过对有限大小的圆柱进行精确对角化求得的，本身也存在一定误差。
 
 Virasoro 算符的正确性同样可以通过两点关联函数来检验。在图~\ref{fig:ising-correlation-functions} 中，我们考察了 $L_{-1}\phi_\sigma$ 的关联函数，拟合得到的标度维数与理论值 $1+1/8$ 也是基本一致的。
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.45\textwidth]{images/temp/ising_lm1.pdf}    \quad
-  \includegraphics[width=0.45\textwidth]{images/temp/ising_lbarm1.pdf} \\
-  \includegraphics[width=0.45\textwidth]{images/temp/ising_l1.pdf}     \quad
-  \includegraphics[width=0.45\textwidth]{images/temp/ising_lbar1.pdf}  \\
-  \includegraphics[width=0.45\textwidth]{images/temp/ising_lm2.pdf}    \quad
-  \includegraphics[width=0.45\textwidth]{images/temp/ising_lbarm2.pdf} \\
-  \includegraphics[width=0.45\textwidth]{images/temp/ising_l2.pdf}     \quad
-  \includegraphics[width=0.45\textwidth]{images/temp/ising_lbar2.pdf}
-  \caption[Virasoro 算符在 Ising 模型能谱上的作用示意图]{Virasoro 算符在 Ising 模型能谱上的作用示意图。}
-  \label{fig:virasoro-ising-spectrum}
+  \includegraphics[width=0.7\textwidth]{images/fibonacci/ising-virasoro.pdf}
+  \caption[Virasoro 算符在 Ising 模型能谱上的作用示意图]{Virasoro 算符 $L_{-1}$ 在 Ising 模型能谱上的作用示意图。能动量张量 $T$ 由 $n=4$、$\chi=4$ 圆柱的本征态得到（左图），由此构造出的 Virasoro 算符 $L_{-1}$ 则作用在 $N=8$、$\chi=4$ 的圆柱上（右图）。}
+  \label{fig:ising-virasoro}
 \end{figure}
 
 \section{例子：Fibonacci 模型}
@@ -375,13 +350,13 @@ $F$ 符号为
     % \Triangle \tau\tau\tau\1\tau\tau
     [[\tau\tau\tau\1\tau\tau]]
   = \varphi^{\frac{7}{12}} \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{\tau\1} = \varphi^{\frac{1}{12}}.
-  % \label{eq:fib-triangles}
+  \label{eq:fib-triangles}
 \end{equation}
 
 为了沿用前面处理 Ising 模型时的思路，我们首先需要把两个三角张量形拼合成一个正方形：
 \begin{equation}
   A_{ijkl} = \raisebox{-2.5em}{\includegraphics[width=0.4\textwidth]{images/temp/fib-square.png}} % \DiagramI = \DiagramII.
-  % \label{eq:fib-square}
+  \label{eq:fib-square}
 \end{equation}
 同样，转移矩阵也是由张量单元 $A$ 构成的：
 \begin{equation}
@@ -412,41 +387,6 @@ $F$ 符号为
 \end{figure}
 
 计算得到的能谱数据列在表~\ref{tab:fib-spectrum} 中。由于 Fibonacci 模型中有限尺寸效应较为显著，只有 $n\gtrsim20$ 的圆柱本征值才能给出相对准确的结果。对于较小的圆柱体，一些激发态可能甚至不会出现在能谱中。原则上，将计算结果与标度维数和自旋的理论值进行对比，即可确定对应能级的本征态，例如能动量张量对应的 $\ket*{\phi_T}$。但由于有限尺寸效应，不仅本征值与其理论结果相差甚远，而且还普遍存在能级交错的现象——当圆柱较小时，某些在热力学极限下本应位于较高激发态的能级反而会拥有较小的本征值，这样就很难与其他能级区分开来。
-
-\begin{sidewaystable}[ht]
-  \centering
-  \begin{threeparttable}
-    \catcode`\"=\active
-    % \def"#1"{\textcolor{MaterialBlue700}{\bfseries#1}}
-    \def"#1"{\textbf{#1}}
-    \def\TPTtagStyle#1{\textit{#1}}
-    % \let\FM=\footnotemark
-    \begin{tabular}{*{11}{c}}
-      \toprule
-        \diagbox{自旋}{标度\\[-0.5ex]维数}{圆柱\\[-0.5ex]尺寸}
-                     &  9                  &  12        &  15        &  18        &  21        &  24        &  27        &  $\infty$     &  调整值       &  理论值 \\
-      \midrule
-        "0"          & "0.0"               & "0.0"      & "0.0"      & "0.0"      & "0.0"      & "0.0"      & "0.0"      & "0.0"         & "0.0"         & "0"                       \\
-         0\tnote{a}  &  0.112899           &  0.113952  &  0.114474  &  0.114769  &  0.114950  &  0.115070  &  0.115152  &  0.11610\,(7) &  0.1513\,(32) &  $\frac{2}{15}$           \\
-         0           &  0.722756           &  0.709100  &  0.703083  &  0.699890  &  0.697989  &  0.696765  &  0.695931  &  0.6856\,(9)  &  0.894\,(19)  &  $\frac45$                \\
-         $\pm1$      &  0.785553           &  0.817591  &  0.841528  &  0.859630  &  0.873686  &  0.884880  &  0.893989  &  0.9557\,(27) &  1.246\,(27)  &  $1{+}\frac{2}{15}$       \\
-         $\pm1$      &  1.594955           &  1.346025  &  1.242196  &  1.184631  &  1.147942  &  1.122492  &  1.103796  &  0.914\,(11)  &  1.191\,(29)  &  $1{+}\frac{2}{15}$       \\
-        "0"\tnote{a} & "1.290074"          & "1.222673" & "1.196184" & "1.182805" & "1.175050" & "1.170137" & "1.166820" & "1.123\,(4)"  & "1.464\,(32)" & "$\frac{\text4}{\text3}$" \\
-         $\pm1$      &  1.147427           &  1.222649  &  1.274342  &  1.312081  &  1.340887  &  1.363620  &  1.382029  &  1.510\,(4)   &  1.97\,(4)    &  $1{+}\frac45$            \\
-         $\pm1$      &  3.221770           &  2.490495  &  2.169235  &  2.016147  &  1.925379  &  1.865017  &  1.821876  &  1.31\,(5)    &  1.70\,(8)    &  $1{+}\frac45$            \\
-        "\textpm2"   & "2.727358"\tnote{b} & "2.139950" & "1.967143" & "1.887302" & "1.842910" & "1.815429" & "1.797149" & "1.535\,(33)" & "2.00\,(6)"   & "2"                       \\
-         $\pm2$      &  1.032723\tnote{b}  &  1.178227  &  1.276463  &  1.348394  &  1.403716  &  1.447739  &  1.483672  &  1.730\,(9)   &  2.25\,(5)    &  $2{+}\frac{2}{15}$       \\
-         $\pm2$      &  -\tnote{b}         &  1.430687  &  1.484488  &  1.527193  &  1.561317  &  1.589035  &  1.611935  &  1.759\,(9)   &  2.29\,(5)    &  $2{+}\frac{2}{15}$       \\
-      \bottomrule
-    \end{tabular}
-    \begin{tablenotes}
-      \item[a] 这些能级带有二重简并。
-      \item[b] 对于 $n=9$ 的情况，转移矩阵不够大，因此一些高能级的后代没有出现；同时，自旋 $\pm2$ 会退化为 $\pm1$。
-    \end{tablenotes}
-    \caption[Fibonacci 模型的能谱数据]{Fibonacci 模型的能谱数据。真空态及其后代（标记为粗体）通过对角化带有幂等元的转移矩阵确定，见 \ref{subsec:topological-projectors} 小节。$n=\infty$ 处的数据通过对尺寸由 12 到 27 的圆柱（转移矩阵）本征值外推得到。}
-    \label{tab:fib-spectrum}
-  \end{threeparttable}
-\end{sidewaystable}
 
 为了在有限尺寸下也能区分不同的本征态，首先我们假设标度维数 $\Delta$ 将大致按照
 \begin{equation}
@@ -506,6 +446,19 @@ $F$ 符号为
 
 \subsection{Virasoro 算符}
 
-\citet{zeng2022virasoro,chen2022exact}
+接下来我们按照 \ref{sec:virasoro-operators} 节中介绍的方法来构造 Virasoro 算符。考虑到 Fibonacci 模型要求圆柱大小 $n=3k$，此时由对角化求得的能动量张量 $T$ 和 $\bar{T}$ 并不能像 Ising 模型的情况一样直接插回圆柱。因此，我们需要首先把 $T$ 和 $\bar{T}$ 变形为三角形，再用式~\eqref{eq:fib-triangles} 中的三角形张量单元补成正方形，这与式~\eqref{eq:fib-square} 是类似的：
+\begin{center}
+  \includegraphics[width=0.6\textwidth]{images/temp/fib-padded-tensor.png}
+\end{center}
+注意在缩并时只有角上的自由度需要考虑。圆柱中的其他张量也可以用类似的方式构造，但方便起见，也可以等价地用 $k\times k$ 个式~\eqref{eq:fib-square} 中的正方形缩并得到。
+
+计算中我们用 $n=18$ 的圆柱来计算本征态，并得到对应的能动量张量。之后，将其变形并补全成正方形张量，此时连接维数 $\chi=2^{n/3}$。我们同样按照图~\ref{fig:virasoro-construction} 的方式构造 Virasoro 算符。尽管原则上圆柱的大小 $N$ 可以取任意值，但由于实际计算中内存的限制，这里最大只能取到 $N=3$。检验 Virasoro 算符正确性的方法与 \ref{subsec:ising-virasoro-operator} 小节相同，也是检查 $L_n$ 和 $\bar{L}_n$ 是否能将圆柱本征态 $\ket*{\phi_\alpha}$ 正确地升高或降低到对应能级。在图~\ref{fig:fib-virasoro} 和 \ref{fig:fib-virasoro-all} 中，我们给出了这些格点 Virasoro 算符作用的示意图。矩阵元的数据则可在文献 \parencite{zeng2022virasoro} 的补充材料中找到。
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.7\textwidth]{images/fibonacci/fib-virasoro.pdf}
+  \caption[Virasoro 算符在 Fibonacci 模型能谱上的作用示意图]{Virasoro 算符 $L_{-1}$ 在 Fibonacci 模型能谱上的作用示意图。能动量张量 $T$ 由 $n=18$、$\chi=2$ 圆柱的本征态得到（左图），由此构造出的 Virasoro 算符 $L_{-1}$ 则作用在 $N=3$、$\chi=2^{n/3}$ 的圆柱上（右图）。标记为 (1a)/(1b) 和 (2a)/(2b) 的两组本征态在 CFT 极限下应当是简并的，但由于有限尺寸效应，它们的标度维数并不相同（可对比图~\ref{fig:fib-spectrum}）。}
+  \label{fig:fib-virasoro}
+\end{figure}
 
 \section{本章小结}
