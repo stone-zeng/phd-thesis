@@ -261,7 +261,7 @@
   % = \DiagramI.
 \end{equation}
 
-在实际计算中，可以对张量 $A$ 进行粗粒近似以提高精度，如图~\ref{fig:virasoro-blocking} 所示。例如可将 4 个 $A$（$\eqcolon A^{(0)}$）组合成一个更大的 $A^{(1)}$，也可不断重复使得 $A^{(i)}$ 逐渐接近不动点张量。在这一过程中，连接维数 $\chi_{A^{(i)}}=d^{2^i}$ 会迅速增大，因此往往还需要进行截断。实际上，这也就是利用 TRG\cite{levin2007tensor} 或者 TNR\cite{evenbly2015tensor,evenbly2017algorithms} 等张量网络算法来寻找不动点张量的操作。
+在实际计算中，可以对张量 $A$ 进行粗粒近似以提高精度，如图~\ref{fig:virasoro-blocking} 所示。例如可将 4 个 $A$（$\eqcolon A^{(0)}$）组合成一个更大的 $A^{(1)}$，也可不断重复使得 $A^{(i)}$ 逐渐接近不动点张量。在这一过程中，连接维数 $\chi_{A^{(i)}}=d^{2^i}$ 会迅速增大，因此往往还需要进行截断。实际上，这也就是利用 TRG 或 TNR 等张量网络算法\cite{levin2007tensor,evenbly2015tensor,evenbly2017algorithms} 来寻找不动点张量的操作。
 
 \begin{figure}[ht]
   % TODO: update image
@@ -377,7 +377,7 @@ $F$ 符号为
 
 在热力学极限下，Fibonacci 弦网模型（也即中心荷 $c=4/5$ 的 hard-hexagon 模型）将会收敛到 $\mathbb{Z}_3$ parafermion CFT，但并非所有的拓扑缺陷在格点近似中都存在对应的矩阵乘积算符 (MPO) 表示\cite{vanhove2018mapping}。我们并不需要考虑拓扑缺陷，而这种“空”的环面配分函数可以通过取大小为 $n=3k$ 的圆柱得到。相应地，平移算符也需要改为使用把格点平移 3 个单位的 $P^3$。
 
-随着圆柱尺寸 $n$ 的增加，在实际计算中内存消耗是指数级增长的。为了能够处理较大的圆柱，我们这里采用了矩阵无关 (matrix-free) 的线性算符 (linear operator) 方法，即不再显式地构造转移矩阵 $M$，而是计算 $M$ 作用在某个向量上的结果。如图~\ref{fig:fib-linear-operator} 所示，由于 $M$ 是通过张量单元 $A_{ijkl}$ 构造而成的，矩阵乘法 $M\cdot v$ 可利用多次张量缩并来实现。而平移算符则可以通过对数组元素的重新排列来获得。对于大小为 $n$ 的圆柱，线性算符方法可将内存消耗由 $\mathcal{O}(\chi^{2n})$ 降低到 $\mathcal{O}(\chi^n)$。对于 Fibonacci 模型的情况，在典型配置的服务器上最大可以计算到约 $n\simeq30$ 的情形。
+随着圆柱尺寸 $n$ 的增加，计算中内存消耗是指数级增长的。为了能够处理较大的圆柱，我们这里采用了矩阵无关 (matrix-free) 的线性算符 (linear operator) 方法，即不再显式地构造转移矩阵 $M$，而是计算 $M$ 作用在某个向量上的结果。如图~\ref{fig:fib-linear-operator} 所示，由于 $M$ 是通过张量单元 $A_{ijkl}$ 构造而成的，矩阵乘法 $M\cdot v$ 可利用多次张量缩并来实现。而平移算符则可以通过对数组元素的重新排列来获得。对于大小为 $n$ 的圆柱，线性算符方法可将内存消耗由 $\mathcal{O}(\chi^{2n})$ 降低到 $\mathcal{O}(\chi^n)$。对于 Fibonacci 模型的情况，在典型配置的服务器上最大可以计算到约 $n\simeq30$ 的情形。
 
 \begin{figure}[ht]
   % \input{includes/linear-operator.tex}
@@ -452,7 +452,7 @@ $F$ 符号为
 \end{center}
 注意在缩并时只有角上的自由度需要考虑。圆柱中的其他张量也可以用类似的方式构造，但方便起见，也可以等价地用 $k\times k$ 个式~\eqref{eq:fib-square} 中的正方形缩并得到。
 
-计算中我们用 $n=18$ 的圆柱来计算本征态，并得到对应的能动量张量。之后，将其变形并补全成正方形张量，此时连接维数 $\chi=2^{n/3}$。我们同样按照图~\ref{fig:virasoro-construction} 的方式构造 Virasoro 算符。尽管原则上圆柱的大小 $N$ 可以取任意值，但由于实际计算中内存的限制，这里最大只能取到 $N=3$。检验 Virasoro 算符正确性的方法与 \ref{subsec:ising-virasoro-operator} 小节相同，也是检查 $L_n$ 和 $\bar{L}_n$ 是否能将圆柱本征态 $\ket*{\phi_\alpha}$ 正确地升高或降低到对应能级。在图~\ref{fig:fib-virasoro} 和 \ref{fig:fib-virasoro-all} 中，我们给出了这些格点 Virasoro 算符作用的示意图。矩阵元的数据则可在文献 \parencite{zeng2022virasoro} 的补充材料中找到。
+计算中我们用 $n=18$ 的圆柱来计算本征态，并得到对应的能动量张量。之后，将其变形并补全成正方形张量，此时连接维数 $\chi=2^{n/3}$。我们同样按照图~\ref{fig:virasoro-construction} 的方式构造 Virasoro 算符。尽管原则上圆柱的大小 $N$ 可以取任意值，但由于内存的限制，这里最大只能取到 $N=3$。检验 Virasoro 算符正确性的方法与 \ref{subsec:ising-virasoro-operator} 小节相同，也是检查 $L_n$ 和 $\bar{L}_n$ 是否能将圆柱本征态 $\ket*{\phi_\alpha}$ 正确地升高或降低到对应能级。在图~\ref{fig:fib-virasoro} 和 \ref{fig:fib-virasoro-all} 中，我们给出了这些格点 Virasoro 算符作用的示意图。矩阵元的数据则可在文献 \parencite{zeng2023virasoro} 的补充材料中找到。
 
 \begin{figure}[ht]
   \centering

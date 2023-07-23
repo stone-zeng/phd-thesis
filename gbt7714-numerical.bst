@@ -2401,28 +2401,36 @@ FUNCTION {begin.bib}
     }
     'skip$
   if$
-  "\providecommand{\natexlab}[1]{#1}"
+  "\def\doi#1{\href{https://doi.org/#1}{\nolinkurl{#1}}}"
   write$ newline$
-  "\providecommand{\url}[1]{#1}"
+  "\let\eprint\href"
   write$ newline$
-  "\expandafter\ifx\csname urlstyle\endcsname\relax\else"
+  "\urlstyle{same}"
   write$ newline$
-  "  \urlstyle{same}\fi"
+  "\small"
   write$ newline$
-  "\expandafter\ifx\csname href\endcsname\relax"
-  write$ newline$
-  "  \DeclareUrlCommand\doi{\urlstyle{rm}}"
-  write$ newline$
-  "  \def\eprint#1#2{#2}"
-  write$ newline$
-  "\else"
-  write$ newline$
-  "  \def\doi#1{\href{https://doi.org/#1}{\nolinkurl{#1}}}"
-  write$ newline$
-  "  \let\eprint\href"
-  write$ newline$
-  "\fi"
-  write$ newline$
+  % "\providecommand{\natexlab}[1]{#1}"
+  % write$ newline$
+  % "\providecommand{\url}[1]{#1}"
+  % write$ newline$
+  % "\expandafter\ifx\csname urlstyle\endcsname\relax\else"
+  % write$ newline$
+  % "  \urlstyle{same}\fi"
+  % write$ newline$
+  % "\expandafter\ifx\csname href\endcsname\relax"
+  % write$ newline$
+  % "  \DeclareUrlCommand\doi{\urlstyle{rm}}"
+  % write$ newline$
+  % "  \def\eprint#1#2{#2}"
+  % write$ newline$
+  % "\else"
+  % write$ newline$
+  % "  \def\doi#1{\href{https://doi.org/#1}{\nolinkurl{#1}}}"
+  % write$ newline$
+  % "  \let\eprint\href"
+  % write$ newline$
+  % "\fi"
+  % write$ newline$
 }
 
 FUNCTION {end.bib}
