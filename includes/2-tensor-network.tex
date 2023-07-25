@@ -87,8 +87,9 @@
 接下来介绍几种具体的张量网络及其算法。本文中，我们把这些算法分为两类：一类算法以矩阵乘积态为代表，主要用来处理一维量子多体系统；另一类算法则以张量重整化群为代表，顾名思义，主要用在二维网络的重整化（粗粒近似）操作中。
 
 \subsection{波函数的构造}
+\label{subsec:mps-construction}
 
-如图~\ref{fig:mps} 所示，\emph{矩阵乘积态} (matrix product state, MPS) 由一系列张量单元首尾相连而成，每个张量单元包含三个指标，没有缩并的称为\emph{物理指标} (physical index)，另外两个则称为\emph{虚拟指标} (virtual index) 或\emph{辅助指标} (auxiliary index)。根据具体问题的需要，MPS 可取开放或周期性边界条件。当所研究的系统具有平移对称性时，可以将所有张量单元取为相同值，此时有
+如图~\ref{fig:mps} 所示，\emph{矩阵乘积态} (matrix product state, MPS)\cite{perez2007matrix,verstraete2008matrix,orus2014practical} 由一系列张量单元首尾相连而成，每个张量单元包含三个指标，没有缩并的称为\emph{物理指标} (physical index)，另外两个则称为\emph{虚拟指标} (virtual index) 或\emph{辅助指标} (auxiliary index)。根据具体问题的需要，MPS 可取开放或周期性边界条件。当所研究的系统具有平移对称性时，可以将所有张量单元取为相同值，此时有
 \begin{equation}
   % TODO: 周期性边界条件
   \Psi_{i_1 i_2 \cdots i_n} = A^{j_1 j_2}_{i_1} A^{j_2 j_3}_{i_2} \cdots A^{j_n j_1}_{i_n}.
@@ -106,7 +107,7 @@
 
 % TODO: \emph{面积定律} (area law)
 
-由上述方法构造出的 MPS 并不是唯一的，而是存在所谓\emph{规范自由度} (gauge freedom)。如图~\ref{fig:mps-gauge-freedom} 所示，两个张量单元之间总可以插入单位矩阵 $I=XX^{-1}$，并把 $X$ 和 $X^{-1}$ 分配到两边。
+由上述方法构造出的 MPS 并不是唯一的，而是存在所谓\emph{规范自由度} (gauge freedom)\cite{bridgeman2017hand}。如图~\ref{fig:mps-gauge-freedom} 所示，两个张量单元之间总可以插入单位矩阵 $I=XX^{-1}$，并把 $X$ 和 $X^{-1}$ 分配到两边。
 
 \begin{figure}[htb]
   \centering
@@ -116,13 +117,14 @@
   \label{fig:mps-gauge-freedom}
 \end{figure}
 
-为了方便计算，我们一般会把 MPS 取为\emph{正则形式} (canonical form)，它要求辅助指标由 Schmidt 分解式~\eqref{eq:schmidt-decomposition} 决定。张量单元 $A$ 会被拆分成 $\Gamma$ 和 $\lambda$ 两部分，分别对应 Schmidt 向量与系数。定义左右矩阵
+% TODO: 密度矩阵
+为了方便计算，我们一般会把 MPS 取为\emph{正则形式} (canonical form)\cite{orus2008infinite,schollwock2011density,orus2014practical}，它要求辅助指标由 Schmidt 分解式~\eqref{eq:schmidt-decomposition} 决定。张量单元 $A$ 会被拆分成 $\Gamma$ 和 $\lambda$ 两部分，分别对应 Schmidt 向量与系数。定义左右矩阵
 \begin{equation}
   \begin{aligned}
        R_{(\alpha\alpha'), \, (\beta\beta')}
-    &= \sum_{i=1}^d \bigl( \Gamma^i_{\alpha\beta} \lambda_\beta \bigr) \bigl( \Gamma^i_{\alpha'\beta'} \lambda_{\beta'} \bigr)^*, \\
+    &= \sum_{i=1}^d \left( \Gamma^i_{\alpha\beta} \lambda_\beta \right) \left( \Gamma^i_{\alpha'\beta'} \lambda_{\beta'} \right)^*, \\
        L_{(\alpha\alpha'), \, (\beta\beta')}
-    &= \sum_{i=1}^d \bigl( \lambda_\alpha \Gamma^i_{\alpha\beta} \bigr) \bigl( \lambda_{\alpha'} \Gamma^i_{\alpha'\beta'} \bigr)^*,
+    &= \sum_{i=1}^d \left( \lambda_\alpha \Gamma^i_{\alpha\beta} \right) \left( \lambda_{\alpha'} \Gamma^i_{\alpha'\beta'} \right)^*,
   \end{aligned}
 \end{equation}
 此时正则形式要求 $R$、$L$ 的特征向量均为单位矩阵（在张量变形的意义下），且对应的主特征值\footnote{即绝对值最大的特征值。它对应的特征向量也称主特征向量。} $\eta$ 相同。将一般的 $\Gamma$ 和 $\lambda$（例如随机初始化的）进行正则化的方法为：
@@ -133,7 +135,19 @@
       V_R = X X^\dagger, \quad V_L = Y^\dagger Y.
     \end{equation}
     这里可以用特征值分解，也可以用 Cholesky 分解。
+
+  \item 利用规范自由度在 $\lambda$ 两侧分别插入 $I=(Y^\trans)^{-1}Y^\trans$ 和 $I=XX^{-1}$，并对得到的 $Y^\trans\lambda X$ 进行奇异值分解：
+    \begin{equation}
+      Y^\trans \lambda X = U \lambda V^\dagger.
+    \end{equation}
+
+  \item 将新得到的张量重排为 $\Gamma'$
+    \begin{equation}
+      \Gamma' = V^\dagger X^{-1} \Gamma \left( Y^\trans \right)^{-1} U.
+    \end{equation}
 \end{enumerate}
+
+可以证明通过以上步骤得到的 $\Gamma'$ 和 $\lambda'$ 的确是 iMPS 的正则形式。
 
 \begin{figure}[htb]
   \centering
@@ -145,6 +159,56 @@
 
 \subsection{基态的确定}
 
+Hamilton 量的基态 $\Psi_0$ 可以通过变分法求得：
+\begin{equation}
+  \ket{\Psi_0} = \argmin_{\ket{\Psi}} \frac{\langle\Psi|H|\Psi\rangle}{\langle\Psi|\Psi\rangle}.
+\end{equation}
+即使 $\Psi$ 已经表示成了 MPS 的形式，一般来说对 $\Psi$ 整体进行优化也是无法进行的。
+
+DMRG\cite{white1992density,white1993density,schollwock2005density,mcculloch2007density,schollwock2011density}
+
+iDMRG\cite{mcculloch2008infinite}
+
+\subsection{时间演化}
+
+下面我们介绍\emph{无限时间演化块消减} (infinite time-evolving block decimation, iTEBD)\cite{vidal2007classical,orus2008infinite} 算法，它主要用来处理波函数的时间演化
+\begin{equation}
+  \ket{\Psi_t} = \ee^{-\ii Ht} \ket{\Psi_0}
+\end{equation}
+或虚时演化
+\begin{equation}
+  \ket{\Psi_\tau} = \ee^{-H\tau} \ket{\Psi_0},
+\end{equation}
+其核心在于通过 Suzuki--Trotter 分解\cite{sornborger1999higher}
+\begin{equation}
+  \ee^{-\tau(A+B)} = \ee^{-\tau A} \ee^{-\tau B} + \mathcal{O}(\tau^2)
+\end{equation}
+将演化算符表示成 MPO 的形式，这样就可以很方便地与 MPS 形式的波函数进行缩并。
+
+对于时间演化或虚时演化算符而言，由于经过 Suzuki--Trotter 分解后它们都很接近幺正算符，不会破坏 iMPS 的正则形式。而一般的算符并不具备这一性质，所以需要额外进行正则化操作。一般的 iTEBD 算法如下：
+
+\begin{enumerate}
+  \item 取随机的 iMPS $\{\Gamma,\lambda\}$，并按照 \ref{subsec:mps-construction} 小节中介绍的方法将其正则化。
+
+  \item 把 $\{\Gamma,\lambda\}$ 与 MPO 的张量单元进行缩并：
+    \begin{equation}
+      \tilde{\Gamma}_{j\tilde{\alpha}\tilde{\beta}} = \sum_{i=1}^d \Gamma_{i\alpha\beta} O_{ij\mu\nu}, \quad
+      \tilde{\lambda}_{\tilde{\beta}} = \lambda_\beta.
+    \end{equation}
+    这里指标 $\tilde{\alpha}=(\alpha,\mu)$、$\tilde{\beta}=(\beta,\nu)$，因此得到的 iMPS 对应连接维数 $\tilde{\chi}=\kappa\chi$。
+
+  \item 对 $\{\tilde{\Gamma},\tilde{\lambda}\}$ 进行正则化，得到 $\{\tilde{\Gamma}',\tilde{\lambda}'\}$。
+
+  \item 利用奇异值分解对 $\{\tilde{\Gamma}',\tilde{\lambda}'\}$ 进行截断，即只保留前 $\chi$ 个奇异值，使得连接维数保持在 $\chi$。
+
+  \item 重复步骤 2--4，直到 iMPS 收敛。
+\end{enumerate}
+
+一个不同于时间（虚时）演化的例子，是把二维经典格点模型的配分函数视为 iMPS 在转移矩阵作用下的演化：
+\begin{equation}
+  Z(\beta) = \lim_{p,q\to\infty} \omega^{pq}, \quad W = [[...]]
+\end{equation}
+
 \subsection{物理量的计算}
 
 \section{重整化算法}
@@ -153,7 +217,7 @@
 
 本文后续介绍的算法主要使用 Python 语言实现，其中的张量运算则利用 NumPy\cite{harris2020array}、SciPy\cite{virtanen2020scipy} 编写。它们提供了高效的张量缩并、变形以及 SVD、特征值求解等算法，而且还可以通过线性算符 (linear operator) 的方法处理较大规模的稀疏矩阵与张量。在硬件支持的情况下，还可以利用 GPU 进一步加速计算。
 
-近年来，人们使用多种语言编写了各类张量网络程序包，例如基于 MATLAB 语言的 NCON\cite{pfeifer2014ncon}，基于 Python 语言的 TeNPy\cite{hauschild2018efficient}、TensorNetwork\cite{roberts2019tensornetwork}，基于 Julia 语言的 TensorOperations.jl\cite{jutho2023tensoroperations} 等。特别值得注意的是基于 C++ 和 Julia 实现的 ITensor\cite{fishman2022itensor} 包，它能够利用指标本身的性质自动完成张量缩并。文献 \parencite{psarras2021landscape} 中总结并比较了各种程序包的功能。
+近年来，人们使用多种语言编写了各类张量网络程序包，例如基于 MATLAB 语言的 NCON\cite{pfeifer2014ncon}，基于 Python 语言的 TeNPy\cite{hauschild2018efficient}、TensorNetwork\cite{roberts2019tensornetwork}，基于 Julia 语言的 TensorOperations.jl\cite{jutho2023tensoroperations} 等。特别值得注意的是基于 C++ 和 Julia 实现的 ITensor\cite{fishman2022itensor} 包，它能够利用指标本身的性质自动完成张量缩并，而无需手动选择求和指标。文献 \parencite{psarras2021landscape} 中总结并比较了各种程序包的功能和特点。
 
 当处理的系统较大时，张量缩并会成为计算的瓶颈，为此人们提出了一系列优化方案\cite{pfeifer2014faster,evenbly2014improving}，以寻找最优的缩并路径。NCON、opt\_einsum\cite{daniel2018opteinsum} 等程序包中均给出了实现。
 
