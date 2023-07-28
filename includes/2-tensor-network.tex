@@ -211,14 +211,16 @@ iDMRG\cite{mcculloch2008infinite}
 
 \subsection{物理量的计算}
 
+\subsection{推广}
+
 \section{重整化算法}
 
 \section{具体实现}
 
-本文后续介绍的算法主要使用 Python 语言实现，其中的张量运算则利用 NumPy\cite{harris2020array}、SciPy\cite{virtanen2020scipy} 编写。它们提供了高效的张量缩并、变形以及 SVD、特征值求解等算法，而且还可以通过线性算符 (linear operator) 的方法处理较大规模的稀疏矩阵与张量。在硬件支持的情况下，还可以利用 GPU 进一步加速计算。
+本文后续介绍的算法主要使用 Python 语言实现，其中的张量运算则利用 NumPy\cite{harris2020array}、SciPy\cite{virtanen2020scipy} 编写。它们提供了高效的张量缩并、变形以及 SVD、特征值求解等算法，并且还能通过线性算符 (linear operator) 的方法处理较大规模的稀疏矩阵与张量。此外，在硬件支持的情况下，还可以借助 GPU 进一步加速计算过程。
 
-近年来，人们使用多种语言编写了各类张量网络程序包，例如基于 MATLAB 语言的 NCON\cite{pfeifer2014ncon}，基于 Python 语言的 TeNPy\cite{hauschild2018efficient}、TensorNetwork\cite{roberts2019tensornetwork}，基于 Julia 语言的 TensorOperations.jl\cite{jutho2023tensoroperations} 等。特别值得注意的是基于 C++ 和 Julia 实现的 ITensor\cite{fishman2022itensor} 包，它能够利用指标本身的性质自动完成张量缩并，而无需手动选择求和指标。文献 \parencite{psarras2021landscape} 中总结并比较了各种程序包的功能和特点。
+近年来，人们使用多种语言编写了各类张量网络程序包，例如基于 MATLAB 的 NCON\cite{pfeifer2014ncon}，基于 Python 的 TeNPy\cite{hauschild2018efficient}、TensorNetwork\cite{roberts2019tensornetwork} 以及基于 Julia 的 TensorOperations.jl\cite{jutho2023tensoroperations} 等。特别值得注意的是基于 C++ 和 Julia 实现的 ITensor\cite{fishman2022itensor} 包，它能够根据指标本身的性质自动完成张量缩并，无需手动选择求和指标。文献 \parencite{psarras2021landscape} 对这些程序包的功能和特点进行了总结和比较。
 
-当处理的系统较大时，张量缩并会成为计算的瓶颈，为此人们提出了一系列优化方案\cite{pfeifer2014faster,evenbly2014improving}，以寻找最优的缩并路径。NCON、opt\_einsum\cite{daniel2018opteinsum} 等程序包中均给出了实现。
+在处理较大的系统时，张量缩并往往会成为计算瓶颈。为此人们提出了一系列优化方案\cite{pfeifer2014faster,evenbly2014improving}，以寻找最优的缩并路径。NCON、opt\_einsum\cite{daniel2018opteinsum} 等程序包中均给出了实现。
 
 \section{本章小结}

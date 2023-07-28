@@ -197,7 +197,7 @@
   \label{eq:scaling-dimension-rescale}
 \end{equation}
 
-自旋部分可以通过引入平移算符 $P$ 来得到。在圆柱上，可以写为 $\exp(2\pi\ii P/n)$，而其本征值为 $\exp(2\pi\ii s_\alpha/n)$。在具有平移对称性的模型中，$\exp(2\pi\ii P/n)$ 和转移矩阵 $M$ 对易，因此它们可以被同时对角化。平移算符 $P$ 的张量网络表示如图~\ref{fig:translation-operator} 所示，即把格点平移一个单位。
+自旋部分可以通过引入平移算符 $P$ 来得到。在圆柱上，可以写为 $\exp(2\pi\ii P/n)$，而其本征值为 $\exp(2\pi\ii s_\alpha/n)$。在具有平移对称性的模型中，$\exp(2\pi\ii P/n)$ 和转移矩阵 $M$ 对易，因此它们可以被同时对角化。平移算符 $P$ 的张量网络表示如图~\ref{fig:translation-operator} 所示，即把格点平移一个单位\cite{van2021efficient}。
 
 \begin{figure}[ht]
   % TODO: update image
@@ -261,7 +261,7 @@
   % = \DiagramI.
 \end{equation}
 
-在实际计算中，可以对张量 $A$ 进行粗粒近似以提高精度，如图~\ref{fig:virasoro-blocking} 所示。例如可将 4 个 $A$（$\eqcolon A^{(0)}$）组合成一个更大的 $A^{(1)}$，也可不断重复使得 $A^{(i)}$ 逐渐接近不动点张量。在这一过程中，连接维数 $\chi_{A^{(i)}}=d^{2^i}$ 会迅速增大，因此往往还需要进行截断。实际上，这也就是利用 TRG 或 TNR 等张量网络算法\cite{levin2007tensor,evenbly2015tensor,evenbly2017algorithms} 来寻找不动点张量的操作。
+在实际计算中，可以对张量 $A$ 进行粗粒近似以提高精度，如图~\ref{fig:virasoro-blocking} 所示。例如可将 4 个 $A$（$\eqcolon A^{(0)}$）组合成一个更大的 $A^{(1)}$，也可不断重复使得 $A^{(i)}$ 逐渐接近不动点张量。在这一过程中，连接维数 $\chi_{A^{(i)}}=d^{2^i}$ 会迅速增大，因此往往还需要进行截断。实际上，这也就是利用 TRG 或 TNR 等张量网络算法\cite{levin2007tensor,evenbly2015tensor1,evenbly2017algorithms} 来寻找不动点张量的操作。
 
 \begin{figure}[ht]
   % TODO: update image
