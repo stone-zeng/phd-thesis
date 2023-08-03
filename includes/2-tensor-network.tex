@@ -1,4 +1,5 @@
 \chapter{张量网络方法介绍}
+\label{chap:tensor-network}
 
 \section{基本概念}
 
@@ -88,6 +89,8 @@
 
 \subsection{波函数的构造}
 \label{subsec:mps-construction}
+
+% \citet{cirac2021matrix}
 
 如图~\ref{fig:mps} 所示，\emph{矩阵乘积态} (matrix product state, MPS)\cite{perez2007matrix,verstraete2008matrix,orus2014practical} 由一系列张量单元首尾相连而成，每个张量单元包含三个指标，没有缩并的称为\emph{物理指标} (physical index)，另外两个则称为\emph{虚拟指标} (virtual index) 或\emph{辅助指标} (auxiliary index)。根据具体问题的需要，MPS 可取开放或周期性边界条件。当所研究的系统具有平移对称性时，可以将所有张量单元取为相同值，此时有
 \begin{equation}
@@ -204,16 +207,129 @@ iDMRG\cite{mcculloch2008infinite}
   \item 重复步骤 2--4，直到 iMPS 收敛。
 \end{enumerate}
 
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.75\textwidth]{images/temp/itebd-evolution.png}
+  % \caption[]{}
+  \caption{iTEBD 算法}
+  \label{fig:itebd-evolution}
+\end{figure}
+
+\subsection{配分函数的计算}
+\label{subsec:partition-function}
+
 一个不同于时间（虚时）演化的例子，是把二维经典格点模型的配分函数视为 iMPS 在转移矩阵作用下的演化：
 \begin{equation}
-  Z(\beta) = \lim_{p,q\to\infty} \omega^{pq}, \quad W = [[...]]
+  Z(\beta) = \lim_{p,q\to\infty} \omega^{pq},
+\end{equation}
+其中 $\omega$ 是 $W$ 矩阵的主特征值：
+\begin{equation}
+  \includegraphics[width=0.75\textwidth]{images/temp/itebd-w-matrices.png}
 \end{equation}
 
-\subsection{物理量的计算}
+此时我们还可以计算单点函数和两点（关联）函数的期望值：
+\begin{equation}
+  \begin{aligned}
+    \langle f(\sigma^{\bm{r}}) \rangle
+      &= \frac{1}{Z(\beta)} \sum_{\{\sigma\}} f(\sigma^{\bm{r}}) \, \ee^{-\beta H(\{\sigma\})}, \\
+    \langle f(\sigma^{\bm{r}}) g(\sigma^{\bm{r}'}) \rangle
+      &= \frac{1}{Z(\beta)} \sum_{\{\sigma\}} f(\sigma^{\bm{r}}) g(\sigma^{\bm{r}'}) \, \ee^{-\beta H(\{\sigma\})}.
+  \end{aligned}
+\end{equation}
+主要思路是将原配分函数中的张量单元 $A$ 替换为包含 $f(s)$ 或 $g(s)$ 的 $B$ 或 $B'$，并用同样的方法进行缩并。如图~\ref{fig:expectation-value} 所示，由于 iMPS 已被正则化，我们只需处理一个较小的张量网络。
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[height=6.5cm]{images/temp/itebd-one-point-function.png} \quad
+  \includegraphics[height=6.5cm]{images/temp/itebd-two-point-function.png}
+  \caption{单点函数和两点（关联）函数的计算}
+  \label{fig:expectation-value}
+\end{figure}
 
 \subsection{推广}
 
+PEPS
+
+MERA, entanglement renormalization\cite{vidal2007entanglement,evenbly2009algorithms,konig2009exact,evenbly2014algorithms,evenbly2015tensor2}
+
 \section{重整化算法}
+
+接下来我们主要考察二维张量网络。与 \ref{subsec:partition-function} 小节相同，我们关注的一个核心问题仍然是格点模型配分函数的计算。类似于 Kadanoff 的实空间重整化群\cite{pathria2011statistical}，张量重整化算法的主要思路是对张量网络进行粗粒近似，直到得到一个不动点张量。
+
+\subsection{张量重整化群}
+
+最基本的一种重整化算法称为\emph{张量重整化群} (tensor renormalization group, TRG)\cite{levin2007tensor}。其步骤为：
+
+\begin{enumerate}
+  \item 利用 SVD 对原始的张量单元 $A^{(0)}$ 进行分解：
+    \begin{center}
+      \includegraphics[width=0.75\linewidth]{images/temp/trg-factorizing.png} \\
+      \includegraphics[width=\linewidth]{images/temp/trg-factorizing-svd.png}
+    \end{center}
+    在做 SVD 时需要对奇异值进行截断，即只保留 $\chi$ 个最大奇异值，这样可以保证 TRG 的计算开销始终在可控范围内。
+
+  \item 把得到的三角形张量缩并为新的张量单元 $A^{(1)}$：
+    \begin{center}
+      \includegraphics[width=0.4\linewidth]{images/temp/trg-group.png}
+    \end{center}
+    此时的张量网络相当于旋转了 $45^\circ$，而总的张量数目减少了一半。
+
+  \item 重复以上步骤，直至收敛到不动点张量。
+
+  \item 对最终得到的不动点张量进行求迹操作即可得到配分函数 $Z$：
+    \begin{equation}
+      Z = \sum_{i,j} A^{(N)}_{ijij} = \raisebox{-2em}{\includegraphics[width=2.5cm]{images/temp/trg-double-trace.png}}
+    \end{equation}
+\end{enumerate}
+
+在实际计算中直接对 $A^{(n)}$ 进行缩并会很快使数值溢出。一种常用的技术是在每一步中对 $A^{(n)}$ 进行归一化，即令其 Frobenius 范数
+\begin{equation}
+  \bigl| A^{(n)} \bigr|_{\mathrm{F}} = \left( \sum_{i,j,k,l} A^{(n)}_{ijkl} \right)^{1/2} = 1,
+\end{equation}
+并记录每步所得的范数。最终的配分函数就相当于不动点张量 $A^{(N)}$ 与这些范数的乘积。
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=\textwidth]{images/temp/trg-ising.png}
+  \caption{利用 TRG 算法计算二维 Ising 模型的配分函数、能量及热容。可以发现在临界点处 TRG 的计算结果与精确值有一定差异。}
+  \label{fig:trg-ising}
+\end{figure}
+
+\subsection{张量网络重整化}
+
+TRG 算法对于临界的格点模型效果并不好。这主要是由于临界系统中存在长程关联，纠缠熵
+\begin{equation}
+  S = -\tr(\rho\log\rho)
+\end{equation}
+会随着系统尺寸以对数级增长，然而通过 SVD 给出的张量分解并不能很好地保留这些信息。
+
+对于 TRG 的一种改进算法称为\emph{张量网络重整化} (tensor network renormalization, TNR)\cite{evenbly2015tensor1,evenbly2017algorithms}，它在粗粒近似的过程中引入了一组幺正变换
+\begin{equation}
+  u \colon \mathbb{V} \otimes \mathbb{V} \to \mathbb{V} \otimes \mathbb{V}, \quad
+  u u^\dagger = I^{\otimes2}
+\end{equation}
+和投影算符
+\begin{equation}
+  v \colon \mathbb{V} \to \mathbb{V} \otimes \mathbb{V}, \quad
+  v^\dagger v = I,
+\end{equation}
+其中 $\mathbb{V}=\mathbb{C}^\chi$ 是 $\chi$ 维复向量空间。这里的 $u$ 和 $v$ 分别称为\emph{解纠缠子} (disentangler) 和\emph{等距子} (isometry)，它们的具体取值可以通过最小化截断误差
+\begin{equation}
+  \delta = \raisebox{-2em}{\includegraphics[width=6cm]{images/temp/trg-truncation-error.png}}
+\end{equation}
+来获得。通过角双线 (corner double line, CDL) 张量的方法可以证明\cite{evenbly2015tensor1}，TNR 算法中的 $u$ 和 $v$ 可以消除短程纠缠的影响，使得最终获得的不动点张量的确是标度不变的。
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.6\textwidth]{images/temp/tnr.png}
+  \caption{TNR 算法}
+  \label{fig:tnr}
+\end{figure}
+
+除了 TNR 之外，还有其他一些工作试图改进原始的 TRG 算法，如引入过滤操作以消除短程纠缠影响的\emph{张量纠缠过滤重整化} (tensor entanglement-filtering renormalization, TEFR) 算法\cite{gu2009tensor}、基于高阶奇异值分解的\emph{高阶 TRG} (higher order TRG, HOTRG) 算法\cite{xie2012coarse}以及通过将小张量组合成环路并加以优化的\emph{环路 TNR} (loop TNR) 算法\cite{yang2017loop}等。这些方法相比 TRG 和 TNR 在精度与计算效率上各有优劣，需要根据具体问题加以权衡。
+
+% CTMRG\cite{nishino1996corner,orus2012exploring}
+% Differentiable\cite{liao2019differentiable,geng2022differentiable}
 
 \section{具体实现}
 
