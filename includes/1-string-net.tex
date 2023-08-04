@@ -45,11 +45,11 @@
   \label{fig:natural-transformation}
 \end{figure}
 
-\begin{example}
-  对于任意的交换环 $K$，以其中元素构成的 $n\times n$ 的非奇异矩阵组成了一般线性群 $GL_n(K)$。对于环同态 $f\colon K\to L$，显然可以构建群同态 $GL_n f\colon GL_n(K)\to GL_n(L)$。因此，$GL_n$ 即为交换环范畴 $\mathbf{CRng}$ 到群范畴 $\mathbf{Grp}$ 的函子。
+% \begin{example}
+%   对于任意的交换环 $K$，以其中元素构成的 $n\times n$ 的非奇异矩阵组成了一般线性群 $GL_n(K)$。对于环同态 $f\colon K\to L$，显然可以构建群同态 $GL_n f\colon GL_n(K)\to GL_n(L)$。因此，$GL_n$ 即为交换环范畴 $\mathbf{CRng}$ 到群范畴 $\mathbf{Grp}$ 的函子。
 
-  设非奇异矩阵 $M\in GL_n(K)$，则其行列式 $\det_K(M)$ 为 $K$ 中的可逆元（即单位），因而 $\det_K$ 是群同态 $GL_n(K)\to K^\times$，其中 $K^\times$ 为 $K$ 的可逆元群。另一方面，当把环同态 $f$ 限制在可逆元群上时，可得群同态 $f^\times\colon K^\times\to L^\times$，因而 $(\cdot)^\times$ 同样也是 $\mathbf{CRng}$ 到 $\mathbf{Grp}$ 的函子。根据定义，$\det\colon GL_n\Rightarrow(\cdot)^\times$ 即为自然变换，它满足 $\det_L\circ\,GL_n f=f^\times\circ \det_K$。
-\end{example}
+%   设非奇异矩阵 $M\in GL_n(K)$，则其行列式 $\det_K(M)$ 为 $K$ 中的可逆元（即单位），因而 $\det_K$ 是群同态 $GL_n(K)\to K^\times$，其中 $K^\times$ 为 $K$ 的可逆元群。另一方面，当把环同态 $f$ 限制在可逆元群上时，可得群同态 $f^\times\colon K^\times\to L^\times$，因而 $(\cdot)^\times$ 同样也是 $\mathbf{CRng}$ 到 $\mathbf{Grp}$ 的函子。根据定义，$\det\colon GL_n\Rightarrow(\cdot)^\times$ 即为自然变换，它满足 $\det_L\circ\,GL_n f=f^\times\circ \det_K$。
+% \end{example}
 
 % \begin{example}
 %   在 Haskell 编程语言中，类型为范畴 $\mathbf{Hask}$ 中的对象，而纯函数为态射。函子可由类型类 (type class) 来定义，例如 \verb|List| 可以将类型 \verb|T| 构造为对应的数组 \verb|[T]|，并且通过 \verb|fmap| 将以 \verb|T| 类型为参数的纯函数转换为以 \verb|[T]| 类型为参数的纯函数。自然变换则由参数多态 (parametric polymorphism) 实现。例如，一个安全的（不引发异常）返回数组首元素的函数可按下面的方式定义：
@@ -477,18 +477,18 @@ Gauss 和与 $\mathcal{C}$ 的总量子维数相关：
 
 拓扑序的一个基本且重要的例子是 Toric code 模型\cite{kitaev2003fault}。它定义在一个二维正方形网格 (square lattice) 上，每条边上都存在一个自旋 $1/2$ 的自由度 $\sigma_i$。一般我们选取周期性边界条件，即环面拓扑。其 Hamilton 量定义为
 \begin{equation}
-  H = -\sum_{\bm{v}} A_{\bm{v}} - \sum_{\bm{p}} B_{\bm{p}}, \quad
-  A_{\bm{v}} = \prod_{i\in\operatorname{star}(\bm{v})} \sigma_i^x, \quad
-  B_{\bm{p}} = \prod_{i\in\operatorname{boundary}(\bm{p})} \sigma_i^z,
+  H = -\sum_v A_v - \sum_p B_p, \quad
+  A_v = \prod_{i\in\operatorname{star}(v)} \sigma_i^x, \quad
+  B_p = \prod_{i\in\operatorname{boundary}(p)} \sigma_i^z,
   \label{eq:toric-code-hamiltonian}
 \end{equation}
-其中 $\sum_{\bm{v}}$ 和 $\sum_{\bm{p}}$ 分别表示对所有的顶点 (vertex) 和方块\footnote{在其他网格中也可以是其他形状。} (plaquette) 求和，如图~\ref{fig:toric-code-vertex-plaquette} 所示。
+其中 $\sum_v$ 和 $\sum_p$ 分别表示对所有的顶点 (vertex) 和方块\footnote{在其他网格中也可以是其他形状。} (plaquette) 求和，如图~\ref{fig:toric-code-vertex-plaquette} 所示。
 
 \begin{figure}[htb]
   % TODO: update image
   \centering
   \includegraphics[width=0.5\textwidth]{images/temp/ToricCodeLattice.png}
-  \caption[Toric code 中的顶点和方块]{正方形网格上 Toric code 中的顶点 ($\bm{v}$) 和方块 ($\bm{p}$)，它们各包含 4 个自旋自由度。}
+  \caption[Toric code 中的顶点和方块]{正方形网格上 Toric code 中的顶点 ($v$) 和方块 ($p$)，它们各包含 4 个自旋自由度。}
   \label{fig:toric-code-vertex-plaquette}
 \end{figure}
 
@@ -516,24 +516,24 @@ Toric code 存在 4 种任意子：$\1$、$e$、$m$、$f=e\times m$。它们的 
 
 在六边形网格 (hexagonal lattice) 上定义的弦网模型，其 Hamilton 量由下式给出：
 \begin{equation}
-  H = -\sum_{\bm{v}} A_{\bm{v}} - \sum_{\bm{p}} B_{\bm{p}}.
+  H = -\sum_v A_v - \sum_p B_p.
   \label{eq:string-net-hamiltonian}
 \end{equation}
-与式~\eqref{eq:toric-code-hamiltonian} 类似，这里 $\bm{v}$ 和 $\bm{p}$ 也表示顶点和方块。$A_{\bm{v}}$ 称为\emph{电荷算符} (electric charge operator)：
+与式~\eqref{eq:toric-code-hamiltonian} 类似，这里 $v$ 和 $p$ 也表示顶点和方块。$A_v$ 称为\emph{电荷算符} (electric charge operator)：
 \begin{equation}
-  % A_{\bm{v}} \ket{...} = \delta_{ijk} \ket{...}
+  % A_v \ket{...} = \delta_{ijk} \ket{...}
   \includegraphics{images/temp/string-net-electric-charge.pdf}
 \end{equation}
-$B_{\bm{p}}$ 称为\emph{磁通量算符} (magnetic flux operator)：
+$B_p$ 称为\emph{磁通量算符} (magnetic flux operator)：
 \begin{equation}
-  B_{\bm{p}} = \sum_{s=0}^N \frac{d_s}{D} B_{\bm{p}}^s,
+  B_p = \sum_{s=0}^N \frac{d_s}{D} B_p^s,
 \end{equation}
 其中
 \begin{equation}
   \begin{gathered}
-    % B_{\bm{p}}^s \ket{...} = \sum ... \ket{...}
+    % B_p^s \ket{...} = \sum ... \ket{...}
     \includegraphics{images/temp/string-net-magnetic-flux.pdf}, \\
-    B_{\bm{p},ghijkl}^{s,g'h'i'j'k'l'}(abcdef) =
+    B_{p,ghijkl}^{s,g'h'i'j'k'l'}(abcdef) =
       F^{al^*g}_{s^*g'l'^*}
       F^{bg^*h}_{s^*h'g'^*}
       F^{ch^*i}_{s^*i'h'^*}
@@ -541,5 +541,6 @@ $B_{\bm{p}}$ 称为\emph{磁通量算符} (magnetic flux operator)：
       F^{ej^*k}_{s^*k'j'^*}
       F^{fk^*l}_{s^*l'k'^*}.
   \end{gathered}
+  \label{eq:string-net-bp}
 \end{equation}
-可以验证 $A_{\bm{v}}$ 与 $B_{\bm{p}}$ 是对易的，因而 Hamilton 量式~\eqref{eq:string-net-hamiltonian} 严格可解。
+可以验证 $A_v$ 与 $B_p$ 是对易的，因而 Hamilton 量式~\eqref{eq:string-net-hamiltonian} 严格可解。
