@@ -283,7 +283,7 @@
   \label{fig:ising-spectrum}
 \end{figure}
 
-除了直接考察能谱数据，我们还可以通过分析能动量张量的两点关联函数来检验其正确性，它们可以使用 iTEBD 算法来计算（见 [[TODO:]]）。首先，我们使用 $A$ 张量来构建一个无限一维链 (iMPS)，并将其转化为正则形式。接下来，我们通过对 iMPS 进行虚时演化来计算配分函数。再把 $T$ 插入配分函数中，即可计算得到关联函数，其结果如图~\ref{fig:ising-correlation-functions} 所示。可以发现 $T$ 的两点关联函数存在幂律行为，并且拟合得到的标度维数与表~\ref{tab:ising-spectrum} 中的能谱数据大致相符。
+除了直接考察能谱数据，我们还可以通过分析能动量张量的两点关联函数来检验其正确性，它们可以使用 iTEBD 算法来计算（见 \ref{subsec:mps-time-evolution} 小节）。首先，我们使用 $A$ 张量来构建一个无限一维链 (iMPS)，并将其转化为正则形式。接下来，我们通过对 iMPS 进行虚时演化来计算配分函数。再把 $T$ 插入配分函数中，即可计算得到关联函数，其结果如图~\ref{fig:ising-correlation-functions} 所示。可以发现 $T$ 的两点关联函数存在幂律行为，并且拟合得到的标度维数与表~\ref{tab:ising-spectrum} 中的能谱数据大致相符。
 
 \begin{figure}[ht]
   \centering

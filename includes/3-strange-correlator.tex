@@ -1,15 +1,6 @@
 \chapter{奇异关联子与全息张量网络}
 \label{chap:strange-correlator}
 
-\tikzset{x=1em, y=1em, node font=\footnotesize}
-\newcommand{\Vertex}[3]{
-  \begin{tikzpicture}[baseline=0, thick]
-    \draw (0,0) -- (90:1)  node [above] {$#1$}
-          (0,0) -- (210:1) node [left]  {$#2$}
-          (0,0) -- (330:1) node [right] {$#3$};
-  \end{tikzpicture}
-}
-
 \section{弦网模型基态的张量网络表示}
 
 接下来我们来给出弦网模型的基态表示\cite{gu2009tensor2,buerschaper2009explicit}。由于弦网模型的 Hamilton 量
@@ -165,20 +156,23 @@
 \end{equation}
 这样我们就获得了六边形网格中三角形张量的对称形式：
 \begin{align}
-  \text{[diagram]}
-  &= (d_i d_j d_k)^{-\frac14} (d_\alpha d_\beta d_\gamma)^{-\frac13} \text{[tetrahedron]} \notag \\
-  &= (d_\alpha d_\beta d_\gamma)^{\frac16} (d_i d_j d_k)^{-\frac14} (d_\alpha d_\beta d_\gamma)^{-\frac12} \text{[tetrahedron]}
+  \Triangle jki\alpha\beta\gamma
+  &= (d_i d_j d_k)^{-\frac14} (d_\alpha d_\beta d_\gamma)^{-\frac13} \,
+    \Tetrahedron ik\gamma\alpha\beta j \notag \\
+  &= (d_\alpha d_\beta d_\gamma)^{\frac16} (d_i d_j d_k)^{-\frac14} (d_\alpha d_\beta d_\gamma)^{-\frac12} \,
+    \Tetrahedron ik\gamma\alpha\beta j.
   \label{eq:unit-of-string-net-honeycomb}
 \end{align}
 对于更一般的情形，因子 $1/6$ 需要根据闭合环路中每条边的贡献进行修正。此外，我们还需要为 $B_p$ 添加额外的 $D^{-2}$ 系数，以使得 $B_p^2=B_p$。在任意三价图（每个顶点与三条边相连）中，归一化的三角形张量可以写成
-\begin{equation}
-  \text{[diagram]}
-  = D^{-2 (1/n_\alpha + 1/n_\beta + 1/n_\gamma)}
-    \bigl( d_\alpha^{1/n_\alpha} d_\beta^{1/n_\beta} d_\gamma^{1/n_\gamma} \bigr)
-    (d_i d_j d_k)^{-\frac14} (d_\alpha d_\beta d_\gamma)^{-\frac12} \text{[tetrahedron]}
+\begin{align}
+  \Triangle jki\alpha\beta\gamma
+  &= D^{-2 (1/n_\alpha + 1/n_\beta + 1/n_\gamma)}
+    \bigl( d_\alpha^{1/n_\alpha} d_\beta^{1/n_\beta} d_\gamma^{1/n_\gamma} \bigr) \notag \\
+  &\qquad \cdot (d_i d_j d_k)^{-\frac14} (d_\alpha d_\beta d_\gamma)^{-\frac12} \,
+    \Tetrahedron ik\gamma\alpha\beta j,
   \label{eq:unit-of-string-net-general}
-\end{equation}
-这些三角形张量每条边带有三个指标，外面的两个是\emph{虚拟指标}或\emph{辅助指标}，它们会在平面内互相缩并掉；中间的一个则是\emph{物理指标}，它们会伸出平面外，并且不会被缩并掉。可以看出，这实际上也是一种 PEPS 张量网络。
+\end{align}
+这些三角形张量每条边带有三个指标，外面的两个是\emph{虚拟指标}或\emph{辅助指标}，它们会在平面内互相缩并掉；中间的一个则是\emph{物理指标}，它们会伸出平面外，并且不会被缩并掉。可以看出，这实际上也是一种 PEPS 张量网络（见 \ref{subsec:mps-generalization} 小节）。
 
 \begin{figure}[htb]
   \centering
@@ -189,12 +183,323 @@
 
 \section{奇异关联子}
 
+\emph{奇异关联子} (strange correlator) 最早用来在对称保护拓扑序 (symmetry protected topological order, SPT)\footnote{尽管名称中带有“拓扑序”，但 SPT 态中只有短程纠缠，这与本文所说的拓扑序（具有长程纠缠）实际上是不同的。} 中寻找不同的相\cite{you2014wave}，之后则被推广到了弦网模型中\cite{vanhove2018mapping,lootens2019cardy,vanhove2022topological}。通过将 2+1 维弦网模型的 PEPS 基态波函数 $\ket{\Psi_\text{SN}}$ 与某些特定的直积态 $\ket{\Omega}$ 做内积，可以获得二维临界格点模型的配分函数
+\begin{equation}
+  Z = \langle\Omega|\Psi_\text{SN}\rangle.
+\end{equation}
+在热力学极限下，配分函数 $Z$ 可由对应的共形场论 (CFT) 来描述。如图~\ref{fig:peps-strange-correlator} 所示，对于由三角形张量单元构成的 PEPS 张量网络，直积态 $\ket{\Omega}$ 相当于为其提供了特定的边界条件，即把物理指标固定到某些值上，而角落上的自由度则需求和。
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/temp/peps-strange-correlator.png}
+  \caption[奇异关联子]{奇异关联子。}
+  \label{fig:peps-strange-correlator}
+\end{figure}
+
+我们利用 \ref{subsec:fusion-category-examples} 小节中所给出的 Fibonacci 和 Ising 两种融合范畴的数据来……
+
+\subsection{例子：Fibonacci 模型}
+
+Fibonacci 弦网模型定义在六边形网格上，它包含 $\1$ 和 $\tau$ 两种简单对象（任意子），量子维数分别为 $d_{\1}=1$、$d_\tau=\varphi$，其中 $\varphi=(1+\sqrt5)/2$ 是黄金比。融合规则为
+\begin{equation}
+  \1 \times \1 = \1, \quad
+  \1 \times \tau = \tau \times \1 = \tau, \quad
+  \tau \times \tau = \1 + \tau,
+\end{equation}
+$F$ 符号为
+\begin{equation}
+  [F^{\tau\tau\tau}_\tau]_{ij} = \dfrac1\varphi \begin{pmatrix} 1 & \sqrt\varphi \\ \sqrt\varphi & -1 \end{pmatrix}, \quad
+  i,j \in \{\1, \tau\}.
+\end{equation}
+唯一非平凡的四面体以及对应的三角形张量为
+\begin{equation}
+  \begin{aligned}
+       \Tetrahedron \tau mn\tau\tau\tau
+    &= \sqrt{d_\tau d_\tau d_\tau d_\tau} \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{mn}
+     = \varphi^2 \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{mn}, \\
+       \Triangle \tau\tau mn\tau\tau
+    &= (d_\tau d_\tau d_m)^{-\frac14} (d_\tau d_\tau d_n)^{-\frac13} \Tetrahedron \tau mn\tau\tau\tau \\
+    &= \varphi^{\frac56} d_m^{-\frac14} d_n^{-\frac13} \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{mn}, \enspace
+       m,n \in \{\1,\tau\}.
+  \end{aligned}
+\end{equation}
+在我们的奇异关联子构造中，所有的物理指标都会被选取为 $\tau$，因而这时会得到两种三角形张量单元：
+\begin{equation}
+    \Triangle \tau\tau\tau\tau\tau\tau
+  = \varphi^{\frac14} \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{\tau\tau} = -\varphi^{-\frac34}, \quad
+    \Triangle \tau\tau\tau\1\tau\tau
+  = \varphi^{\frac{7}{12}} \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{\tau\1} = \varphi^{\frac{1}{12}}.
+  \label{eq:fib-triangle}
+\end{equation}
+
+\subsection{例子：Ising 模型}
+
+为了与经典二维 Ising 模型相对应，我们考虑一个定义在正方形和八边形交错的格点上、由 $\1$、$\sigma$ 和 $\psi$ 三种简单对象构成的 Ising 弦网模型。各任意子对应的量子维数分别为 $d_{\1}=d_\psi=1$、$d_\sigma=\sqrt2$，融合规则为
+\begin{equation}
+  \begin{gathered}
+  \1 \times \1 = \psi \times \psi = \1, \quad
+  \1 \times \sigma = \sigma \times \1 = \sigma \times \psi = \psi \times \sigma = \sigma, \\
+  \1 \times \psi = \psi \times \1 = \psi, \quad
+  \sigma \times \sigma = \1 + \psi,
+  \end{gathered}
+\end{equation}
+$F$ 符号为
+\begin{equation}
+  [F^{\psi\sigma\psi}_\sigma]_{\sigma\sigma} = [F^{\sigma\psi\sigma}_\psi]_{\sigma\sigma} = -1, \quad
+  [F^{\sigma\sigma\sigma}_\sigma]_{ij} = -\dfrac{1}{\sqrt2} \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}, \quad
+  i,j \in \{\1, \psi\}.
+\end{equation}
+于是四面体和三角形张量为：
+\begin{equation}
+  \begin{aligned}
+       \Triangle \sigma\sigma\1\1\sigma\sigma
+    &= (d_{\1} d_\sigma d_\sigma)  ^{-\frac14} (d_{\1} d_\sigma d_\sigma)  ^{-\frac13}
+       \Tetrahedron \1\sigma\sigma\1\sigma\sigma
+       = 2^{-\frac{1}{12}}, \\
+       \Triangle \sigma\sigma\1\psi\sigma\sigma
+    &= (d_{\1} d_\sigma d_\sigma)  ^{-\frac14} (d_\sigma d_\sigma d_\psi)^{-\frac13}
+       \Tetrahedron \1\sigma\sigma\psi\sigma\sigma
+       = 2^{-\frac{1}{12}}, \\
+       \Triangle \sigma\sigma\psi\1\sigma\sigma
+    &= (d_\sigma d_\sigma d_\psi)^{-\frac14} (d_{\1} d_\sigma d_\sigma)  ^{-\frac13}
+       \Tetrahedron \psi\sigma\sigma\1\sigma\sigma
+       = 2^{-\frac{1}{12}}, \\
+       \Triangle \sigma\sigma\psi\psi\sigma\sigma
+    &= (d_\sigma d_\sigma d_\psi)^{-\frac14} (d_\sigma d_\sigma d_\psi)^{-\frac13}
+       \Tetrahedron \psi\sigma\sigma\psi\sigma\sigma
+       = -2^{-\frac{1}{12}}.
+  \end{aligned}
+\end{equation}
+在奇异关联子构造中，我们需要将物理指标投影到直积态
+\begin{equation}
+  \bra{\omega(\beta)} = \sqrt2 \bigl( \cosh\beta \bra{\1} + \sinh\beta \bra{\psi} \bigr)
+\end{equation}
+上面。为了得到正方形格点的结构，我们用 8 个三角形组成一个带有 4 个指标的八边形张量单元：
+\def\DiagramI{
+  \begin{tikzpicture}[baseline=-0.5ex]
+    \draw [tensor box]
+          ( 0.3, 0.7) -- ( 1.9, 2.3) -- ( 0.3, 2.3) -- cycle
+          ( 0.7, 0.3) -- ( 2.3, 0.3) -- ( 2.3, 1.9) -- cycle
+          (-0.3, 0.7) -- (-1.9, 2.3) -- (-0.3, 2.3) -- cycle
+          (-0.7, 0.3) -- (-2.3, 0.3) -- (-2.3, 1.9) -- cycle
+          ( 0.3,-0.7) -- ( 1.9,-2.3) -- ( 0.3,-2.3) -- cycle
+          ( 0.7,-0.3) -- ( 2.3,-0.3) -- ( 2.3,-1.9) -- cycle
+          (-0.3,-0.7) -- (-1.9,-2.3) -- (-0.3,-2.3) -- cycle
+          (-0.7,-0.3) -- (-2.3,-0.3) -- (-2.3,-1.9) -- cycle;
+    % \sigma
+    \draw [semithick, MaterialTeal]
+          ( 1.1, 2.0) -- ( 1.1, 3.0) ( 2.0, 1.1) -- ( 3.0, 1.1)
+          (-1.1, 2.0) -- (-1.1, 3.0) (-2.0, 1.1) -- (-3.0, 1.1)
+          ( 1.1,-2.0) -- ( 1.1,-3.0) ( 2.0,-1.1) -- ( 3.0,-1.1)
+          (-1.1,-2.0) -- (-1.1,-3.0) (-2.0,-1.1) -- (-3.0,-1.1)
+          ( 0.6, 1.5) -- (-0.6, 1.5)
+          ( 1.5, 0.6) -- ( 1.5,-0.6)
+          ( 0.6,-1.5) -- (-0.6,-1.5)
+          (-1.5, 0.6) -- (-1.5,-0.6)
+          ( 1.0, 0.0) .. controls ( 1.0, 0.6) and ( 0.6, 1.0) .. ( 0.0, 1.0)
+                      .. controls (-0.6, 1.0) and (-1.0, 0.6) .. (-1.0, 0.0)
+                      .. controls (-1.0,-0.6) and (-0.6,-1.0) .. ( 0.0,-1.0)
+                      .. controls ( 0.6,-1.0) and ( 1.0,-0.6) .. cycle
+          ( 3.0, 1.5) .. controls ( 2.0, 1.5) and ( 1.5, 2.0) .. ( 1.5, 3.0)
+          (-3.0, 1.5) .. controls (-2.0, 1.5) and (-1.5, 2.0) .. (-1.5, 3.0)
+          ( 3.0,-1.5) .. controls ( 2.0,-1.5) and ( 1.5,-2.0) .. ( 1.5,-3.0)
+          (-3.0,-1.5) .. controls (-2.0,-1.5) and (-1.5,-2.0) .. (-1.5,-3.0);
+    % 1 \otimes \psi
+    \draw [semithick, MaterialIndigo]
+          ( 1.7, 0.9) -- ( 0.9, 1.7)
+          (-1.7, 0.9) -- (-0.9, 1.7)
+          ( 1.7,-0.9) -- ( 0.9,-1.7)
+          (-1.7,-0.9) -- (-0.9,-1.7);
+    % 1 or \psi
+    \draw [tensor leg]
+          ( 0.6, 3.0) .. controls ( 0.6, 2.6) and ( 0.6, 2.0) .. ( 0.0, 2.0)
+                      .. controls (-0.6, 2.0) and (-0.6, 2.6) .. (-0.6, 3.0)
+          ( 3.0, 0.6) .. controls ( 2.6, 0.6) and ( 2.0, 0.6) .. ( 2.0, 0.0)
+                      .. controls ( 2.0,-0.6) and ( 2.6,-0.6) .. ( 3.0,-0.6)
+          ( 0.6,-3.0) .. controls ( 0.6,-2.6) and ( 0.6,-2.0) .. ( 0.0,-2.0)
+                      .. controls (-0.6,-2.0) and (-0.6,-2.6) .. (-0.6,-3.0)
+          (-3.0, 0.6) .. controls (-2.6, 0.6) and (-2.0, 0.6) .. (-2.0, 0.0)
+                      .. controls (-2.0,-0.6) and (-2.6,-0.6) .. (-3.0,-0.6);
+    \draw ( 0.0, 3.5) node {$i$}
+          (-3.5, 0.0) node {$j$}
+          ( 0.0,-3.5) node {$k$}
+          ( 3.5, 0.0) node {$l$};
+  \end{tikzpicture}
+}
+\def\LineSigma{
+  \begin{tikzpicture}[baseline=1.6ex]
+    \draw [semithick, MaterialTeal] (0,0) -- (0,2);
+  \end{tikzpicture}
+}
+\def\LineOmega{
+  \begin{tikzpicture}[baseline=1.6ex]
+    \draw [semithick, MaterialIndigo] (0,0) -- (0,2);
+  \end{tikzpicture}
+}
+\begin{equation}
+  A_{ijkl} = \DiagramI \quad \text{where} \quad
+  i, j, k, l = \1 \text{ or } \psi, \quad
+  \LineSigma \, = \sigma, \quad
+  \LineOmega \, = \omega.
+\end{equation}
+注意此时物理指标已被求和，而辅助指标 $i$、$j$、$k$、$l$ 得以保留。为了得到 $A_{ijkl}$ 的值，我们先计算每一对三角形：
+\def\PathI{
+  \draw [tensor box]
+        (-0.6,-1.0) -- ( 1.0,-1.0) -- ( 1.0, 0.6) -- cycle
+        ( 0.6, 1.0) -- (-1.0, 1.0) -- (-1.0,-0.6) -- cycle;
+  \draw [tensor leg]
+        (-0.6, 1.7) .. controls (-0.6, 0.9) and (-0.9, 0.6) .. (-1.6, 0.6)
+        ( 0.6,-1.7) .. controls ( 0.6,-0.9) and ( 0.9,-0.6) .. ( 1.6,-0.6);
+  \draw [semithick, MaterialTeal]
+        (-0.2, 0.7) -- (-0.2, 1.7) (-1.6, 0.2) -- (-0.6, 0.2)
+        ( 0.2,-0.7) -- ( 0.2,-1.7) ( 1.6,-0.2) -- ( 0.6,-0.2)
+        ( 1.6, 0.2) .. controls ( 0.7, 0.2) and ( 0.2, 0.7) .. ( 0.2, 1.7)
+        (-1.6,-0.2) .. controls (-0.7,-0.2) and (-0.2,-0.7) .. (-0.2,-1.7);
+  \draw [semithick, MaterialIndigo]
+        ( 0.4,-0.4) -- (-0.4, 0.4);
+  \draw (-1.5, 1.5) node {$i$}
+        ( 1.5,-1.5) node {$j$};
+}
+\def\DiagramI{
+  \begin{tikzpicture}[baseline=-0.5ex]
+    \PathI
+  \end{tikzpicture}
+}
+\def\DiagramII{
+  \begin{tikzpicture}[baseline=-0.5ex, xscale=-1]
+    \PathI
+  \end{tikzpicture}
+}
+\begin{equation}
+  \DiagramI = \DiagramII =
+  \begin{cases}
+    2^{\frac13} \bigl( \cosh\beta + \sinh\beta \bigr) = 2^{\frac13} \ee^\beta,
+      & (i,j) = (\1,\1) \text{ or } (\psi, \psi); \\
+    2^{\frac13} \bigl( \cosh\beta - \sinh\beta \bigr) = 2^{\frac13} \ee^{-\beta},
+      & (i,j) = (\1,\psi) \text{ or } (\1, \psi).
+  \end{cases}
+\end{equation}
+于是
+\begin{equation}
+  A_{\1\1\1\1} = A_{\psi\psi\psi\psi} = 2^{\frac43} \ee^{4\beta}, \quad
+  A_{\1\psi\1\psi} = A_{\psi\1\psi\1} = 2^{\frac43} \ee^{-4\beta}, \quad
+  \text{others} = 2^{\frac43}.
+  \label{eq:ising-tensor-from-sc}
+\end{equation}
+这和围绕一个方块的 Ising 相互作用（4 个自旋）的张量表示 \eqref{eq:ising-tensor} 是一致的，只相差一个整体因子：
+\begin{equation}
+  A_{ijkl}
+    := A_{\sigma_i \sigma_j \sigma_k \sigma_l}
+    = \ee^{\beta(\sigma_i\sigma_j + \sigma_j\sigma_k + \sigma_k\sigma_l + \sigma_l\sigma_i)},
+  \label{eq:ising-tensor}
+\end{equation}
+
+把这些八边形张量移动 $1/2$ 格可以获得对偶格点的张量表示
+\def\DiagramI{
+  \begin{tikzpicture}[baseline=-0.5ex]
+    \draw [tensor box]
+          ( 0.3, 0.7) -- ( 1.9, 2.3) -- ( 0.3, 2.3) -- cycle
+          ( 0.7, 0.3) -- ( 2.3, 0.3) -- ( 2.3, 1.9) -- cycle
+          (-0.3, 0.7) -- (-1.9, 2.3) -- (-0.3, 2.3) -- cycle
+          (-0.7, 0.3) -- (-2.3, 0.3) -- (-2.3, 1.9) -- cycle
+          ( 0.3,-0.7) -- ( 1.9,-2.3) -- ( 0.3,-2.3) -- cycle
+          ( 0.7,-0.3) -- ( 2.3,-0.3) -- ( 2.3,-1.9) -- cycle
+          (-0.3,-0.7) -- (-1.9,-2.3) -- (-0.3,-2.3) -- cycle
+          (-0.7,-0.3) -- (-2.3,-0.3) -- (-2.3,-1.9) -- cycle;
+    % \sigma
+    \draw [semithick, MaterialTeal]
+          ( 1.1, 2.0) -- ( 1.1, 3.0) ( 2.0, 1.1) -- ( 3.0, 1.1)
+          (-1.1, 2.0) -- (-1.1, 3.0) (-2.0, 1.1) -- (-3.0, 1.1)
+          ( 1.1,-2.0) -- ( 1.1,-3.0) ( 2.0,-1.1) -- ( 3.0,-1.1)
+          (-1.1,-2.0) -- (-1.1,-3.0) (-2.0,-1.1) -- (-3.0,-1.1)
+          ( 0.6, 1.5) -- (-0.6, 1.5)
+          ( 1.5, 0.6) -- ( 1.5,-0.6)
+          ( 0.6,-1.5) -- (-0.6,-1.5)
+          (-1.5, 0.6) -- (-1.5,-0.6)
+          ( 0.6, 3.0) .. controls ( 0.6, 2.6) and ( 0.6, 2.0) .. ( 0.0, 2.0)
+                      .. controls (-0.6, 2.0) and (-0.6, 2.6) .. (-0.6, 3.0)
+          ( 3.0, 0.6) .. controls ( 2.6, 0.6) and ( 2.0, 0.6) .. ( 2.0, 0.0)
+                      .. controls ( 2.0,-0.6) and ( 2.6,-0.6) .. ( 3.0,-0.6)
+          ( 0.6,-3.0) .. controls ( 0.6,-2.6) and ( 0.6,-2.0) .. ( 0.0,-2.0)
+                      .. controls (-0.6,-2.0) and (-0.6,-2.6) .. (-0.6,-3.0)
+          (-3.0, 0.6) .. controls (-2.6, 0.6) and (-2.0, 0.6) .. (-2.0, 0.0)
+                      .. controls (-2.0,-0.6) and (-2.6,-0.6) .. (-3.0,-0.6);
+    % 1 \otimes \psi
+    \draw [semithick, MaterialIndigo]
+          ( 1.7, 0.9) -- ( 0.9, 1.7)
+          (-1.7, 0.9) -- (-0.9, 1.7)
+          ( 1.7,-0.9) -- ( 0.9,-1.7)
+          (-1.7,-0.9) -- (-0.9,-1.7);
+    % 1 or \psi
+    \draw [tensor leg]
+          ( 1.0, 0.0) .. controls ( 1.0, 0.6) and ( 0.6, 1.0) .. ( 0.0, 1.0)
+                      .. controls (-0.6, 1.0) and (-1.0, 0.6) .. (-1.0, 0.0)
+                      .. controls (-1.0,-0.6) and (-0.6,-1.0) .. ( 0.0,-1.0)
+                      .. controls ( 0.6,-1.0) and ( 1.0,-0.6) .. cycle
+          ( 3.0, 1.5) .. controls ( 2.0, 1.5) and ( 1.5, 2.0) .. ( 1.5, 3.0)
+          (-3.0, 1.5) .. controls (-2.0, 1.5) and (-1.5, 2.0) .. (-1.5, 3.0)
+          ( 3.0,-1.5) .. controls ( 2.0,-1.5) and ( 1.5,-2.0) .. ( 1.5,-3.0)
+          (-3.0,-1.5) .. controls (-2.0,-1.5) and (-1.5,-2.0) .. (-1.5,-3.0);
+    \draw (-2.6, 2.6) node {$i$}
+          (-2.6,-2.6) node {$j$}
+          ( 2.6,-2.6) node {$k$}
+          ( 2.6, 2.6) node {$l$};
+  \end{tikzpicture}
+}
+\begin{equation}
+  \tilde{A}_{ijkl} = \, \DiagramI \quad \text{where} \quad
+  i, j, k, l = \1 \text{ or } \psi.
+\end{equation}
+此时
+\def\PathI{
+  \draw [tensor box]
+        (-0.6,-1.0) -- ( 1.0,-1.0) -- ( 1.0, 0.6) -- cycle
+        ( 0.6, 1.0) -- (-1.0, 1.0) -- (-1.0,-0.6) -- cycle;
+  \draw [tensor leg]
+        ( 1.6, 0.2) .. controls ( 0.7, 0.2) and ( 0.2, 0.7) .. ( 0.2, 1.7)
+        (-1.6,-0.2) .. controls (-0.7,-0.2) and (-0.2,-0.7) .. (-0.2,-1.7);
+  \draw [semithick, MaterialTeal]
+        (-0.2, 0.7) -- (-0.2, 1.7) (-1.6, 0.2) -- (-0.6, 0.2)
+        ( 0.2,-0.7) -- ( 0.2,-1.7) ( 1.6,-0.2) -- ( 0.6,-0.2)
+        (-0.6, 1.7) .. controls (-0.6, 0.9) and (-0.9, 0.6) .. (-1.6, 0.6)
+        ( 0.6,-1.7) .. controls ( 0.6,-0.9) and ( 0.9,-0.6) .. ( 1.6,-0.6);
+  \draw [semithick, MaterialIndigo]
+        ( 0.4,-0.4) -- (-0.4, 0.4);
+  \draw ( 1.2, 1.2) node {$i$}
+        (-1.2,-1.2) node {$j$};
+}
+\def\DiagramI{
+  \begin{tikzpicture}[baseline=-0.5ex, xscale=-1]
+    \PathI
+  \end{tikzpicture}
+}
+\def\DiagramII{
+  \begin{tikzpicture}[baseline=-0.5ex]
+    \PathI
+  \end{tikzpicture}
+}
+\begin{equation}
+  \DiagramI = \DiagramII =
+  \begin{cases}
+    2^{\frac13} \bigl( \cosh\beta + \sinh\beta \bigr) = 2^{\frac13} \ee^\beta,
+      & (i,j) = (\1,\1) \text{ or } (\psi, \psi); \\
+    2^{\frac13} \bigl( \cosh\beta - \sinh\beta \bigr) = 2^{\frac13} \ee^{-\beta},
+      & (i,j) = (\1,\psi) \text{ or } (\1, \psi).
+  \end{cases}
+\end{equation}
+利用 Kramers--Wannier 对偶，即令 $A=\tilde{A}$，就可以得到临界温度
+\begin{equation}
+  \ee^{2\beta_{\text{c}}} = \sqrt{2} + 1 \implies \beta_{\text{c}} = \frac12 \log(1 + \sqrt{2}).
+\end{equation}
+
 \section{四面体对称性}
 
 \section{MPO 对称性}
 
+在弦网模型的 PEPS 张量网络表示中，弦激发可以理解为由满足\emph{推拉条件} (pulling-through condition) 的矩阵乘积算符 (MPO) 产生。这些 MPO 具有一定的代数结构，它们之间满足融合规则：
+\begin{equation}
+  \text{MPO}_a \, \text{MPO}_b = \sum_c N_{ab}^c \, \text{MPO}_c,
+\end{equation}
+其中 $N_{ab}^c$ 和输入范畴所给出的数据是一致的。任意子则可通过在 MPO 两端放置缺陷张量来产生，这些 MPO 的对称性给出了另外的 $C^*$ 代数结构，其\emph{中心幂等元} (central idempotent) 也对应了输出范畴的不同\emph{拓扑分区} (topological sector)，即不同的任意子类型。
+
 \section{例子}
-
-\subsection{Fibonacci 模型}
-
-\subsection{Ising 模型}
