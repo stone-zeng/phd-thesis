@@ -1,0 +1,20 @@
+\begin{tikzpicture}[baseline=-0.5ex, rotate=-30]
+  \draw [tensor box, xshift=-1.2em]
+        (60:1.5) -- (180:1.5) -- (-60:1.5) -- cycle;
+  \draw [tensor box, xshift=1.2em]
+        (0:1.5) -- (120:1.5) -- (-120:1.5) -- cycle;
+  \draw [tensor leg, xshift=-1.2em]
+        (0:0.4) -- (0:2)
+        (120:0.4) -- (120:1.6) (-120:0.4) -- (-120:1.6)
+        (140:1.7) .. controls (160:0.8) and (-160:0.8) .. (-140:1.7);
+  \draw [tensor leg, xshift=1.2em]
+        (60:0.4) -- (60:1.6) (-60:0.4) -- (-60:1.6)
+        (40:1.7) .. controls (20:0.8) and (-20:0.8) .. (-40:1.7);
+  \draw [tensor leg]
+        ($(-1.2,0) + ( 100:1.7)$) .. controls (-0.8, 0.24) and (0.8, 0.24) .. ($(1.2,0) + ( 80:1.7)$)
+        ($(-1.2,0) + (-100:1.7)$) .. controls (-0.8,-0.24) and (0.8,-0.24) .. ($(1.2,0) + (-80:1.7)$);
+  \draw (-3.5,0) node {$i$}
+        ( 3.5,0) node {$k$}
+        ( 0, -2) node {$j$}
+        ( 0,  2) node {$l$};
+\end{tikzpicture}

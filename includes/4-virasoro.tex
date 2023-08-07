@@ -1,6 +1,8 @@
 \chapter{Virasoro 代数的张量网络实现}
 \label{chap:virasoro}
 
+\tikzset{x=1em, y=1em, node font=\footnotesize}
+
 \section{二维共形场论回顾}
 
 \emph{共形场论} (conformal field theory, CFT)\cite{belavin1984infinite,ginsparg1988applied,francesco2012conformal} 的诞生源于对相变与临界现象的研究。在（二阶）相变点附近，系统应当具有\emph{标度不变性} (scaling invariance)；而在二维情况下，标度不变性与共形不变性是等价的。这就意味着可以用满足\emph{共形对称性} (conformal symmetry) 的量子场论——即共形场论——来处理临界系统。
@@ -239,8 +241,7 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
 
 \begin{figure}[ht]
   \[
-      P_{i_1 i_2 \cdots i_n, \, j_1 j_2 \cdots j_n}
-    = \raisebox{-3em}{\includegraphics[width=0.4\textwidth]{images/temp/translation-operator.png}}
+    P_{i_1 i_2 \cdots i_n, \, j_1 j_2 \cdots j_n} = \tikzinput{translation-operator}
   \]
   \caption[平移算符 $P$ 的张量网络表示]{平移算符 $P$ 的张量网络表示。}
   \label{fig:translation-operator}
@@ -259,12 +260,13 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
 
 对于一些具体的格点模型\cite{koo1994representations,milsted2017extraction}，能动量张量 $T$ 可以解析求出。然而在一般情况下，通过配分函数并不能直接得到 $T$ 的表达式。为此，我们需要利用张量网络来构造 Virasoro 算符的近似表示。
 
-如图~\ref{fig:virasoro-construction} 所示，考虑一个以 $A_{ijkl}$ 为单元构成的一般性的张量网络，其中连接维数 $\chi_A=d$。将 $A$ 张量连成一个圆柱得到转移矩阵、与平移算符相连，再对其进行精确对角化，即可按照 \ref{subsec:lattice-approximation} 小节中介绍的方案来确定本征态 $\ket*{\phi_T}$ 或 $\ket*{\phi_{\bar{T}}}$，以及相应的能动量张量 $T$ 或 $\bar{T}$。随后，我们可以把得到的 $T$ 或 $\bar{T}$ 插回由 $A$ 构成的圆柱（即把 $j$ 位置处的 $A$ 张量用 $T$ 或 $\bar{T}$ 取代），再根据式~\eqref{eq:lattice-virasoro-operators} 乘上对应的系数 $\ee^{\pm2\pi\ii j n/N}$，这样就得到了格点上的 Virasoro 算符 $L_n$ 或 $\bar{L}_n$。
+如图~\ref{fig:virasoro-construction} 所示，考虑一个以 $A_{ijkl}$ 为单元构成的一般性的张量网络，其中连接维数 $\chi_A=d$。将 $A$ 张量连成一个圆柱得到转移矩阵、与平移算符相连，再对其进行精确对角化，即可按照 \ref{subsec:lattice-approximation} 小节中介绍的方案来确定本征态 $\ket*{\phi_T}$ 或 $\ket*{\phi_{\bar{T}}}$，以及相应的能动量张量 $T$ 或 $\bar{T}$。随后，我们可以把得到的 $T$ 或 $\bar{T}$ 插回由 $A$ 构成的圆柱（即把 $j$ 位置处的 $A$ 张量用 $T$ 或 $\bar{T}$ 取代），再根据式~\eqref{eq:lattice-virasoro-operators} 乘上对应的系数 $\ee^{\pm2\pi\ii j n/N}$，这样就构造出了格点上的 Virasoro 算符 $L_n$ 或 $\bar{L}_n$。
 
 \begin{figure}[ht]
+  % \tikzinput{virasoro-construction}
   \centering
   \includegraphics[width=0.8\textwidth]{images/temp/virasoro-construction.pdf}
-  \caption[能动量张量与 Virasoro 算符的构造]{在一般的张量网络中确定能动量张量 $T$，并以此来构造 Virasoro 算符。同样的方法也可用来构造 Kac--Moody 算符。}
+  \caption[能动量张量与 Virasoro 算符的构造]{在一般的张量网络中确定能动量张量 $T$，并以此来构造 Virasoro 算符［见式~\eqref{eq:lattice-virasoro-operators}］。对应于与能动量张量的本征态 $\ket*{\phi_T}$ 可以从圆柱转移矩阵中通过精确对角化得到，它被进一步变形为 4 个指标的张量 $T$，并插入到新的圆柱中，由此即可得到 Virasoro 算符 $L_n$。同样的方法也可用来构造 Kac--Moody 算符 $J_n$。}
   \label{fig:virasoro-construction}
 \end{figure}
 
@@ -292,8 +294,7 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
 \begin{equation}
     M^{i_1 i_2 \cdots i_n}_{k_1 k_2 \cdots k_n}
   = \sum_{j_1, j_2, \ldots, j_n} \prod_{\alpha=1}^n A^{(0)}_{i_\alpha j_\alpha k_\alpha j_{\alpha+1}}
-  = \text{[[TODO:]]}
-  % = \DiagramI.
+  = \tikzinput{ising-cylinder}.
 \end{equation}
 
 在实际计算中，可以对张量 $A$ 进行粗粒近似以提高精度，如图~\ref{fig:virasoro-blocking} 所示。例如可将 4 个 $A$（$\eqcolon A^{(0)}$）组合成一个更大的 $A^{(1)}$，也可不断重复使得 $A^{(i)}$ 逐渐接近不动点张量。在这一过程中，连接维数 $\chi_{A^{(i)}}=d^{2^i}$ 会迅速增大，因此往往还需要进行截断。实际上，这也就是利用 TRG 或 TNR 等张量网络算法\cite{levin2007tensor,evenbly2015tensor1,evenbly2017algorithms} 来寻找不动点张量的操作。
@@ -301,7 +302,7 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\textwidth]{images/temp/virasoro-blocking.pdf}
-  \caption[张量 $A$ 的粗粒近似]{对张量 $A$ 进行粗粒近似。}
+  \caption[张量 $A$ 的粗粒近似]{对张量 $A$ 进行粗粒近似。上图：$2\times2\mapsto1$ 的粗粒近似操作，$A^{(s+1)}$ 可由 4 个 $A^{(s)}$ 张量缩并得到。下图：相应的算符可以等效为一个指标更少、但连接维数更大的正方形张量。}
   \label{fig:virasoro-blocking}
 \end{figure}
 
@@ -360,12 +361,12 @@ Virasoro 算符的正确性同样可以通过两点关联函数来检验。在�
 
 \section{例子：Dimer 模型}
 
-接下来我们考虑正方格点上的 dimer 模型。与 Ising 模型类似，它的配分函数也可以表示为一个二维张量网络，张量单元 $B^{(0)}_{ijkl}$ 中的非零元素为
+接下来我们考虑正方格点上的 dimer 模型\cite{kasteleyn1961statistics,temperley1961dimer,kasteleyn1963dimer}。与 Ising 模型类似，它的配分函数也可以表示为一个二维张量网络，张量单元 $B^{(0)}_{ijkl}$ 中的非零元素为
 \begin{equation}
   B^{(0)}_{1111} = B^{(0)}_{2211} = B^{(0)}_{2121} = B^{(0)}_{1212} = B^{(0)}_{2222} = 1, \quad
   B^{(0)}_{1122} = 2.
 \end{equation}
-在连续极限下，这一模型对应了中心荷 $c=1$ 的自由 Bose 子共形场论，其顶点算子 (vertex operator) 具有标度维数和共形自旋
+在连续极限下，这一模型对应了中心荷 $c=1$ 的自由 Bose 子共形场论\cite{ioffe1989superconductivity,henley1997relaxation,allegra2015exact}，其顶点算子 (vertex operator) 具有标度维数和共形自旋
 \begin{equation}
   \Delta_{e,m} = e^2 + \frac14 m^2, \quad
   s_{e,m} = em,
@@ -401,32 +402,16 @@ Virasoro 算符的正确性同样可以通过两点关联函数来检验。在�
 
 \subsection{转移矩阵}
 
-Fibonacci 弦网模型定义在六边形网格上，它包含 $\1$ 和 $\tau$ 两种简单对象（任意子），量子维数分别为 $d_{\1}=1$、$d_\tau=\varphi$，其中 $\varphi=(1+\sqrt5)/2$ 是黄金比。融合规则为
+Fibonacci 弦网模型定义在六边形网格上，包含 $\1$ 和 $\tau$ 两种简单对象，对应的三角形张量单元已经在 \ref{subsec:strange-correlator-fib} 小节中给出：
 \begin{equation}
-  \1 \times \1 = \1, \quad
-  \1 \times \tau = \tau \times \1 = \tau, \quad
-  \tau \times \tau = \1 + \tau,
-\end{equation}
-$F$ 符号为
-\begin{equation}
-  [F^{\tau\tau\tau}_\tau]_{ij} = \dfrac1\varphi \begin{pmatrix} 1 & \sqrt\varphi \\ \sqrt\varphi & -1 \end{pmatrix}, \quad
-  i,j \in \{\1, \tau\}.
-\end{equation}
-在我们的奇异关联子构造中，所有的物理指标都会被选取为 $\tau$，这时会有两种三角形张量单元：
-\begin{equation}
-    % TODO:
-    % \Triangle \tau\tau\tau\tau\tau\tau
-    [[\tau\tau\tau\tau\tau\tau]]
+    \Triangle \tau\tau\tau\tau\tau\tau
   = \varphi^{\frac14} \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{\tau\tau} = -\varphi^{-\frac34}, \quad
-    % \Triangle \tau\tau\tau\1\tau\tau
-    [[\tau\tau\tau\1\tau\tau]]
+    \Triangle \tau\tau\tau\1\tau\tau
   = \varphi^{\frac{7}{12}} \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{\tau\1} = \varphi^{\frac{1}{12}}.
-  \label{eq:fib-triangles}
 \end{equation}
-
 为了沿用前面处理 Ising 模型时的思路，我们首先需要把两个三角张量形拼合成一个正方形：
 \begin{equation}
-  A_{ijkl} = \raisebox{-2.5em}{\includegraphics[width=0.4\textwidth]{images/temp/fib-square.png}} % \DiagramI = \DiagramII.
+  A_{ijkl} = \tikzinput{fib-square-1} = \tikzinput{fib-square-1}.
   \label{eq:fib-square}
 \end{equation}
 同样，转移矩阵也是由张量单元 $A$ 构成的：
@@ -434,7 +419,7 @@ $F$ 符号为
     \tilde{M}_{i_1 i_2 \cdots i_n, \, j_1 j_2 \cdots j_n}
   = \sum_{\substack{i_1, i_2, \ldots, i_n \\ j_1, j_2, \ldots, j_n}}
     \prod_{\alpha=1}^n A_{i_\alpha j_\alpha j_{\alpha+1} i_{\alpha+1}}
-  = % \DiagramI.
+  = \tikzinput{fib-cylinder} \, .
   % \label{eq:fib-cylinder}
 \end{equation}
 但与正方格点（如二维 Ising 模型）的情况不同，这里 $A_{ijkl}$ 的指标位于四个角，所以在缩并时需要仔细处理各指标的顺序。此外，上述圆柱 $\tilde{M}$ 并不是 Hermitian 的，因此并不能直接构成正确的转移矩阵。如果把 这些圆柱堆叠起来，在最终计算得到的能谱中将会出现额外的相位。我们可以把两个方向相反的圆柱叠加起来，即选取
@@ -451,8 +436,7 @@ $F$ 符号为
 随着圆柱尺寸 $n$ 的增加，计算中内存消耗是指数级增长的。为了能够处理较大的圆柱，我们这里采用了矩阵无关 (matrix-free) 的线性算符 (linear operator) 方法，即不再显式地构造转移矩阵 $M$，而是计算 $M$ 作用在某个向量上的结果。如图~\ref{fig:fib-linear-operator} 所示，由于 $M$ 是通过张量单元 $A_{ijkl}$ 构造而成的，矩阵乘法 $M\cdot v$ 可利用多次张量缩并来实现。而平移算符则可以通过对数组元素的重新排列来获得。对于大小为 $n$ 的圆柱，线性算符方法可将内存消耗由 $\mathcal{O}(\chi^{2n})$ 降低到 $\mathcal{O}(\chi^n)$。对于 Fibonacci 模型的情况，在典型配置的服务器上最大可以计算到约 $n\simeq30$ 的情形。
 
 \begin{figure}[ht]
-  % \input{includes/linear-operator.tex}
-  \includegraphics[width=0.9\textwidth]{images/temp/fib-linear-operator.png}
+  \tikzinput{fib-linear-operator}
   \caption[利用线性算符方法实现矩阵乘法]{对于 Fibonacci 弦网模型，利用线性算符方法实现矩阵乘法 $M\cdot v$。}
   \label{fig:fib-linear-operator}
 \end{figure}
@@ -465,16 +449,10 @@ $F$ 符号为
 \end{equation}
 的形式趋近于其热力学极限值\cite{schuler2016universal}，然后我们在能谱中选择相应的数据以使拟合结果最优（即挑选出最接近拟合曲线的数据点，见图~\ref{fig:fib-fitting}）。计算出拟合参数 $A$ 后，令 $n\to\infty$ 即可得到 $\Delta^\infty$。这些数据列在表~\ref{tab:fib-spectrum} 的“$\infty$”栏中。进一步，我们还根据式~\eqref{eq:scaling-dimension-rescale} 标定了能谱中的本征值，使得 $\Delta_{\1}=0$、$\Delta_T=2$，从而可以更为准确地估计标度维数。这些数据列在了“调整值”一栏，并且绘制在了图~\ref{fig:fib-spectrum} 中。
 
-\def\DiagramI{%
-  \begin{tikzpicture}[baseline=-0.75ex, semithick]
-    \fill (0.25,0) -- (0,0.25) -- (-0.25,0) -- (0,-0.25) -- cycle;
-    \draw (0.40,0) -- (0,0.40) -- (-0.40,0) -- (0,-0.40) -- cycle;
-  \end{tikzpicture}%
-}
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.7\textwidth]{images/fibonacci/fib-spectrum.pdf}
-  \caption[Fibonacci 模型的能谱]{Fibonacci 模型的能谱，对应于 $n\to\infty$ 圆柱转移矩阵。“\DiagramI” 表明存在二重简并。图中的本征值进行了缩放处理，以使得 $\Delta_{\1}=0$ 和 $\Delta_T=2$。初级场使用对应的算符来标记，它们的共形维数分别为 $h_{\1}=0$，$h_\sigma=1/15$，$h_\epsilon=2/5$，$h_Z=2/3$，$h_X=7/5$ 以及 $h_Y=3$（与 $X$、$Y$ 对应的态本征值较大，在我们的计算中没有考虑）。CFT 配分函数为 $Z=|\chi_{\1}+\chi_Y|^2+|\chi_\epsilon+\chi_X|^2+2|\chi_\sigma|^2\discretionary{}{}{}+2|\chi_Z|^2$\cite{vanhove2018mapping}。对应于 $|\chi_{\1}+\chi_Y|^2$ 的子空间，其中的本征态用橙色标记。}
+  \caption[Fibonacci 模型的能谱]{Fibonacci 模型的能谱，对应于 $n\to\infty$ 圆柱转移矩阵。“\tikzinput{fib-spectrum-label}\unskip”表明存在二重简并。图中的本征值进行了缩放处理，以使得 $\Delta_{\1}=0$ 和 $\Delta_T=2$。初级场使用对应的算符来标记，它们的共形维数分别为 $h_{\1}=0$，$h_\sigma=1/15$，$h_\epsilon=2/5$，$h_Z=2/3$，$h_X=7/5$ 以及 $h_Y=3$（与 $X$、$Y$ 对应的态本征值较大，在我们的计算中没有考虑）。CFT 配分函数为 $Z=|\chi_{\1}+\chi_Y|^2+|\chi_\epsilon+\chi_X|^2+2|\chi_\sigma|^2\discretionary{}{}{}+2|\chi_Z|^2$\cite{vanhove2018mapping}。对应于 $|\chi_{\1}+\chi_Y|^2$ 的子空间，其中的本征态用橙色标记。}
   \label{fig:fib-spectrum}
 \end{figure}
 
@@ -499,9 +477,15 @@ $F$ 符号为
 拓扑投影算符的构造与 Ocneanu \emph{管状代数} (tube algebra) 有关。拓扑序模型中的每种任意子都对应着 CFT 中的一个拓扑分区，换而言之 CFT 中的初级场及其后代组成的“家族” (family) 可按照对应的任意子类型进行分类。拓扑序中的弦算符则可作为投影算符，将转移矩阵投影到包含相应拓扑分区的子空间上。因为我们这里的工作主要关注能动量张量，而能动量张量与真空态属于同一分区，所以只需构造与任意子 $\1$ 相对应的弦算符。
 
 弦算符的一般形式可由 MPO 来描述，称为\emph{幂等元} (idempotents)\cite{bultinck2017anyons,williamson2017symmetry,vanhove2018mapping,lootens2019cardy,aasen2020topological}。构成这些 MPO 的矩阵单元为
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{images/temp/idempotents-mpo.png}
-\end{center}
+\begin{equation}
+  \begin{aligned}
+       \tikzinput{idempotents-mpo-1}
+    &= (d_\alpha d_\beta d_\gamma d_\delta)^{\frac14} G^{\beta i\gamma}_{j\alpha\delta}, \\
+       \tikzinput{idempotents-mpo-2}
+    &= (d_\alpha d_\beta d_\gamma d_\delta d_i d_j d_k)^{\frac14}
+       G^{k\beta\delta}_{ij\alpha} G^{i\gamma\beta}_{kj\delta},
+  \end{aligned}
+\end{equation}
 其中 $G$ 可通过对四面体张量（$F$ 符号）进行归一化和对称化得到：
 \begin{equation}
     G^{abc}_{ijk}
@@ -509,9 +493,9 @@ $F$ 符号为
   = \frac{1}{\sqrt{d_a d_b d_c d_i d_j d_k}} \, [[jibcka]].
 \end{equation}
 对于大小为 $n$ 的圆柱转移矩阵，管状代数的基可由 $n-1$ 个橙色张量与一个红色张量首尾相连得到：
-\begin{center}
-  \includegraphics[width=0.5\textwidth]{images/temp/tube-algebra-basis.png}
-\end{center}
+\begin{equation}
+  \mathcal{T}_{ab}^c = \tikzinput{tube-algebra-basis}.
+\end{equation}
 注意图中省略了辅助指标，它们需要被正常缩并掉。
 
 幂等元的一般形式可表示为这些基的线性组合。在 Fibonacci 模型中，对应于 $\1$ 的弦算符幂等元为\cite{bultinck2017anyons}
@@ -524,9 +508,9 @@ $F$ 符号为
 \subsection{Virasoro 算符}
 
 接下来我们按照 \ref{sec:virasoro-operators} 节中介绍的方法来构造 Virasoro 算符。考虑到 Fibonacci 模型要求圆柱大小 $n=3k$，此时由对角化求得的能动量张量 $T$ 和 $\bar{T}$ 并不能像 Ising 模型的情况一样直接插回圆柱。因此，我们需要首先把 $T$ 和 $\bar{T}$ 变形为三角形，再用式~\eqref{eq:fib-triangles} 中的三角形张量单元补成正方形，这与式~\eqref{eq:fib-square} 是类似的：
-\begin{center}
-  \includegraphics[width=0.6\textwidth]{images/temp/fib-padded-tensor.png}
-\end{center}
+\begin{equation}
+  \tikzinput{fib-padded-tensor-1} = \tikzinput{fib-padded-tensor-2} \to \tikzinput{fib-padded-tensor-3}.
+\end{equation}
 注意在缩并时只有角上的自由度需要考虑。圆柱中的其他张量也可以用类似的方式构造，但方便起见，也可以等价地用 $k\times k$ 个式~\eqref{eq:fib-square} 中的正方形缩并得到。
 
 计算中我们用 $n=18$ 的圆柱来计算本征态，并得到对应的能动量张量。之后，将其变形并补全成正方形张量，此时连接维数 $\chi=2^{n/3}$。我们同样按照图~\ref{fig:virasoro-construction} 的方式构造 Virasoro 算符。尽管原则上圆柱的大小 $N$ 可以取任意值，但由于内存的限制，这里最大只能取到 $N=3$。检验 Virasoro 算符正确性的方法与 \ref{subsec:ising-virasoro-operator} 小节相同，也是检查 $L_n$ 和 $\bar{L}_n$ 是否能将圆柱本征态 $\ket*{\phi_\alpha}$ 正确地升高或降低到对应能级。在图~\ref{fig:fib-virasoro} 和 \ref{fig:fib-virasoro-all} 中，我们给出了这些格点 Virasoro 算符作用的示意图。矩阵元的数据则可在文献 \parencite{zeng2023virasoro} 的补充材料中找到。

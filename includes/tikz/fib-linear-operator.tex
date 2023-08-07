@@ -1,0 +1,263 @@
+\begingroup
+
+\def\LegsIA{
+  (0.3, 1.5) .. controls (0.3,0.8) and (0.2,0.7) .. (-0.5, 0.7)
+  (0.7, 1.5) .. controls (0.7,0.8) and (0.8,0.7) .. ( 1.5, 0.7)
+             .. controls (2.2,0.7) and (2.3,0.8) .. ( 2.3, 1.5)
+  (2.7, 1.5) .. controls (2.7,0.8) and (2.8,0.7) .. ( 3.5, 0.7)
+             .. controls (4.2,0.7) and (4.3,0.8) .. ( 4.3, 1.5)
+  (4.7, 1.5) .. controls (4.7,0.8) and (4.8,0.7) .. ( 5.5, 0.7)
+  (8.3, 1.5) .. controls (8.3,0.8) and (8.2,0.7) .. ( 7.5, 0.7)
+  (8.7, 1.5) .. controls (8.7,0.8) and (8.8,0.7) .. ( 9.5, 0.7)
+}
+\def\DiagramIA{
+  \begin{tikzpicture}[baseline=4ex]
+    \foreach \x in {0, 2, 4, 8}
+      \draw [tensor box]
+          (\x,2) -- +(1,0) -- +(1,1) -- +(0,1) -- cycle;
+    \draw [vector box]
+          (5,0.4) -- (0,0.4) -- (0,1) -- (5,1)
+          (8,0.4) -- (9,0.4) -- (9,1) -- (8,1);
+    \draw [tensor leg]
+          ( 0.3, 3.5) .. controls (0.3,2.8) and (0.2,2.7) .. (-0.5, 2.7)
+          ( 0.7, 3.5) .. controls (0.7,2.8) and (0.8,2.7) .. ( 1.5, 2.7)
+                      .. controls (2.2,2.7) and (2.3,2.8) .. ( 2.3, 3.5)
+          ( 2.7, 3.5) .. controls (2.7,2.8) and (2.8,2.7) .. ( 3.5, 2.7)
+                      .. controls (4.2,2.7) and (4.3,2.8) .. ( 4.3, 3.5)
+          ( 4.7, 3.5) .. controls (4.7,2.8) and (4.8,2.7) .. ( 5.5, 2.7)
+          ( 8.3, 3.5) .. controls (8.3,2.8) and (8.2,2.7) .. ( 7.5, 2.7)
+          ( 8.7, 3.5) .. controls (8.7,2.8) and (8.8,2.7) .. ( 9.5, 2.7)
+          %
+          (-0.5, 2.3) .. controls (0.2,2.3) and (0.3,2.2) .. ( 0.3, 1.5)
+                      .. controls (0.3,0.8) and (0.2,0.7) .. (-0.5, 0.7)
+          ( 1.5, 2.3) .. controls (0.8,2.3) and (0.7,2.2) .. ( 0.7, 1.5)
+                      .. controls (0.7,0.8) and (0.8,0.7) .. ( 1.5, 0.7)
+                      .. controls (2.2,0.7) and (2.3,0.8) .. ( 2.3, 1.5)
+                      .. controls (2.3,2.2) and (2.2,2.3) .. cycle
+          ( 3.5, 2.3) .. controls (2.8,2.3) and (2.7,2.2) .. ( 2.7, 1.5)
+                      .. controls (2.7,0.8) and (2.8,0.7) .. ( 3.5, 0.7)
+                      .. controls (4.2,0.7) and (4.3,0.8) .. ( 4.3, 1.5)
+                      .. controls (4.3,2.2) and (4.2,2.3) .. cycle
+          ( 5.5, 2.3) .. controls (4.8,2.3) and (4.7,2.2) .. ( 4.7, 1.5)
+                      .. controls (4.7,0.8) and (4.8,0.7) .. ( 5.5, 0.7)
+          ( 7.5, 2.3) .. controls (8.2,2.3) and (8.3,2.2) .. ( 8.3, 1.5)
+                      .. controls (8.3,0.8) and (8.2,0.7) .. ( 7.5, 0.7)
+          ( 9.5, 2.3) .. controls (8.8,2.3) and (8.7,2.2) .. ( 8.7, 1.5)
+                      .. controls (8.7,0.8) and (8.8,0.7) .. ( 9.5, 0.7)
+          %
+          ( 6.5, 0.7) node {$\cdots$}
+          ( 6.5, 2.5) node {$\cdots$};
+    \draw [covered tensor leg]
+          (-1.5,0.7) -- (-0.5,0.7)
+          (-1.5,2.7) -- (-0.5,2.7)
+          (-1.5,2.3) -- (-0.5,2.3)
+          (10.5,0.7) -- ( 9.5,0.7)
+          (10.5,2.7) -- ( 9.5,2.7)
+          (10.5,2.3) -- ( 9.5,2.3);
+    \foreach \x/\xtext in {-1/1, 1.5/2, 3.5/3, 7.5/n, 10.2/1}
+      \draw (\x, 3.6) node {$i_\xtext$}
+            (\x, 1.5) node {$j_\xtext$};
+    \draw (4.5,-1) node {$\tilde{M}_{i_1 i_2 \cdots i_n j_1 j_2 \cdots j_n} v^{(0)}_{j_1 j_2 \cdots j_n}$};
+  \end{tikzpicture}
+}
+\def\DiagramIB{
+  \begin{tikzpicture}[baseline=1.2ex]
+    \draw [vector box]
+          (5,0.4) -- (0,0.4) -- (0,1) -- (5,1)
+          (8,0.4) -- (9,0.4) -- (9,1) -- (8,1);
+    \draw [tensor leg]
+          ( 0.3, 1.5) .. controls (0.3,0.8) and (0.2,0.7) .. (-0.5, 0.7)
+          ( 0.7, 1.5) .. controls (0.7,0.8) and (0.8,0.7) .. ( 1.5, 0.7)
+                      .. controls (2.2,0.7) and (2.3,0.8) .. ( 2.3, 1.5)
+          ( 2.7, 1.5) .. controls (2.7,0.8) and (2.8,0.7) .. ( 3.5, 0.7)
+                      .. controls (4.2,0.7) and (4.3,0.8) .. ( 4.3, 1.5)
+          ( 4.7, 1.5) .. controls (4.7,0.8) and (4.8,0.7) .. ( 5.5, 0.7)
+          ( 8.3, 1.5) .. controls (8.3,0.8) and (8.2,0.7) .. ( 7.5, 0.7)
+          ( 8.7, 1.5) .. controls (8.7,0.8) and (8.8,0.7) .. ( 9.5, 0.7)
+          ( 6.5, 0.7) node {$\cdots$};
+    \draw [covered tensor leg]
+          (-1.5,0.7) -- (-0.5,0.7)
+          (10.5,0.7) -- ( 9.5,0.7);
+    \foreach \x/\xtext in {-1/1, 1.5/2, 3.5/3, 7.5/n, 10.2/1}
+      \draw (\x, 1.6) node {$i_\xtext$};
+    \draw (4.5,-0.8) node {$v_{i_1 i_2 \cdots i_n}$};
+  \end{tikzpicture}
+}
+
+\def\LegsIIA{
+  ( 0.3, 3.5) .. controls (0.3,2.8) and (0.2,2.7) .. (-0.5, 2.7)
+  ( 0.7, 3.5) .. controls (0.7,2.8) and (0.8,2.7) .. ( 1.5, 2.7)
+  (-0.5, 2.3) .. controls (0.2,2.3) and (0.3,2.2) .. ( 0.3, 1.5)
+              .. controls (0.3,0.8) and (0.2,0.7) .. (-0.5, 0.7)
+  ( 1.5, 2.3) .. controls (0.8,2.3) and (0.7,2.2) .. ( 0.7, 1.5)
+              .. controls (0.7,0.8) and (0.8,0.7) .. ( 1.5, 0.7)
+              .. controls (2.2,0.7) and (2.3,0.8) .. ( 2.3, 1.5)
+  ( 2.7, 1.5) .. controls (2.7,0.8) and (2.8,0.7) .. ( 3.5, 0.7)
+              .. controls (4.2,0.7) and (4.3,0.8) .. ( 4.3, 1.5)
+  ( 4.7, 1.5) .. controls (4.7,0.8) and (4.8,0.7) .. ( 5.5, 0.7)
+  ( 8.3, 1.5) .. controls (8.3,0.8) and (8.2,0.7) .. ( 7.5, 0.7)
+  ( 8.7, 1.5) .. controls (8.7,0.8) and (8.8,0.7) .. ( 9.5, 0.7)
+  ( 6.5, 0.7) node {$\cdots$}
+}
+\def\LegsIIB{
+  (-1.5,0.7) -- (-0.5,0.7)
+  (-1.5,2.7) -- (-0.5,2.7)
+  (-1.5,2.3) -- (-0.5,2.3)
+  (10.5,0.7) -- ( 9.5,0.7)
+}
+\def\DiagramIIA{
+  \begin{tikzpicture}[baseline=4ex]
+    \draw [tensor box]
+          (0,2) -- +(1,0) -- +(1,1) -- +(0,1) -- cycle;
+    \draw [vector box]
+          (5,0.4) -- (0,0.4) -- (0,1) -- (5,1)
+          (8,0.4) -- (9,0.4) -- (9,1) -- (8,1);
+    \draw [tensor leg] \LegsIIA;
+    \draw [covered tensor leg] \LegsIIB;
+    \foreach \x/\xtext in {-1/1, 1.5/2}
+      \draw (\x, 3.6) node {$i_\xtext$};
+    \foreach \x/\xtext in {-1/1, 1.5/2, 3.5/3, 7.5/n, 10.2/1}
+      \draw (\x, 1.5) node {$j_\xtext$};
+    \draw (4.5,-1) node {$A_{i_1 j_1 j_2 i_2} v^{(0)}_{j_1 j_2 \cdots j_n}$};
+  \end{tikzpicture}
+}
+\def\DiagramIIB{
+  \begin{tikzpicture}[baseline=4ex]
+    \draw [vector box]
+          (5,0.4) -- (0,0.4) -- (0,3) -- (1,3) -- (1,1) -- (5,1)
+          (8,0.4) -- (9,0.4) -- (9,1) -- (8,1);
+    \draw [tensor leg] \LegsIIA;
+    \draw [covered tensor leg] \LegsIIB;
+    \foreach \x/\xtext in {-1/1, 1.6/2}
+      \draw (\x, 3.6) node {$i_\xtext$};
+    \foreach \x/\xtext in {-1/1, 1.6/2, 3.5/3, 7.5/n, 10.2/1}
+      \draw (\x, 1.5) node {$j_\xtext$};
+    \draw (4.5,-1) node {$v^{(1)}_{i_1 i_2 j_1 j_2 \cdots j_n}$};
+  \end{tikzpicture}
+}
+
+\def\LegsIIIA{
+  (-0.5, 2.3) .. controls (0.2,2.3) and (0.3,2.2) .. ( 0.3, 1.5)
+              .. controls (0.3,0.8) and (0.2,0.7) .. (-0.5, 0.7)
+  ( 0.3, 3.5) .. controls (0.3,2.8) and (0.2,2.7) .. (-0.5, 2.7)
+  ( 0.7, 3.5) .. controls (0.7,2.8) and (0.8,2.7) .. ( 1.5, 2.7)
+              .. controls (2.2,2.7) and (2.3,2.8) .. ( 2.3, 3.5)
+  ( 3.5, 2.3) .. controls (2.8,2.3) and (2.7,2.2) .. ( 2.7, 1.5)
+              .. controls (2.7,0.8) and (2.8,0.7) .. ( 3.5, 0.7)
+              .. controls (4.2,0.7) and (4.3,0.8) .. ( 4.3, 1.5)
+  ( 2.7, 3.5) .. controls (2.7,2.8) and (2.8,2.7) .. ( 3.5, 2.7)
+  ( 4.7, 1.5) .. controls (4.7,0.8) and (4.8,0.7) .. ( 5.5, 0.7)
+  ( 8.3, 1.5) .. controls (8.3,0.8) and (8.2,0.7) .. ( 7.5, 0.7)
+  ( 8.7, 1.5) .. controls (8.7,0.8) and (8.8,0.7) .. ( 9.5, 0.7)
+  (6.5,0.7) node {$\cdots$}
+}
+\def\LegsIIIB{\LegsIIB}
+\def\DiagramIIIA{
+  \begin{tikzpicture}[baseline=4ex]
+    \draw [tensor box]
+          (2,2) -- +(1,0) -- +(1,1) -- +(0,1) -- cycle;
+    \draw [vector box]
+          (5,0.4) -- (0,0.4) -- (0,3) -- (1,3) -- (1,1) -- (5,1)
+          (8,0.4) -- (9,0.4) -- (9,1) -- (8,1);
+    \draw [tensor leg]
+          \LegsIIIA
+          ( 1.5, 2.3) .. controls (0.8,2.3) and (0.7,2.2) .. ( 0.7, 1.5)
+                      .. controls (0.7,0.8) and (0.8,0.7) .. ( 1.5, 0.7)
+                      .. controls (2.2,0.7) and (2.3,0.8) .. ( 2.3, 1.5)
+                      .. controls (2.3,2.2) and (2.2,2.3) .. cycle;
+    \draw [covered tensor leg] \LegsIIIB;
+    \foreach \x/\xtext in {-1/1, 1.5/2, 3.5/3}
+      \draw (\x, 3.6) node {$i_\xtext$};
+    \foreach \x/\xtext in {-1/1, 1.6/2, 3.5/3, 7.5/n, 10.2/1}
+      \draw (\x, 1.5) node {$j_\xtext$};
+    \draw (4.5,-1) node {$A_{i_2 j_2 j_3 i_3} v^{(1)}_{i_1 i_2 j_1 j_2 \cdots j_n}$};
+  \end{tikzpicture}
+}
+\def\DiagramIIIB{
+  \begin{tikzpicture}[baseline=4ex]
+    \draw [vector box]
+          (5,0.4) -- (0,0.4) -- (0,3) -- (3,3) -- (3,1) -- (5,1)
+          (8,0.4) -- (9,0.4) -- (9,1) -- (8,1);
+    \draw [tensor leg] \LegsIIIA;
+    \draw [covered tensor leg] \LegsIIIB;
+    \foreach \x/\xtext in {-1/1, 1.5/2, 3.6/3}
+      \draw (\x, 3.6) node {$i_\xtext$};
+    \foreach \x/\xtext in {-1/1, 3.6/3, 7.5/n, 10.2/1}
+      \draw (\x, 1.5) node {$j_\xtext$};
+    \draw (4.5,-1) node {$v^{(2)}_{i_1 i_2 i_3 j_1 j_3 \cdots j_n}$};
+  \end{tikzpicture}
+}
+
+\def\LegsIVA{
+  (-0.5, 2.3) .. controls (0.2,2.3) and (0.3,2.2) .. ( 0.3, 1.5)
+              .. controls (0.3,0.8) and (0.2,0.7) .. (-0.5, 0.7)
+  ( 0.3, 3.5) .. controls (0.3,2.8) and (0.2,2.7) .. (-0.5, 2.7)
+  ( 0.7, 3.5) .. controls (0.7,2.8) and (0.8,2.7) .. ( 1.5, 2.7)
+              .. controls (2.2,2.7) and (2.3,2.8) .. ( 2.3, 3.5)
+  ( 2.7, 3.5) .. controls (2.7,2.8) and (2.8,2.7) .. ( 3.5, 2.7)
+              .. controls (4.2,2.7) and (4.3,2.8) .. ( 4.3, 3.5)
+  ( 4.7, 3.5) .. controls (4.7,2.8) and (4.8,2.7) .. ( 5.5, 2.7)
+  ( 8.3, 3.5) .. controls (8.3,2.8) and (8.2,2.7) .. ( 7.5, 2.7)
+  ( 8.7, 3.5) .. controls (8.7,2.8) and (8.8,2.7) .. ( 9.5, 2.7)
+  ( 9.5, 2.3) .. controls (8.8,2.3) and (8.7,2.2) .. ( 8.7, 1.5)
+              .. controls (8.7,0.8) and (8.8,0.7) .. ( 9.5, 0.7)
+}
+\def\LegsIVB{
+  (-1.5,0.7) -- (-0.5,0.7)
+  (-1.5,2.7) -- (-0.5,2.7)
+  (-1.5,2.3) -- (-0.5,2.3)
+  (10.5,0.7) -- ( 9.5,0.7)
+  (10.5,2.7) -- ( 9.5,2.7)
+  (10.5,2.3) -- ( 9.5,2.3)
+}
+\def\DiagramIVA{
+  \begin{tikzpicture}[baseline=4ex]
+    \draw [tensor box]
+          (8,2) -- +(1,0) -- +(1,1) -- +(0,1) -- cycle;
+    \draw [vector box]
+          (5,0.4) -- (0,0.4) -- (0,3) -- (5,3)
+          (8,0.4) -- (9,0.4) -- (9,1) -- (8,1);
+    \draw [tensor leg]
+          \LegsIVA
+          ( 5.5, 2.3) .. controls (4.8,2.3) and (4.7,2.2) .. ( 4.7, 1.5)
+                      .. controls (4.7,0.8) and (4.8,0.7) .. ( 5.5, 0.7)
+          ( 7.5, 2.3) .. controls (8.2,2.3) and (8.3,2.2) .. ( 8.3, 1.5)
+                      .. controls (8.3,0.8) and (8.2,0.7) .. ( 7.5, 0.7)
+          ( 6.5, 0.7) node {$\cdots$}
+          ( 6.5, 2.5) node {$\cdots$};
+    \draw [covered tensor leg] \LegsIVB;
+    \foreach \x/\xtext in {-1/1, 1.5/2, 3.5/3, 7.5/n, 10.2/1}
+      \draw (\x, 3.6) node {$i_\xtext$};
+    \foreach \x/\xtext in {-1/1, 7.5/n, 10.2/1}
+      \draw (\x, 1.5) node {$j_\xtext$};
+    \draw (4.5,-1) node {$A_{i_n j_n j_1 i_1} v^{(n-1)}_{i_1 i_2 \cdots i_{n-1} j_1 j_n}$};
+  \end{tikzpicture}
+}
+\def\DiagramIVB{
+  \begin{tikzpicture}[baseline=4ex]
+    \fill [MaterialTeal100]
+          (0,0.4) -- (9,0.4) -- (9,3) -- (8,3) -- (8,2) -- (5,2) -- (5,3) -- (0,3) -- cycle;
+    \draw [thick, MaterialTeal]
+          (5,3) -- (0,3) -- (0,0.4) -- (8,0.4) -- (9,0.4) -- (9,3) -- (8,3);
+    \draw [tensor leg]
+          \LegsIVA
+          ( 6.5, 2.7) node {$\cdots$};
+    \draw [covered tensor leg] \LegsIVB;
+    \foreach \x/\xtext in {-1/1, 1.5/2, 3.5/3, 7.5/n, 10.2/1}
+      \draw (\x, 3.6) node {$i_\xtext$};
+    \foreach \x/\xtext in {-1/1, 10.2/1}
+      \draw (\x, 1.5) node {$j_\xtext$};
+    \draw (4.5,-1) node {$v^{(n)}_{i_1 i_2 \cdots i_n j_1 j_1}$};
+  \end{tikzpicture}
+}
+
+\begin{align*}
+  \DiagramIA \enspace &= \enspace \DiagramIB \\
+  \text{Step (1):} \quad \DiagramIIA \enspace &= \enspace \DiagramIIB \\
+  \text{Step (2):} \quad \DiagramIIIA \enspace &= \enspace \DiagramIIIB \\
+  &\enspace\vdots \\
+  \text{Step ($n$):} \quad \DiagramIVA \enspace &= \enspace \DiagramIVB \\
+  &= \enspace \DiagramIB
+\end{align*}
+
+\endgroup

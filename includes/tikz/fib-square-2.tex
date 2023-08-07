@@ -1,0 +1,11 @@
+\begin{tikzpicture}[baseline=1.5ex]
+  \draw [tensor box]
+        (0,0) -- (0,2) -- (2,2) -- (2,0) -- cycle;
+  \draw [tensor leg]
+        (-0.6,0.6) .. controls (0.2,0.6) and (0.6,0.2) .. (0.6,-0.6)
+        ( 2.6,0.6) .. controls (1.8,0.6) and (1.4,0.2) .. (1.4,-0.6)
+        ( 2.6,1.4) .. controls (1.8,1.4) and (1.4,1.8) .. (1.4, 2.6)
+        (-0.6,1.4) .. controls (0.2,1.4) and (0.6,1.8) .. (0.6, 2.6);
+  \foreach \x/\xtext in {45/l, 135/i, 225/j, 315/k}
+    \draw (\x:2) + (1,1) node {$\xtext$};
+\end{tikzpicture}

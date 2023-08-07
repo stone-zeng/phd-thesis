@@ -1,0 +1,46 @@
+\begin{tikzpicture}[baseline=-1.8ex, rotate=-30]
+  \def\r{0.6}
+  \def\d{0.2}
+  \begin{scope}
+    \draw [vector box] (60:2+\r) -- (180:2+\r) -- (-60:2+\r) -- cycle;
+    \foreach \x/\xangle in {90/-150, 150/-150, -150/-30, -90/-30}
+      \draw [tensor leg, shift=(\xangle:\r)]
+        ($(\x:1.73) + cos(\xangle-90)*(\d,0) + sin(\xangle-90)*(0,\d)$) --
+        (\x:1.73) arc [radius=\r, start angle=\xangle, delta angle=180] --
+        ++($cos(\xangle-90)*(\d,0) + sin(\xangle-90)*(0,\d)$);
+    \draw [tensor leg, shift=(-30:\r)]
+      ($(180:3) + cos(120)*(\d,0) - sin(120)*(0,\d)$) --
+      (180:3) arc [radius=\r, start angle=-30, delta angle=60] --
+      ++($cos(120)*(\d,0) + sin(120)*(0,\d)$);
+  \end{scope}
+  \begin{scope}[xshift=3.2em]
+    \foreach \x in {0:2, 120:2, -120:2, 60:1, 180:1, -60:1}
+      \draw [tensor box, shift=(\x)] (0:\r) -- (120:\r) -- (-120:\r) -- cycle;
+    \foreach \x in {0:1, 120:1, -120:1}
+      \draw [tensor box, shift=(\x)] (60:\r) -- (180:\r) -- (-60:\r) -- cycle;
+    \draw [tensor leg] (0,0) circle [radius=\r];
+    \foreach \x/\xangle in {30/150, 90/150, -90/30, -30/30}
+      \draw [tensor leg, shift=(\xangle:\r)]
+        ($(\x:1.73) + cos(\xangle-90)*(\d,0) + sin(\xangle-90)*(0,\d)$) --
+        (\x:1.73) arc [radius=\r, start angle=\xangle, delta angle=180] --
+        ++($cos(\xangle-90)*(\d,0) + sin(\xangle-90)*(0,\d)$);
+    \foreach \x/\xangle in {150/-90, -150/-90}
+      \draw [tensor leg, shift=(\xangle:\r)]
+        (\x:1.73) arc [radius=\r, start angle=\xangle, delta angle=180] --
+        ++(-\d,0) arc [radius=\r, start angle=90, delta angle=180] -- cycle;
+    \draw [tensor leg, shift=(150:\r)]
+      ($(0:3) + cos(60)*(\d,0) + sin(60)*(0,\d)$) --
+      (0:3) arc [radius=\r, start angle=150, delta angle=60] --
+      ++($cos(60)*(\d,0) - sin(60)*(0,\d)$);
+    \draw [tensor leg, shift=(-30:\r)]
+      ($(120:3) + cos(60)*(\d,0) + sin(60)*(0,\d)$) --
+      (120:3) arc [radius=\r, start angle=-30, delta angle=-60] --
+      ++(-\d,0) arc [radius=\r, start angle=-90, delta angle=-60] --
+      ++($-cos(60)*(\d,0) + sin(60)*(0,\d)$);
+    \draw [tensor leg, shift=(30:\r)]
+      ($(-120:3) + cos(60)*(\d,0) - sin(60)*(0,\d)$) --
+      (-120:3) arc [radius=\r, start angle=30, delta angle=60] --
+      ++(-\d,0) arc [radius=\r, start angle=90, delta angle=60] --
+      ++($-cos(60)*(\d,0) - sin(60)*(0,\d)$);
+  \end{scope}
+\end{tikzpicture}

@@ -1,0 +1,20 @@
+\begin{tikzpicture}[baseline=0.6ex]
+  \foreach \x in {0, 2, 4}
+    \draw [thick, MaterialOrange, fill=MaterialOrange100]
+        (\x,0) -- (\x+1,0) -- (\x+1,1) -- (\x,1) -- cycle;
+  \draw [thick, MaterialRed, fill=MaterialRed100]
+        (8,0) -- (9,0) -- (9,1) -- (8,1) -- cycle;
+  \foreach \x in {0, 2, 4}
+    \draw [tensor leg] (\x+0.5,-1) -- (\x+0.5,2);
+  \draw [tensor leg]
+        (-1,0.5) -- (5.5,0.5) (7.5,0.5) -- (10,0.5)
+        (8.5,-1) -- (8.5,2)
+        (8.2,0.8) -- (8.8,0.2);
+  \foreach \x in {0, 2, 4}
+    \draw (\x+0.5,2) node [above] {$\tau$};
+  \draw (-1.5, 0.5) node {$a$}
+        (10.5, 0.5) node {$a$}
+        ( 8.5, 2.5) node {$b$}
+        ( 9.2,-0.5) node {$c$}
+        ( 6.5, 0.5) node {$\cdots$};
+\end{tikzpicture}

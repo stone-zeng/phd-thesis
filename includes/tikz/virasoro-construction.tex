@@ -1,0 +1,55 @@
+\def\DiagramI{
+  \begin{tikzpicture}[baseline=-0.5ex]
+    \draw [tensor leg]
+          (-0.8,0.8) .. controls (-1.4,0.8) and (-1.4,0) .. (-0.8,0) --
+          ( 5.3,0) .. controls ( 5.9,0) and ( 5.9,0.8) .. ( 5.3,0.8);
+    \draw [covered tensor leg] (-0.8,0.8) -- (5.3,0.8);
+    \foreach \x in {0, 1, 2, 3} {
+      \draw [tensor leg] (\x*1.5,-1.2) -- (\x*1.5,1.2);
+      \draw [tensor box] (\x*1.5,0) circle [radius=0.2];
+    }
+    \draw (-0.8,-0.8) node {\scriptsize $A$};
+  \end{tikzpicture}
+}
+\def\DiagramII{
+  \begin{tikzpicture}[baseline=0.5ex]
+    \foreach \x in {0, 1, 2, 3}
+      \draw [tensor leg] (\x*1.2,0.8) -- ++(0,1);
+    \draw [vector box] (-0.8,0) -- (4.4,0) -- (4.4,0.8) -- (-0.8,0.8) -- cycle;
+    \draw (1.8,-0.7) node {\scriptsize $\ket{\phi_T}$};
+  \end{tikzpicture}
+}
+\def\DiagramIII{
+  \begin{tikzpicture}[baseline=-0.5ex]
+    \draw [tensor leg] (-1.2,0) -- (1.2,0) (0,-1.2) -- (0,1.2);
+    \draw [vector box] (0,0) circle [radius=0.2];
+    \draw (0.8,0.8) node {\scriptsize $T$};
+  \end{tikzpicture}
+}
+\def\DiagramIV#1{
+  \begin{tikzpicture}[baseline=-0.5ex]
+    \draw [tensor leg]
+          (-0.8,0.8) .. controls (-1.4,0.8) and (-1.4,0) .. (-0.8,0) --
+          (2.2,0) (3.8,0) -- (5.2,0) (6.8,0) --
+          ( 9.8,0) .. controls (10.4,0) and (10.4,0.8) .. ( 9.8,0.8);
+    \draw [covered tensor leg] (-0.8,0.8) -- (9.8,0.8);
+    \foreach \x in {0, 1, 3, 5, 6}
+      \draw [tensor leg] (\x*1.5,-1.2) -- (\x*1.5,1.2);
+    \foreach \x in {0, 1, 5, 6}
+      \draw [tensor box] (\x*1.5,0) circle [radius=0.2];
+    \draw [vector box] (4.5,0) circle [radius=0.2];
+    \draw (-0.8,-0.8) node {\scriptsize $A$}
+          ( 5.2, 0.8) node [fill=white] {\scriptsize $#1$}
+          (3,0) node [tensor leg] {...}
+          (6,0) node [tensor leg] {...}
+          (4.5,-1.6) node {\scriptsize site $j$};
+  \end{tikzpicture}
+}
+
+\begin{gather*}
+  \DiagramI \enspace \to \enspace \DiagramII \enspace \to \enspace \DiagramIII \\
+  \begin{aligned}
+    L_n       \sim \sum_{j=1}^N \ee^{ \ii j n \frac{2\pi}{N}} &\enspace \DiagramIV{T} \\
+    \bar{L}_n \sim \sum_{j=1}^N \ee^{-\ii j n \frac{2\pi}{N}} &\enspace \DiagramIV{\bar{T}}
+  \end{aligned}
+\end{gather*}

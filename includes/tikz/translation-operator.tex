@@ -1,0 +1,14 @@
+\begin{tikzpicture}[baseline=3ex]
+  \draw [tensor leg]
+        (0,0) .. controls (0,2) and (10,1) .. (10,3)
+        (6,2.5) node {$\cdots$}
+        (8,0.5) node {$\cdots$};
+  \foreach \x in {0, 2, 4, 8}
+    \draw [tensor leg]
+        (\x,3) .. controls (\x,1.5) and (\x+2,1.5) .. (\x+2,0);
+  \foreach \x/\xtext in {0/1, 2/2, 4/3, 10/n}
+    \draw (\x,3) node [above] {$i_\xtext$}
+          (\x,0) node [below] {$j_\xtext$};
+  \draw (8,3) node [above] {$i_{n-1}$}
+        (6,0) node [below] {$j_4$};
+\end{tikzpicture}

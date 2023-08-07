@@ -1,0 +1,27 @@
+\begin{tikzpicture}[baseline=-1.8ex]
+  \def\r{0.6}
+  \def\d{0.2}
+  \begin{scope}
+    \draw [vector box] (30:2+\r) -- (150:2+\r) -- (-90:2+\r) -- cycle;
+    \foreach \x/\xangle in {60/-180, 120/-180, 180/-60, -120/-60, -60/60, 0/60}
+      \draw [tensor leg, shift=(\xangle:\r)]
+        ($(\x:1.73) + cos(\xangle-90)*(\d,0) + sin(\xangle-90)*(0,\d)$) --
+        (\x:1.73) arc [radius=\r, start angle=\xangle, delta angle=180] --
+        ++($cos(\xangle-90)*(\d,0) + sin(\xangle-90)*(0,\d)$);
+    \foreach \x in {30, 150, -90}
+      \draw [tensor leg, shift=(\x+150:\r)]
+        ($(\x:3) + cos(\x+60)*(\d,0) + sin(\x+60)*(0,\d)$) --
+        (\x:3) arc [radius=\r, start angle=\x+150, delta angle=60] --
+        ++($cos(\x-60)*(\d,0) + sin(\x-60)*(0,\d)$);
+    \draw
+          (-2.8, 1.8) node {$i_1$}
+          (-2.2,-0.2) node {$i_2$}
+          (-1.3,-1.6) node [rotate=120] {$\cdots$}
+          ( 0  ,-3.2) node {$i_{k+1}$}
+          ( 1.9,-1.7) node {$i_{k+2}$}
+          ( 2.2,-0.3) node [rotate=-120] {$\cdots$}
+          ( 3.6, 1.8) node {$i_{2k+1}$}
+          ( 0.9, 2.2) node {$i_{2k+2}$}
+          (-0.8, 2.2) node {$\cdots$};
+  \end{scope}
+\end{tikzpicture}

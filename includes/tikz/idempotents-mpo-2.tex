@@ -1,0 +1,18 @@
+\begin{tikzpicture}[baseline=2.3ex]
+  \draw [thick, MaterialRed, fill=MaterialRed100]
+        (0,0) -- (0,2.4) -- (2.4,2.4) -- (2.4,0) -- cycle;
+  \draw [tensor leg]
+        (-0.6,0.6) .. controls (0.2,0.6) and (0.6,0.2) .. (0.6,-0.6)
+        ( 3.0,0.6) .. controls (1.8,0.6) and (1.8,0.2) .. (1.8,-0.6)
+        ( 3.0,1.8) .. controls (1.8,1.8) and (1.8,2.2) .. (1.8, 3.0)
+        (-0.6,1.8) .. controls (0.2,1.8) and (0.6,2.2) .. (0.6, 3.0)
+        (-0.6,1.2) -- (3,1.2) (1.2,-0.6) -- (1.2,3) (0.7,1.7) -- (1.7,0.7);
+  \draw (-1.1,1.2) node {$j$}
+        ( 3.5,1.2) node {$j$}
+        (1.2,-1.2) node {$i$}
+        (1.2, 3.6) node {$i$}
+        (2.5,-1.8) node {$k$};
+  \foreach \x/\xtext in {45/\delta, 135/\alpha, 225/\beta, 315/\gamma}
+    \draw (\x:2.4) + (1.2,1.2) node {$\xtext$};
+  \draw [thin, MaterialGrey] (1.4,0.7) -- (2.5,-1.3);
+\end{tikzpicture}
