@@ -1,6 +1,8 @@
 \chapter{奇异关联子与全息张量网络}
 \label{chap:strange-correlator}
 
+\tikzset{x=1em, y=1em, node font=\footnotesize}
+
 \section{弦网模型基态的张量网络表示}
 
 接下来我们来给出弦网模型的基态表示\cite{gu2009tensor2,buerschaper2009explicit}。由于弦网模型的 Hamilton 量
@@ -43,10 +45,12 @@
   }
   \ket{\psi_0} = \prod_p B_p \ket{\varnothing} = \prod_p B_p \,
   \Biggl| \,
-  \tikz [baseline=-0.3em] \VirutalLoop;
+  \begin{tikzpicture}[baseline=-0.3em]
+    \VirutalLoop
+  \end{tikzpicture}
   \, \Biggr\rangle = \Biggl| \,
   \begin{tikzpicture}[baseline=-0.3em]
-    \VirutalLoop;
+    \VirutalLoop
     \draw [very thick, draw=MaterialRed]
       ( 30:1) circle [radius=0.55]
       (150:1) circle [radius=0.55]
@@ -64,32 +68,32 @@
   \begin{aligned}
     % 1 segment
     \begin{tikzpicture}[baseline=-0.2em]
-      \VirutalHexagon;
+      \VirutalHexagon
       \draw [very thick, draw=MaterialRed] (-30:0.8) -- (30:0.8);
     \end{tikzpicture}
     \enspace &= \sum_i \biggl( \frac{d_i}{D} \biggr)^{1/6} \enspace
     \begin{tikzpicture}[baseline=-0.2em]
-      \VirutalHexagon;
+      \VirutalHexagon
       \draw [thick] (-30:0.8) node [left] {$i$} -- (30:0.8);
     \end{tikzpicture} \, , \\
     % 2 segments
     \begin{tikzpicture}[baseline=-0.2em]
-      \VirutalHexagon;
+      \VirutalHexagon
       \draw [very thick, draw=MaterialRed] (-30:0.8) -- (30:0.8) -- (90:0.8);
     \end{tikzpicture}
     \enspace &= \sum_i \biggl( \frac{d_i}{D} \biggr)^{1/3} \enspace
     \begin{tikzpicture}[baseline=-0.2em]
-      \VirutalHexagon;
+      \VirutalHexagon
       \draw [thick] (-30:0.8) node [left] {$i$} -- (30:0.8) -- (90:0.8);
     \end{tikzpicture} \, , \\
     % Loop
     \begin{tikzpicture}[baseline=-0.2em]
-      \VirutalHexagon;
+      \VirutalHexagon
       \draw [very thick, draw=MaterialRed] (0,0) circle [radius=0.7];
     \end{tikzpicture}
     \enspace &= \sum_i \frac{d_i}{D} \enspace
     \begin{tikzpicture}[baseline=-0.2em]
-      \VirutalHexagon;
+      \VirutalHexagon
       \draw [thick] (0,0) circle [radius=0.7] node [right=-0.2em] {$i$};
     \end{tikzpicture} \, .
   \end{aligned}
@@ -182,6 +186,7 @@
 \end{figure}
 
 \section{奇异关联子}
+\label{sec:strange-correlator}
 
 \emph{奇异关联子} (strange correlator) 最早用来在对称保护拓扑序 (symmetry protected topological order, SPT)\footnote{尽管名称中带有“拓扑序”，但 SPT 态中只有短程纠缠，这与本文所说的拓扑序（具有长程纠缠）实际上是不同的。} 中寻找不同的相\cite{you2014wave}，之后则被推广到了弦网模型中\cite{vanhove2018mapping,lootens2019cardy,vanhove2022topological}。通过将 2+1 维弦网模型的 PEPS 基态波函数 $\ket{\Psi_\text{SN}}$ 与某些特定的直积态 $\ket{\Omega}$ 做内积，可以获得二维临界格点模型的配分函数
 \begin{equation}
@@ -230,7 +235,6 @@ $F$ 符号为
   = \varphi^{\frac14} \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{\tau\tau} = -\varphi^{-\frac34}, \quad
     \Triangle \tau\tau\tau\1\tau\tau
   = \varphi^{\frac{7}{12}} \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{\tau\1} = \varphi^{\frac{1}{12}}.
-  \label{eq:fib-triangle}
 \end{equation}
 
 \subsection{例子：Ising 模型}

@@ -1,7 +1,15 @@
 \chapter{Virasoro 代数的张量网络实现}
 \label{chap:virasoro}
 
-\tikzset{x=1em, y=1em, node font=\footnotesize}
+临界格点模型是研究\emph{共形场论} (conformal field theory, CFT) 的有力工具。有许多格点模型能够揭示出重要的 CFT 数据，而其中最基本也是最重要的一类称为\emph{最小模型} (minimal models)。它们同时也是严格可解模型，而对应的拓扑以及范畴对称性可以通过\emph{融合范畴}添加进来\cite{vanhove2018mapping,aasen2020topological,huang2022numerical,vanhove2022critical}。
+
+这些经典格点模型的配分函数通常可以表示为张量网络的形式。利用 TRG 和 TNR 等重整化算法\cite{levin2007tensor,evenbly2015tensor1}，可以通过控制连接维数来得到任意精度的不动点张量，从而可以高效地获取基态以及较低能级激发态（即“后代”）的对应数据。因此，这套方案有望能为分类 CFT 提供了一种数值的角度。
+
+刻画二维 CFT 的一个重要特性是\emph{Virasoro 对称性} (Virasoro symmetry) 以及更一般情况下的\emph{Kac--Moody 对称性} (Kac--Moody symmetry)，在格点模型中已有很多工作给出了它们的实现\cite{pasquier1990common,koo1994representations,milsted2017extraction,zou2018conformal,hongler2022conformal,wang2022emergence}。这些方案主要集中于构造一些作用在一维格点 Hilbert 空间上的离散算符，并对其参数取一些各向异性的极限。然而，对于一般的张量网络表示，特别是通过重整化算法得到的不动点张量，其元素往往都是数值的，没有可供展开的参数。因此使用这些方法将难以构造 Virasoro 和 Kac--Moody 生成元。
+
+在本章中，我们将介绍一种构造 Virasoro 代数以及 Kac--Moody 代数的新方案\cite{wang2022virasoro,zeng2023virasoro}。注意到 CFT 中的初级场及其后代可以从圆柱形的配分函数张量网络中提取出来\cite{hauru2016topological}，而其中能动量张量以及流算符则与 Virasoro 和 Kac--Moody 代数相关联。具体来说，我们借用了\emph{离散全纯性} (discrete holomorphicity)\cite{cardy2009discrete}的概念，将代数生成元定义中的积分用一个新的圆柱形张量网络来表示，并把的能动量张量（或流算符）插入其中。由此得到的 Virasoro 和 Kac--Moody 生成元可以作用在任意的本征态上，进而可以用来检验这一方法的有效性。
+
+对于\emph{有限尺寸效应} (finite size effect) 影响更为显著的系统（例如一些弦网模型的配分函数，见 \ref{sec:strange-correlator} 节），即使是采用尺寸相对较大的圆柱，也很难从中得到准确的 CFT 能谱等数据。为此，我们首先对不同大小的圆柱进行精确对角化，并根据拟合结果来区分不同的本征态；对于混淆较为严重的态，我们还使用\emph{拓扑投影算符} (topological projectors)\cite{bultinck2017anyons,williamson2017symmetry,aasen2020topological}将转移矩阵投影到对应于特定拓扑荷的子空间中。这样最终能够获得符合预期精度的能动量张量以及对应的 Virasoro 生成元。
 
 \section{二维共形场论回顾}
 
@@ -263,7 +271,6 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
 如图~\ref{fig:virasoro-construction} 所示，考虑一个以 $A_{ijkl}$ 为单元构成的一般性的张量网络，其中连接维数 $\chi_A=d$。将 $A$ 张量连成一个圆柱得到转移矩阵、与平移算符相连，再对其进行精确对角化，即可按照 \ref{subsec:lattice-approximation} 小节中介绍的方案来确定本征态 $\ket*{\phi_T}$ 或 $\ket*{\phi_{\bar{T}}}$，以及相应的能动量张量 $T$ 或 $\bar{T}$。随后，我们可以把得到的 $T$ 或 $\bar{T}$ 插回由 $A$ 构成的圆柱（即把 $j$ 位置处的 $A$ 张量用 $T$ 或 $\bar{T}$ 取代），再根据式~\eqref{eq:lattice-virasoro-operators} 乘上对应的系数 $\ee^{\pm2\pi\ii j n/N}$，这样就构造出了格点上的 Virasoro 算符 $L_n$ 或 $\bar{L}_n$。
 
 \begin{figure}[ht]
-  % \tikzinput{virasoro-construction}
   \centering
   \includegraphics[width=0.8\textwidth]{images/temp/virasoro-construction.pdf}
   \caption[能动量张量与 Virasoro 算符的构造]{在一般的张量网络中确定能动量张量 $T$，并以此来构造 Virasoro 算符［见式~\eqref{eq:lattice-virasoro-operators}］。对应于与能动量张量的本征态 $\ket*{\phi_T}$ 可以从圆柱转移矩阵中通过精确对角化得到，它被进一步变形为 4 个指标的张量 $T$，并插入到新的圆柱中，由此即可得到 Virasoro 算符 $L_n$。同样的方法也可用来构造 Kac--Moody 算符 $J_n$。}
@@ -408,6 +415,7 @@ Fibonacci 弦网模型定义在六边形网格上，包含 $\1$ 和 $\tau$ 两�
   = \varphi^{\frac14} \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{\tau\tau} = -\varphi^{-\frac34}, \quad
     \Triangle \tau\tau\tau\1\tau\tau
   = \varphi^{\frac{7}{12}} \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{\tau\1} = \varphi^{\frac{1}{12}}.
+  \label{eq:fib-triangles}
 \end{equation}
 为了沿用前面处理 Ising 模型时的思路，我们首先需要把两个三角张量形拼合成一个正方形：
 \begin{equation}
@@ -420,12 +428,10 @@ Fibonacci 弦网模型定义在六边形网格上，包含 $\1$ 和 $\tau$ 两�
   = \sum_{\substack{i_1, i_2, \ldots, i_n \\ j_1, j_2, \ldots, j_n}}
     \prod_{\alpha=1}^n A_{i_\alpha j_\alpha j_{\alpha+1} i_{\alpha+1}}
   = \tikzinput{fib-cylinder} \, .
-  % \label{eq:fib-cylinder}
 \end{equation}
 但与正方格点（如二维 Ising 模型）的情况不同，这里 $A_{ijkl}$ 的指标位于四个角，所以在缩并时需要仔细处理各指标的顺序。此外，上述圆柱 $\tilde{M}$ 并不是 Hermitian 的，因此并不能直接构成正确的转移矩阵。如果把 这些圆柱堆叠起来，在最终计算得到的能谱中将会出现额外的相位。我们可以把两个方向相反的圆柱叠加起来，即选取
 \begin{equation}
   M = \tilde{M}\tilde{M}^\dagger,
-  % \label{eq:fib-cylinder-doubled}
 \end{equation}
 这时就可以消除相位的影响，得到正确的转移矩阵。
 
@@ -472,11 +478,11 @@ Fibonacci 弦网模型定义在六边形网格上，包含 $\1$ 和 $\tau$ 两�
 \subsection{拓扑投影算符}
 \label{subsec:topological-projectors}
 
-然而，当太多能级混杂在一起时，上述的拟合方法也无法保证能够将各能级区分开来。例如，当两个能级的自旋相同、标度维数又很接近时，仅靠拟合优度是无法辨别的。为此，我们需要利用\emph{拓扑投影算符} (topological projectors)\cite{bultinck2017anyons,williamson2017symmetry,aasen2020topological}，它可以将转移矩阵投影到对应于特定拓扑荷 (topological charge) 的子空间。拓扑荷与格点模型的尺寸是无关的，因此在热力学极限下趋于能动量张量的本征态，即使在有限大小的系统中也仍然会保持在同一个分区 (sector) ，即包含了真空态的平凡分区。它们在特定的投影算符作用之下可以保留在能谱中，而其他态则会被移除（即投影到零值）。
+然而，当太多能级混杂在一起时，上述的拟合方法也无法保证能够将各能级区分开来。例如，当两个能级的自旋相同、标度维数又很接近时，仅从拟合优度并不能分辨。为此，我们需要利用\emph{拓扑投影算符} (topological projectors)\cite{bultinck2017anyons,williamson2017symmetry,aasen2020topological}，它可以将转移矩阵投影到对应于特定拓扑荷 (topological charge) 的子空间。拓扑荷与格点模型的尺寸是无关的，因此在热力学极限下趋于能动量张量的本征态，即使在有限大小的系统中也仍然会保持在同一个分区 (sector) ，即包含了真空态的平凡分区。它们在特定的投影算符作用之下可以保留在能谱中，而其他态则会被移除（即投影到零值）。
 
-拓扑投影算符的构造与 Ocneanu \emph{管状代数} (tube algebra) 有关。拓扑序模型中的每种任意子都对应着 CFT 中的一个拓扑分区，换而言之 CFT 中的初级场及其后代组成的“家族” (family) 可按照对应的任意子类型进行分类。拓扑序中的弦算符则可作为投影算符，将转移矩阵投影到包含相应拓扑分区的子空间上。因为我们这里的工作主要关注能动量张量，而能动量张量与真空态属于同一分区，所以只需构造与任意子 $\1$ 相对应的弦算符。
+拓扑投影算符的构造与 \emph{Ocneanu 管状代数} (Ocneanu's tube algebra)\cite{evans1995ocneanu,evans1998quantum}有关。拓扑序模型中的每种任意子都对应着 CFT 中的一个拓扑分区，换而言之 CFT 中的初级场及其后代组成的“家族” (family) 可按照对应的任意子类型进行分类。拓扑序中的弦算符则可作为投影算符，将转移矩阵投影到包含相应拓扑分区的子空间上。因为我们这里的工作主要关注能动量张量，而能动量张量与真空态属于同一分区，所以只需构造与任意子 $\1$ 相对应的弦算符。
 
-弦算符的一般形式可由 MPO 来描述，称为\emph{幂等元} (idempotents)\cite{bultinck2017anyons,williamson2017symmetry,vanhove2018mapping,lootens2019cardy,aasen2020topological}。构成这些 MPO 的矩阵单元为
+弦算符的一般形式可由 MPO 来描述，称为\emph{幂等元} (idempotent)\cite{bultinck2017anyons,williamson2017symmetry,vanhove2018mapping,lootens2019cardy,aasen2020topological}。构成这些 MPO 的矩阵单元为
 \begin{equation}
   \begin{aligned}
        \tikzinput{idempotents-mpo-1}
@@ -490,7 +496,7 @@ Fibonacci 弦网模型定义在六边形网格上，包含 $\1$ 和 $\tau$ 两�
 \begin{equation}
     G^{abc}_{ijk}
   = \frac{1}{\sqrt{d_j d_c}} \bigl[ F^{aik}_b \bigr]_{jc}
-  = \frac{1}{\sqrt{d_a d_b d_c d_i d_j d_k}} \, [[jibcka]].
+  = \frac{1}{\sqrt{d_a d_b d_c d_i d_j d_k}} \, \Tetrahedron jibcka.
 \end{equation}
 对于大小为 $n$ 的圆柱转移矩阵，管状代数的基可由 $n-1$ 个橙色张量与一个红色张量首尾相连得到：
 \begin{equation}
