@@ -1,9 +1,45 @@
-\chapter{张量融合范畴与拓扑序}
+\chapter{拓扑序与张量融合范畴}
 \label{chap:topological-order}
+
+\emph{拓扑序} (topological order) 是本文探讨的中心对象，它是一类超越了 Landau 理论的新奇物态，并且具有基态简并、非 Abel 几何相位、分数激发等一系列全新的物理图像。描述 2+1 维拓扑序的数学语言是\emph{张量融合范畴} (tensor fusion category)，从它出发可以构建\emph{弦网模型} (string-net model)，并得到相应的 Hamilton 量以及各种物理性质。
+
+\section{拓扑序简介}
+
+在 Landau 相变理论中，不同的相可根据对称性来确定，并可利用\emph{序参量} (order parameter) 来刻画，相变则通过对称性破缺以及序参量的变化来描述\cite{landau1980statistical,pathria2011statistical}。但在 20 世纪 80 年代以来，随着分数量子 Hall 效应、高温超导、手征自旋液体等现象的发现，人们意识到 Landau 的对称性破缺理论并不足以描述所有的物态。拓扑序的提出即为了描述这些物态的性质，并对其进行分类。其名称来源于手征自旋态的低能有效理论——拓扑量子场论 (topological quantum field theory, TQFT)\cite{witten1989quantum}。在 2+1 维中，拓扑序可由下面两条性质来确定\cite{wen2013topological,zeng2019introduction}：
+
+\begin{itemize}
+  \item \emph{基态的拓扑简并} (topological ground state degeneracy)；
+  \item \emph{非 Abel 几何相位} (non-Abelian geometric phase)。
+\end{itemize}
+
+我们以横场 Ising 模型
+\begin{equation}
+  H = -\sum_{\langle ij \rangle} \sigma^z_i\sigma^z_j - J \sum_i \sigma^x_i
+\end{equation}
+为例。当外场 $J=0$ 时，存在 $\mathbb{Z}_2$ 对称性 $\ket{\uparrow}\leftrightarrow\ket{\downarrow}$，因此其基态也有一个二重简并。但一旦增加一个小的微扰 （例如令 $J\neq0$），这种简并就会被破坏。拓扑序中的基态简并则与之不同，它在局域微扰下仍保持不变。注意到微扰往往会破坏系统的对称性，因此这种拓扑简并实际上是与对称性无关的，因而也就超越了传统 Landau 理论的范围。此外，拓扑序中的基态简并度通常还会和系统的拓扑有关，这在传统理论中也是无法解释的。
+
+仅通过基态简并度并不足以完整地描述拓扑序，我们还需要引入一些新的拓扑不变量，即非 Abel 几何相位。设系统基态的简并度为 $g$，则非 Abel 几何相位定义为一个 $g\times g$ 的幺正矩阵 $U$，它可由系统底流形上的自同构给出。$U$ 会将 Hamilton 量 $H$ 变为 $H'$，并使这种变换的路径构成闭合环路，因而能够产生一个相位。以环面 (torus) 拓扑为例，底流形上有两种自同构，一种是剪切 (shear) 变形，另一种是挤压 (squeezing) 变形，它们分别对应了 $S$ 矩阵和 $T$ 矩阵。这两个矩阵也是\emph{模变换} (modular transformation) 的投影表示，从中还可以得到拓扑序的更多性质，例如分数统计等。
+
+从微观角度来看，拓扑序的来源是\emph{长程纠缠} (long-range entanglement)，它可以通过\emph{局域幺正变换} (local unitary transformation) 来定义。如图~\ref{fig:lu-transformation} 所示，对于深度为 $M$ 的\emph{量子线路} (quantum circuit)，其中的局域幺正变换为
+\begin{equation}
+  U^M = U^{(1)} U^{(2)} \cdots U^{(M)},
+\end{equation}
+式中 $U^{(k)}$ 为一系列互相独立的量子门的乘积。
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/temp/lu-transformation.pdf}
+  \caption[量子线路中的局域幺正变换]{(a) 量子线路中的局域幺正变换，它由 (b) 作用在大小为 $l$ 的区域上的幺正变换组成。绿色部分反应了其因果结构。图片来源：\parencite{wen2013topological}。}
+  \label{fig:lu-transformation}
+\end{figure}
+
+两个量子态属于同一个相，当且仅当它们之间可以通过局域幺正变换相联系。对于有能隙的量子系统，其中的相可以分为短程纠缠态和长程纠缠态两类。短程纠缠态可以通过局域幺正变换转变为直积态，因而所有的短程纠缠态都属于同一个相；长程纠缠态无法通过局域幺正变换转变为直积态，而无法通过局域幺正变换相联系的态就构成了不同的相，它们也对应了不同的拓扑序。
+
+2+1 维的拓扑序可以用模张量范畴进行系统地描述与分类，更高维的拓扑序则需要借助高阶范畴来描述。
 
 \section{范畴论基础}
 
-\emph{范畴论} (category theory)\cite{baez2011physics,maclane2013categories,beer2018categories} 用以抽象地刻画一些数学结构之间的关系，它主要描述了“对象”之间的作用，即\emph{映射} (mapping)。拓扑序理论中所研究的，正是带有了某些附加结构的范畴。
+\emph{范畴论} (category theory)\cite{baez2011physics,maclane2013categories,beer2018categories}用以抽象地刻画一些数学结构之间的关系，它主要描述了“对象”之间的作用，即\emph{映射} (mapping)。拓扑序理论中所研究的，正是带有了某些附加结构的范畴。
 
 一个\emph{范畴} $\mathcal{C}$ 由其中的\emph{对象} (object) $x\in\mathcal{C}$ 和这些对象之间的\emph{态射} (morphism) $f\colon x\to y$ 组成。对象之间的态射满足以下三个条件：
 \begin{itemize}
@@ -67,7 +103,7 @@
   f\colon x\to y \quad \coloneq \quad
   \tikzinput{morphism} \, .
 \end{equation}
-这样态射的复合就可以表示为连在一起的两个盒子：
+态射的复合可以表示为连在一起的两个盒子：
 \begin{equation}
   \tikzinput{composition}.
 \end{equation}
@@ -100,11 +136,11 @@
     \includegraphics{images/triangle-equation.pdf} \\
     (a) & (b)
   \end{tabular}
-  \caption[五边形方程和三角形方程对应的交换图]{五边形方程 (a) 和三角形方程 (b) 对应的交换图。}
+  \caption[五边形方程和三角形方程对应的交换图]{(a) 五边形方程和 (b) 三角形方程对应的交换图。}
   \label{fig:pentagon-triangle-equation}
 \end{figure}
 
-如果上述定义中的 $\similarrightarrow$ 可以取为等号，则称该张量范畴是\emph{严格} (strict) 的，此时 $\alpha$、$\lambda$ 和 $\rho$ 均为恒等变换。根据 MacLane \emph{一致性定理} (coherence theorem)，每个张量范畴都等价于一个严格张量范畴\cite{maclane2013categories}。因此我们之后可以只考虑严格张量范畴的情况。此时张量积表达式中的括号和单位对象都可以忽略。
+如果上述定义中的 $\similarrightarrow$ 可以取为等号，则称该张量范畴是\emph{严格} (strict) 的，此时 $\alpha$、$\lambda$ 和 $\rho$ 均为恒等变换。根据 \emph{Mac Lane 一致性定理} (Mac Lane coherence theorem)，每个张量范畴都等价于一个严格张量范畴\cite{maclane2013categories}。因此我们之后可以只考虑严格张量范畴的情况。此时张量积表达式中的括号和单位对象都可以忽略。
 
 一个张量范畴也是一个\emph{幺半群} (monoid)，因为范畴的单位对象可以作为群的单位元，而张量积可以作为群乘法。所以张量范畴也被称为\emph{幺半范畴} (monoidal category)。
 
@@ -142,9 +178,7 @@
 \end{equation}
 这实际上只需要对上面的图沿水平方向做一下镜像操作。如果 $\mathcal{C}$ 中的每个对象既有左对偶也有右对偶，则称其为是\emph{刚性} (rigid) 的或\emph{自治} (autonomous) 的；而如果 $\forall x\in\mathcal{C}$，都有 $x=x^\vee$，则称 $\mathcal{C}$ 是\emph{自对偶} (self-dual) 的。
 
-\subsection{中枢与球状结构}
-
-我们知道有限维向量空间 $V$ 的二重对偶 $V^{\vee\vee}$ 同构于 $V$。这在张量范畴中的推广即为\emph{中枢} (pivotal) 结构，它是由以下的自然同构给出的：
+在有限维的情形中，向量空间 $V$ 的二重对偶 $V^{\vee\vee}$ 同构于 $V$。这在张量范畴中的推广即为\emph{中枢} (pivotal) 结构，它是由以下的自然同构给出的：
 \begin{equation}
   \delta_x \colon x \similarrightarrow x^{\vee\vee}, \quad \forall x\in\mathcal{C},
 \end{equation}
@@ -184,10 +218,12 @@
 \end{equation}
 迹和维数可以用下图来描述：
 \begin{equation}
-  \tr_{\text{L}}  f = \tikzinput{trace-1} \, , \quad
-  \tr_{\text{R}}  f = \tikzinput{trace-2} \, ; \quad
-  \dim_{\text{L}} x = \tikzinput{dimension-1} \!, \quad
-  \dim_{\text{R}} x = \tikzinput{dimension-2} \!.
+  \begin{gathered}
+    \tr_{\text{L}}  f = \tikzinput{trace-1} \, , \quad
+    \tr_{\text{R}}  f = \tikzinput{trace-2} \, ; \\
+    \dim_{\text{L}} x = \tikzinput{dimension-1} \!, \quad
+    \dim_{\text{R}} x = \tikzinput{dimension-2} \!.
+  \end{gathered}
 \end{equation}
 如果对于任意的 $f\in\End_{\mathcal{C}}(x)$ 都有 $\tr_{\text{L}}f=\tr_{\text{R}}f$，则称 $\mathcal{C}$ 是\emph{球状} (spherical) 的。
 
@@ -261,7 +297,7 @@
 \begin{itemize}
   \item 任意的连续变形，这是由刚性公理式~\eqref{eq:rigidity-axioms-diagrams} 和自对偶性保证的；
   \item $F$ 移动，即式~\eqref{eq:f-move}；
-  \item 环路消除，这会得到相应的量子维数：
+  \item 环路消除，这会给出相应的量子维数：
     \begin{equation}
       \tikzinput{loop-removal-1}
       \! = d_a, \quad
@@ -432,7 +468,11 @@ $\mathcal{A}_{k+1}$ 范畴\cite{coquereaux2007racah,aasen2020topological,chen202
 
 事实上，我们在 \ref{subsec:fusion-category-examples} 和 \ref{subsec:A-k+1-category} 小节中给出的这几个例子不仅是融合范畴，还是所谓\emph{模张量范畴} (modular tensor category, MTC)\cite{bakalov2001lectures,kitaev2006anyons,bruillard2016rank,beer2018categories,kong2022invitation}。它在融合范畴的基础上加入了\emph{编织} (braiding)、\emph{丝带} (ribbon) 的结构以及\emph{非简并} (non-degeneracy) 的条件，其中定义了\emph{扭转} (twist)：
 \begin{equation}
-  \theta_x = \tikzinput{twist} \, , \quad x \in \mathcal{C},
+  \theta_x = \tikzinput{twist} \, , \quad x \in \mathcal{C}
+\end{equation}
+和对应的 \emph{$T$ 矩阵} ($T$ matrix)：
+\begin{equation}
+  T_{ij} = \theta_i \delta_{ij}, \quad x \in \mathcal{C};
 \end{equation}
 \emph{$S$ 矩阵} ($S$ matrix)：
 \begin{equation}
@@ -459,22 +499,9 @@ Gauss 和与 $\mathcal{C}$ 的总量子维数相关：
   \theta_i = \ee^{2\pi\ii\Delta_i}, \quad
   \zeta = \ee^{2\pi\ii c/24},
 \end{equation}
-% TODO: $\Delta_i$ conformal or scaling dimension?
-可知式中 $\Delta_i$ 和 $c$ 都是有理数。它们正是\emph{有理共形场论} (rational CFT, RCFT) 中的\emph{共形维数} (conformal dimension) 和\emph{中心荷} (central charge)。
+可知式中 $\Delta_i$ 和 $c$ 都是有理数。它们正是\emph{有理共形场论} (rational CFT, RCFT) 中的\emph{标度维数} (scaling dimension) 和\emph{中心荷} (central charge)（参考 \ref{sec:cft-review} 节）。
 
-\section{拓扑序与弦网模型}
-
-\subsection{拓扑序}
-
-在 Landau 相变理论中，不同的相可根据对称性来确定，并可通过\emph{序参量} (order parameter) 来刻画。相变则通过对称性破缺来描述。但在 20 世纪 80 年代以来，随着分数量子 Hall 效应、高温超导等现象的发现，人们意识到 Landau 的对称性破缺理论并不足以描述所有的物态。\emph{拓扑序} (topological order) 的提出即为了描述这些物态的性质，并对其进行分类。
-
-在 2+1D 中，拓扑序可由下面两条性质来确定\cite{zeng2019introduction}：
-\begin{itemize}
-  \item 基态的拓扑简并；
-  \item 非 Abel 的几何相。
-\end{itemize}
-
-\subsection{Toric code 模型}
+\section{Toric code 模型}
 
 拓扑序的一个基本且重要的例子是 Toric code 模型\cite{kitaev2003fault}。它定义在一个二维正方形网格 (square lattice) 上，每条边上都存在一个自旋 $1/2$ 的自由度 $\sigma_i$。一般我们选取周期性边界条件，即环面拓扑。其 Hamilton 量定义为
 \begin{equation}
@@ -493,15 +520,15 @@ Gauss 和与 $\mathcal{C}$ 的总量子维数相关：
   \label{fig:toric-code-vertex-plaquette}
 \end{figure}
 
-Toric code 中存在 $e$ 和 $m$ 两种激发态，分别由 $\sigma^z$ 和 $\sigma^x$ 组成的弦算符产生。$e$ 和 $m$ 分别绕对方一圈（e.g. $e$ 闭弦 + $m$ 开弦），会给出 -1 的相位。
+Toric code 中存在 $e$ 和 $m$ 两种激发态，分别由 $\sigma^z$ 和 $\sigma^x$ 组成的弦算符产生。$e$ 和 $m$ 分别绕对方一圈（e.g. $e$ 闭弦 + $m$ 开弦），会给出 $-1$ 的相位。
 
 Toric code 存在 4 种任意子：$\1$、$e$、$m$、$f=e\times m$。它们的 fusion rules 如下……
 
 基态简并度与空间底流形的拓扑有关：$d=2^{2^g}=4^g$，其中 $g$ 为空间的\emph{亏格} (genus)。
 
-\subsection{弦网模型}
+\section{弦网模型}
 
-\emph{弦网模型} (string-net model)\cite{levin2005string,levin2006detecting} 可以视为 Toric code 模型的一种推广，它是通过 \ref{sec:tensor-category-fusion-category} 节介绍的张量融合范畴来定义的\footnote{准确来说要求模张量范畴。}。弦网模型一般定义在一个三分支 (trivalent) 的网格上，网格的边上带有“弦”的自由度。对于一个具体的弦网模型，我们需要给出下列几组数据：
+\emph{弦网模型} (string-net model)\cite{levin2005string,levin2006detecting}可以视为 Toric code 模型的一种推广，它是通过 \ref{sec:tensor-category-fusion-category} 节介绍的张量融合范畴来定义的\footnote{准确来说要求模张量范畴。}。弦网模型一般定义在一个三分支 (trivalent) 的网格上，网格的边上带有“弦”的自由度。对于一个具体的弦网模型，我们需要给出下列几组数据：
 \begin{itemize}
   \item \emph{弦的类型}，按照量子力学的语言也被称为\emph{超选择分区} (superselection sector)，它相当于融合范畴中简单对象的集合；
   \item \emph{弦的取向}，相当于指定了简单对象的对偶；

@@ -1,4 +1,4 @@
-\chapter{Virasoro 代数的张量网络实现}
+\chapter{Virasoro 与 Kac--Moody 代数的张量网络实现}
 \label{chap:virasoro}
 
 临界格点模型是研究\emph{共形场论} (conformal field theory, CFT) 的有力工具。有许多格点模型能够揭示出重要的 CFT 数据，而其中最基本也是最重要的一类称为\emph{最小模型} (minimal models)。它们同时也是严格可解模型，而对应的拓扑以及范畴对称性可以通过\emph{融合范畴}添加进来\cite{vanhove2018mapping,aasen2020topological,huang2022numerical,vanhove2022critical}。
@@ -12,8 +12,9 @@
 对于\emph{有限尺寸效应} (finite size effect) 影响更为显著的系统（例如一些弦网模型的配分函数，见 \ref{sec:strange-correlator} 节），即使是采用尺寸相对较大的圆柱，也很难从中得到准确的 CFT 能谱等数据。为此，我们首先对不同大小的圆柱进行精确对角化，并根据拟合结果来区分不同的本征态；对于混淆较为严重的态，我们还使用\emph{拓扑投影算符} (topological projectors)\cite{bultinck2017anyons,williamson2017symmetry,aasen2020topological}将转移矩阵投影到对应于特定拓扑荷的子空间中。这样最终能够获得符合预期精度的能动量张量以及对应的 Virasoro 生成元。
 
 \section{二维共形场论回顾}
+\label{sec:cft-review}
 
-\emph{共形场论} (conformal field theory, CFT)\cite{belavin1984infinite,ginsparg1988applied,francesco2012conformal} 的诞生源于对相变与临界现象的研究。在（二阶）相变点附近，系统应当具有\emph{标度不变性} (scaling invariance)；而在二维情况下，标度不变性与共形不变性是等价的。这就意味着可以用满足\emph{共形对称性} (conformal symmetry) 的量子场论——即共形场论——来处理临界系统。
+\emph{共形场论} (conformal field theory, CFT)\cite{belavin1984infinite,ginsparg1988applied,francesco2012conformal}的诞生源于对相变与临界现象的研究。在（二阶）相变点附近，系统应当具有\emph{标度不变性} (scaling invariance)；而在二维情况下，标度不变性与共形不变性是等价的。这就意味着可以用满足\emph{共形对称性} (conformal symmetry) 的量子场论——即共形场论——来处理临界系统。
 
 \subsection{共形对称性与能动量张量}
 
@@ -255,7 +256,7 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
   \label{fig:translation-operator}
 \end{figure}
 
-\section{Virasoro 算符的构造}
+\section{Virasoro 与 Kac--Moody 算符的构造}
 \label{sec:virasoro-operators}
 
 类比连续情况下的式~\eqref{eq:virasoro-operators}，格点 Virasoro 算符可以表示为
@@ -304,7 +305,7 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
   = \tikzinput{ising-cylinder}.
 \end{equation}
 
-在实际计算中，可以对张量 $A$ 进行粗粒近似以提高精度，如图~\ref{fig:virasoro-blocking} 所示。例如可将 4 个 $A$（$\eqcolon A^{(0)}$）组合成一个更大的 $A^{(1)}$，也可不断重复使得 $A^{(i)}$ 逐渐接近不动点张量。在这一过程中，连接维数 $\chi_{A^{(i)}}=d^{2^i}$ 会迅速增大，因此往往还需要进行截断。实际上，这也就是利用 TRG 或 TNR 等张量网络算法\cite{levin2007tensor,evenbly2015tensor1,evenbly2017algorithms} 来寻找不动点张量的操作。
+在实际计算中，可以对张量 $A$ 进行粗粒近似以提高精度，如图~\ref{fig:virasoro-blocking} 所示。例如可将 4 个 $A$（$\eqcolon A^{(0)}$）组合成一个更大的 $A^{(1)}$，也可不断重复使得 $A^{(i)}$ 逐渐接近不动点张量。在这一过程中，连接维数 $\chi_{A^{(i)}}=d^{2^i}$ 会迅速增大，因此往往还需要进行截断。实际上，这也就是利用 TRG 或 TNR 等张量网络算法\cite{levin2007tensor,evenbly2015tensor1,evenbly2017algorithms}来寻找不动点张量的操作。
 
 \begin{figure}[ht]
   \centering
