@@ -1,7 +1,7 @@
-\chapter{拓扑序与张量融合范畴}
+\chapter{拓扑序与张量范畴}
 \label{chap:topological-order}
 
-\emph{拓扑序} (topological order) 是本文探讨的中心对象，它是一类超越了 Landau 理论的新奇物态，并且具有基态简并、非 Abel 几何相位、分数激发等一系列全新的物理图像。描述 2+1 维拓扑序的数学语言是\emph{张量融合范畴} (tensor fusion category)，从它出发可以构建\emph{弦网模型} (string-net model)，并得到相应的 Hamilton 量以及各种物理性质。
+\emph{拓扑序} (topological order) 是本文探讨的中心对象，它是一类超越了 Landau 理论的新奇物态，并且具有基态简并、非 Abel 几何相位、分数激发等一系列全新的物理图像。描述 2+1 维拓扑序的数学语言是\emph{张量范畴} (tensor category)，从它出发可以构建\emph{弦网模型} (string-net model)，并得到相应的 Hamilton 量以及各种物理性质。
 
 \section{拓扑序简介}
 
@@ -33,9 +33,9 @@
   \label{fig:lu-transformation}
 \end{figure}
 
-两个量子态属于同一个相，当且仅当它们之间可以通过局域幺正变换相联系。对于有能隙的量子系统，其中的相可以分为短程纠缠态和长程纠缠态两类。短程纠缠态可以通过局域幺正变换转变为直积态，因而所有的短程纠缠态都属于同一个相；长程纠缠态无法通过局域幺正变换转变为直积态，而无法通过局域幺正变换相联系的态就构成了不同的相，它们也对应了不同的拓扑序。
+两个量子态属于同一个相，当且仅当它们之间可以通过局域幺正变换相联系。对于\emph{有能隙} (gapped) 的量子系统，其中的相可以分为短程纠缠态和长程纠缠态两类。短程纠缠态可以通过局域幺正变换转变为直积态，因而所有的短程纠缠态都属于同一个相；长程纠缠态无法通过局域幺正变换转变为直积态，而无法通过局域幺正变换相联系的态就构成了不同的相，它们也对应了不同的拓扑序。
 
-2+1 维的拓扑序可以用模张量范畴进行系统地描述与分类，更高维的拓扑序则需要借助高阶范畴来描述。
+2+1 维的拓扑序可以用张量范畴进行系统地描述与分类，更高维的拓扑序则需要借助高阶范畴来描述。接下来我们先从基本的范畴论出发，并向其中加入各种新的结构。
 
 \section{范畴论基础}
 
@@ -441,7 +441,14 @@ $\mathcal{A}_{k+1}$ 范畴\cite{coquereaux2007racah,aasen2020topological,chen202
   \end{cases} \\
   \Delta(x,y,z) &= \sqrt{\frac{[x+y-z]! [y+z-x]! [z+x-y]!}{[x+y+z+1]!}},
 \end{align}
-此外 $a_1=j_1+j_2+j_3$，$a_2=j_1+j_5+j_6$，$a_3=j_2+j_4+j_6$，$a_4=j_3+j_4+j_5$，$b_1=j_1+j_2+j_4+j_5$，$b_2=j_2+j_3+j_5+j_6$，$b_3=j_1+j_3+j_4+j_6$，而对 $z$ 的求和为从 $m=\max\{a_1,a_2,a_3,a_4\}$ 到 $M=\min\{b_1,b_2,b_3\}$ 的整数。
+此外
+\begin{equation}
+  \begin{gathered}
+    a_1=j_1+j_2+j_3, \quad a_2=j_1+j_5+j_6, \quad a_3=j_2+j_4+j_6, \quad a_4=j_3+j_4+j_5, \\
+    b_1=j_1+j_2+j_4+j_5, \quad b_2=j_2+j_3+j_5+j_6, \quad b_3=j_1+j_3+j_4+j_6,
+  \end{gathered}
+\end{equation}
+而对 $z$ 的求和为从 $m=\max\{a_1,a_2,a_3,a_4\}$ 到 $M=\min\{b_1,b_2,b_3\}$ 的整数。
 
 \subsection{模张量范畴与共形场论}
 
@@ -466,23 +473,27 @@ $\mathcal{A}_{k+1}$ 范畴\cite{coquereaux2007racah,aasen2020topological,chen202
 \end{equation}
 这与上面 Ising 融合范畴中（非平凡）的融合规则是完全一致的。
 
-事实上，我们在 \ref{subsec:fusion-category-examples} 和 \ref{subsec:A-k+1-category} 小节中给出的这几个例子不仅是融合范畴，还是所谓\emph{模张量范畴} (modular tensor category, MTC)\cite{bakalov2001lectures,kitaev2006anyons,bruillard2016rank,beer2018categories,kong2022invitation}。它在融合范畴的基础上加入了\emph{编织} (braiding)、\emph{丝带} (ribbon) 的结构以及\emph{非简并} (non-degeneracy) 的条件，其中定义了\emph{扭转} (twist)：
+事实上，我们在 \ref{subsec:fusion-category-examples} 和 \ref{subsec:A-k+1-category} 小节中给出的这几个例子不仅是融合范畴，还是所谓\emph{模张量范畴} (modular tensor category, MTC)\cite{bakalov2001lectures,kitaev2006anyons,bruillard2016rank,beer2018categories,kong2022invitation}。它在融合范畴的基础上加入了\emph{编织} (braiding)、\emph{丝带} (ribbon) 的结构以及\emph{非简并} (non-degeneracy) 等条件。编织范畴或称辫子范畴定义了如下的自然变换：
+\begin{equation}
+  \sigma_{x,y} = \tikzinput{braiding} \, , \quad x,y \in \mathcal{C}.
+\end{equation}
+丝带范畴则定义了\emph{扭转} (twist)：
 \begin{equation}
   \theta_x = \tikzinput{twist} \, , \quad x \in \mathcal{C}
 \end{equation}
 和对应的 \emph{$T$ 矩阵} ($T$ matrix)：
 \begin{equation}
-  T_{ij} = \theta_i \delta_{ij}, \quad x \in \mathcal{C};
+  T_{ij} = \theta_i \delta_{ij}, \quad x \in \mathcal{C},
 \end{equation}
-\emph{$S$ 矩阵} ($S$ matrix)：
+以及 \emph{$S$ 矩阵} ($S$ matrix)：
 \begin{equation}
   S_{ij} = \frac1D \, \tikzinput{s-matrix}, \quad i,j \in I,
 \end{equation}
-\emph{Gauss 和} (Gauss sums)：
+非简并条件要求 $S$ 矩阵可逆。此外还可定义\emph{Gauss 和} (Gauss sums)：
 \begin{equation}
   p^{\pm} = \sum_{i\in I} \theta_i^{\pm1} d_{i}^2.
 \end{equation}
-Gauss 和与 $\mathcal{C}$ 的总量子维数相关：
+它与 $\mathcal{C}$ 的总量子维数相关：
 \begin{equation}
   p^+ p^- = D^2,
 \end{equation}
@@ -503,32 +514,81 @@ Gauss 和与 $\mathcal{C}$ 的总量子维数相关：
 
 \section{Toric code 模型}
 
-拓扑序的一个基本且重要的例子是 Toric code 模型\cite{kitaev2003fault}。它定义在一个二维正方形网格 (square lattice) 上，每条边上都存在一个自旋 $1/2$ 的自由度 $\sigma_i$。一般我们选取周期性边界条件，即环面拓扑。其 Hamilton 量定义为
+拓扑序的一个基本且重要的例子是 toric code 模型\cite{kitaev2003fault,kong2022invitation}。它定义在一个二维正方形网格 (square lattice) 上，每条边上都存在一个自旋 $1/2$ 的自由度。其 Hamilton 量定义为
 \begin{equation}
-  H = -\sum_v A_v - \sum_p B_p, \quad
-  A_v = \prod_{i\in\operatorname{star}(v)} \sigma_i^x, \quad
-  B_p = \prod_{i\in\operatorname{boundary}(p)} \sigma_i^z,
+  H = -\sum_v A_v - \sum_p B_p,
   \label{eq:toric-code-hamiltonian}
 \end{equation}
-其中 $\sum_v$ 和 $\sum_p$ 分别表示对所有的顶点 (vertex) 和方块\footnote{在其他网格中也可以是其他形状。} (plaquette) 求和，如图~\ref{fig:toric-code-vertex-plaquette} 所示。
+其中
+\begin{equation}
+  A_v = \prod_{i\in\operatorname{star}(v)} \sigma_i^x, \quad
+  B_p = \prod_{i\in\operatorname{boundary}(p)} \sigma_i^z,
+\end{equation}
+称为\emph{稳定化子} (stabilizer)，而 $\sum_v$ 和 $\sum_p$ 分别表示对所有的顶点 (vertex) 和元格 (plaquette) 求和，如图~\ref{fig:toric-code} 所示。
 
 \begin{figure}[htb]
-  % TODO: update image
   \centering
-  \includegraphics[width=0.5\textwidth]{images/temp/ToricCodeLattice.png}
-  \caption[Toric code 中的顶点和方块]{正方形网格上 Toric code 中的顶点 ($v$) 和方块 ($p$)，它们各包含 4 个自旋自由度。}
-  \label{fig:toric-code-vertex-plaquette}
+  \tikzinput{toric-code}
+  \caption[正方形网格上的 toric code 模型]{正方形网格上的 toric code 模型，其中顶点 $v$ 和元格 $p$ 各包含 4 个自旋自由度。图片来源：\parencite{kong2022invitation}。}
+  \label{fig:toric-code}
 \end{figure}
 
-Toric code 中存在 $e$ 和 $m$ 两种激发态，分别由 $\sigma^z$ 和 $\sigma^x$ 组成的弦算符产生。$e$ 和 $m$ 分别绕对方一圈（e.g. $e$ 闭弦 + $m$ 开弦），会给出 $-1$ 的相位。
+\subsection{基态}
 
-Toric code 存在 4 种任意子：$\1$、$e$、$m$、$f=e\times m$。它们的 fusion rules 如下……
+利用 Pauli 矩阵的运算规则很容易知道 $A_v$、$B_p$ 之间互相都是对易的，而又因为 $A_v$、$B_p$ 的本征值为 $\pm1$，所以整个系统的基态将是 $A_v$、$B_p$ 共同的本征态，并且对应的本征值为 1。显然，在基态中翻转任意自旋，都将会使相邻 $A_v$、$B_p$ 算符的本征值由 $+1$ 变为 $-1$，因此无论系统尺寸大小，toric code 的 Hamilton 量始终具有大小为 2 的能隙。
 
-基态简并度与空间底流形的拓扑有关：$d=2^{2^g}=4^g$，其中 $g$ 为空间的\emph{亏格} (genus)。
+Toric code 中基态简并度与空间底流形的拓扑有关。设整个网格由 $V$ 个顶点、$E$ 条边和 $F$ 个元格（面）构成，根据 Euler 公式，有
+\begin{equation}
+  V - E + F = 2 - 2g,
+\end{equation}
+其中 $g$ 为空间的\emph{亏格} (genus)。对于周期性边界条件（即环面拓扑）而言，亏格 $g=1$。由于自由度定义在边上，所以系统 Hilbert 空间的维度为 $2^E$。而基态子空间则由约束 $A_v=1$ 和 $B_p=1$ 确定。注意到
+\begin{equation}
+  \prod_v A_v = \prod_p B_p = 1,
+\end{equation}
+因此总的约束数目为 $V+F-2$，而基态简并度 $d$ 为
+\begin{equation}
+  d = 2^{E-(V+F-2)} = 2^{2g} = 4^g.
+\end{equation}
+
+\subsection{激发态与任意子}
+
+在 toric code 中，对于顶点 $v_0$，存在激发态 $\ket*{\psi_{v_0}}$，它满足
+\begin{equation}
+  A_{v_0} \ket*{\psi_{v_0}} = -\ket*{\psi_{v_0}}, \quad
+  A_v \ket*{\psi_{v_0}} = B_p \ket*{\psi_{v_0}} = \ket*{\psi_{v_0}}, \quad \forall v \neq v_0, p;
+\end{equation}
+同样，对于元格 $p_0$，也存在 $\ket*{\psi_{p_0}}$，满足
+\begin{equation}
+  B_{p_0} \ket*{\psi_{p_0}} = -\ket*{\psi_{p_0}}, \quad
+  A_v \ket*{\psi_{p_0}} = B_p \ket*{\psi_{p_0}} = \ket*{\psi_{p_0}}, \quad \forall p \neq p_0, v.
+\end{equation}
+$\ket*{\psi_{v_0}}$ 和 $\ket*{\psi_{p_0}}$ 分别定义了\emph{电荷} (electric charge) $e$ 和\emph{磁通} (magnetic flux) $m$ 两种拓扑激发态。如图~\ref{fig:toric-code-string-operators} 所示，它们也可以由 Pauli 矩阵 $\sigma^z$ 和 $\sigma^x$ 组成的非局域弦算符（成对）产生。
+
+\begin{figure}[htb]
+  \centering
+  \tikzinput{toric-code-string-operators}
+  \caption[弦算符产生拓扑激发]{拓扑激发可由非局域的弦算符（成对）产生。图片来源：\parencite{kong2022invitation}。}
+  \label{fig:toric-code-string-operators}
+\end{figure}
+
+$e$ 和 $m$ 分别绕对方一圈（例如使用 $\sigma^z$ 组成的 $e$ 闭弦包围一个 $m$ 激发），会给出 $-1$ 的相位。绕一圈相当于两次交换，所以每次交换相当于为波函数增加了 $\ii$ 的相位，这显然是无法用 Bose 或 Fermi 统计来描述的，因此这些拓扑激发也称为\emph{任意子} (anyon)。
+
+除了 $e$ 和 $m$ 之外，toric code 中还存在 $\1$ 和 $f$ 两种任意子。$\1$ 相当于一个空的激发态，即基态；而 $f=e\otimes m$ 则相当于邻近的 $e$、$m$ 所构成的复合粒子。这些任意子一旦相互邻近，它们之间也可以相互复合，或称\emph{融合} (fuse)，并且也满足\emph{融合规则} (fusion rules)：
+\begin{equation}
+  \begin{gathered}
+    e \otimes e = m \otimes m = f \otimes f = \1, \\
+    e \otimes m = m \otimes e = f, \quad
+    e \otimes f = f \otimes e = m, \quad
+    m \otimes f = f \otimes m = e.
+  \end{gathered}
+\end{equation}
+
+% TODO: quantum double
+可以发现，这里的融合规则与 \ref{subsec:fusion-category-examples} 小节中 toric code 范畴中的融合规则是完全相同的。实际上，toric code 模型是基于 $\mathbb{Z}_2$ 群的 quantum double 模型，其进一步推广则可以得到基于张量融合范畴的弦网模型。
 
 \section{弦网模型}
 
-\emph{弦网模型} (string-net model)\cite{levin2005string,levin2006detecting}可以视为 Toric code 模型的一种推广，它是通过 \ref{sec:tensor-category-fusion-category} 节介绍的张量融合范畴来定义的\footnote{准确来说要求模张量范畴。}。弦网模型一般定义在一个三分支 (trivalent) 的网格上，网格的边上带有“弦”的自由度。对于一个具体的弦网模型，我们需要给出下列几组数据：
+\emph{弦网模型} (string-net model)\cite{levin2005string,levin2006detecting}可以视为 toric code 模型的一种推广，它是通过 \ref{sec:tensor-category-fusion-category} 节介绍的张量融合范畴来定义的\footnote{准确来说要求模张量范畴。}。弦网模型一般定义在一个三分支 (trivalent) 的网格上，网格的边上带有“弦”的自由度。对于一个具体的弦网模型，我们需要给出下列几组数据：
 \begin{itemize}
   \item \emph{弦的类型}，按照量子力学的语言也被称为\emph{超选择分区} (superselection sector)，它相当于融合范畴中简单对象的集合；
   \item \emph{弦的取向}，相当于指定了简单对象的对偶；
@@ -547,7 +607,7 @@ Toric code 存在 4 种任意子：$\1$、$e$、$m$、$f=e\times m$。它们的 
   H = -\sum_v A_v - \sum_p B_p.
   \label{eq:string-net-hamiltonian}
 \end{equation}
-与式~\eqref{eq:toric-code-hamiltonian} 类似，这里 $v$ 和 $p$ 也表示顶点和方块。$A_v$ 称为\emph{电荷算符} (electric charge operator)：
+与式~\eqref{eq:toric-code-hamiltonian} 类似，这里 $v$ 和 $p$ 也表示顶点和元格。$A_v$ 称为\emph{电荷算符} (electric charge operator)：
 \begin{equation}
   % A_v \ket{...} = \delta_{ijk} \ket{...}
   \includegraphics{images/temp/string-net-electric-charge.pdf}
@@ -572,3 +632,28 @@ $B_p$ 称为\emph{磁通量算符} (magnetic flux operator)：
   \label{eq:string-net-bp}
 \end{equation}
 可以验证 $A_v$ 与 $B_p$ 是对易的，因而 Hamilton 量式~\eqref{eq:string-net-hamiltonian} 严格可解。
+
+\section{本章小结}
+
+我们在表~\ref{tab:tensor-category-ingredients} 中总结了张量范畴中的各种结构。
+
+\begin{table}[htb]
+  \centering
+  \begin{tabular}{cc}
+    \toprule
+      名称 & 含义 \\
+    \midrule
+      张量 / 幺半 (tensor / monoidal)   & 定义了张量积 $\otimes$  \\
+      编织 / 辫子 (braided)             & 定义了编织结构 $\sigma$ \\
+      融合        (fusion)              & 张量积可以分解为直和    \\
+      对称        (symmetric)           & $\sigma=\sigma^{-1}$    \\
+      刚性 / 自治 (rigid / autonomous)  & 存在左右对偶            \\
+      中枢        (pivotal / sovereign) & 左右对偶相等            \\
+      球状        (spherical)           & 左右迹相等              \\
+      丝带        (ribbon)              & 定义了扭转结构 $\theta$ \\
+      模          (modular)             & $S$ 矩阵可逆            \\
+    \bottomrule
+  \end{tabular}
+  \caption[张量范畴中的各种结构]{张量范畴中的各种结构。}
+  \label{tab:tensor-category-ingredients}
+\end{table}
