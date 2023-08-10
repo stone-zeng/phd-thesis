@@ -59,7 +59,7 @@
   \, \Biggr\rangle.
 \end{equation}
 
-为了给出 $\ket{\psi_0}$ 一种\emph{对称化}的张量网络表示，我们必须从一开始就同等对待六边形的每个边以保持对称性。需要指出的是，文献 \parencite{buerschaper2009explicit} 中通过引入奇偶子格点来构造张量网络的手段不能很好地保留旋转对称性。这里，我们需将权重（量子维数）$d_i$ 平均分配到 $R$ 环路的六个边上，使得它们在互相连接时也有良好定义：
+为了给出 $\ket{\psi_0}$ 一种\emph{对称化}的张量网络表示，我们必须从一开始就同等对待六边形的每个边以保持对称性。需要指出的是，文献 \parencite{buerschaper2009explicit} 中通过引入奇偶子网格来构造张量网络的手段不能很好地保留旋转对称性。这里，我们需将权重（量子维数）$d_i$ 平均分配到 $R$ 环路的六个边上，使得它们在互相连接时也有良好定义：
 \begin{equation}
   \newcommand{\VirutalHexagon}{
     \draw [thick, dotted]
@@ -239,7 +239,7 @@ $F$ 符号为
 
 \subsection{例子：Ising 模型}
 
-为了与经典二维 Ising 模型相对应，我们考虑一个定义在正方形和八边形交错的格点上、由 $\1$、$\sigma$ 和 $\psi$ 三种简单对象构成的 Ising 弦网模型。各任意子对应的量子维数分别为 $d_{\1}=d_\psi=1$、$d_\sigma=\sqrt2$，融合规则为
+为了与经典二维 Ising 模型相对应，我们考虑一个定义在正方形和八边形交错的网格上、由 $\1$、$\sigma$ 和 $\psi$ 三种简单对象构成的 Ising 弦网模型。各任意子对应的量子维数分别为 $d_{\1}=d_\psi=1$、$d_\sigma=\sqrt2$，融合规则为
 \begin{equation}
   \begin{gathered}
   \1 \times \1 = \psi \times \psi = \1, \quad
@@ -279,7 +279,7 @@ $F$ 符号为
 \begin{equation}
   \bra{\omega(\beta)} = \sqrt2 \bigl( \cosh\beta \bra{\1} + \sinh\beta \bra{\psi} \bigr)
 \end{equation}
-上面。为了得到正方形格点的结构，我们用 8 个三角形组成一个带有 4 个指标的八边形张量单元：
+上面。为了得到正方形网格的结构，我们用 8 个三角形组成一个带有 4 个指标的八边形张量单元：
 \def\DiagramI{
   \begin{tikzpicture}[baseline=-0.5ex]
     \draw [tensor box]
@@ -399,7 +399,7 @@ $F$ 符号为
   \label{eq:ising-tensor}
 \end{equation}
 
-把这些八边形张量移动 $1/2$ 格可以获得对偶格点的张量表示
+把这些八边形张量移动 $1/2$ 格可以获得对偶网格的张量表示
 \def\DiagramI{
   \begin{tikzpicture}[baseline=-0.5ex]
     \draw [tensor box]

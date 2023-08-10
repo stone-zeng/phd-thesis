@@ -146,15 +146,15 @@
 
 \subsection{对偶}
 
-类似于对偶空间的概念，我们可以在张量范畴中引入\emph{对偶} (dual) 的概念。$x\in\mathcal{C}$ 的\emph{右对偶} (right dual) $x^\vee$ 通过以下两个态射定义：
+类似于对偶空间的概念，我们可以在张量范畴中引入\emph{对偶} (dual) 的概念。$x\in\mathcal{C}$ 的\emph{右对偶} (right dual) $x^*$ 通过以下两个态射定义：
 \begin{equation}
-  e_x\colon x^\vee\otimes x\to\1, \quad i_x\colon\1\to x\otimes x^\vee,
+  e_x\colon x^*\otimes x\to\1, \quad i_x\colon\1\to x\otimes x^*,
 \end{equation}
 它们需要满足\emph{刚性公理} (rigidity axioms)：
 \begin{equation}
   \begin{aligned}
     (\id_x\otimes e_x) \circ (i_x\otimes\id_x) &= \id_x, \\
-    (e_x\otimes\id_{x^\vee}) \circ (\id_{x^\vee}\otimes i_x) &= \id_{x^\vee}.
+    (e_x\otimes\id_{x^*}) \circ (\id_{x^*}\otimes i_x) &= \id_{x^*}.
   \end{aligned}
 \end{equation}
 如果在弦图中省略单位元（对应于物理中的真空态），则 $e_x$ 和 $i_x$ 可以表示为
@@ -176,38 +176,38 @@
   e'_x \colon x\otimes \ldual{x}\to\1, \quad i'_x\colon \1\to\ldual{x}\otimes x.
   \label{eq:left-dual}
 \end{equation}
-这实际上只需要对上面的图沿水平方向做一下镜像操作。如果 $\mathcal{C}$ 中的每个对象既有左对偶也有右对偶，则称其为是\emph{刚性} (rigid) 的或\emph{自治} (autonomous) 的；而如果 $\forall x\in\mathcal{C}$，都有 $x=x^\vee$，则称 $\mathcal{C}$ 是\emph{自对偶} (self-dual) 的。
+这实际上只需要对上面的图沿水平方向做一下镜像操作。如果 $\mathcal{C}$ 中的每个对象既有左对偶也有右对偶，则称其为是\emph{刚性} (rigid) 的或\emph{自治} (autonomous) 的；而如果 $\forall x\in\mathcal{C}$，都有 $x=x^*$，则称 $\mathcal{C}$ 是\emph{自对偶} (self-dual) 的。
 
-在有限维的情形中，向量空间 $V$ 的二重对偶 $V^{\vee\vee}$ 同构于 $V$。这在张量范畴中的推广即为\emph{中枢} (pivotal) 结构，它是由以下的自然同构给出的：
+在有限维的情形中，向量空间 $V$ 的二重对偶 $V^{**}$ 同构于 $V$。这在张量范畴中的推广即为\emph{中枢} (pivotal) 结构，它是由以下的自然同构给出的：
 \begin{equation}
-  \delta_x \colon x \similarrightarrow x^{\vee\vee}, \quad \forall x\in\mathcal{C},
+  \delta_x \colon x \similarrightarrow x^{**}, \quad \forall x\in\mathcal{C},
 \end{equation}
 且需满足
 \begin{equation}
   \delta_{x\otimes y} = \delta_x\otimes\delta_y, \quad
   \delta_{\1} = \id_{\1}, \quad
-  \delta_{x^\vee} = (\delta_x^\vee)^{-1}.
+  \delta_{x^*} = (\delta_x^*)^{-1}.
 \end{equation}
 根据右对偶的定义，可有
 \begin{equation}
-  e_x\colon x^\vee\otimes x \similarrightarrow x^\vee\otimes x^{\vee\vee}\to\1, \quad
-  i_x\colon \1\to x\otimes x^\vee \similarrightarrow x^{\vee\vee}\otimes x^\vee.
+  e_x\colon x^*\otimes x \similarrightarrow x^*\otimes x^{**}\to\1, \quad
+  i_x\colon \1\to x\otimes x^* \similarrightarrow x^{**}\otimes x^*.
 \end{equation}
-对比式~\eqref{eq:left-dual}，可以发现 $x^{\vee\vee}$ 也是 $x^\vee$ 的左对偶。若令 $y=x^\vee$，即有 $\ldual{y}=y^\vee$，也就是说在中枢范畴中可以不再区分左右对偶。
+对比式~\eqref{eq:left-dual}，可以发现 $x^{**}$ 也是 $x^*$ 的左对偶。若令 $y=x^*$，即有 $\ldual{y}=y^*$，也就是说在中枢范畴中可以不再区分左右对偶。
 
 对于中枢范畴 $\mathcal{C}$ 中的自同态 $f\in\End_{\mathcal{C}}(x)$，可以定义\emph{左右迹} (left/right trace)：
 \begin{equation}
   \begin{aligned}
     \tr_{\text{L}} f &\colon \1
-      \xrightarrow{i_{x^\vee}} x^\vee\otimes x^{\vee\vee}
-      \xrightarrow{\id_{x^\vee}\otimes\delta_x^{-1}} x^\vee\otimes x
-      \xrightarrow{\id_{x^\vee}\otimes f} x^\vee\otimes x
+      \xrightarrow{i_{x^*}} x^*\otimes x^{**}
+      \xrightarrow{\id_{x^*}\otimes\delta_x^{-1}} x^*\otimes x
+      \xrightarrow{\id_{x^*}\otimes f} x^*\otimes x
       \xrightarrow{e_x} \1, \\
     \tr_{\text{R}} f &\colon \1
-      \xrightarrow{i_x} x\otimes x^\vee
-      \xrightarrow{f\otimes\id_{x^\vee}} x\otimes x^\vee
-      \xrightarrow{\delta_x\otimes\id_{x^\vee}} x^{\vee\vee}\otimes x^\vee
-      \xrightarrow{e_{x^\vee}} \1.
+      \xrightarrow{i_x} x\otimes x^*
+      \xrightarrow{f\otimes\id_{x^*}} x\otimes x^*
+      \xrightarrow{\delta_x\otimes\id_{x^*}} x^{**}\otimes x^*
+      \xrightarrow{e_{x^*}} \1.
   \end{aligned}
 \end{equation}
 当 $f=\id_x$ 时，还可以定义\emph{左右维数} (left/right dimension)：
@@ -503,7 +503,7 @@ $\mathcal{A}_{k+1}$ 范畴\cite{coquereaux2007racah,aasen2020topological,chen202
 \end{equation}
 可以证明模张量范畴中融合系数与 $S$ 矩阵之间存在如下关系\cite{verlinde1988fusion,bakalov2001lectures,huang2005vertex,bruillard2016rank}：
 \begin{equation}
-  N_{ij}^k = \sum_r \frac{S_{ir} S_{jr} S_{k^\vee r}}{S_{\1 r}},
+  N_{ij}^k = \sum_r \frac{S_{ir} S_{jr} S_{k^* r}}{S_{\1 r}},
 \end{equation}
 这被称为 \emph{Verlinde 公式} (Verlinde formula)。此外，还存在 \emph{Vafa 定理} (Vafa's theorem)，即 $\theta_i$ 和 $\zeta$ 都是单位根\cite{bakalov2001lectures}。此时令
 \begin{equation}
@@ -541,14 +541,15 @@ Toric code 中基态简并度与空间底流形的拓扑有关。设整个网格
 \begin{equation}
   V - E + F = 2 - 2g,
 \end{equation}
-其中 $g$ 为空间的\emph{亏格} (genus)。对于周期性边界条件（即环面拓扑）而言，亏格 $g=1$。由于自由度定义在边上，所以系统 Hilbert 空间的维度为 $2^E$。而基态子空间则由约束 $A_v=1$ 和 $B_p=1$ 确定。注意到
+其中 $g$ 为空间的\emph{亏格} (genus)，即“洞”的数目。对于周期性边界条件（即环面拓扑）而言，亏格 $g=1$。由于自由度定义在边上，系统 Hilbert 空间的总维度为 $2^E$。而基态子空间则由约束 $A_v=1$ 和 $B_p=1$ 确定。注意到
 \begin{equation}
   \prod_v A_v = \prod_p B_p = 1,
 \end{equation}
-因此总的约束数目为 $V+F-2$，而基态简并度 $d$ 为
+因此总的约束数目为 $V+F-2$，而基态简并度 $\mathit{GSD}$ 为
 \begin{equation}
-  d = 2^{E-(V+F-2)} = 2^{2g} = 4^g.
+  \mathit{GSD} = 2^{E-(V+F-2)} = 2^{2g} = 4^g,
 \end{equation}
+可见这是一个\emph{拓扑不变量} (topological invariant)。
 
 \subsection{激发态与任意子}
 
@@ -588,50 +589,112 @@ $e$ 和 $m$ 分别绕对方一圈（例如使用 $\sigma^z$ 组成的 $e$ 闭弦
 
 \section{弦网模型}
 
+\subsection{输入数据}
+
 \emph{弦网模型} (string-net model)\cite{levin2005string,levin2006detecting}可以视为 toric code 模型的一种推广，它是通过 \ref{sec:tensor-category-fusion-category} 节介绍的张量融合范畴来定义的\footnote{准确来说要求模张量范畴。}。弦网模型一般定义在一个三分支 (trivalent) 的网格上，网格的边上带有“弦”的自由度。对于一个具体的弦网模型，我们需要给出下列几组数据：
 \begin{itemize}
-  \item \emph{弦的类型}，按照量子力学的语言也被称为\emph{超选择分区} (superselection sector)，它相当于融合范畴中简单对象的集合；
-  \item \emph{弦的取向}，相当于指定了简单对象的对偶；
-  \item \emph{分支规则}，相当于融合规则，规定了哪些弦允许汇聚于一点。
+  \item \emph{弦的类型}，按照量子力学的语言也被称为\emph{超选择分区} (superselection sector)，它相当于融合范畴中简单对象的集合 $i\in\{0,1,\dots,N\}$；
+  \item \emph{弦的取向}，指定了对象 $i$ 的对偶 $i^*$，在弦图中相当于把箭头反向［图~\ref{fig:string-net-orientations-branching-rules} (a)］；
+  \item \emph{分支规则}，相当于融合规则，规定了哪些弦允许汇聚于一点［图~\ref{fig:string-net-orientations-branching-rules} (b)］。
 \end{itemize}
 
-根据张量融合范畴的精神，弦网模型的基态波函数 $\Phi$ 应该满足下面的约束条件：
+\begin{figure}[htb]
+  \centering
+  \begin{tabular}{c@{\qquad}c}
+    \tikzinput{string-net-orientation} &
+    \tikzinput{string-net-fusion-1} \\
+    (a) & (b)
+  \end{tabular}
+  \caption[弦网模型弦的取向与分支规则]{弦网模型弦的取向 (a) 与分支规则 (b)。}
+  \label{fig:string-net-orientations-branching-rules}
+\end{figure}
+
+根据张量融合范畴的精神，弦网模型的基态波函数 $\Phi$ 可通过下面的局域约束条件\cite{levin2005string}
 \begin{equation}
   % TODO: update image and conventions
   \includegraphics{images/temp/string-net-wave-function.pdf}
 \end{equation}
-这里的 $F^{ijm}_{kln}$ 是 $F$ 符号的另一种记法，它与 $F[...]$ 的关系将在 [...] 中给出。
+来确定，其中阴影部分表示波函数的剩余部分，而系数 $F^{ijm}_{kln}$ 满足
+\begin{equation}
+  \begin{gathered}
+    F^{ijk}_{j^* i^* 0} = \sqrt{\frac{d_k}{d_i d_j}} \delta_{ijk}, \\
+    F^{ijm}_{kln} = F^{lkm^*}_{jin} = F^{jim}_{lkn^*} = F^{imj}_{k^* nl} \sqrt{\frac{d_m d_n}{d_j d_l}}, \\
+    \sum_{n=0}^N F^{mlq}_{k^*p n} F^{jip}_{mns^*} F^{js^* n}_{lkr^*} = F^{jip}_{q^* kr^*} F^{riq^*}_{mls^*}.
+  \end{gathered}
+\end{equation}
+$F^{ijm}_{kln}$ 是 $F$ 符号的另一种记法，它与 $[F^{ijk}_l]_{mn}$ 的关系将在 \ref{...} 中给出。
+
+\subsection{Hamilton 量}
 
 在六边形网格 (hexagonal lattice) 上定义的弦网模型，其 Hamilton 量由下式给出：
 \begin{equation}
   H = -\sum_v A_v - \sum_p B_p.
   \label{eq:string-net-hamiltonian}
 \end{equation}
-与式~\eqref{eq:toric-code-hamiltonian} 类似，这里 $v$ 和 $p$ 也表示顶点和元格。$A_v$ 称为\emph{电荷算符} (electric charge operator)：
+与式~\eqref{eq:toric-code-hamiltonian} 类似，这里 $v$ 和 $p$ 也表示顶点和元格。式中 $A_v$ 称为\emph{电荷算符} (electric charge operator)：
 \begin{equation}
-  % A_v \ket{...} = \delta_{ijk} \ket{...}
-  \includegraphics{images/temp/string-net-electric-charge.pdf}
+    A_v \ket{\tikzinput{string-net-fusion-2}}
+  = \delta_{ijk} \ket{\tikzinput{string-net-fusion-2}}, \quad
+  \delta_{ijk} = \begin{cases}
+    1, & \text{if $(i,j,k)$ is allowed to fuse;} \\
+    0, & \text{otherwise;}
+  \end{cases}
 \end{equation}
-$B_p$ 称为\emph{磁通量算符} (magnetic flux operator)：
+它相当于一个投影算符，可以把任意的态投影到满足融合规则的子空间中。而 $B_p$ 称为\emph{磁通算符} (magnetic flux operator)，它是 $N+1$ 个 $B_p^s$ 算符的线性组合：
 \begin{equation}
-  B_p = \sum_{s=0}^N \frac{d_s}{D} B_p^s,
+  B_p = \sum_{s=0}^N \frac{d_s}{D} B_p^s, \quad D = \sum_{s=0}^N d_s^2.
 \end{equation}
-其中
-\begin{equation}
-  \begin{gathered}
-    % B_p^s \ket{...} = \sum ... \ket{...}
-    \includegraphics{images/temp/string-net-magnetic-flux.pdf}, \\
-    B_{p,ghijkl}^{s,g'h'i'j'k'l'}(abcdef) =
-      F^{al^*g}_{s^*g'l'^*}
-      F^{bg^*h}_{s^*h'g'^*}
-      F^{ch^*i}_{s^*i'h'^*}
-      F^{di^*j}_{s^*j'i'^*}
-      F^{ej^*k}_{s^*k'j'^*}
-      F^{fk^*l}_{s^*l'k'^*}.
-  \end{gathered}
+这里 $D$ 是总量子维数，而 $B_p^s$ 满足
+\begin{align}
+     B_p^s \, \Biggl| \tikzinput{string-net-loop-1} \Biggr\rangle
+  &= \sum_{m,\dots,r} B_{p,ghijkl}^{s,g'h'i'j'k'l'}(abcdef) \,
+     \Biggl| \tikzinput{string-net-loop-2} \Biggr\rangle \notag \\
+  &= F^{al^*g}_{s^*g'l'^*}
+     F^{bg^*h}_{s^*h'g'^*}
+     F^{ch^*i}_{s^*i'h'^*}
+     F^{di^*j}_{s^*j'i'^*}
+     F^{ej^*k}_{s^*k'j'^*}
+     F^{fk^*l}_{s^*l'k'^*} \,
+     \Biggl| \tikzinput{string-net-loop-2} \Biggr\rangle.
   \label{eq:string-net-bp}
+\end{align}
+当 $F$ 符号还满足幺正条件
+\begin{equation}
+  F^{i^* j^* m^*}_{k^* l^* n^*} = \bigl( F^{ijm}_{kln} \bigr)^*
 \end{equation}
-可以验证 $A_v$ 与 $B_p$ 是对易的，因而 Hamilton 量式~\eqref{eq:string-net-hamiltonian} 严格可解。
+时，可以验证 Hamilton 量式~\eqref{eq:string-net-hamiltonian} 是 Hermitian 的。此外，还可以知道 $A_v$ 与 $B_p$ 互相对易，因而 Hamilton 量严格可解。
+
+\section{拓扑性质}
+
+弦网模型的基态简并度 $\mathit{GSD}$ 可由下式给出\cite{levin2011exactly,hu2012ground}：
+\begin{equation}
+  \mathit{GSD} = \tr\left( \prod\nolimits_p B_p \right).
+\end{equation}
+对于开放边界条件（亏格 $g=0$），可有 $\mathit{GSD}=1$；而对于周期性边界条件（即 $g=1$ 的环面），有 $\mathit{GSD}=N^2$。由此可见与 toric code 类似，弦网模型的基态简并度也依赖于空间拓扑。
+
+在区域 $A$ 上，弦网模型的纠缠熵为\cite{levin2006detecting}
+\begin{equation}
+  S_A = -j \log D - n \sum_{s=0}^N \frac{d_s^2}{D} \log \frac{d_s^2}{D},
+\end{equation}
+其中 $n$ 是位于边界 $\partial A$ 上自旋的数目，$j$ 则是 $\partial A$ 中不连通的边界数。对于图~\ref{fig:topological-entanglement-entropy} 中的区域 $A_1$、$A_2$、$A_3$、$A_4$，在 $R,r\to\infty$ 的极限下，可以计算得到
+\begin{equation}
+  \bigl( S_{A_1} - S_{A_2} \bigr) - \bigl( S_{A_3} - S_{A_4} \bigr) = -\log \bigl( D^2 \bigr).
+\end{equation}
+这被称为\emph{拓扑纠缠熵} (topological entanglement entropy)，它进一步反应了体系中存在着长程纠缠。
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.4\textwidth]{images/temp/topological-entanglement-entropy.pdf}
+  \caption[弦网模型中拓扑纠缠熵的计算]{弦网模型中拓扑纠缠熵的计算。图片来源：\parencite{levin2006detecting}。}
+  \label{fig:topological-entanglement-entropy}
+\end{figure}
+
+% TODO: quasiparticle excitations
+最后，通过构建弦算符的方式，我们可以获得弦网模型中的准粒子激发及对应的分数统计\cite{levin2005string,lin2014generalizations}。对于沿路径 $P_1$、$P_2$ 的弦算符 $W_\alpha$ 和 $W_\beta$，有
+\begin{equation}
+  W_\beta(P_2) W_\alpha(P_1) \ket{\Psi} = \ee^{\ii\theta_{\alpha\beta}} W_\alpha(P_1) W_\beta(P_2) \ket{\Psi},
+\end{equation}
+其中 $\ket{\Psi}$ 表示基态波函数，而 $\theta_{\alpha\beta}$ 是一个与代数结构有关的量。令 $\alpha=\beta$，可得自旋 $s_\alpha=\ee^{\ii\theta_\alpha}$。
 
 \section{本章小结}
 

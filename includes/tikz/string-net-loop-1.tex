@@ -1,0 +1,9 @@
+\begin{tikzpicture}[baseline=-0.1cm, node font=\footnotesize]
+  \draw [->-=1/8, ->-=1/8+1/6, ->-=1/8+2/6, ->-=1/8+3/6, ->-=1/8+4/6, ->-=1/8+5/6]
+    (0:0.5) -- ( 60:0.5) -- (120:0.5) -- (180:0.5) -- (240:0.5) -- (300:0.5) -- cycle;
+  \foreach \x/\xtext in {0/d, 60/c, 120/b, 180/a, 240/f, 300/e}
+    \draw [->-=0.8] (\x:0.75) -- (\x:0.5)
+      (\x:0.95) node {$\xtext$};
+  \foreach \x/\xtext in {30/i, 90/h, 150/g, 210/l, 270/k, 330/j}
+    \draw (\x:0.7) node {$\xtext$};
+\end{tikzpicture}

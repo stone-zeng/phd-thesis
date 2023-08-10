@@ -287,7 +287,7 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
 
 \section{例子：Ising 模型}
 
-二维正方格点上的 Ising 模型，其配分函数为
+二维正方形网格上的 Ising 模型，其配分函数为
 \begin{equation}
   Z = \sum_{\{\sigma\}} \ee^{-\beta H}
     = \sum_{\{\sigma\}} \ee^{\beta \sum_{\langle ij \rangle} \sigma_i \sigma_j}
@@ -369,7 +369,7 @@ Virasoro 算符的正确性同样可以通过两点关联函数来检验。在�
 
 \section{例子：Dimer 模型}
 
-接下来我们考虑正方格点上的 dimer 模型\cite{kasteleyn1961statistics,temperley1961dimer,kasteleyn1963dimer}。与 Ising 模型类似，它的配分函数也可以表示为一个二维张量网络，张量单元 $B^{(0)}_{ijkl}$ 中的非零元素为
+接下来我们考虑正方形网格上的 dimer 模型\cite{kasteleyn1961statistics,temperley1961dimer,kasteleyn1963dimer}。与 Ising 模型类似，它的配分函数也可以表示为一个二维张量网络，张量单元 $B^{(0)}_{ijkl}$ 中的非零元素为
 \begin{equation}
   B^{(0)}_{1111} = B^{(0)}_{2211} = B^{(0)}_{2121} = B^{(0)}_{1212} = B^{(0)}_{2222} = 1, \quad
   B^{(0)}_{1122} = 2.
@@ -430,7 +430,7 @@ Fibonacci 弦网模型定义在六边形网格上，包含 $\1$ 和 $\tau$ 两�
     \prod_{\alpha=1}^n A_{i_\alpha j_\alpha j_{\alpha+1} i_{\alpha+1}}
   = \tikzinput{fib-cylinder} \, .
 \end{equation}
-但与正方格点（如二维 Ising 模型）的情况不同，这里 $A_{ijkl}$ 的指标位于四个角，所以在缩并时需要仔细处理各指标的顺序。此外，上述圆柱 $\tilde{M}$ 并不是 Hermitian 的，因此并不能直接构成正确的转移矩阵。如果把 这些圆柱堆叠起来，在最终计算得到的能谱中将会出现额外的相位。我们可以把两个方向相反的圆柱叠加起来，即选取
+但与正方形网格（如二维 Ising 模型）的情况不同，这里 $A_{ijkl}$ 的指标位于四个角，所以在缩并时需要仔细处理各指标的顺序。此外，上述圆柱 $\tilde{M}$ 并不是 Hermitian 的，因此并不能直接构成正确的转移矩阵。如果把 这些圆柱堆叠起来，在最终计算得到的能谱中将会出现额外的相位。我们可以把两个方向相反的圆柱叠加起来，即选取
 \begin{equation}
   M = \tilde{M}\tilde{M}^\dagger,
 \end{equation}
