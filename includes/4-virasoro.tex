@@ -290,8 +290,8 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
 二维正方形网格上的 Ising 模型，其配分函数为
 \begin{equation}
   Z = \sum_{\{\sigma\}} \ee^{-\beta H}
-    = \sum_{\{\sigma\}} \ee^{\beta \sum_{\langle ij \rangle} \sigma_i \sigma_j}
-    = \sum_{\{\sigma\}} \prod_{\langle ij \rangle} \ee^{\beta \sigma_i \sigma_j}
+    = \sum_{\{\sigma\}} \ee^{\beta \sum_{\ev{ij}} \sigma_i \sigma_j}
+    = \sum_{\{\sigma\}} \prod_{\ev{ij}} \ee^{\beta \sigma_i \sigma_j}
     = \tr M^m,
 \end{equation}
 其中 $\sigma\in\{-1,+1\}$ 是 Ising 自旋。它可以按式~\eqref{eq:partition-function-tensor-network} 的形式用张量网络表示，对应的张量单元为

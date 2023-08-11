@@ -126,10 +126,15 @@
 \newcommand{\ldual}[1]{{}^*\mspace{-2mu}#1}
 \newcommand{\dv}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
 \newcommand{\pdv}[2]{\frac{\partial#1}{\partial#2}}
-\NewDocumentCommand{\bra}{sm}{%
-  \IfBooleanTF{#1}{\langle#2|}{\left\langle#2\right|}}
-\NewDocumentCommand{\ket}{sm}{%
-  \IfBooleanTF{#1}{|#2\rangle}{\left|#2\right\rangle}}
+\NewDocumentCommand{\bra}{som}{%
+  \IfBooleanTF{#1}{\langle#3|}{%
+    \IfValueTF{#2}{#2\langle#3#2|}{\left\langle#2\right|}}}
+\NewDocumentCommand{\ket}{som}{%
+  \IfBooleanTF{#1}{|#3\rangle}{%
+    \IfValueTF{#2}{#2|#3#2\rangle}{\left|#3\right\rangle}}}
+\NewDocumentCommand{\ev}{som}{%
+  \IfBooleanTF{#1}{\langle#3\rangle}{%
+    \IfValueTF{#2}{#2\langle#3#2\rangle}{\left\langle#3\right\rangle}}}
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator{\rank}{rank}

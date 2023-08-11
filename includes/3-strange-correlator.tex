@@ -5,58 +5,86 @@
 
 \section{弦网模型基态的张量网络表示}
 
+\subsection{四面体对称性}
+\label{subsec:tetrahedral-symmetry}
+
+我们在式~\eqref{eq:f-move} 和 \eqref{eq:string-net-local-rules} 中分别给出了 $F$ 符号的两种定义：
+\begin{equation}
+  \begin{aligned}
+       \tikzinput{category-theory/f-symbol-1}
+    &= \sum_y \, \bigl[ F^{abc}_d \bigr]_{xy} \tikzinput{category-theory/f-symbol-2}, \\
+       \tikzinput{category-theory/f-symbol-3}
+    &= \sum_m F^{ijm}_{kln} \tikzinput{category-theory/f-symbol-4}.
+  \end{aligned}
+\end{equation}
+容易知道 $[F^{ijk}_l]_{xy}=F^{jix}_{lky}$。在本文中我们主要使用第一种定义。另一方面，根据式~\eqref{eq:f-move}，我们有
+\begin{equation}
+    \bigl[ F^{abc}_d \bigr]_{xy}
+  = \frac{\tr \, \Biggl[
+      \Biggl( \tikzinput{category-theory/f-symbol-small-2} \Biggr)^\dagger \,
+      \tikzinput{category-theory/f-symbol-small-1}
+    \Biggr]}{\tr \, \Biggl[
+      \Biggl( \tikzinput{category-theory/f-symbol-small-2} \Biggr)^\dagger \,
+      \tikzinput{category-theory/f-symbol-small-2}
+    \Biggr]}
+  = \frac{\tikzinput{category-theory/f-symbol-trace-1}}{\tikzinput{category-theory/f-symbol-trace-2}}.
+\end{equation}
+这里分母部分可以利用环路消除 \eqref{eq:loop-removal} 式化简：
+\begin{equation}
+  \tikzinput{category-theory/f-symbol-trace-2} = \sqrt{d_a d_b d_c d_d},
+\end{equation}
+而分子部分则等价于一个正四面体，于是
+\begin{equation}
+    \bigl[ F^{abc}_d \bigr]_{xy}
+  = \sqrt{d_x d_y} \, \begin{bmatrix} a & b & x \\ c & d & y \end{bmatrix}
+  = \frac{1}{\sqrt{d_a d_b d_c d_d}} \, \Tetrahedron xbdyca.
+\end{equation}
+式中
+\begin{equation}
+    \begin{bmatrix} a & b & c \\ i & j & k \end{bmatrix}
+  = \frac{1}{\sqrt{d_a d_b d_c d_i d_j d_k}} \, \Tetrahedron cbjkia
+\end{equation}
+称为\emph{四面体符号} (tetrahedral symbol)，它的对称性（以及相应 $F$ 符号的对称性）可以从四面体的几何性质中获得：
+\begin{align}
+     \begin{bmatrix} a & b & c \\ i & j & k \end{bmatrix}
+  &= \begin{bmatrix} b & c & a \\ j & k & i \end{bmatrix}
+   = \begin{bmatrix} c & a & b \\ k & i & j \end{bmatrix}, \\
+     \begin{bmatrix} a & b & c \\ i & j & k \end{bmatrix}
+  &= \begin{bmatrix} a & c & b \\ i & k & j \end{bmatrix}
+   = \begin{bmatrix} c & b & a \\ k & j & i \end{bmatrix}
+   = \begin{bmatrix} b & a & c \\ j & i & k \end{bmatrix}, \\
+     \begin{bmatrix} a & b & c \\ i & j & k \end{bmatrix}
+  &= \begin{bmatrix} a & j & k \\ i & b & c \end{bmatrix}
+   = \begin{bmatrix} i & b & k \\ a & j & c \end{bmatrix}
+   = \begin{bmatrix} i & j & c \\ a & b & k \end{bmatrix}.
+\end{align}
+以上三组等式分别对应了四面体对称群 $A_4$ 中绕顶角的旋转（列轮换）、镜像（交换两列）和绕对边连线的旋转（交换两行的部分）。注意整行的交换一般来说并不相等。这一性质为\emph{四面体对称性} (tetrahedral symmetry)\cite{aasen2020topological,fuchs2023tetrahedral}。利用 $F$ 移动和环路消除，还可以得到下面的关系式：
+\begin{equation}
+    \tikzinput{string-net/vertex-2}
+  = \sqrt{d_\alpha d_\beta d_\gamma} \, \begin{bmatrix} a & b & c \\ \alpha & \beta & \gamma \end{bmatrix} \Vertex kij
+  = \frac{1}{\sqrt{d_i d_j d_k}} \, \Tetrahedron ik\gamma\alpha\beta j \Vertex kij,
+\end{equation}
+这也被称为\emph{星—三角变换} (star-triangle transformation)。
+
+\subsection{弦网模型的基态}
+
 接下来我们来给出弦网模型的基态表示\cite{gu2009tensor2,buerschaper2009explicit}。由于弦网模型的 Hamilton 量
 \begin{equation}
   H = -\sum_v A_v - \sum_p B_p
 \end{equation}
-是严格可解的，即可以表示成一系列相互对易的投影算符之和，因而它的基态可以通过这些投影算符的本征子空间给出。式中，电荷算符 $A_v$ 指定了每个顶点处的融合规则：
-\begin{equation}
-  A_v \Biggl| \Vertex ijk \Biggr\rangle = \delta_{ijk} \Biggl| \Vertex ijk \Biggr\rangle, \quad
-  \delta_{ijk} = \begin{cases}
-    1, & \text{if $(i,j,k)$ is allowed to fuse;} \\
-    0, & \text{otherwise;}
-  \end{cases}
-\end{equation}
-磁通量算符 $B_p$ 定义为
-\begin{equation}
-  B_p = \sum_{s=0}^N \frac{d_s}{D} B_p^s,
-\end{equation}
-其中
-\begin{equation}
-  D = \sum_s d_s^2
-\end{equation}
-是总量子维数，而 $B_p^s$ 则可以图形化地视为能在方块 $p$ 处生成一个孤立环路的算符［具体定义见 \eqref{eq:string-net-bp} 式］。
+是严格可解的，即 $H$ 可以表示成一系列相互对易的投影算符之和，因而它的基态可以通过这些投影算符的本征子空间给出。式中，电荷算符 $A_v$ 指定了每个顶点处的融合规则，磁通算符 $B_p$ 是 $B_p^s$ 按量子维数的线性组合，而 $B_p^s$ 则可以图形化地视为能在方块 $p$ 处生成一个孤立环路的算符（具体定义见 \ref{subsec:string-net-hamiltonian} 小节）。
 
-于是弦网模型的基态波函数 $\ket{\psi_0}$ 可以通过在真空态 $\ket{\varnothing}$ 上作用全部的 $B_p$ 算符得到。如上所言，每个 $B_p$ 算符都是一个方块内部由对象 $R$ 构成的环路，而
+弦网模型的基态波函数 $\ket{\psi_0}$ 可以通过在真空态 $\ket{\varnothing}$ 上作用全部的 $B_p$ 算符得到。如上所言，每个 $B_p$ 算符都是一个方块内部由对象 $R$ 构成的环路，而
 \begin{equation}
-  \tikz [baseline=0, very thick, draw=MaterialRed]
-    \draw (0,-1) node [left] {$R$} -- (0,1.5);
-  \enspace = \sum_i \frac{d_i}{D}
-  \tikz [baseline=0, thick]
-    \draw (0,-1) node [left] {$i$} -- (0,1.5);
+  \tikzinput{string-net/string-1}
+  \enspace = \sum_i \frac{d_i}{D^2}
+  \tikzinput{string-net/string-2}
 \end{equation}
 则是任意子按量子维数的加权叠加。因此有
 \begin{equation}
-  \newcommand{\VirutalLoop}{
-    \draw [thick, dotted]
-      (0,0) -- ++(330:1) -- ++( 30:1) -- ++( 90:1) -- ++(150:1) -- ++(210:1)
-      (0,0) -- ++( 90:1) -- ++(150:1) -- ++(210:1) -- ++(270:1) -- ++(330:1)
-      (0,0) -- ++(210:1) -- ++(270:1) -- ++(330:1) -- ++( 30:1) -- ++( 90:1);
-  }
-  \ket{\psi_0} = \prod_p B_p \ket{\varnothing} = \prod_p B_p \,
-  \Biggl| \,
-  \begin{tikzpicture}[baseline=-0.3em]
-    \VirutalLoop
-  \end{tikzpicture}
-  \, \Biggr\rangle = \Biggl| \,
-  \begin{tikzpicture}[baseline=-0.3em]
-    \VirutalLoop
-    \draw [very thick, draw=MaterialRed]
-      ( 30:1) circle [radius=0.55]
-      (150:1) circle [radius=0.55]
-      (270:1) circle [radius=0.55];
-  \end{tikzpicture}
-  \, \Biggr\rangle.
+    \ket{\psi_0} = \prod_p B_p \ket{\varnothing}
+  = \prod_p B_p \, \ket[\Bigg]{\, \tikzinput{string-net/loop-3} \,}
+  = \ket[\Bigg]{\, \tikzinput{string-net/loop-4} \,}.
 \end{equation}
 
 为了给出 $\ket{\psi_0}$ 一种\emph{对称化}的张量网络表示，我们必须从一开始就同等对待六边形的每个边以保持对称性。需要指出的是，文献 \parencite{buerschaper2009explicit} 中通过引入奇偶子网格来构造张量网络的手段不能很好地保留旋转对称性。这里，我们需将权重（量子维数）$d_i$ 平均分配到 $R$ 环路的六个边上，使得它们在互相连接时也有良好定义：
@@ -71,7 +99,7 @@
       \VirutalHexagon
       \draw [very thick, draw=MaterialRed] (-30:0.8) -- (30:0.8);
     \end{tikzpicture}
-    \enspace &= \sum_i \biggl( \frac{d_i}{D} \biggr)^{1/6} \enspace
+    \enspace &= \sum_i \biggl( \frac{d_i}{D^2} \biggr)^{1/6} \enspace
     \begin{tikzpicture}[baseline=-0.2em]
       \VirutalHexagon
       \draw [thick] (-30:0.8) node [left] {$i$} -- (30:0.8);
@@ -81,7 +109,7 @@
       \VirutalHexagon
       \draw [very thick, draw=MaterialRed] (-30:0.8) -- (30:0.8) -- (90:0.8);
     \end{tikzpicture}
-    \enspace &= \sum_i \biggl( \frac{d_i}{D} \biggr)^{1/3} \enspace
+    \enspace &= \sum_i \biggl( \frac{d_i}{D^2} \biggr)^{1/3} \enspace
     \begin{tikzpicture}[baseline=-0.2em]
       \VirutalHexagon
       \draw [thick] (-30:0.8) node [left] {$i$} -- (30:0.8) -- (90:0.8);
@@ -91,7 +119,7 @@
       \VirutalHexagon
       \draw [very thick, draw=MaterialRed] (0,0) circle [radius=0.7];
     \end{tikzpicture}
-    \enspace &= \sum_i \frac{d_i}{D} \enspace
+    \enspace &= \sum_i \frac{d_i}{D^2} \enspace
     \begin{tikzpicture}[baseline=-0.2em]
       \VirutalHexagon
       \draw [thick] (0,0) circle [radius=0.7] node [right=-0.2em] {$i$};
@@ -100,74 +128,37 @@
 \end{equation}
 对于邻接的六边形，我们可以在两个相邻的 $R$ 环路间执行 $F$ 移动：
 \begin{align}
-  \begin{tikzpicture}[baseline=-0.2em]
-    \draw [thick, dotted]
-      (30:1.2) -- (90:1.2) -- (150:1.2) -- (210:1.2) -- (270:1.2) -- (330:1.2)
-      -- ++(-30:1.2) -- ++(30:1.2) -- ++(90:1.2) -- ++(150:1.2) -- ++(210:1.2) -- ++(270:1.2);
-    \draw [very thick, draw=MaterialRed]
-      (-30:0.8) -- ++(90:0.8)
-      (-30:1.2) ++ (30:0.4) -- ++(90:0.8);
-  \end{tikzpicture}
-  \enspace &= \sum_{i,j} \biggl( \frac{d_i d_j}{D^2} \biggr)^{1/6} \enspace
-  \begin{tikzpicture}[baseline=-0.2em]
-    \draw [thick, dotted]
-      (30:1.2) -- (90:1.2) -- (150:1.2) -- (210:1.2) -- (270:1.2) -- (330:1.2)
-      -- ++(-30:1.2) -- ++(30:1.2) -- ++(90:1.2) -- ++(150:1.2) -- ++(210:1.2) -- ++(270:1.2);
-    \draw [thick]
-      (-30:0.8) -- ++(90:0.8)
-      (-30:1.2) ++ (30:1.2-0.8) -- ++(90:0.8)
-      (0.3,-0.5) node [anchor=base] {$i$}
-      (1.8,-0.5) node [anchor=base] {$j$};
-  \end{tikzpicture}
-  \notag \\
-  &= \sum_{i,j} \biggl( \frac{d_i d_j}{D^2} \biggr)^{1/6} \sum_k \sqrt{\frac{d_k}{d_i d_j}} \enspace
-  \tikz [thick, baseline=-0.2em]
-    \draw (90:0.6) -- +(150:1.2) node [above] {$i$} -- +(0,0) -- +(30:1.2) node [above] {$j$}
-          +(0,0) -- (-90:0.6)
-          +(0,0) -- +(-150:1.2) node [below] {$i$} -- +(0,0) -- +(-30:1.2) node [below] {$j$}
-          (0,0) node [right] {$k$};
-  \notag \\
-  &= \sum_{i,j,k} \bigl( D d_i d_j \bigr)^{-1/6} d_k^{1/4} \enspace
-  \begin{tikzpicture}[thick, baseline=-0.5em]
-    \draw [draw=MaterialIndigo]
-      (0,0) -- (270:1.2) node [below] {$k$};
-    \draw [draw=MaterialPurple]
-      (150:1.2) node [above=0.4, anchor=base] {$i$} -- (0,0) --
-      ( 30:1.2) node [above=0.4, anchor=base] {$j$};
-  \end{tikzpicture}
-  \cdot \bigl( D d_i d_j \bigr)^{-1/6} d_k^{1/4} \enspace
-  \begin{tikzpicture}[thick, baseline=-0.2em]
-    \draw [draw=MaterialIndigo]
-      (0,0) -- ( 90:1.2) node [above] {$k$};
-    \draw [draw=MaterialPurple]
-      (210:1.2) node [below] {$i$} -- (0,0) --
-      (-30:1.2) node [below] {$j$};
-  \end{tikzpicture} \, .
+     \tikzinput{string-net/adjacent-loop-1} \enspace
+  &= \sum_{i,j} \biggl( \frac{d_i d_j}{D^4} \biggr)^{1/6} \enspace
+     \tikzinput{string-net/adjacent-loop-2} \notag \\
+  &= \sum_{i,j} \biggl( \frac{d_i d_j}{D^4} \biggr)^{1/6} \sum_k \sqrt{\frac{d_k}{d_i d_j}} \enspace
+     \tikzinput{string-net/f-move-1} \notag \\
+  &= \sum_{i,j,k} \bigl( D^2 d_i d_j \bigr)^{-1/6} d_k^{1/4} \cdot \bigl( D^2 d_i d_j \bigr)^{-1/6} d_k^{1/4} \enspace
+     \tikzinput{string-net/f-move-1} \,
+   = \tikzinput{string-net/f-move-2} \, .
 \end{align}
-此处蓝线和紫线分别代表 $d^{-1/6}$ 和 $d^{1/4}$ 的因子。于是 $\ket{\psi_0}$ 中的每个顶点可以写成
+式中，蓝线和紫线表示各任意子按照对应量子维数的加权叠加，并且分别带有 $(D^2 d_i d_j)^{-1/6}$ 和 $d_k^{1/4}$ 的因子。在对所有的 $R$ 环路执行 $F$ 移动之后，$\ket{\psi_0}$ 现在可以表示为
+\begin{equation}
+  \ket{\psi_0} = \ket[\Bigg]{\, \tikzinput{string-net/vertices}}.
+\end{equation}
+它可以通过对位于顶点处的局域构建块进行缩并得到，而这些构建块可以用任意子基 (anyon basis) 表示为
 \begin{align}
-  \text{[TODO]}
+     \tikzinput{string-net/vertex-1} \enspace
+  &= \sum_{i,j,k} \sum_{\alpha,\beta,\gamma} D^{-1} (d_i d_j d_k)^{1/4} (d_\alpha d_\beta d_\gamma)^{-1/3} \,
+     \tikzinput{string-net/vertex-2} \notag \\
+  &= \sum_{i,j,k} \sum_{\alpha,\beta,\gamma} D^{-1} (d_i d_j d_k)^{-1/4} (d_\alpha d_\beta d_\gamma)^{-1/3}
+     \Tetrahedron ik\gamma\alpha\beta j \Vertex kij.
 \end{align}
-
-% TODO:
-在对所有的 $R$ 环路执行 $F$ 移动之后，$\ket{\psi_0}$ 现在可以表示为
-\begin{equation}
-  \ket{\psi_0} = ...
-\end{equation}
-它可以通过对位于顶点处的局域构建块进行缩并得到，并且可以用任意子基表示为
-\begin{equation}
-  ...
-\end{equation}
 这样我们就获得了六边形网格中三角形张量的对称形式：
 \begin{align}
   \Triangle jki\alpha\beta\gamma
-  &= (d_i d_j d_k)^{-\frac14} (d_\alpha d_\beta d_\gamma)^{-\frac13} \,
+  &= D^{-1} (d_i d_j d_k)^{-1/4} (d_\alpha d_\beta d_\gamma)^{-1/3} \,
     \Tetrahedron ik\gamma\alpha\beta j \notag \\
-  &= (d_\alpha d_\beta d_\gamma)^{\frac16} (d_i d_j d_k)^{-\frac14} (d_\alpha d_\beta d_\gamma)^{-\frac12} \,
+  &= D^{-1} (d_\alpha d_\beta d_\gamma)^{1/6} (d_i d_j d_k)^{-1/4} (d_\alpha d_\beta d_\gamma)^{-1/2} \,
     \Tetrahedron ik\gamma\alpha\beta j.
   \label{eq:unit-of-string-net-honeycomb}
 \end{align}
-对于更一般的情形，因子 $1/6$ 需要根据闭合环路中每条边的贡献进行修正。此外，我们还需要为 $B_p$ 添加额外的 $D^{-2}$ 系数，以使得 $B_p^2=B_p$。在任意三价图（每个顶点与三条边相连）中，归一化的三角形张量可以写成
+对于更一般的情形，因子 $1/6$ 需要根据闭合环路中每条边的贡献进行修正。在任意三价图（每个顶点与三条边相连）中，归一化的三角形张量可以写成
 \begin{align}
   \Triangle jki\alpha\beta\gamma
   &= D^{-2 (1/n_\alpha + 1/n_\beta + 1/n_\gamma)}
@@ -181,14 +172,14 @@
 \begin{figure}[htb]
   \centering
   \includegraphics[width=0.6\textwidth]{images/temp/string-net-peps.pdf}
-  \caption[弦网模型基态的 PEPS 张量网络表示]{弦网模型基态的 PEPS 张量网络表示。}
+  \caption[弦网模型基态的 PEPS 张量网络表示]{弦网模型基态的 PEPS 张量网络表示。图片来源：\parencite{buerschaper2009explicit}。}
   \label{fig:string-net-peps}
 \end{figure}
 
 \section{奇异关联子}
 \label{sec:strange-correlator}
 
-\emph{奇异关联子} (strange correlator) 最早用来在对称保护拓扑序 (symmetry protected topological order, SPT)\footnote{尽管名称中带有“拓扑序”，但 SPT 态中只有短程纠缠，这与本文所说的拓扑序（具有长程纠缠）实际上是不同的。} 中寻找不同的相\cite{you2014wave}，之后则被推广到了弦网模型中\cite{vanhove2018mapping,lootens2019cardy,vanhove2022topological}。通过将 2+1 维弦网模型的 PEPS 基态波函数 $\ket{\Psi_\text{SN}}$ 与某些特定的直积态 $\ket{\Omega}$ 做内积，可以获得二维临界格点模型的配分函数
+\emph{奇异关联子} (strange correlator) 最早用来在对称保护拓扑序 (symmetry protected topological order, SPT)\footnote{尽管名称中带有“拓扑序”，但 SPT 态中只有短程纠缠，这与本文所说的拓扑序（具有长程纠缠，见 \ref{sec:topological-order} 节）实际上是不同的。} 中寻找不同的相\cite{you2014wave}，之后则被推广到了弦网模型中\cite{vanhove2018mapping,lootens2019cardy,vanhove2022topological}。通过将 2+1 维弦网模型的 PEPS 基态波函数 $\ket{\Psi_\text{SN}}$ 与某些特定的直积态 $\ket{\Omega}$ 做内积，可以获得二维临界格点模型的配分函数
 \begin{equation}
   Z = \langle\Omega|\Psi_\text{SN}\rangle.
 \end{equation}

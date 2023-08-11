@@ -4,6 +4,7 @@
 \emph{拓扑序} (topological order) 是本文探讨的中心对象，它是一类超越了 Landau 理论的新奇物态，并且具有基态简并、非 Abel 几何相位、分数激发等一系列全新的物理图像。描述 2+1 维拓扑序的数学语言是\emph{张量范畴} (tensor category)，从它出发可以构建\emph{弦网模型} (string-net model)，并得到相应的 Hamilton 量以及各种物理性质。
 
 \section{拓扑序简介}
+\label{sec:topological-order}
 
 在 Landau 相变理论中，不同的相可根据对称性来确定，并可利用\emph{序参量} (order parameter) 来刻画，相变则通过对称性破缺以及序参量的变化来描述\cite{landau1980statistical,pathria2011statistical}。但在 20 世纪 80 年代以来，随着分数量子 Hall 效应、高温超导、手征自旋液体等现象的发现，人们意识到 Landau 的对称性破缺理论并不足以描述所有的物态。拓扑序的提出即为了描述这些物态的性质，并对其进行分类。其名称来源于手征自旋态的低能有效理论——拓扑量子场论 (topological quantum field theory, TQFT)\cite{witten1989quantum}。在 2+1 维中，拓扑序可由下面两条性质来确定\cite{wen2013topological,zeng2019introduction}：
 
@@ -14,7 +15,7 @@
 
 我们以横场 Ising 模型
 \begin{equation}
-  H = -\sum_{\langle ij \rangle} \sigma^z_i\sigma^z_j - J \sum_i \sigma^x_i
+  H = -\sum_{\ev{ij}} \sigma^z_i\sigma^z_j - J \sum_i \sigma^x_i
 \end{equation}
 为例。当外场 $J=0$ 时，存在 $\mathbb{Z}_2$ 对称性 $\ket{\uparrow}\leftrightarrow\ket{\downarrow}$，因此其基态也有一个二重简并。但一旦增加一个小的微扰 （例如令 $J\neq0$），这种简并就会被破坏。拓扑序中的基态简并则与之不同，它在局域微扰下仍保持不变。注意到微扰往往会破坏系统的对称性，因此这种拓扑简并实际上是与对称性无关的，因而也就超越了传统 Landau 理论的范围。此外，拓扑序中的基态简并度通常还会和系统的拓扑有关，这在传统理论中也是无法解释的。
 
@@ -101,11 +102,11 @@
 \emph{弦图} (string diagram) 可以更直观地描述范畴的概念。其中，带箭头的直线或曲线代表对象，盒子代表态射\cite{selinger2011survey,baez2011physics}：
 \begin{equation}
   f\colon x\to y \quad \coloneq \quad
-  \tikzinput{morphism} \, .
+  \tikzinput{category-theory/morphism} \, .
 \end{equation}
 态射的复合可以表示为连在一起的两个盒子：
 \begin{equation}
-  \tikzinput{composition}.
+  \tikzinput{category-theory/composition}.
 \end{equation}
 
 \section{张量范畴与融合范畴}
@@ -159,15 +160,15 @@
 \end{equation}
 如果在弦图中省略单位元（对应于物理中的真空态），则 $e_x$ 和 $i_x$ 可以表示为
 \begin{equation}
-  \tikzinput{dual-1},
+  \tikzinput{category-theory/dual-1},
   \qquad
-  \tikzinput{dual-2}.
+  \tikzinput{category-theory/dual-2}.
 \end{equation}
 这可以类比于量子力学中的湮灭与产生算符。（右对偶的）刚性公理则可表示为
 \begin{equation}
-  \tikzinput{rigidity-axioms-1},
+  \tikzinput{category-theory/rigidity-axioms-1},
   \qquad
-  \tikzinput{rigidity-axioms-2}.
+  \tikzinput{category-theory/rigidity-axioms-2}.
   \label{eq:rigidity-axioms-diagrams}
 \end{equation}
 
@@ -219,10 +220,10 @@
 迹和维数可以用下图来描述：
 \begin{equation}
   \begin{gathered}
-    \tr_{\text{L}}  f = \tikzinput{trace-1} \, , \quad
-    \tr_{\text{R}}  f = \tikzinput{trace-2} \, ; \\
-    \dim_{\text{L}} x = \tikzinput{dimension-1} \!, \quad
-    \dim_{\text{R}} x = \tikzinput{dimension-2} \!.
+    \tr_{\text{L}}  f = \tikzinput{category-theory/trace-1} \, , \quad
+    \tr_{\text{R}}  f = \tikzinput{category-theory/trace-2} \, ; \\
+    \dim_{\text{L}} x = \tikzinput{category-theory/dimension-1} \!, \quad
+    \dim_{\text{R}} x = \tikzinput{category-theory/dimension-2} \!.
   \end{gathered}
 \end{equation}
 如果对于任意的 $f\in\End_{\mathcal{C}}(x)$ 都有 $\tr_{\text{L}}f=\tr_{\text{R}}f$，则称 $\mathcal{C}$ 是\emph{球状} (spherical) 的。
@@ -257,25 +258,25 @@
 
 融合的逆运算是\emph{分裂} (splitting)。简单对象的融合与分裂都可以用弦图来表示：
 \begin{equation}
-  \tikzinput{fusion-tree-1}
+  \tikzinput{category-theory/fusion-tree-1}
   \in \Hom_{\mathcal{C}}(a\otimes b, c) \eqcolon V^{ab}_c, \quad
-  \tikzinput{fusion-tree-2}
+  \tikzinput{category-theory/fusion-tree-2}
   \in \Hom_{\mathcal{C}}(c, a\otimes b) \eqcolon V_{ab}^c.
 \end{equation}
 由于 $\mathcal{C}$ 的刚性和自对偶性，我们可以省略弦图中的箭头。此时，$\Hom_{\mathcal{C}}(a\otimes b,c)$ 和 $\Hom_{\mathcal{C}}(c,a\otimes b)$ 都是向量空间，分别记为 $V^{ab}_c$ 和 $V_{ab}^c$，上面的“融合树”正是对应的基向量。这两个向量空间的维数相等，都等于融合系数 $N_{ab}^c$。
 
 下面我们考虑向量空间 $V^{abc}_d$，它表示从 $a\otimes b\otimes c$ 到 $d$ 的融合。由于 $\mathcal{C}$ 是严格的，$(a\otimes b)\otimes c$ 和 $a\otimes(b\otimes c)$ 的结果相同（都等于 $d$），但却会给出两种融合树的分支结构：
 \begin{equation}
-  \tikzinput{f-symbol-1}
+  \tikzinput{category-theory/f-symbol-1}
   \in \bigoplus_x V^{ab}_x \otimes V^{xc}_d \simeq V^{abc}_d, \quad
-  \tikzinput{f-symbol-2}
+  \tikzinput{category-theory/f-symbol-2}
   \in \bigoplus_x V^{ay}_d \otimes V^{bc}_y \simeq V^{abc}_d.
 \end{equation}
 联系这两组基的变换称为 \emph{$F$ 移动} ($F$ move)：
 \begin{equation}
-  \tikzinput{f-symbol-1}
+    \tikzinput{category-theory/f-symbol-1}
   = \sum_y \, \bigl[ F^{abc}_d \bigr]_{xy}
-  \tikzinput{f-symbol-2}.
+    \tikzinput{category-theory/f-symbol-2}.
   \label{eq:f-move}
 \end{equation}
 式中的系数 $[F^{abc}_d]_{xy}$ 称为 \emph{$F$ 符号} ($F$ symbol)，它一共有 6 个指标。$\mathcal{C}$ 中的 $F$ 符号并不是独立的。如图~\ref{fig:f-symbols-pentagon-equation} 所示，它们所满足的约束条件同样也是五边形方程。
@@ -299,11 +300,12 @@
   \item $F$ 移动，即式~\eqref{eq:f-move}；
   \item 环路消除，这会给出相应的量子维数：
     \begin{equation}
-      \tikzinput{loop-removal-1}
+      \tikzinput{category-theory/loop-removal-1}
       \! = d_a, \quad
-      \tikzinput{loop-removal-2}
+      \tikzinput{category-theory/loop-removal-2}
       \! = \delta_{ac} \sqrt{\frac{d_b d_{b'}}{d_a}} \enspace
-      \tikzinput{loop-removal-3}.
+      \tikzinput{category-theory/loop-removal-3}.
+      \label{eq:loop-removal}
     \end{equation}
 \end{itemize}
 
@@ -418,6 +420,7 @@ $\mathcal{A}_{k+1}$ 范畴\cite{coquereaux2007racah,aasen2020topological,chen202
   1         & 1 & ½          & 0 \\
 \end{fusionrules}。
 
+% TODO: F-symbols
 \begin{equation}
   G^{abc}_{def} = \begin{Bmatrix} a & b & c \\ d & e & f \end{Bmatrix}_q (-1)^p,
 \end{equation}
@@ -475,11 +478,11 @@ $\mathcal{A}_{k+1}$ 范畴\cite{coquereaux2007racah,aasen2020topological,chen202
 
 事实上，我们在 \ref{subsec:fusion-category-examples} 和 \ref{subsec:A-k+1-category} 小节中给出的这几个例子不仅是融合范畴，还是所谓\emph{模张量范畴} (modular tensor category, MTC)\cite{bakalov2001lectures,kitaev2006anyons,bruillard2016rank,beer2018categories,kong2022invitation}。它在融合范畴的基础上加入了\emph{编织} (braiding)、\emph{丝带} (ribbon) 的结构以及\emph{非简并} (non-degeneracy) 等条件。编织范畴或称辫子范畴定义了如下的自然变换：
 \begin{equation}
-  \sigma_{x,y} = \tikzinput{braiding} \, , \quad x,y \in \mathcal{C}.
+  \sigma_{x,y} = \tikzinput{category-theory/braiding} \, , \quad x,y \in \mathcal{C}.
 \end{equation}
 丝带范畴则定义了\emph{扭转} (twist)：
 \begin{equation}
-  \theta_x = \tikzinput{twist} \, , \quad x \in \mathcal{C}
+  \theta_x = \tikzinput{category-theory/twist} \, , \quad x \in \mathcal{C}
 \end{equation}
 和对应的 \emph{$T$ 矩阵} ($T$ matrix)：
 \begin{equation}
@@ -487,7 +490,7 @@ $\mathcal{A}_{k+1}$ 范畴\cite{coquereaux2007racah,aasen2020topological,chen202
 \end{equation}
 以及 \emph{$S$ 矩阵} ($S$ matrix)：
 \begin{equation}
-  S_{ij} = \frac1D \, \tikzinput{s-matrix}, \quad i,j \in I,
+  S_{ij} = \frac1D \, \tikzinput{category-theory/s-matrix}, \quad i,j \in I,
 \end{equation}
 非简并条件要求 $S$ 矩阵可逆。此外还可定义\emph{Gauss 和} (Gauss sums)：
 \begin{equation}
@@ -528,7 +531,7 @@ $\mathcal{A}_{k+1}$ 范畴\cite{coquereaux2007racah,aasen2020topological,chen202
 
 \begin{figure}[htb]
   \centering
-  \tikzinput{toric-code}
+  \tikzinput{toric-code/vertex-plaquette}
   \caption[正方形网格上的 toric code 模型]{正方形网格上的 toric code 模型，其中顶点 $v$ 和元格 $p$ 各包含 4 个自旋自由度。图片来源：\parencite{kong2022invitation}。}
   \label{fig:toric-code}
 \end{figure}
@@ -567,7 +570,7 @@ $\ket*{\psi_{v_0}}$ 和 $\ket*{\psi_{p_0}}$ 分别定义了\emph{电荷} (electr
 
 \begin{figure}[htb]
   \centering
-  \tikzinput{toric-code-string-operators}
+  \tikzinput{toric-code/string-operators}
   \caption[弦算符产生拓扑激发]{拓扑激发可由非局域的弦算符（成对）产生。图片来源：\parencite{kong2022invitation}。}
   \label{fig:toric-code-string-operators}
 \end{figure}
@@ -594,15 +597,15 @@ $e$ 和 $m$ 分别绕对方一圈（例如使用 $\sigma^z$ 组成的 $e$ 闭弦
 \emph{弦网模型} (string-net model)\cite{levin2005string,levin2006detecting}可以视为 toric code 模型的一种推广，它是通过 \ref{sec:tensor-category-fusion-category} 节介绍的张量融合范畴来定义的\footnote{准确来说要求模张量范畴。}。弦网模型一般定义在一个三分支 (trivalent) 的网格上，网格的边上带有“弦”的自由度。对于一个具体的弦网模型，我们需要给出下列几组数据：
 \begin{itemize}
   \item \emph{弦的类型}，按照量子力学的语言也被称为\emph{超选择分区} (superselection sector)，它相当于融合范畴中简单对象的集合 $i\in\{0,1,\dots,N\}$；
-  \item \emph{弦的取向}，指定了对象 $i$ 的对偶 $i^*$，在弦图中相当于把箭头反向［图~\ref{fig:string-net-orientations-branching-rules} (a)］；
+  \item \emph{弦的取向}，指定了 $i$ 的对偶 $i^*$，在弦图中相当于把箭头反向［图~\ref{fig:string-net-orientations-branching-rules} (a)］；
   \item \emph{分支规则}，相当于融合规则，规定了哪些弦允许汇聚于一点［图~\ref{fig:string-net-orientations-branching-rules} (b)］。
 \end{itemize}
 
 \begin{figure}[htb]
   \centering
   \begin{tabular}{c@{\qquad}c}
-    \tikzinput{string-net-orientation} &
-    \tikzinput{string-net-fusion-1} \\
+    \tikzinput{string-net/orientation} &
+    \tikzinput{string-net/fusion-1} \\
     (a) & (b)
   \end{tabular}
   \caption[弦网模型弦的取向与分支规则]{弦网模型弦的取向 (a) 与分支规则 (b)。}
@@ -613,6 +616,7 @@ $e$ 和 $m$ 分别绕对方一圈（例如使用 $\sigma^z$ 组成的 $e$ 闭弦
 \begin{equation}
   % TODO: update image and conventions
   \includegraphics{images/temp/string-net-wave-function.pdf}
+  \label{eq:string-net-local-rules}
 \end{equation}
 来确定，其中阴影部分表示波函数的剩余部分，而系数 $F^{ijm}_{kln}$ 满足
 \begin{equation}
@@ -622,9 +626,10 @@ $e$ 和 $m$ 分别绕对方一圈（例如使用 $\sigma^z$ 组成的 $e$ 闭弦
     \sum_{n=0}^N F^{mlq}_{k^*p n} F^{jip}_{mns^*} F^{js^* n}_{lkr^*} = F^{jip}_{q^* kr^*} F^{riq^*}_{mls^*}.
   \end{gathered}
 \end{equation}
-$F^{ijm}_{kln}$ 是 $F$ 符号的另一种记法，它与 $[F^{ijk}_l]_{mn}$ 的关系将在 \ref{...} 中给出。
+$F^{ijm}_{kln}$ 是 $F$ 符号的另一种记法，它与 $[F^{ijk}_l]_{mn}$ 的关系将在 \ref{subsec:tetrahedral-symmetry} 小节中给出。
 
 \subsection{Hamilton 量}
+\label{subsec:string-net-hamiltonian}
 
 在六边形网格 (hexagonal lattice) 上定义的弦网模型，其 Hamilton 量由下式给出：
 \begin{equation}
@@ -633,8 +638,8 @@ $F^{ijm}_{kln}$ 是 $F$ 符号的另一种记法，它与 $[F^{ijk}_l]_{mn}$ 的
 \end{equation}
 与式~\eqref{eq:toric-code-hamiltonian} 类似，这里 $v$ 和 $p$ 也表示顶点和元格。式中 $A_v$ 称为\emph{电荷算符} (electric charge operator)：
 \begin{equation}
-    A_v \ket{\tikzinput{string-net-fusion-2}}
-  = \delta_{ijk} \ket{\tikzinput{string-net-fusion-2}}, \quad
+    A_v \, \ket[\Bigg]{\tikzinput{string-net/fusion-2}}
+  = \delta_{ijk} \, \ket[\Bigg]{\tikzinput{string-net/fusion-2}}, \quad
   \delta_{ijk} = \begin{cases}
     1, & \text{if $(i,j,k)$ is allowed to fuse;} \\
     0, & \text{otherwise;}
@@ -642,20 +647,20 @@ $F^{ijm}_{kln}$ 是 $F$ 符号的另一种记法，它与 $[F^{ijk}_l]_{mn}$ 的
 \end{equation}
 它相当于一个投影算符，可以把任意的态投影到满足融合规则的子空间中。而 $B_p$ 称为\emph{磁通算符} (magnetic flux operator)，它是 $N+1$ 个 $B_p^s$ 算符的线性组合：
 \begin{equation}
-  B_p = \sum_{s=0}^N \frac{d_s}{D} B_p^s, \quad D = \sum_{s=0}^N d_s^2.
+  B_p = \sum_{s=0}^N \frac{d_s}{D^2} B_p^s, \quad D = \sqrt{\sum_{s=0}^N d_s^2}.
 \end{equation}
-这里 $D$ 是总量子维数，而 $B_p^s$ 满足
+这里 $D$ 是总量子维数，它使得 $(B_p)^2=B_p$；而 $B_p^s$ 满足
 \begin{align}
-     B_p^s \, \Biggl| \tikzinput{string-net-loop-1} \Biggr\rangle
+     B_p^s \, \ket[\Bigg]{\tikzinput{string-net/loop-1}}
   &= \sum_{m,\dots,r} B_{p,ghijkl}^{s,g'h'i'j'k'l'}(abcdef) \,
-     \Biggl| \tikzinput{string-net-loop-2} \Biggr\rangle \notag \\
+     \ket[\Bigg]{\tikzinput{string-net/loop-2}} \notag \\
   &= F^{al^*g}_{s^*g'l'^*}
      F^{bg^*h}_{s^*h'g'^*}
      F^{ch^*i}_{s^*i'h'^*}
      F^{di^*j}_{s^*j'i'^*}
      F^{ej^*k}_{s^*k'j'^*}
      F^{fk^*l}_{s^*l'k'^*} \,
-     \Biggl| \tikzinput{string-net-loop-2} \Biggr\rangle.
+     \ket[\Bigg]{\tikzinput{string-net/loop-2}}.
   \label{eq:string-net-bp}
 \end{align}
 当 $F$ 符号还满足幺正条件
@@ -664,14 +669,15 @@ $F^{ijm}_{kln}$ 是 $F$ 符号的另一种记法，它与 $[F^{ijk}_l]_{mn}$ 的
 \end{equation}
 时，可以验证 Hamilton 量式~\eqref{eq:string-net-hamiltonian} 是 Hermitian 的。此外，还可以知道 $A_v$ 与 $B_p$ 互相对易，因而 Hamilton 量严格可解。
 
-\section{拓扑性质}
+\subsection{拓扑性质}
 
 弦网模型的基态简并度 $\mathit{GSD}$ 可由下式给出\cite{levin2011exactly,hu2012ground}：
 \begin{equation}
-  \mathit{GSD} = \tr\left( \prod\nolimits_p B_p \right).
+  \mathit{GSD} = \tr\left( \prod_p B_p \right).
 \end{equation}
 对于开放边界条件（亏格 $g=0$），可有 $\mathit{GSD}=1$；而对于周期性边界条件（即 $g=1$ 的环面），有 $\mathit{GSD}=N^2$。由此可见与 toric code 类似，弦网模型的基态简并度也依赖于空间拓扑。
 
+% TODO: total quantum dimension
 在区域 $A$ 上，弦网模型的纠缠熵为\cite{levin2006detecting}
 \begin{equation}
   S_A = -j \log D - n \sum_{s=0}^N \frac{d_s^2}{D} \log \frac{d_s^2}{D},

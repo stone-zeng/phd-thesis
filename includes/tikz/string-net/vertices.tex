@@ -1,0 +1,11 @@
+\begin{tikzpicture}[baseline=-0.2em, very thick]
+  \foreach \x in {90, 210, 330} {
+    \draw [MaterialPurple]
+      (0,0) -- (\x:1.5)
+      (\x-30:2.6) -- (\x:1.5) -- (\x+30:2.6);
+    \draw [MaterialBlue, fill=white]
+      (\x:1.5) circle [radius=0.4];
+  }
+  \draw [MaterialBlue, fill=white]
+    (0,0) circle [radius=0.4];
+\end{tikzpicture}
