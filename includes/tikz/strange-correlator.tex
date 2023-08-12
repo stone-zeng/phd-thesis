@@ -1,0 +1,39 @@
+\begin{tikzpicture}[baseline=-0.5ex]
+  \def\r{0.8}
+  \def\d{0.2}
+  \foreach \x in {30:1.5, 150:1.5, -90:1.5, -30:3}
+    \draw [tensor box, shift=(\x)] (-30:1) -- (90:1) -- (-150:1) -- cycle;
+  \foreach \x in {90:1.5, -30:1.5, -150:1.5, 30:3}
+    \draw [tensor box, shift=(\x)] (30:1) -- (150:1) -- (-90:1) -- cycle;
+  \begin{scope}[tensor leg]
+    \draw (0,0) circle [radius=\r];
+    \foreach \x/\xstart/\xdelta in {0/60/240, 60/180/180, 120/-120/120, 180/-60/120, -120/0/120, -60/0/180}
+      \draw [shift=(\x:2.6)]
+        ($(\xstart:\r) - cos(\xstart)*(0,\d) + sin(\xstart)*(\d,0)$) --
+        (\xstart:\r) arc [radius=\r, start angle=\xstart, delta angle=\xdelta] --
+        ++($cos(\xstart+\xdelta)*(0,\d) - sin(\xstart+\xdelta)*(\d,0)$);
+    \foreach \x/\xstart in {30/180, -30/120}
+      \draw [shift=(\x:4.5)]
+        ($(\xstart:\r) - cos(\xstart)*(0,\d) + sin(\xstart)*(\d,0)$) --
+        (\xstart:\r) arc [radius=\r, start angle=\xstart, delta angle=60] --
+        ++($cos(\xstart+60)*(0,\d) - sin(\xstart+60)*(\d,0)$);
+  \end{scope}
+  \begin{scope}[semithick, MaterialTeal]
+    \foreach \x in {0, 60, ..., 300}
+      \draw [shift=(\x:1.3)]
+        ($-sin(\x)*(0.45,0) + cos(\x)*(0,0.45)$) --
+        ($ sin(\x)*(0.45,0) - cos(\x)*(0,0.45)$);
+    \foreach \x in {30, -30}
+      \draw [shift=(\x:2.25)]
+        ($ cos(\x)*(0.45,0) + sin(\x)*(0,0.45)$) --
+        ($-cos(\x)*(0.45,0) - sin(\x)*(0,0.45)$);
+    \foreach \x in {90, 150, -150, -90}
+      \draw [shift=(\x:1.5)]
+        ($cos(\x)*(0.3 ,0) + sin(\x)*(0,0.3 )$) --
+        ($cos(\x)*(0.95,0) + sin(\x)*(0,0.95)$);
+    \foreach \x/\xstart in {90/30, -90/-30, -30/30, 30/-30}
+      \draw [shift=(\xstart:3)]
+        ($cos(\x)*(0.3 ,0) + sin(\x)*(0,0.3 )$) --
+        ($cos(\x)*(0.95,0) + sin(\x)*(0,0.95)$);
+  \end{scope}
+\end{tikzpicture}

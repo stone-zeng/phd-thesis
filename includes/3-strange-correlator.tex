@@ -68,7 +68,7 @@
 
 \subsection{弦网模型的基态}
 
-接下来我们来给出弦网模型的基态表示\cite{gu2009tensor2,buerschaper2009explicit}。由于弦网模型的 Hamilton 量
+接下来我们来给出弦网模型基态的张量网络表示\cite{gu2009tensor2,buerschaper2009explicit}。由于弦网模型的 Hamilton 量
 \begin{equation}
   H = -\sum_v A_v - \sum_p B_p
 \end{equation}
@@ -89,41 +89,16 @@
 
 为了给出 $\ket{\psi_0}$ 一种\emph{对称化}的张量网络表示，我们必须从一开始就同等对待六边形的每个边以保持对称性。需要指出的是，文献 \parencite{buerschaper2009explicit} 中通过引入奇偶子网格来构造张量网络的手段不能很好地保留旋转对称性。这里，我们需将权重（量子维数）$d_i$ 平均分配到 $R$ 环路的六个边上，使得它们在互相连接时也有良好定义：
 \begin{equation}
-  \newcommand{\VirutalHexagon}{
-    \draw [thick, dotted]
-      (30:1.2) -- (90:1.2) -- (150:1.2) -- (210:1.2) -- (270:1.2) -- (330:1.2) -- cycle;
-  }
   \begin{aligned}
-    % 1 segment
-    \begin{tikzpicture}[baseline=-0.2em]
-      \VirutalHexagon
-      \draw [very thick, draw=MaterialRed] (-30:0.8) -- (30:0.8);
-    \end{tikzpicture}
-    \enspace &= \sum_i \biggl( \frac{d_i}{D^2} \biggr)^{1/6} \enspace
-    \begin{tikzpicture}[baseline=-0.2em]
-      \VirutalHexagon
-      \draw [thick] (-30:0.8) node [left] {$i$} -- (30:0.8);
-    \end{tikzpicture} \, , \\
-    % 2 segments
-    \begin{tikzpicture}[baseline=-0.2em]
-      \VirutalHexagon
-      \draw [very thick, draw=MaterialRed] (-30:0.8) -- (30:0.8) -- (90:0.8);
-    \end{tikzpicture}
-    \enspace &= \sum_i \biggl( \frac{d_i}{D^2} \biggr)^{1/3} \enspace
-    \begin{tikzpicture}[baseline=-0.2em]
-      \VirutalHexagon
-      \draw [thick] (-30:0.8) node [left] {$i$} -- (30:0.8) -- (90:0.8);
-    \end{tikzpicture} \, , \\
-    % Loop
-    \begin{tikzpicture}[baseline=-0.2em]
-      \VirutalHexagon
-      \draw [very thick, draw=MaterialRed] (0,0) circle [radius=0.7];
-    \end{tikzpicture}
-    \enspace &= \sum_i \frac{d_i}{D^2} \enspace
-    \begin{tikzpicture}[baseline=-0.2em]
-      \VirutalHexagon
-      \draw [thick] (0,0) circle [radius=0.7] node [right=-0.2em] {$i$};
-    \end{tikzpicture} \, .
+       \VirutalHexagon{\draw [very thick, draw=MaterialRed] (-30:0.8) -- (30:0.8)} \enspace
+    &= \sum_i \left( \frac{d_i}{D^2} \right)^{1/6} \enspace
+       \VirutalHexagon{\draw [thick] (-30:0.8) node [left] {$i$} -- (30:0.8)} \, , \\
+       \VirutalHexagon{\draw [very thick, draw=MaterialRed] (-30:0.8) -- (30:0.8) -- (90:0.8)} \enspace
+    &= \sum_i \left( \frac{d_i}{D^2} \right)^{1/3} \enspace
+       \VirutalHexagon{\draw [thick] (-30:0.8) node [left] {$i$} -- (30:0.8) -- (90:0.8)} \, , \\
+       \VirutalHexagon{\draw [very thick, draw=MaterialRed] (0,0) circle [radius=0.7]} \enspace
+    &= \sum_i \frac{d_i}{D^2} \enspace
+       \VirutalHexagon{\draw [thick] (0,0) circle [radius=0.7] node [right=-0.2em] {$i$}} \, .
   \end{aligned}
 \end{equation}
 对于邻接的六边形，我们可以在两个相邻的 $R$ 环路间执行 $F$ 移动：
@@ -187,17 +162,15 @@
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=0.8\textwidth]{images/temp/peps-strange-correlator.png}
-  \caption[奇异关联子]{奇异关联子。}
+  \tikzinput{strange-correlator}
+  \caption[奇异关联子]{奇异关联子。其中绿线表示投影到特定值（即与某直积态做内积）之后的物理指标，灰线表示需要求和的辅助指标。整个张量网络缩并后即为对应的配分函数。}
   \label{fig:peps-strange-correlator}
 \end{figure}
-
-我们利用 \ref{subsec:fusion-category-examples} 小节中所给出的 Fibonacci 和 Ising 两种融合范畴的数据来……
 
 \subsection{例子：Fibonacci 模型}
 \label{subsec:strange-correlator-fib}
 
-Fibonacci 弦网模型定义在六边形网格上，它包含 $\1$ 和 $\tau$ 两种简单对象（任意子），量子维数分别为 $d_{\1}=1$、$d_\tau=\varphi$，其中 $\varphi=(1+\sqrt5)/2$ 是黄金比。融合规则为
+接下来，我们利用 \ref{subsec:fusion-category-examples} 小节中所给出的 Fibonacci 和 Ising 两种融合范畴的数据来构造相应的奇异关联子。Fibonacci 弦网模型定义在六边形网格上，它包含 $\1$ 和 $\tau$ 两种简单对象（任意子），量子维数分别为 $d_{\1}=1$、$d_\tau=\varphi$，其中 $\varphi=(1+\sqrt5)/2$ 是黄金比。融合规则为
 \begin{equation}
   \1 \times \1 = \1, \quad
   \1 \times \tau = \tau \times \1 = \tau, \quad
@@ -220,7 +193,7 @@ $F$ 符号为
        m,n \in \{\1,\tau\}.
   \end{aligned}
 \end{equation}
-在我们的奇异关联子构造中，所有的物理指标都会被选取为 $\tau$，因而这时会得到两种三角形张量单元：
+在我们的奇异关联子构造中，所有的物理指标都会被选取为 $\tau$，因而这时将得到两种三角形张量单元：
 \begin{equation}
     \Triangle \tau\tau\tau\tau\tau\tau
   = \varphi^{\frac14} \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{\tau\tau} = -\varphi^{-\frac34}, \quad
@@ -266,108 +239,21 @@ $F$ 符号为
        = -2^{-\frac{1}{12}}.
   \end{aligned}
 \end{equation}
-在奇异关联子构造中，我们需要将物理指标投影到直积态
+在 Ising 模型的奇异关联子构造中，我们需要将物理指标投影到直积态
 \begin{equation}
   \bra{\omega(\beta)} = \sqrt2 \bigl( \cosh\beta \bra{\1} + \sinh\beta \bra{\psi} \bigr)
 \end{equation}
 上面。为了得到正方形网格的结构，我们用 8 个三角形组成一个带有 4 个指标的八边形张量单元：
-\def\DiagramI{
-  \begin{tikzpicture}[baseline=-0.5ex]
-    \draw [tensor box]
-          ( 0.3, 0.7) -- ( 1.9, 2.3) -- ( 0.3, 2.3) -- cycle
-          ( 0.7, 0.3) -- ( 2.3, 0.3) -- ( 2.3, 1.9) -- cycle
-          (-0.3, 0.7) -- (-1.9, 2.3) -- (-0.3, 2.3) -- cycle
-          (-0.7, 0.3) -- (-2.3, 0.3) -- (-2.3, 1.9) -- cycle
-          ( 0.3,-0.7) -- ( 1.9,-2.3) -- ( 0.3,-2.3) -- cycle
-          ( 0.7,-0.3) -- ( 2.3,-0.3) -- ( 2.3,-1.9) -- cycle
-          (-0.3,-0.7) -- (-1.9,-2.3) -- (-0.3,-2.3) -- cycle
-          (-0.7,-0.3) -- (-2.3,-0.3) -- (-2.3,-1.9) -- cycle;
-    % \sigma
-    \draw [semithick, MaterialTeal]
-          ( 1.1, 2.0) -- ( 1.1, 3.0) ( 2.0, 1.1) -- ( 3.0, 1.1)
-          (-1.1, 2.0) -- (-1.1, 3.0) (-2.0, 1.1) -- (-3.0, 1.1)
-          ( 1.1,-2.0) -- ( 1.1,-3.0) ( 2.0,-1.1) -- ( 3.0,-1.1)
-          (-1.1,-2.0) -- (-1.1,-3.0) (-2.0,-1.1) -- (-3.0,-1.1)
-          ( 0.6, 1.5) -- (-0.6, 1.5)
-          ( 1.5, 0.6) -- ( 1.5,-0.6)
-          ( 0.6,-1.5) -- (-0.6,-1.5)
-          (-1.5, 0.6) -- (-1.5,-0.6)
-          ( 1.0, 0.0) .. controls ( 1.0, 0.6) and ( 0.6, 1.0) .. ( 0.0, 1.0)
-                      .. controls (-0.6, 1.0) and (-1.0, 0.6) .. (-1.0, 0.0)
-                      .. controls (-1.0,-0.6) and (-0.6,-1.0) .. ( 0.0,-1.0)
-                      .. controls ( 0.6,-1.0) and ( 1.0,-0.6) .. cycle
-          ( 3.0, 1.5) .. controls ( 2.0, 1.5) and ( 1.5, 2.0) .. ( 1.5, 3.0)
-          (-3.0, 1.5) .. controls (-2.0, 1.5) and (-1.5, 2.0) .. (-1.5, 3.0)
-          ( 3.0,-1.5) .. controls ( 2.0,-1.5) and ( 1.5,-2.0) .. ( 1.5,-3.0)
-          (-3.0,-1.5) .. controls (-2.0,-1.5) and (-1.5,-2.0) .. (-1.5,-3.0);
-    % 1 \otimes \psi
-    \draw [semithick, MaterialIndigo]
-          ( 1.7, 0.9) -- ( 0.9, 1.7)
-          (-1.7, 0.9) -- (-0.9, 1.7)
-          ( 1.7,-0.9) -- ( 0.9,-1.7)
-          (-1.7,-0.9) -- (-0.9,-1.7);
-    % 1 or \psi
-    \draw [tensor leg]
-          ( 0.6, 3.0) .. controls ( 0.6, 2.6) and ( 0.6, 2.0) .. ( 0.0, 2.0)
-                      .. controls (-0.6, 2.0) and (-0.6, 2.6) .. (-0.6, 3.0)
-          ( 3.0, 0.6) .. controls ( 2.6, 0.6) and ( 2.0, 0.6) .. ( 2.0, 0.0)
-                      .. controls ( 2.0,-0.6) and ( 2.6,-0.6) .. ( 3.0,-0.6)
-          ( 0.6,-3.0) .. controls ( 0.6,-2.6) and ( 0.6,-2.0) .. ( 0.0,-2.0)
-                      .. controls (-0.6,-2.0) and (-0.6,-2.6) .. (-0.6,-3.0)
-          (-3.0, 0.6) .. controls (-2.6, 0.6) and (-2.0, 0.6) .. (-2.0, 0.0)
-                      .. controls (-2.0,-0.6) and (-2.6,-0.6) .. (-3.0,-0.6);
-    \draw ( 0.0, 3.5) node {$i$}
-          (-3.5, 0.0) node {$j$}
-          ( 0.0,-3.5) node {$k$}
-          ( 3.5, 0.0) node {$l$};
-  \end{tikzpicture}
-}
-\def\LineSigma{
-  \begin{tikzpicture}[baseline=1.6ex]
-    \draw [semithick, MaterialTeal] (0,0) -- (0,2);
-  \end{tikzpicture}
-}
-\def\LineOmega{
-  \begin{tikzpicture}[baseline=1.6ex]
-    \draw [semithick, MaterialIndigo] (0,0) -- (0,2);
-  \end{tikzpicture}
-}
 \begin{equation}
-  A_{ijkl} = \DiagramI \quad \text{where} \quad
+  A_{ijkl} = \tikzinput{ising/octagon} \quad \text{where} \quad
   i, j, k, l = \1 \text{ or } \psi, \quad
-  \LineSigma \, = \sigma, \quad
-  \LineOmega \, = \omega.
+  \tikzinput{ising/line-sigma} \, = \sigma, \quad
+  \tikzinput{ising/line-omega} \, = \omega.
+  \label{eq:ising-octagon}
 \end{equation}
 注意此时物理指标已被求和，而辅助指标 $i$、$j$、$k$、$l$ 得以保留。为了得到 $A_{ijkl}$ 的值，我们先计算每一对三角形：
-\def\PathI{
-  \draw [tensor box]
-        (-0.6,-1.0) -- ( 1.0,-1.0) -- ( 1.0, 0.6) -- cycle
-        ( 0.6, 1.0) -- (-1.0, 1.0) -- (-1.0,-0.6) -- cycle;
-  \draw [tensor leg]
-        (-0.6, 1.7) .. controls (-0.6, 0.9) and (-0.9, 0.6) .. (-1.6, 0.6)
-        ( 0.6,-1.7) .. controls ( 0.6,-0.9) and ( 0.9,-0.6) .. ( 1.6,-0.6);
-  \draw [semithick, MaterialTeal]
-        (-0.2, 0.7) -- (-0.2, 1.7) (-1.6, 0.2) -- (-0.6, 0.2)
-        ( 0.2,-0.7) -- ( 0.2,-1.7) ( 1.6,-0.2) -- ( 0.6,-0.2)
-        ( 1.6, 0.2) .. controls ( 0.7, 0.2) and ( 0.2, 0.7) .. ( 0.2, 1.7)
-        (-1.6,-0.2) .. controls (-0.7,-0.2) and (-0.2,-0.7) .. (-0.2,-1.7);
-  \draw [semithick, MaterialIndigo]
-        ( 0.4,-0.4) -- (-0.4, 0.4);
-  \draw (-1.5, 1.5) node {$i$}
-        ( 1.5,-1.5) node {$j$};
-}
-\def\DiagramI{
-  \begin{tikzpicture}[baseline=-0.5ex]
-    \PathI
-  \end{tikzpicture}
-}
-\def\DiagramII{
-  \begin{tikzpicture}[baseline=-0.5ex, xscale=-1]
-    \PathI
-  \end{tikzpicture}
-}
 \begin{equation}
-  \DiagramI = \DiagramII =
+  \tikzinput{ising/triangles-1} = \tikzinput{ising/triangles-2} =
   \begin{cases}
     2^{\frac13} \bigl( \cosh\beta + \sinh\beta \bigr) = 2^{\frac13} \ee^\beta,
       & (i,j) = (\1,\1) \text{ or } (\psi, \psi); \\
@@ -390,92 +276,15 @@ $F$ 符号为
   \label{eq:ising-tensor}
 \end{equation}
 
+% TODO: dual lattice
 把这些八边形张量移动 $1/2$ 格可以获得对偶网格的张量表示
-\def\DiagramI{
-  \begin{tikzpicture}[baseline=-0.5ex]
-    \draw [tensor box]
-          ( 0.3, 0.7) -- ( 1.9, 2.3) -- ( 0.3, 2.3) -- cycle
-          ( 0.7, 0.3) -- ( 2.3, 0.3) -- ( 2.3, 1.9) -- cycle
-          (-0.3, 0.7) -- (-1.9, 2.3) -- (-0.3, 2.3) -- cycle
-          (-0.7, 0.3) -- (-2.3, 0.3) -- (-2.3, 1.9) -- cycle
-          ( 0.3,-0.7) -- ( 1.9,-2.3) -- ( 0.3,-2.3) -- cycle
-          ( 0.7,-0.3) -- ( 2.3,-0.3) -- ( 2.3,-1.9) -- cycle
-          (-0.3,-0.7) -- (-1.9,-2.3) -- (-0.3,-2.3) -- cycle
-          (-0.7,-0.3) -- (-2.3,-0.3) -- (-2.3,-1.9) -- cycle;
-    % \sigma
-    \draw [semithick, MaterialTeal]
-          ( 1.1, 2.0) -- ( 1.1, 3.0) ( 2.0, 1.1) -- ( 3.0, 1.1)
-          (-1.1, 2.0) -- (-1.1, 3.0) (-2.0, 1.1) -- (-3.0, 1.1)
-          ( 1.1,-2.0) -- ( 1.1,-3.0) ( 2.0,-1.1) -- ( 3.0,-1.1)
-          (-1.1,-2.0) -- (-1.1,-3.0) (-2.0,-1.1) -- (-3.0,-1.1)
-          ( 0.6, 1.5) -- (-0.6, 1.5)
-          ( 1.5, 0.6) -- ( 1.5,-0.6)
-          ( 0.6,-1.5) -- (-0.6,-1.5)
-          (-1.5, 0.6) -- (-1.5,-0.6)
-          ( 0.6, 3.0) .. controls ( 0.6, 2.6) and ( 0.6, 2.0) .. ( 0.0, 2.0)
-                      .. controls (-0.6, 2.0) and (-0.6, 2.6) .. (-0.6, 3.0)
-          ( 3.0, 0.6) .. controls ( 2.6, 0.6) and ( 2.0, 0.6) .. ( 2.0, 0.0)
-                      .. controls ( 2.0,-0.6) and ( 2.6,-0.6) .. ( 3.0,-0.6)
-          ( 0.6,-3.0) .. controls ( 0.6,-2.6) and ( 0.6,-2.0) .. ( 0.0,-2.0)
-                      .. controls (-0.6,-2.0) and (-0.6,-2.6) .. (-0.6,-3.0)
-          (-3.0, 0.6) .. controls (-2.6, 0.6) and (-2.0, 0.6) .. (-2.0, 0.0)
-                      .. controls (-2.0,-0.6) and (-2.6,-0.6) .. (-3.0,-0.6);
-    % 1 \otimes \psi
-    \draw [semithick, MaterialIndigo]
-          ( 1.7, 0.9) -- ( 0.9, 1.7)
-          (-1.7, 0.9) -- (-0.9, 1.7)
-          ( 1.7,-0.9) -- ( 0.9,-1.7)
-          (-1.7,-0.9) -- (-0.9,-1.7);
-    % 1 or \psi
-    \draw [tensor leg]
-          ( 1.0, 0.0) .. controls ( 1.0, 0.6) and ( 0.6, 1.0) .. ( 0.0, 1.0)
-                      .. controls (-0.6, 1.0) and (-1.0, 0.6) .. (-1.0, 0.0)
-                      .. controls (-1.0,-0.6) and (-0.6,-1.0) .. ( 0.0,-1.0)
-                      .. controls ( 0.6,-1.0) and ( 1.0,-0.6) .. cycle
-          ( 3.0, 1.5) .. controls ( 2.0, 1.5) and ( 1.5, 2.0) .. ( 1.5, 3.0)
-          (-3.0, 1.5) .. controls (-2.0, 1.5) and (-1.5, 2.0) .. (-1.5, 3.0)
-          ( 3.0,-1.5) .. controls ( 2.0,-1.5) and ( 1.5,-2.0) .. ( 1.5,-3.0)
-          (-3.0,-1.5) .. controls (-2.0,-1.5) and (-1.5,-2.0) .. (-1.5,-3.0);
-    \draw (-2.6, 2.6) node {$i$}
-          (-2.6,-2.6) node {$j$}
-          ( 2.6,-2.6) node {$k$}
-          ( 2.6, 2.6) node {$l$};
-  \end{tikzpicture}
-}
 \begin{equation}
-  \tilde{A}_{ijkl} = \, \DiagramI \quad \text{where} \quad
+  \tilde{A}_{ijkl} = \, \tikzinput{ising/dual-octagon} \quad \text{where} \quad
   i, j, k, l = \1 \text{ or } \psi.
 \end{equation}
 此时
-\def\PathI{
-  \draw [tensor box]
-        (-0.6,-1.0) -- ( 1.0,-1.0) -- ( 1.0, 0.6) -- cycle
-        ( 0.6, 1.0) -- (-1.0, 1.0) -- (-1.0,-0.6) -- cycle;
-  \draw [tensor leg]
-        ( 1.6, 0.2) .. controls ( 0.7, 0.2) and ( 0.2, 0.7) .. ( 0.2, 1.7)
-        (-1.6,-0.2) .. controls (-0.7,-0.2) and (-0.2,-0.7) .. (-0.2,-1.7);
-  \draw [semithick, MaterialTeal]
-        (-0.2, 0.7) -- (-0.2, 1.7) (-1.6, 0.2) -- (-0.6, 0.2)
-        ( 0.2,-0.7) -- ( 0.2,-1.7) ( 1.6,-0.2) -- ( 0.6,-0.2)
-        (-0.6, 1.7) .. controls (-0.6, 0.9) and (-0.9, 0.6) .. (-1.6, 0.6)
-        ( 0.6,-1.7) .. controls ( 0.6,-0.9) and ( 0.9,-0.6) .. ( 1.6,-0.6);
-  \draw [semithick, MaterialIndigo]
-        ( 0.4,-0.4) -- (-0.4, 0.4);
-  \draw ( 1.2, 1.2) node {$i$}
-        (-1.2,-1.2) node {$j$};
-}
-\def\DiagramI{
-  \begin{tikzpicture}[baseline=-0.5ex, xscale=-1]
-    \PathI
-  \end{tikzpicture}
-}
-\def\DiagramII{
-  \begin{tikzpicture}[baseline=-0.5ex]
-    \PathI
-  \end{tikzpicture}
-}
 \begin{equation}
-  \DiagramI = \DiagramII =
+  \tikzinput{ising/dual-triangles-1} = \tikzinput{ising/dual-triangles-2} =
   \begin{cases}
     2^{\frac13} \bigl( \cosh\beta + \sinh\beta \bigr) = 2^{\frac13} \ee^\beta,
       & (i,j) = (\1,\1) \text{ or } (\psi, \psi); \\
@@ -488,7 +297,52 @@ $F$ 符号为
   \ee^{2\beta_{\text{c}}} = \sqrt{2} + 1 \implies \beta_{\text{c}} = \frac12 \log(1 + \sqrt{2}).
 \end{equation}
 
-\section{四面体对称性}
+\subsection{中心荷}
+\label{subsec:central-charge}
+
+得到奇异关联子后，我们可以用标准的张量网络方法对其进行分析。例如，我们可以利用在 \ref{subsec:mps-time-evolution} 小节中介绍的 iTEBD 算法来计算中心荷，其基本思路是：
+
+\begin{enumerate}
+  \item 利用奇异关联子构造正方形张量单元 $A_{ijkl}$。在 Ising 的情况中，我们已经得到了这样的表示［式~\eqref{eq:ising-octagon}］；而对于 Fibonacci 模型，我们需要把两个三角张量形拼合成一个正方形：
+    \begin{equation}
+      A_{ijkl} = \tikzinput{fib/square-1}.
+    \end{equation}
+  \item 按照 iTEBD 算法，用 $A_{ijkl}$ 作为 iMPO 对随机的初始态进行演化，得到正则化的不动点 iMPS $\{\Gamma,\lambda\}$。
+  \item 注意 $\lambda$ 是一个对角矩阵，其对角元可用来计算关联长度 $\xi$ 和 von Neumann 纠缠熵 $S_A$：
+    \begin{equation}
+      \xi = -\frac{1}{\log|\lambda_2 / \lambda_1|}, \quad
+      S_A = \sum_i \lambda_i^2 \log \lambda_i^2
+    \end{equation}
+  \item 利用关联长度与纠缠熵之间满足的关系式
+    \begin{equation}
+      S_A \sim \frac{c}{6} \log \xi,
+    \end{equation}
+    可以对使用不同的连接维数 $\chi$ 所获得的数据进行拟合，即可得到中心荷 $c$。
+\end{enumerate}
+
+\begin{figure}[htb]
+  % TODO: update image
+  \centering
+  \begin{tabular}{cc}
+    \includegraphics[width=0.45\textwidth]{images/temp/ising-central-charge.png} &
+    \includegraphics[width=0.45\textwidth]{images/temp/fib-central-charge.png} \\
+    (a) Ising 模型 & (b) Fibonacci 模型
+  \end{tabular}
+  \caption[中心荷拟合结果]{中心荷拟合结果。横坐标：关联长度的对数 $\log\xi$，纵坐标：纠缠熵 $S_A$。使用的连接维数为 $\chi\in\{8,9,\dots,27\}$。}
+  \label{fig:central-charge}
+\end{figure}
+
+我们使用连接维数 $\chi\in\{8,9,\dots,27\}$ 来进行计算，拟合结果如图~\ref{fig:central-charge} 所示。得到的中心荷为
+\begin{equation}
+  c_{\text{Ising}} \simeq 0.499 \pm 0.004, \quad
+  c_{\text{Fib}}   \simeq 0.792 \pm 0.004.
+\end{equation}
+这与对应 CFT 给出的理论值 $1/2$ 和 $4/5$ 是非常接近的，说明通过奇异关联子的确可以从弦网模型基态波函数出发得到正确的 CFT 不动点张量。
+
+\subsection{高度模型}
+
+% TODO: height model
+\emph{高度模型} (height model)
 
 \section{MPO 对称性}
 
