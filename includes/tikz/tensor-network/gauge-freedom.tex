@@ -1,0 +1,20 @@
+\begin{tikzpicture}[thick]
+  \draw (-2,0) -- (4.5,0) (7.5,0) -- (21.5,0)
+        (7.5,-4) -- (14,-4) (9.5,-4) -- (9.5,-5.5) (12,-4) -- (12,-5.5);
+  \foreach \x in {0, 2.5, 11.5, 17.5}
+    \draw (\x,0) -- (\x,-1.5);
+  \foreach \x in {0, 2.5, 11.5, 17.5}
+    \draw [fill=MaterialBlue]
+      (\x,0) circle [radius=0.5]
+      (\x,0.5) node [anchor=base, above] {$A$};
+  \foreach \x in {9.5, 12}
+    \draw [fill=MaterialTeal]
+      (\x,-4) circle [radius=0.5]
+      (\x,-3.5) node [anchor=base, above] {$\tilde{A}$};
+  \foreach \x/\xText in {9.5/$X^{-1}$, 13.5/$X$, 15.5/$X^{-1}$, 19.5/$X$}
+    \draw [fill=MaterialOrange]
+      (\x+0.5,0) -- (\x,0.5) node [anchor=base, above] {\xText} -- (\x-0.5,0) -- (\x,-0.5) -- cycle;
+  \draw [node font=\normalsize]
+    (6,0) node {$=$}
+    (6,-4) node {$=$};
+\end{tikzpicture}

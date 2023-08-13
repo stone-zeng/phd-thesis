@@ -1,0 +1,18 @@
+\begin{tikzpicture}[thick, baseline=-0.2em]
+  \draw (0,0)   -- (0,-2)   node [below] {$i_1$}
+        (0,0)   -- (-1,2)   node [above] {$j_1$}
+        (0,0)   -- (1,2)    node [above] {$j_2$}
+        (2.5,0) -- (2.5,-2) node [below] {$i_2$}
+        (2.5,0) -- (2.5,2)  node [above] {$j_3$}
+        (7.5,0) -- (6,2)    node [above] {$j_1$}
+        (7.5,0) -- (7.5,2)  node [above] {$j_2$}
+        (7.5,0) -- (9,2)    node [above] {$j_3$}
+        (7.5,0) -- (6.5,-2) node [below] {$i_1$}
+        (7.5,0) -- (8.5,-2) node [below] {$i_2$};
+  \foreach \x/\xColor in {0/MaterialRed, 2.5/MaterialGreen, 7.5/MaterialBlue}
+    \draw [fill=\xColor] (\x,0) circle [radius=0.6];
+  \draw [node font=\normalsize]
+    (5,0) node {$=$}
+    (1.2,-4.5) node {$A_{i_1 j_1 j_2} B_{i_2 j_3}$}
+    (7.5,-4.5) node {$(A\otimes B)_{i_1 i_2 j_1 j_2 j_3}$};
+\end{tikzpicture}

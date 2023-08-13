@@ -1,0 +1,31 @@
+\begin{tikzpicture}[thick, baseline=0.4em]
+  \def\Trace{
+    \draw (0,0)
+      .. controls (-1.0,0.0) and (-1.5,0.3) .. (-1.5,0.8)
+      .. controls (-1.5,1.3) and (-1.0,1.6) .. ( 0.0,1.6) -- (2.5,1.6)
+      .. controls ( 3.5,1.6) and ( 4.0,1.3) .. ( 4.0,0.8)
+      .. controls ( 4.0,0.3) and ( 3.5,0.0) .. ( 2.5,0.0) -- (0,0);
+  }
+  \begin{scope}
+    \Trace
+    \draw [fill=MaterialRed]   (0,0)   circle [radius=0.6] node [anchor=base, below left=0.5em]  {$A$};
+    \draw [fill=MaterialGreen] (2.5,0) circle [radius=0.6] node [anchor=base, below right=0.5em] {$B$};
+  \end{scope}
+  \begin{scope}[xshift=9.5em, yshift=-0.4em]
+    \draw (0,0)
+      .. controls (-0.9,0.0) and (-1.6,0.4) .. (-1.6,1.2)
+      .. controls (-1.6,2.0) and (-0.9,2.4) .. ( 0.0,2.4)
+      .. controls ( 0.9,2.4) and ( 1.6,2.0) .. ( 1.6,1.2)
+      .. controls ( 1.6,0.3) and ( 0.9,0.0) .. ( 0.0,0.0);
+    \draw [fill=MaterialRed]   (0,0)   circle [radius=0.6] node [anchor=base, below left=0.5em]  {$A$};
+    \draw [fill=MaterialGreen] (0,2.4) circle [radius=0.6] node [anchor=base, above right=0.5em] {$B^{\mathrm{T}}$};
+  \end{scope}
+  \begin{scope}[xshift=16.5em]
+    \Trace
+    \draw [fill=MaterialGreen] (0,0)   circle [radius=0.6] node [anchor=base, below left=0.5em]  {$B$};
+    \draw [fill=MaterialRed]   (2.5,0) circle [radius=0.6] node [anchor=base, below right=0.5em] {$A$};
+  \end{scope}
+  \draw [node font=\normalsize]
+    ( 6,0.6) node {$=$}
+    (13,0.6) node {$=$};
+\end{tikzpicture}

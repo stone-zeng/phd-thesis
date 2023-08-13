@@ -1,0 +1,13 @@
+\begin{tikzpicture}[thick, baseline=-0.2em]
+  \draw (-2, 1) node [left] {$a$} -- (2,-1) node [right] {$d$}
+        (-2,-1) node [left] {$b$} -- (2, 1) node [right] {$c$};
+  \draw [double]
+    (7,0) node [left] {$(a,b)$} -- (11,0) node [right] {$(c,d)$};
+  \draw [fill=MaterialRed]
+    (0,0) circle [radius=0.6]
+    (9,0) circle [radius=0.6];
+  \draw [node font=\normalsize]
+    (4,0) node {$\to$}
+    (0,-2.5) node {$A_{abcd}$}
+    (9,-2.5) node {$A_{(ab),(cd)}$};
+\end{tikzpicture}

@@ -1,0 +1,23 @@
+\begin{tikzpicture}[thick, baseline=-0.2em]
+  \draw (0,0)  -- (-2,1)    node [left]  {$i_1$}
+        (0,0)  -- (-2,-1)   node [left]  {$i_2$}
+        (0,0)  -- (2,1.5)   node [right] {$j_1$}
+        (0,0)  -- (2,0)     node [right] {$j_2$}
+        (0,0)  -- (2,-1.5)  node [right] {$j_3$}
+        (8,0)  -- (13,0)
+        (8,0)  -- (6,1)     node [left]  {$i_1$}
+        (8,0)  -- (6,-1)    node [left]  {$i_2$}
+        (13,0) -- (15,1.5)  node [right] {$j_1$}
+        (13,0) -- (15,0)    node [right] {$j_2$}
+        (13,0) -- (15,-1.5) node [right] {$j_3$}
+        (9.25,0.7)  node {$k$}
+        (11.75,0.7) node {$k$};
+  \foreach \x/\xColor in {0/MaterialRed, 8/MaterialGreen, 13/MaterialBlue}
+    \draw [fill=\xColor] (\x,0) circle [radius=0.6];
+  \draw [fill=MaterialOrange]
+    (11.1,0) -- (10.5,0.6) -- (9.9,0) -- (10.5,-0.6) -- cycle;
+  \draw [node font=\normalsize]
+    (4,0)     node {$=$}
+    (0,-3)    node {$A_{i_1 i_2, j_1 j_2 j_3}$}
+    (10.5,-3) node {$U_{i_1 i_2, k} \Lambda_{kk} V_{k, j_1 j_2 j_3}$};
+\end{tikzpicture}

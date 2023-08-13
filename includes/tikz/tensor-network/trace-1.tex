@@ -1,0 +1,18 @@
+\begin{tikzpicture}[thick, baseline=-0.2em]
+  \draw (-2,-1) node [left] {$b$} -- (1,0.5)
+    .. controls (1.4, 0.7) and (1.7, 0.8) .. (1.9, 0.8)
+    .. controls (2.2, 0.8) and (2.5, 0.5) .. (2.5, 0.0) node [right] {$i$}
+    .. controls (2.5,-0.5) and (2.2,-0.8) .. (1.9,-0.8)
+    .. controls (1.7,-0.8) and (1.4,-0.7) .. (1.0,-0.5)
+    -- (-2,1) node [left] {$a$}
+       (7.0,-0.5)
+    .. controls (6.1,-0.3) and (5.5,-0.1) .. (5.5, 0.3)
+    .. controls (5.5, 0.7) and (6.1, 0.9) .. (7.0, 0.9)
+    .. controls (7.9, 0.9) and (8.5, 0.7) .. (8.5, 0.3) node [right] {$i$}
+    .. controls (8.5,-0.1) and (7.9,-0.3) .. (7.0,-0.5);
+  \draw [fill=MaterialRed]   (0,0)    circle [radius=0.6];
+  \draw [fill=MaterialGreen] (7,-0.4) circle [radius=0.6];
+  \draw [node font=\normalsize]
+    (0,-2.5) node {$A_{abii}$}
+    (7,-2.5) node {$B_{ii}$};
+\end{tikzpicture}

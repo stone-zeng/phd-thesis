@@ -1,0 +1,12 @@
+\begin{tikzpicture}[thick]
+  \draw ( 0,0) -- (2,0) node [right] {$i$}
+        ( 5,0) node [left] {$i$} -- ( 9,0) node [right] {$j$}
+        (12,0) node [left] {$i$} -- (16,0) node [right] {$j$}
+        (14,0) -- (14,2) node [above] {$k$};
+  \foreach \x/\xColor in {0/MaterialRed, 7/MaterialGreen, 14/MaterialBlue}
+    \draw [fill=\xColor] (\x,0) circle [radius=0.6];
+  \draw [node font=\normalsize]
+    ( 1,-2) node {$V_i$}
+    ( 7,-2) node {$M_{ij}$}
+    (14,-2) node {$T_{ijk}$};
+\end{tikzpicture}

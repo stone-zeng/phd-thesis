@@ -9,7 +9,7 @@
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=0.6\textwidth]{images/temp/tensors.pdf}
+  \tikzinput{tensor-network/basic}
   \caption[张量单元]{三种张量单元，分别为向量、矩阵和三阶张量。}
   \label{fig:tensors}
 \end{figure}
@@ -20,40 +20,42 @@
 
 \emph{张量积} (tensor product) 其实就是把若干个张量并排放置，并保持指标不变：
 \begin{equation}
-  (A \otimes B)_{i_1,\dots,i_r,j_1,\dots,j_s} \coloneq A_{i_1,\dots,i_r} B_{j_1,\dots,j_s}.
+  A_{i_1,\dots,i_r} B_{j_1,\dots,j_s} \eqcolon (A \otimes B)_{i_1,\dots,i_r,j_1,\dots,j_s}.
 \end{equation}
 图形描述为
 \begin{equation}
-  [[TODO:]]
+  \tikzinput{tensor-network/tensor-product}
 \end{equation}
 
 张量的\emph{缩并} (contraction) 是向量内积、矩阵乘法的推广，即对两个张量的某些指标进行求和，得到一个新的张量：
 \begin{equation}
-  C_{abc} = \sum_k A_{abk} B_{kc} \eqcolon A_{abk} B_{kc}
+  A_{abk} B_{kc} \coloneq \sum_k A_{abk} B_{kc} = C_{abc}.
 \end{equation}
 这里根据 Einstein 求和约定省略了求和号。张量缩并的图形描述为
 \begin{equation}
-  \mbox{\includegraphics[width=0.75\textwidth]{images/temp/contraction.pdf}}
+  \tikzinput{tensor-network/contraction}
 \end{equation}
 即把需要缩并的腿（指标）连接起来。
 
-同一个张量的指标也可以缩并，这样就得到了\emph{迹} (trace) 或\emph{偏迹} (partial trace)：
-\begin{equation}
-    (\tr_{x,y} A)_{i_1,\dots,i_{x-1},i_{x+1},\dots,i_{y-1},u_{y+1},\dots,i_r}
-  = A_{i_1,\dots,i_{x-1},k,i_{x+1},\dots,i_{y-1},k,i_{y+1},\dots,i_r}.
-\end{equation}
+同一个张量的指标也可以缩并。部分缩并可以得到\emph{偏迹} (partial trace)，全部缩并则得到\emph{迹} (trace)：
+\begin{align}
+     (\tr_{x,y} A)_{i_1,\dots,i_{x-1},i_{x+1},\dots,i_{y-1},u_{y+1},\dots,i_r}
+  &= A_{i_1,\dots,i_{x-1},k,i_{x+1},\dots,i_{y-1},k,i_{y+1},\dots,i_r}, \\
+     \tr B
+  &= B_{ii}
+\end{align}
 其图形描述与缩并类似：
 \begin{equation}
-  [[TODO:]]
+  \tikzinput{tensor-network/trace-1}
 \end{equation}
 利用图形语言很容易验证 $\tr(AB)=\tr(BA)$：
 \begin{equation}
-  [[TODO:]]
+  \tikzinput{tensor-network/trace-2}
 \end{equation}
 
 张量的\emph{变形} (reshape) 相当于指标的重新组合，例如
 \begin{equation}
-  \mbox{\includegraphics[width=0.5\textwidth]{images/temp/reshape.pdf}}
+  \tikzinput{tensor-network/reshape}
 \end{equation}
 在数值计算中，把一般形状的张量变形为矩阵，往往可以利用为矩阵优化的算法来加速计算。
 
@@ -65,7 +67,7 @@
 \end{equation}
 其中 $M$ 为 $m\times n$ 矩阵，$\Lambda$ 为对角矩阵（如果行数、列数不等，则相应补零），$U$ 和 $V$ 为幺正矩阵，$V^\dagger$ 表示共轭转置。利用张量的变形，可以很容易地将 SVD 推广为一般形状的张量，用图形描述为
 \begin{equation}
-  [[TODO:]]
+  \tikzinput{tensor-network/svd}
 \end{equation}
 
 奇异值分解可以用来获得张量的近似表示。将奇异值（$\Lambda$ 矩阵的对角元）按大小排列后，只保留前 $r$ 个值，就得到了秩为 $r$ 的近似张量：
@@ -90,9 +92,7 @@
 \subsection{波函数的构造}
 \label{subsec:mps-construction}
 
-% \citet{cirac2021matrix}
-
-如图~\ref{fig:mps} 所示，\emph{矩阵乘积态} (matrix product state, MPS)\cite{perez2007matrix,verstraete2008matrix,orus2014practical}由一系列张量单元首尾相连而成，每个张量单元包含三个指标，没有缩并的称为\emph{物理指标} (physical index)，另外两个则称为\emph{虚拟指标} (virtual index) 或\emph{辅助指标} (auxiliary index)。根据具体问题的需要，MPS 可取开放或周期性边界条件。当所研究的系统具有平移对称性时，可以将所有张量单元取为相同值，此时有
+如图~\ref{fig:mps} 所示，\emph{矩阵乘积态} (matrix product state, MPS)\cite{perez2007matrix,verstraete2008matrix,orus2014practical,cirac2021matrix}由一系列张量单元首尾相连而成，每个张量单元包含三个指标，没有缩并的称为\emph{物理指标} (physical index)，另外两个则称为\emph{虚拟指标} (virtual index) 或\emph{辅助指标} (auxiliary index)。根据具体问题的需要，MPS 可取开放或周期性边界条件。当所研究的系统具有平移对称性时，可以将所有张量单元取为相同值，此时有
 \begin{equation}
   % TODO: 周期性边界条件
   \Psi_{i_1 i_2 \cdots i_n} = A^{j_1 j_2}_{i_1} A^{j_2 j_3}_{i_2} \cdots A^{j_n j_1}_{i_n}.
@@ -101,8 +101,12 @@
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=0.6\textwidth]{images/temp/mps.png}
-  \caption[矩阵乘积态的示意图]{矩阵乘积态的示意图。图 (a)、(b) 分别对应开放和周期性边界条件。}
+  \begin{tabular}{c@{\qquad}c}
+    \tikzinput{tensor-network/mps-1} &
+    \tikzinput{tensor-network/mps-2} \\
+    (a) & (b)
+  \end{tabular}
+  \caption[矩阵乘积态]{矩阵乘积态。图 (a)、(b) 分别对应开放和周期性边界条件。}
   \label{fig:mps}
 \end{figure}
 
@@ -114,9 +118,8 @@
 
 \begin{figure}[htb]
   \centering
-  % \includegraphics[width=0.6\textwidth]{images/temp/mps.png}
-  % \caption[]{}
-  \caption{规范自由度}
+  \tikzinput{tensor-network/gauge-freedom}
+  \caption[规范自由度]{规范自由度。其中张量单元 $\tilde{A}=XAX^{-1}$。}
   \label{fig:mps-gauge-freedom}
 \end{figure}
 
@@ -130,7 +133,7 @@
     &= \sum_{i=1}^d \left( \lambda_\alpha \Gamma^i_{\alpha\beta} \right) \left( \lambda_{\alpha'} \Gamma^i_{\alpha'\beta'} \right)^*,
   \end{aligned}
 \end{equation}
-此时正则形式要求 $R$、$L$ 的特征向量均为单位矩阵（在张量变形的意义下），且对应的主特征值\footnote{即绝对值最大的特征值。它对应的特征向量也称主特征向量。} $\eta$ 相同。将一般的 $\Gamma$ 和 $\lambda$（例如随机初始化的）进行正则化的方法为：
+此时正则形式要求 $R$、$L$ 的特征向量均为单位矩阵（在张量变形的意义下），且对应的主特征值\footnote{即绝对值最大的特征值。它对应的特征向量也称主特征向量。} $\eta$ 相同。如图~\ref{fig:mps-canonical-form} 所示，将一般的 $\Gamma$ 和 $\lambda$（例如随机初始化的）进行正则化的方法为：
 
 \begin{enumerate}
   \item 计算 $R$、$L$ 的主特征向量，并变形为矩阵 $V_R$、$V_L$\footnote{在实际计算中，$V_R$、$V_L$ 可能会带有冗余的相位，这会影响接下来的矩阵分解操作。此相位可通过规定 $V_R$、$V_L$ 的迹为实数来移除。}，对应的特征值均为 $\eta$。将 $V_R$、$V_L$ 进一步分解为 $X$、$Y$，使其满足
@@ -155,8 +158,7 @@
 \begin{figure}[htb]
   \centering
   \includegraphics[width=\textwidth]{images/temp/canonical-form.png}
-  % \caption[]{}
-  \caption{正则形式}
+  \caption[MPS 的正则形式]{MPS 的正则形式。(a) 计算主特征向量 $V_R$、$V_L$；(b) 利用规范自由度插入 $I=(Y^\trans)^{-1}Y^\trans$ 和 $I=XX^{-1}$，并进行 SVD；(c) 重排张量，得到 $\Gamma'$。图片来源：\parencite{orus2014practical}。}
   \label{fig:mps-canonical-form}
 \end{figure}
 
@@ -189,7 +191,7 @@ iDMRG\cite{mcculloch2008infinite}
 \end{equation}
 将演化算符表示成 MPO 的形式，这样就可以很方便地与 MPS 形式的波函数进行缩并。
 
-对于时间演化或虚时演化算符而言，由于经过 Suzuki--Trotter 分解后它们都很接近幺正算符，不会破坏 iMPS 的正则形式。而一般的算符并不具备这一性质，所以需要额外进行正则化操作。一般的 iTEBD 算法如下：
+对于时间演化或虚时演化算符而言，由于经过 Suzuki--Trotter 分解后它们都很接近幺正算符，不会破坏 iMPS 的正则形式。而一般的算符并不具备这一性质，所以需要额外进行正则化操作。如图~\ref{fig:itebd-evolution} 所示，一般的 iTEBD 算法如下：
 
 \begin{enumerate}
   \item 取随机的 iMPS $\{\Gamma,\lambda\}$，并按照 \ref{subsec:mps-construction} 小节中介绍的方法将其正则化。
@@ -211,8 +213,7 @@ iDMRG\cite{mcculloch2008infinite}
 \begin{figure}[htb]
   \centering
   \includegraphics[width=0.75\textwidth]{images/temp/itebd-evolution.png}
-  % \caption[]{}
-  \caption{iTEBD 算法}
+  \caption[iTEBD 算法]{iTEBD 算法。(I) 把 iMPS $\{\Gamma,\lambda\}$ 与 MPO 的张量单元进行缩并；(II) 对 $\{\tilde{\Gamma},\tilde{\lambda}\}$ 进行正则化；(III) 利用 SVD 把连接维数保持在 $\chi$。图片来源：\parencite{orus2008infinite}。}
   \label{fig:itebd-evolution}
 \end{figure}
 
@@ -241,16 +242,19 @@ iDMRG\cite{mcculloch2008infinite}
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[height=6.5cm]{images/temp/itebd-one-point-function.png} \quad
-  \includegraphics[height=6.5cm]{images/temp/itebd-two-point-function.png}
-  \caption{单点函数和两点（关联）函数的计算}
+  \begin{tabular}{cc}
+    \includegraphics[height=6.5cm]{images/temp/itebd-one-point-function.png} &
+    \includegraphics[height=6.5cm]{images/temp/itebd-two-point-function.png} \\
+    (a) & (b)
+  \end{tabular}
+  \caption[单点函数和两点关联函数的计算]{(a) 单点函数和 (b) 两点（关联）函数的计算。图片来源：\parencite{orus2008infinite}。}
   \label{fig:expectation-value}
 \end{figure}
 
 \subsection{推广}
 \label{subsec:mps-generalization}
 
-PEPS
+PEPS\cite{cirac2021matrix}
 
 MERA, entanglement renormalization\cite{vidal2007entanglement,evenbly2009algorithms,konig2009exact,evenbly2014algorithms,evenbly2015tensor2}
 
