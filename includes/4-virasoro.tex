@@ -214,7 +214,7 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.6\textwidth]{images/temp/virasoro-transfer-matrix.pdf}
-  \caption[格点模型配分函数的张量网络描述]{格点模型配分函数的张量网络描述。}
+  \caption[格点模型配分函数的张量网络描述]{格点模型配分函数的张量网络描述。图片来源：\parencite{wang2022virasoro}。}
   \label{fig:partition-function-tensor-network}
 \end{figure}
 
@@ -246,15 +246,11 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
   \label{eq:scaling-dimension-rescale}
 \end{equation}
 
-自旋部分可以通过引入平移算符 $P$ 来得到。在圆柱上，可以写为 $\exp(2\pi\ii P/n)$，而其本征值为 $\exp(2\pi\ii s_\alpha/n)$。在具有平移对称性的模型中，$\exp(2\pi\ii P/n)$ 和转移矩阵 $M$ 对易，因此它们可以被同时对角化。平移算符 $P$ 的张量网络表示如图~\ref{fig:translation-operator} 所示，即把格点平移一个单位\cite{van2021efficient}。
-
-\begin{figure}[ht]
-  \[
-    P_{i_1 i_2 \cdots i_n, \, j_1 j_2 \cdots j_n} = \tikzinput{translation-operator}
-  \]
-  \caption[平移算符 $P$ 的张量网络表示]{平移算符 $P$ 的张量网络表示。}
-  \label{fig:translation-operator}
-\end{figure}
+自旋部分可以通过引入平移算符 $P$ 来得到。在圆柱上，可以写为 $\exp(2\pi\ii P/n)$，而其本征值为 $\exp(2\pi\ii s_\alpha/n)$。在具有平移对称性的模型中，$\exp(2\pi\ii P/n)$ 和转移矩阵 $M$ 对易，因此它们可以被同时对角化。平移算符 $P$ 的张量网络表示为\cite{van2021efficient}：
+\begin{equation}
+  P_{i_1 i_2 \cdots i_n, \, j_1 j_2 \cdots j_n} = \tikzinput{translation-operator},
+\end{equation}
+即把格点平移一个单位。
 
 \section{Virasoro 与 Kac--Moody 算符的构造}
 \label{sec:virasoro-operators}
@@ -274,7 +270,7 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.8\textwidth]{images/temp/virasoro-construction.pdf}
-  \caption[能动量张量与 Virasoro 算符的构造]{在一般的张量网络中确定能动量张量 $T$，并以此来构造 Virasoro 算符［见式~\eqref{eq:lattice-virasoro-operators}］。对应于与能动量张量的本征态 $\ket*{\phi_T}$ 可以从圆柱转移矩阵中通过精确对角化得到，它被进一步变形为 4 个指标的张量 $T$，并插入到新的圆柱中，由此即可得到 Virasoro 算符 $L_n$。同样的方法也可用来构造 Kac--Moody 算符 $J_n$。}
+  \caption[能动量张量与 Virasoro 算符的构造]{在一般的张量网络中确定能动量张量 $T$，并以此来构造 Virasoro 算符［见式~\eqref{eq:lattice-virasoro-operators}］。对应于与能动量张量的本征态 $\ket*{\phi_T}$ 可以从圆柱转移矩阵中通过精确对角化得到，它被进一步变形为 4 个指标的张量 $T$，并插入到新的圆柱中，由此即可得到 Virasoro 算符 $L_n$。同样的方法也可用来构造 Kac--Moody 算符 $J_n$。图片来源：\parencite{wang2022virasoro}。}
   \label{fig:virasoro-construction}
 \end{figure}
 
@@ -310,7 +306,7 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\textwidth]{images/temp/virasoro-blocking.pdf}
-  \caption[张量 $A$ 的粗粒近似]{对张量 $A$ 进行粗粒近似。上图：$2\times2\mapsto1$ 的粗粒近似操作，$A^{(s+1)}$ 可由 4 个 $A^{(s)}$ 张量缩并得到。下图：相应的算符可以等效为一个指标更少、但连接维数更大的正方形张量。}
+  \caption[张量 $A$ 的粗粒近似]{对张量 $A$ 进行粗粒近似。上图：$2\times2\mapsto1$ 的粗粒近似操作，$A^{(s+1)}$ 可由 4 个 $A^{(s)}$ 张量缩并得到。下图：相应的算符可以等效为一个指标更少、但连接维数更大的正方形张量。图片来源：\parencite{wang2022virasoro}。}
   \label{fig:virasoro-blocking}
 \end{figure}
 
@@ -321,7 +317,7 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.7\textwidth]{images/fibonacci/ising-spectrum.pdf}
-  \caption[Ising 模型的能谱]{Ising 模型的能谱，对应于 $n\to\infty$ 圆柱转移矩阵。其中初级场及能动量张量使用 CFT 中的相应算符来标记。}
+  \caption[Ising 模型的能谱]{Ising 模型的能谱，对应于 $n\to\infty$ 圆柱转移矩阵。其中初级场及能动量张量使用 CFT 中的相应算符来标记。图片来源：\parencite{zeng2023virasoro}。}
   \label{fig:ising-spectrum}
 \end{figure}
 
@@ -330,7 +326,7 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\textwidth]{images/fibonacci/ising-correlation-function.pdf}
-  \caption[Ising 模型中的两点关联函数]{Ising 模型中能动量张量 $T$（左图）和 $L_{-1}\phi_\sigma$（右图）的两点关联函数。为了避免计算本征值时有限尺寸效应导致的误差（影响 $x$ 较小的区间），以及 iTEBD 算法中的长程累积误差和 iMPS 本身结构带来的限制（影响 $x$ 较大的区间），我们只取 $x=10$ 到 100 区间的数据来拟合幂律公式 $y=Ax^{-2\Delta}$，此时分别得到 $\Delta=1.988$ 和 1.106。它们与 Ising 能谱的理论结果（$\Delta=2$ 和 $1+1/8$）基本相符。}
+  \caption[Ising 模型中的两点关联函数]{Ising 模型中能动量张量 $T$（左图）和 $L_{-1}\phi_\sigma$（右图）的两点关联函数。为了避免计算本征值时有限尺寸效应导致的误差（影响 $x$ 较小的区间），以及 iTEBD 算法中的长程累积误差和 iMPS 本身结构带来的限制（影响 $x$ 较大的区间），我们只取 $x=10$ 到 100 区间的数据来拟合幂律公式 $y=Ax^{-2\Delta}$，此时分别得到 $\Delta=1.988$ 和 1.106。它们与 Ising 能谱的理论结果（$\Delta=2$ 和 $1+1/8$）基本相符。图片来源：\parencite{zeng2023virasoro}。}
   \label{fig:ising-correlation-functions}
 \end{figure}
 
@@ -342,7 +338,7 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.4\textwidth]{images/temp/virasoro-operator.pdf}
-  \caption[Virasoro 算符作用在本征态上]{Virasoro 算符（或 Kac--Moody 算符）作用在本征态上。}
+  \caption[Virasoro 算符作用在本征态上]{Virasoro 算符（或 Kac--Moody 算符）作用在本征态上。图片来源：\parencite{wang2022virasoro}。}
   \label{fig:virasoro-operator}
 \end{figure}
 
@@ -363,7 +359,7 @@ Virasoro 算符的正确性同样可以通过两点关联函数来检验。在�
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.7\textwidth]{images/virasoro/ising_spectrum.pdf}
-  \caption[Virasoro 算符在 Ising 模型能谱上的作用示意图]{Virasoro 算符 $L_{-1}$ 在 Ising 模型能谱上的作用示意图。能动量张量 $T$ 由 $n=4$、$\chi=4$ 圆柱的本征态得到（左图），由此构造出的 Virasoro 算符 $L_{-1}$ 则作用在 $N=8$、$\chi=4$ 的圆柱上（右图）。更多的例子见图~\ref{fig:ising-virasoro-all}。}
+  \caption[Virasoro 算符在 Ising 模型能谱上的作用示意图]{Virasoro 算符 $L_{-1}$ 在 Ising 模型能谱上的作用示意图。能动量张量 $T$ 由 $n=4$、$\chi=4$ 圆柱的本征态得到（左图），由此构造出的 Virasoro 算符 $L_{-1}$ 则作用在 $N=8$、$\chi=4$ 的圆柱上（右图）。更多的例子见图~\ref{fig:ising-virasoro-all}。图片来源：\parencite{wang2022virasoro}。}
   \label{fig:ising-virasoro}
 \end{figure}
 
@@ -386,7 +382,7 @@ Virasoro 算符的正确性同样可以通过两点关联函数来检验。在�
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.7\textwidth]{images/virasoro/dimer_spectrum.pdf}
-  \caption[Kac--Moody 算符在 dimer 模型能谱上的作用示意图]{Kac--Moody 算符 $J_{-1}$ 在 dimer 模型能谱上的作用示意图。近似的流算符 $J$ 由 $n=4$、$\chi=4$ 圆柱的本征态得到（左图），由此构造出的 Kac--Moody 算符 $J_{-1}$ 则作用在 $N=8$、$\chi=4$ 的圆柱上（右图）。其中，符合 CFT 预测的作用使用黑色实线箭头标记，而不相符的则用灰色虚线箭头标记。更多的例子见图~\ref{fig:dimer-kac-moody-all}。}
+  \caption[Kac--Moody 算符在 dimer 模型能谱上的作用示意图]{Kac--Moody 算符 $J_{-1}$ 在 dimer 模型能谱上的作用示意图。近似的流算符 $J$ 由 $n=4$、$\chi=4$ 圆柱的本征态得到（左图），由此构造出的 Kac--Moody 算符 $J_{-1}$ 则作用在 $N=8$、$\chi=4$ 的圆柱上（右图）。其中，符合 CFT 预测的作用使用黑色实线箭头标记，而不相符的则用灰色虚线箭头标记。更多的例子见图~\ref{fig:dimer-kac-moody-all}。图片来源：\parencite{wang2022virasoro}。}
   \label{fig:dimer-kac-moody}
 \end{figure}
 
@@ -441,7 +437,7 @@ Fibonacci 弦网模型定义在六边形网格上，包含 $\1$ 和 $\tau$ 两�
 
 \begin{figure}[ht]
   \tikzinput{fib/linear-operator}
-  \caption[利用线性算符方法实现矩阵乘法]{对于 Fibonacci 弦网模型，利用线性算符方法实现矩阵乘法 $M\cdot v$。}
+  \caption[利用线性算符方法实现矩阵乘法]{对于 Fibonacci 弦网模型，利用线性算符方法实现矩阵乘法 $M\cdot v$。图片来源：\parencite{zeng2023virasoro}。}
   \label{fig:fib-linear-operator}
 \end{figure}
 
@@ -456,7 +452,7 @@ Fibonacci 弦网模型定义在六边形网格上，包含 $\1$ 和 $\tau$ 两�
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.7\textwidth]{images/fibonacci/fib-spectrum.pdf}
-  \caption[Fibonacci 模型的能谱]{Fibonacci 模型的能谱，对应于 $n\to\infty$ 圆柱转移矩阵。“\tikzinput{fib/spectrum-label}\unskip”表明存在二重简并。图中的本征值进行了缩放处理，以使得 $\Delta_{\1}=0$ 和 $\Delta_T=2$。初级场使用对应的算符来标记，它们的共形维数分别为 $h_{\1}=0$，$h_\sigma=1/15$，$h_\epsilon=2/5$，$h_Z=2/3$，$h_X=7/5$ 以及 $h_Y=3$（与 $X$、$Y$ 对应的态本征值较大，在我们的计算中没有考虑）。CFT 配分函数为 $Z=|\chi_{\1}+\chi_Y|^2+|\chi_\epsilon+\chi_X|^2+2|\chi_\sigma|^2\discretionary{}{}{}+2|\chi_Z|^2$\cite{vanhove2018mapping}。对应于 $|\chi_{\1}+\chi_Y|^2$ 的子空间，其中的本征态用橙色标记。}
+  \caption[Fibonacci 模型的能谱]{Fibonacci 模型的能谱，对应于 $n\to\infty$ 圆柱转移矩阵。“\tikzinput{fib/spectrum-label}\unskip”表明存在二重简并。图中的本征值进行了缩放处理，以使得 $\Delta_{\1}=0$ 和 $\Delta_T=2$。初级场使用对应的算符来标记，它们的共形维数分别为 $h_{\1}=0$，$h_\sigma=1/15$，$h_\epsilon=2/5$，$h_Z=2/3$，$h_X=7/5$ 以及 $h_Y=3$（与 $X$、$Y$ 对应的态本征值较大，在我们的计算中没有考虑）。CFT 配分函数为 $Z=|\chi_{\1}+\chi_Y|^2+|\chi_\epsilon+\chi_X|^2+2|\chi_\sigma|^2\discretionary{}{}{}+2|\chi_Z|^2$\cite{vanhove2018mapping}。对应于 $|\chi_{\1}+\chi_Y|^2$ 的子空间，其中的本征态用橙色标记。图片来源：\parencite{zeng2023virasoro}。}
   \label{fig:fib-spectrum}
 \end{figure}
 
@@ -469,7 +465,7 @@ Fibonacci 弦网模型定义在六边形网格上，包含 $\1$ 和 $\tau$ 两�
 \begin{figure}[ht]
   \centering
   \includegraphics[width=\textwidth]{images/fibonacci/fib-fitting.pdf}
-  \caption[Fibonacci 能谱的拟合结果]{Fibonacci 能谱的拟合结果。在拟合 $n\Delta=An+B$ 时，我们仅使用了 $n=12$ 到 27 的圆柱（实线）；而在拟合 $n\Delta=An+B+C/n$ 时，我们使用了所有可用的 $n$（虚线）。}
+  \caption[Fibonacci 能谱的拟合结果]{Fibonacci 能谱的拟合结果。在拟合 $n\Delta=An+B$ 时，我们仅使用了 $n=12$ 到 27 的圆柱（实线）；而在拟合 $n\Delta=An+B+C/n$ 时，我们使用了所有可用的 $n$（虚线）。图片来源：\parencite{zeng2023virasoro}。}
   \label{fig:fib-fitting}
 \end{figure}
 
@@ -478,9 +474,9 @@ Fibonacci 弦网模型定义在六边形网格上，包含 $\1$ 和 $\tau$ 两�
 
 然而，当太多能级混杂在一起时，上述的拟合方法也无法保证能够将各能级区分开来。例如，当两个能级的自旋相同、标度维数又很接近时，仅从拟合优度并不能分辨。为此，我们需要利用\emph{拓扑投影算符} (topological projectors)\cite{bultinck2017anyons,williamson2017symmetry,aasen2020topological}，它可以将转移矩阵投影到对应于特定拓扑荷 (topological charge) 的子空间。拓扑荷与格点模型的尺寸是无关的，因此在热力学极限下趋于能动量张量的本征态，即使在有限大小的系统中也仍然会保持在同一个分区 (sector) ，即包含了真空态的平凡分区。它们在特定的投影算符作用之下可以保留在能谱中，而其他态则会被移除（即投影到零值）。
 
-拓扑投影算符的构造与 \emph{Ocneanu 管状代数} (Ocneanu's tube algebra)\cite{evans1995ocneanu,evans1998quantum}有关。拓扑序模型中的每种任意子都对应着 CFT 中的一个拓扑分区，换而言之 CFT 中的初级场及其后代组成的“家族” (family) 可按照对应的任意子类型进行分类。拓扑序中的弦算符则可作为投影算符，将转移矩阵投影到包含相应拓扑分区的子空间上。因为我们这里的工作主要关注能动量张量，而能动量张量与真空态属于同一分区，所以只需构造与任意子 $\1$ 相对应的弦算符。
+拓扑投影算符的构造与 \emph{Ocneanu 管状代数} (Ocneanu's tube algebra)\cite{evans1995ocneanu,evans1998quantum}有关（见 \ref{subsec:tube-algebra-idempotents} 小节）。拓扑序模型中的每种任意子都对应着 CFT 中的一个拓扑分区，换而言之 CFT 中的初级场及其后代组成的“家族” (family) 可按照对应的任意子类型进行分类。拓扑序中的弦算符则可作为投影算符，将转移矩阵投影到包含相应拓扑分区的子空间上。因为我们这里的工作主要关注能动量张量，而能动量张量与真空态属于同一分区，所以只需构造与任意子 $\1$ 相对应的弦算符。
 
-弦算符的一般形式可由 MPO 来描述，称为\emph{幂等元} (idempotent)\cite{bultinck2017anyons,williamson2017symmetry,vanhove2018mapping,lootens2019cardy,aasen2020topological}。构成这些 MPO 的矩阵单元为
+弦算符的一般形式可由 MPO 来描述，称为\emph{中心幂等元} (central idempotent)\cite{bultinck2017anyons,williamson2017symmetry,vanhove2018mapping,lootens2019cardy,aasen2020topological}。构成这些 MPO 的矩阵单元为
 \begin{equation}
   \begin{aligned}
        \tikzinput{idempotents-mpo-1}
@@ -496,16 +492,16 @@ Fibonacci 弦网模型定义在六边形网格上，包含 $\1$ 和 $\tau$ 两�
   = \frac{1}{\sqrt{d_j d_c}} \bigl[ F^{aik}_b \bigr]_{jc}
   = \frac{1}{\sqrt{d_a d_b d_c d_i d_j d_k}} \, \Tetrahedron jibcka.
 \end{equation}
-对于大小为 $n$ 的圆柱转移矩阵，管状代数的基可由 $n-1$ 个橙色张量与一个红色张量首尾相连得到：
+对于大小为 $n$ 的圆柱转移矩阵，管状代数的基\footnote{在中心幂等元的构造中，\ref{subsec:tube-algebra-idempotents} 小节中带有 4 个指标的 $\calT{c}{bab}$ 需要满足 $r=p$，因此这里的 $\calT{c}{ab}\coloneq\calT{c}{bab}$。}可由 $n-1$ 个橙色张量与一个红色张量首尾相连得到：
 \begin{equation}
-  \mathcal{T}_{ab}^c = \tikzinput{tube-algebra-basis}.
+  \calT{c}{ab} = \tikzinput{tube-algebra-basis}.
 \end{equation}
 注意图中省略了辅助指标，它们需要被正常缩并掉。
 
-幂等元的一般形式可表示为这些基的线性组合。在 Fibonacci 模型中，对应于 $\1$ 的弦算符幂等元为\cite{bultinck2017anyons}
+中心幂等元的一般形式可表示为这些基的线性组合。在式~\eqref{eq:fib-idempotents} 中，我们已经给出了 Fibonacci 模型中对应于 $\1$ 的中心幂等元：
 \begin{equation}
-  \mathcal{P}_1 = \frac{1}{\sqrt5}
-  \left( \frac{1}{\phi} \mathcal{T}^{\1}_{\1\1} + \sqrt{\phi} \mathcal{T}^\tau_{\tau\1} \right).
+  \calP{1} = \frac{1}{\sqrt5}
+  \left( \frac{1}{\phi} \calT{\1}{\1\1} + \sqrt{\phi} \calT{\tau}{\tau\1} \right).
 \end{equation}
 它可以与转移矩阵、平移算符相连，再进行对角化便可得到只含真空态、能动量张量等的子能谱。这样，即使是在有限尺寸下，依然可以严格地找到能动量张量对应的本征态。我们在表~\ref{tab:fib-spectrum} 和图~\ref{fig:fib-spectrum} 中都对这些态做了高亮。
 
@@ -522,7 +518,7 @@ Fibonacci 弦网模型定义在六边形网格上，包含 $\1$ 和 $\tau$ 两�
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.7\textwidth]{images/fibonacci/fib-virasoro.pdf}
-  \caption[Virasoro 算符在 Fibonacci 模型能谱上的作用示意图]{Virasoro 算符 $L_{-1}$ 在 Fibonacci 模型能谱上的作用示意图。能动量张量 $T$ 由 $n=18$、$\chi=2$ 圆柱的本征态得到（左图），由此构造出的 Virasoro 算符 $L_{-1}$ 则作用在 $N=3$、$\chi=2^{n/3}$ 的圆柱上（右图）。标记为 (1a)/(1b) 和 (2a)/(2b) 的两组本征态在 CFT 极限下应当是简并的，但由于有限尺寸效应，它们的标度维数并不相同（可对比图~\ref{fig:fib-spectrum}）。更多的例子见图~\ref{fig:fib-virasoro-all}。}
+  \caption[Virasoro 算符在 Fibonacci 模型能谱上的作用示意图]{Virasoro 算符 $L_{-1}$ 在 Fibonacci 模型能谱上的作用示意图。能动量张量 $T$ 由 $n=18$、$\chi=2$ 圆柱的本征态得到（左图），由此构造出的 Virasoro 算符 $L_{-1}$ 则作用在 $N=3$、$\chi=2^{n/3}$ 的圆柱上（右图）。标记为 (1a)\,/\,(1b) 和 (2a)\,/\,(2b) 的两组本征态在 CFT 极限下应当是简并的，但由于有限尺寸效应，它们的标度维数并不相同（可对比图~\ref{fig:fib-spectrum}）。更多的例子见图~\ref{fig:fib-virasoro-all}。图片来源：\parencite{zeng2023virasoro}。}
   \label{fig:fib-virasoro}
 \end{figure}
 

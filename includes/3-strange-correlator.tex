@@ -344,10 +344,128 @@ $F$ 符号为
 
 \section{MPO 对称性}
 
-在弦网模型的 PEPS 张量网络表示中，弦激发可以理解为由满足\emph{推拉条件} (pulling-through condition) 的矩阵乘积算符 (MPO) 产生。这些 MPO 具有一定的代数结构，它们之间满足融合规则：
-\begin{equation}
-  \text{MPO}_a \, \text{MPO}_b = \sum_c N_{ab}^c \, \text{MPO}_c,
-\end{equation}
-其中 $N_{ab}^c$ 和输入范畴所给出的数据是一致的。任意子则可通过在 MPO 两端放置缺陷张量来产生，这些 MPO 的对称性给出了另外的 $C^*$ 代数结构，其\emph{中心幂等元} (central idempotent) 也对应了输出范畴的不同\emph{拓扑分区} (topological sector)，即不同的任意子类型。
+在弦网模型的 PEPS 张量网络表示中，弦激发可以理解为由满足\emph{推拉条件} (pulling-through condition) 的矩阵乘积算符 (MPO) 产生。这些 MPO 具有一定的代数结构，任意子则可通过在 MPO 两端放置缺陷张量来产生。MPO 的对称性给出了另外的 $C^*$ 代数结构，其\emph{中心幂等元} (central idempotent) 也对应了输出范畴的不同\emph{拓扑分区} (topological sector)，即不同的任意子类型\cite{bultinck2017anyons,williamson2017symmetry,lootens2019cardy,aasen2020topological,sahinoglu2021characterizing}。
 
-\section{例子}
+\subsection{推拉条件}
+
+弦网模型中的 MPO 张量单元为：
+\begin{equation}
+    \vcenter{\hbox{\includegraphics{images/mpo/TCMPO.pdf}}}
+  = \delta_{\alpha\alpha'} \delta_{\beta\beta'} \delta_{\mu\mu'} \delta_{\nu\nu'} \delta_{ii'} \delta_{aa'}
+    \frac{F^{a\mu i}_{\beta\alpha\nu}}{\sqrt{d_\alpha d_\nu}}.
+\end{equation}
+张量的指标都是融合范畴 $\mathcal{C}$ 中的简单对象。由此组成的 MPO 则为
+\begin{equation}
+    \mathrm{MPO}_a = \, \vcenter{\hbox{\includegraphics[scale=1.5]{images/mpo/smallTCmpo.pdf}}} \, ,
+\end{equation}
+其中虚线表示周期性边界条件，而
+\begin{equation}
+    \vcenter{\hbox{\includegraphics[scale=1.2]{images/mpo/TCMPOclosure.pdf}}}
+  = \delta_{\alpha\alpha'} \delta_{\beta\beta'} \delta_{bb'} \delta_{ab}.
+\end{equation}
+它们之间满足融合规则：
+\begin{equation}
+  \mathrm{MPO}_a \, \mathrm{MPO}_b = \sum_c N_{ab}^c \, \mathrm{MPO}_c,
+\end{equation}
+其中 $N_{ab}^c$ 和输入范畴所给出的数据是一致的。通过插入融合张量
+\begin{equation}
+    \vcenter{\hbox{\includegraphics{images/mpo/TCMPOfusion.pdf}}}
+  = \delta_{\alpha\alpha'} \delta_{\beta\beta'} \delta_{\gamma\gamma'}
+    \left( \frac{d_a d_b}{d_c} \right)^{1/4}
+    \frac{F^{ab\gamma}_{\alpha c\beta}}{\sqrt{d_\beta}},
+\end{equation}
+融合规则也可以表述为
+\begin{equation}
+    \vcenter{\hbox{\includegraphics[scale=1.2]{images/mpo/TCMPOmultLHS.pdf}}}
+  = \sum_c \delta^c_{ab} \sqrt{\frac{d_c}{d_a d_b}}
+    \vcenter{\hbox{\includegraphics[scale=1.2]{images/mpo/TCMPOmultRHS.pdf}}}.
+\end{equation}
+不同的缩并顺序对结果的影响由 $F$ 符号给出：
+\begin{equation}
+    \vcenter{\hbox{\includegraphics{images/mpo/TCFsymbolLHS.pdf}}} \enspace
+  = \sum_f F^{abc}_{def} \enspace
+    \vcenter{\hbox{\includegraphics{images/mpo/TCFsymbolRHS.pdf}}}.
+\end{equation}
+
+弦网模型的 PEPS 张量网络表示是 \emph{MPO 单射} (MPO-injective) 的，它满足\emph{推拉条件} (pulling-through condition)：
+\begin{equation}
+  \vcenter{\hbox{\includegraphics[scale=1.2]{images/mpo/smallTCPullthruLHS.pdf}}}
+  \enspace = \enspace
+  \vcenter{\hbox{\includegraphics[scale=1.2]{images/mpo/smallTCPullthruRHS.pdf}}},
+\end{equation}
+即 MPO 可以自由地穿过 PEPS 张量单元。注意到 MPO 和 PEPS 的张量单元可通过同一组 $F$ 符号来确定，因此推拉条件实际上是融合范畴中五边形方程（图~\ref{fig:f-symbols-pentagon-equation}）的推论。此时，PEPS 张量网络可以视为背景，而其中的 $\mathrm{MPO}_\psi$ 则表示对应的弦算符（见图~\ref{fig:peps-mpo}）。
+
+\begin{figure}[htb]
+  \[
+    \vcenter{\hbox{\includegraphics[scale=1.2]{images/mpo/TCpsiPEPS.pdf}}}
+    \quad \to \quad
+    \vcenter{\hbox{\includegraphics[scale=1.2]{images/mpo/TCpsibackground.pdf}}}
+  \]
+  \caption[PEPS 张量网络与其中的 MPO]{PEPS 张量网络与其中的 MPO。}
+  \label{fig:peps-mpo}
+\end{figure}
+
+% TODO: MPO and topological properties
+
+\subsection{管状代数与中心幂等元}
+\label{subsec:tube-algebra-idempotents}
+
+考虑一个圆柱上的 PEPS 张量网络，对于其上的弦算符 (MPO)，我们可以取下面的基来描述：
+\begin{equation}
+    \calT{s}{pqr}
+  = \, \vcenter{\hbox{\includegraphics{images/mpo/Tube0.pdf}}} \,
+  = \vcenter{\hbox{\includegraphics{images/mpo/TCtensortube.pdf}}}.
+\end{equation}
+它们的乘法和 Hermitian 共轭分别为
+\begin{align}
+     \calT{s}{pqr} \calT{s'}{p'q'r'}
+  &= \delta_{rp'} \, \vcenter{\hbox{\includegraphics{images/mpo/TCTubemult.pdf}}} \notag \\
+  &= \delta_{rp'} \sum_{q''s''} F^{sqs'}_{q'rq''} F^{q''s's}_{pqs''} F^{s'sq''}_{r'q's''}
+     \sqrt{\frac{d_s d_{s'}}{d_{s''}}} \calT{s''}{pq''r'}, \\
+     \bigl( \calT{s}{pqr} \bigr)^\dagger
+  &= \, \vcenter{\hbox{\includegraphics{images/mpo/TCTubedagger.pdf}}} \,
+   = \sqrt{\frac{d_p}{d_r}} \sum_{q'} F^{srs}_{pqq'} \calT{s}{rq'p}.
+\end{align}
+由此可见，这些基关于乘法和 Hermitian 共轭都是封闭的，因而它们构成了一个 $C^*$ 代数，称为 \emph{Ocneanu 管状代数} (Ocneanu's tube algebra)\cite{evans1995ocneanu,evans1998quantum}。
+
+管状代数可以被分块对角化，其中的每一块上的投影算符对应一个\emph{不可约中心幂等元} (irreducible central idempotent)。从范畴论的角度来看，这些中心幂等元构成了一个新的范畴，它对应了输入范畴 $\mathcal{C}$ 的 \emph{Drinfeld 中心} (Drinfeld center) $\mathcal{Z}(\mathcal{C})$。而从拓扑序的角度来看，它们则对应了不同的\emph{拓扑分区} (topological sectors)\cite{lan2014topological,bultinck2017anyons,williamson2017symmetry,vanhove2018mapping}。
+
+中心幂等元可以表示为管状代数中基的线性组合：
+\begin{equation}
+  \calP{i} = \frac{1}{D^2} \sum_{pqrs} t^i_{pqrs} \calT{s}{pqr},
+\end{equation}
+其中 $D$ 为总量子维数，而系数 $t^i_{pqrs}$ 可根据 $\calP{i}$ 满足的约束条件来求解：
+\begin{equation}
+  \calP{i} \calP{j} = \delta_{ij} \calP{i}, \quad
+  \calP{i}^\dagger = \calP{i}, \quad
+  \calT{s}{pqr} \calP{i} = \calP{i} \calT{s}{pqr}.
+\end{equation}
+以包含 $\1$、$\tau$ 两种任意子的 Fibonacci 模型为例\cite{bultinck2017anyons}，它的中心幂等元共有 4 个：
+\begin{equation}
+  \begin{aligned}
+    \calP{1} &= \frac{1}{\sqrt5} \left(
+      \frac{1}{\varphi} \calT{\1}{\1\1\1} + \sqrt{\varphi} \calT{\tau}{\1\tau\1}
+    \right), \\
+    \calP{2} &= \frac{1}{\sqrt5} \left(
+      \frac{1}{\varphi} \calT{\1}{\tau\tau\tau} + \frac{1}{\sqrt{\varphi}} \ee^{-4\pi\ii/5} \calT{\tau}{\tau\1\tau} + \ee^{ 3\pi\ii/5} \calT{\tau}{\tau\tau\tau}
+    \right), \\
+    \calP{3} &= \frac{1}{\sqrt5} \left(
+      \frac{1}{\varphi} \calT{\1}{\tau\tau\tau} + \frac{1}{\sqrt{\varphi}} \ee^{ 4\pi\ii/5} \calT{\tau}{\tau\1\tau} + \ee^{-3\pi\ii/5} \calT{\tau}{\tau\tau\tau}
+    \right), \\
+    \calP{4} &= \frac{1}{\sqrt5} \left(
+      \varphi \calT{\1}{\1\1\1} + \calT{\1}{\tau\tau\tau} - \sqrt{\varphi} \calT{\tau}{\1\tau\1} + \sqrt{\varphi} \calT{\tau}{\tau\1\tau} + \frac{1}{\varphi} \calT{\tau}{\tau\tau\tau}
+    \right),
+  \end{aligned}
+  \label{eq:fib-idempotents}
+\end{equation}
+分别对应了 doubled Fibonacci（即 Fibonacci 的 Drinfeld 中心）中的 4 种任意子：
+\begin{equation}
+  \calP{1} \mapsto (\1, \1), \quad
+  \calP{2} \mapsto (\1, \bar{\tau}), \quad
+  \calP{3} \mapsto (\tau, \1), \quad
+  \calP{4} \mapsto (\tau, \bar{\tau}),
+\end{equation}
+相应的拓扑自旋分别为
+\begin{equation}
+  h_1 = 0, \quad h_2 = -\frac45, \quad h_3 = \frac45, \quad h_4 = 0.
+\end{equation}
