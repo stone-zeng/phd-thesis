@@ -476,7 +476,7 @@ Fibonacci 弦网模型定义在六边形网格上，包含 $\1$ 和 $\tau$ 两�
 
 拓扑投影算符的构造与 \emph{Ocneanu 管状代数} (Ocneanu's tube algebra)\cite{evans1995ocneanu,evans1998quantum}有关（见 \ref{subsec:tube-algebra-idempotents} 小节）。拓扑序模型中的每种任意子都对应着 CFT 中的一个拓扑分区，换而言之 CFT 中的初级场及其后代组成的“家族” (family) 可按照对应的任意子类型进行分类。拓扑序中的弦算符则可作为投影算符，将转移矩阵投影到包含相应拓扑分区的子空间上。因为我们这里的工作主要关注能动量张量，而能动量张量与真空态属于同一分区，所以只需构造与任意子 $\1$ 相对应的弦算符。
 
-弦算符的一般形式可由 MPO 来描述，称为\emph{中心幂等元} (central idempotent)\cite{bultinck2017anyons,williamson2017symmetry,vanhove2018mapping,lootens2019cardy,aasen2020topological}。构成这些 MPO 的矩阵单元为
+在张量网络的语言中，弦算符的一般形式可由 MPO 来描述，称为\emph{中心幂等元} (central idempotent)\cite{bultinck2017anyons,williamson2017symmetry,vanhove2018mapping,lootens2019cardy,aasen2020topological}。构成这些 MPO 的矩阵单元为
 \begin{equation}
   \begin{aligned}
        \tikzinput{idempotents-mpo-1}
@@ -492,7 +492,7 @@ Fibonacci 弦网模型定义在六边形网格上，包含 $\1$ 和 $\tau$ 两�
   = \frac{1}{\sqrt{d_j d_c}} \bigl[ F^{aik}_b \bigr]_{jc}
   = \frac{1}{\sqrt{d_a d_b d_c d_i d_j d_k}} \, \Tetrahedron jibcka.
 \end{equation}
-对于大小为 $n$ 的圆柱转移矩阵，管状代数的基\footnote{在中心幂等元的构造中，\ref{subsec:tube-algebra-idempotents} 小节中带有 4 个指标的 $\calT{c}{bab}$ 需要满足 $r=p$，因此这里的 $\calT{c}{ab}\coloneq\calT{c}{bab}$。}可由 $n-1$ 个橙色张量与一个红色张量首尾相连得到：
+对于大小为 $n$ 的圆柱转移矩阵，管状代数的基\footnote{在中心幂等元的构造中，\ref{subsec:tube-algebra-idempotents} 小节中带有 4 个指标的 $\calT{s}{pqr}$ 需要满足 $r=p$，因此这里的 $\calT{c}{ab}\coloneq\calT{c}{bab}$。}可由 $n-1$ 个橙色张量与一个红色张量首尾相连得到：
 \begin{equation}
   \calT{c}{ab} = \tikzinput{tube-algebra-basis}.
 \end{equation}

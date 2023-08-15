@@ -97,7 +97,8 @@
   % TODO: 周期性边界条件
   \Psi_{i_1 i_2 \cdots i_n} = A^{j_1 j_2}_{i_1} A^{j_2 j_3}_{i_2} \cdots A^{j_n j_1}_{i_n}.
 \end{equation}
-这样的张量网络称为\emph{无限 MPS} (infinite MPS, iMPS)。我们之后的讨论主要针对 iMPS。
+这样的张量网络称为\emph{无限 MPS} (infinite MPS, iMPS)。
+% 我们之后的讨论主要针对 iMPS。
 
 \begin{figure}[htb]
   \centering
@@ -112,7 +113,11 @@
 
 考虑一个量子态 $\ket{\Psi}$，我们对它作用一次 SVD，便可以获得由两个张量组成的 MPS，此时连接维数 $\chi$ 等于奇异值的数量。这一过程可以不断重复，以构造出任意长度的 MPS。在做 SVD 时，如果不对奇异值进行截断，可以发现 $\chi$ 会随着分解的次数（也即张量单元的数量）$N$ 指数级增长。然而对于一维\emph{有能隙} (gapped) Hamilton 量的基态以及低能激发态，$\chi$ 可以取为常数；对于\emph{无能隙} (gapless) 的临界系统，则会以多项式形式发散。
 
-% TODO: \emph{面积定律} (area law)
+对于长度为 $L$ 的 MPS，其纠缠熵为
+\begin{equation}
+  S_L = -\tr(\rho_L\log\rho_L) \sim \mathcal{O}(\log\chi),
+\end{equation}
+其中 $\rho_L$ 是相应区块上的约化密度矩阵。这和一维有能隙 Hamilton 量基态的性质［称为\emph{面积定律} (area law)］是一致的，因此 MPS 可以较好地模拟这类系统。实际上，在全部 Hilbert 空间中，遵循面积定律的量子态仅占很少的一部分，而张量网络的结构恰好可以排除掉那些“无关”的量子态，从而大大减少了计算量。
 
 由上述方法构造出的 MPS 并不是唯一的，而是存在所谓\emph{规范自由度} (gauge freedom)\cite{bridgeman2017hand}。如图~\ref{fig:mps-gauge-freedom} 所示，两个张量单元之间总可以插入单位矩阵 $I=XX^{-1}$，并把 $X$ 和 $X^{-1}$ 分配到两边。
 
@@ -136,7 +141,7 @@
 此时正则形式要求 $R$、$L$ 的特征向量均为单位矩阵（在张量变形的意义下），且对应的主特征值\footnote{即绝对值最大的特征值。它对应的特征向量也称主特征向量。} $\eta$ 相同。如图~\ref{fig:mps-canonical-form} 所示，将一般的 $\Gamma$ 和 $\lambda$（例如随机初始化的）进行正则化的方法为：
 
 \begin{enumerate}
-  \item 计算 $R$、$L$ 的主特征向量，并变形为矩阵 $V_R$、$V_L$\footnote{在实际计算中，$V_R$、$V_L$ 可能会带有冗余的相位，这会影响接下来的矩阵分解操作。此相位可通过规定 $V_R$、$V_L$ 的迹为实数来移除。}，对应的特征值均为 $\eta$。将 $V_R$、$V_L$ 进一步分解为 $X$、$Y$，使其满足
+  \item 计算 $R$、$L$ 的主特征向量，并变形为矩阵 $V_R$、$V_L$\footnote{在实际计算中，$V_R$、$V_L$ 可能会带有冗余的相位，这会影响接下来的矩阵分解操作。此相位可通过规定 $V_R$、$V_L$ 的迹为实数来消除。}，对应的特征值均为 $\eta$。将 $V_R$、$V_L$ 进一步分解为 $X$、$Y$，使其满足
     \begin{equation}
       V_R = X X^\dagger, \quad V_L = Y^\dagger Y.
     \end{equation}
@@ -157,7 +162,7 @@
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=\textwidth]{images/temp/canonical-form.png}
+  \includegraphics[width=0.85\textwidth]{images/tensor-network/mps-canonical-form.pdf}
   \caption[MPS 的正则形式]{MPS 的正则形式。(a) 计算主特征向量 $V_R$、$V_L$；(b) 利用规范自由度插入 $I=(Y^\trans)^{-1}Y^\trans$ 和 $I=XX^{-1}$，并进行 SVD；(c) 重排张量，得到 $\Gamma'$。图片来源：\parencite{orus2014practical}。}
   \label{fig:mps-canonical-form}
 \end{figure}
@@ -168,11 +173,49 @@ Hamilton 量的基态 $\Psi_0$ 可以通过变分法求得：
 \begin{equation}
   \ket{\Psi_0} = \argmin_{\ket{\Psi}} \frac{\langle\Psi|H|\Psi\rangle}{\langle\Psi|\Psi\rangle}.
 \end{equation}
-即使 $\Psi$ 已经表示成了 MPS 的形式，一般来说对 $\Psi$ 整体进行优化也是无法进行的。
+即使 $\ket{\Psi}$ 已经表示成了 MPS 的形式，一般来说也无法直接对 $\ket{\Psi}$ 进行整体优化。但是，如果 Hamilton 量能够写成 MPO 的形式，那么可以通过迭代算法来高效地计算 $H\ket{\Psi}$，进而通过局域优化来获得全局最优解。这实际上就是著名的\emph{密度矩阵重整化群} (density matrix renormalization group, DMRG) 算法\cite{white1992density,white1993density,schollwock2005density,mcculloch2007density,mcculloch2008infinite,schollwock2011density}。
 
-DMRG\cite{white1992density,white1993density,schollwock2005density,mcculloch2007density,schollwock2011density}
+DMRG 的总体思路是，对正则化的 MPS 中每个张量单元 $A^{(i)}$ 依次进行优化，而这里的优化则相当于计算有效 Hamilton 量（原始 Hamilton 量 + MPS 的剩余部分）的本征态。$i$ 由 1 遍历到 $N$ 再遍历回 1 称为一次\emph{扫描} (sweep)。扫描可重复多次，直至 MPS 收敛。
 
-iDMRG\cite{mcculloch2008infinite}
+根据 Lagrange 乘子法的精神，定义能量泛函为\footnote{式~\eqref{eq:dmrg-energy-functional}--\eqref{eq:dmrg-normalized-energy-equation} 中图片来源：\parencite{schollwock2011density}。}：
+\begin{align}
+     E[A, \tilde{A}, \lambda]
+  &= \langle \Psi(A)|H|\Psi(A) \rangle - \lambda \langle \Psi(A)|\Psi(A) \rangle \notag \\
+  &= \vcenter{\hbox{\includegraphics[height=1.7cm]{images/tensor-network/dmrg-energy-functional.pdf}}}.
+  \label{eq:dmrg-energy-functional}
+\end{align}
+其中 $\lambda$ 是 Lagrange 乘子。能量取极小值的（必要）条件为
+\begin{equation}
+    \pdv{E[A,\tilde{A},\lambda]}{\tilde{A}^{s_i}_{\alpha_i\alpha_{i+1}}}
+  = \pdv{}{\tilde{A}^{s_i}_{\alpha_i\alpha_{i+1}}} \langle \Psi(A)|H|\Psi(A) \rangle
+  - \lambda \pdv{}{\tilde{A}^{s_i}_{\alpha_i\alpha_{i+1}}} \langle \Psi(A)|\Psi(A) \rangle = 0.
+\end{equation}
+在张量网络中，由于 $\langle\Psi(A)|H|\Psi(A)\rangle$ 和 $\langle\Psi(A)|\Psi(A)\rangle$ 都可以写成关于 $\tilde{A}^{s_i}_{\alpha_i\alpha_{i+1}}$ 的一次多项式（即其他张量与它的缩并），因此偏导数相当于在整个张量网络中“挖去” $\tilde{A}$ 的结果：
+\begin{equation}
+  \vcenter{\hbox{\includegraphics[height=1.9cm]{images/tensor-network/dmrg-energy-equation.pdf}}}.
+\end{equation}
+由于 MPS 已被正则化（$R$、$L$ 的特征向量均为单位向量），上式中的第二项可以被大大简化：
+\begin{equation}
+  \vcenter{\hbox{\includegraphics[height=1.9cm]{images/tensor-network/dmrg-normalized-energy-equation.pdf}}}.
+  \label{eq:dmrg-normalized-energy-equation}
+\end{equation}
+此时，我们可以看到上式是一个关于 $A^{s'_i}_{\alpha'_i\alpha'_{i+1}}$（圆圈部分）的特征值方程：
+\begin{equation}
+  H_{\text{eff}} A = \lambda A,
+\end{equation}
+而它可以通过标准的特征值求解算法（如 Lanczos 算法）来处理。由此，我们就对 $i$ 位置处的张量单元进行了优化。
+
+为了能够通过连接维数来控制模拟精度和计算效率，如图~\ref{fig:dmrg-two-site} 所示，我们还可以在 DMRG 中同时对两个位置的张量单元进行优化，并且利用 SVD 来得到新的 MPS。
+
+\begin{figure}[htb]
+  \centering
+  \begin{tabular}{cc}
+    (a) & $\vcenter{\hbox{\includegraphics[width=0.7\textwidth]{images/temp/dmrg-two-site.png}}}$ \\
+    (b) & $\vcenter{\hbox{\includegraphics[width=0.7\textwidth]{images/temp/dmrg-two-site-svd.png}}}$
+  \end{tabular}
+  \caption[两位置上 DMRG 算法]{两位置上 DMRG 算法。(a) 两个 MPS 张量单元首先缩并，再和 $H$ 缩并，得到 $H_{\text{eff}}$。(b) 利用 SVD 来得到新的 MPS。图片来源：\url{https://tensornetwork.org/mps/algorithms/dmrg/}。}
+  \label{fig:dmrg-two-site}
+\end{figure}
 
 \subsection{时间演化}
 \label{subsec:mps-time-evolution}
@@ -212,7 +255,7 @@ iDMRG\cite{mcculloch2008infinite}
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=0.75\textwidth]{images/temp/itebd-evolution.png}
+  \includegraphics[width=0.6\textwidth]{images/tensor-network/itebd-evolution.pdf}
   \caption[iTEBD 算法]{iTEBD 算法。(I) 把 iMPS $\{\Gamma,\lambda\}$ 与 MPO 的张量单元进行缩并；(II) 对 $\{\tilde{\Gamma},\tilde{\lambda}\}$ 进行正则化；(III) 利用 SVD 把连接维数保持在 $\chi$。图片来源：\parencite{orus2008infinite}。}
   \label{fig:itebd-evolution}
 \end{figure}
@@ -224,11 +267,10 @@ iDMRG\cite{mcculloch2008infinite}
 \begin{equation}
   Z(\beta) = \lim_{p,q\to\infty} \omega^{pq},
 \end{equation}
-其中 $\omega$ 是 $W$ 矩阵的主特征值：
+其中 $\omega$ 是 $W$ 矩阵的主特征值\cite{orus2008infinite}：
 \begin{equation}
-  \includegraphics[width=0.75\textwidth]{images/temp/itebd-w-matrices.png}
+  \vcenter{\hbox{\includegraphics[width=0.7\textwidth]{images/temp/itebd-w-matrices.png}}}
 \end{equation}
-
 此时我们还可以计算单点函数和两点（关联）函数的期望值：
 \begin{equation}
   \begin{aligned}
@@ -244,7 +286,7 @@ iDMRG\cite{mcculloch2008infinite}
   \centering
   \begin{tabular}{cc}
     \includegraphics[height=6.5cm]{images/temp/itebd-one-point-function.png} &
-    \includegraphics[height=6.5cm]{images/temp/itebd-two-point-function.png} \\
+    \includegraphics[height=6.5cm]{images/tensor-network/itebd-two-point-function.pdf} \\
     (a) & (b)
   \end{tabular}
   \caption[单点函数和两点关联函数的计算]{(a) 单点函数和 (b) 两点（关联）函数的计算。图片来源：\parencite{orus2008infinite}。}
@@ -254,9 +296,41 @@ iDMRG\cite{mcculloch2008infinite}
 \subsection{推广}
 \label{subsec:mps-generalization}
 
-PEPS\cite{cirac2021matrix}
+如图~\ref{fig:peps} 所示，MPS 向高维的自然推广就得到了\emph{投影纠缠对态} (projected entangled pair state, PEPS)\cite{verstraete2004renormalization,orus2014practical,cirac2021matrix} 张量网络。对于长宽均为 $L$、连接维数为 $\chi$ 的 PEPS，其纠缠熵满足
+\begin{equation}
+  S_L \sim \mathcal{O}(L\log\chi),
+\end{equation}
+这与二维系统的面积定律也是相一致的。此外，PEPS 可以准确描述幂律形式的关联函数，因此可以用来处理一维的量子临界系统（可通过经典—量子模型的映射来实现）。但与一维的 MPS 不同，在 PEPS 中无法为所有指标同时指定一组正交基，因此并不能精确定义正则形式。
 
-MERA, entanglement renormalization\cite{vidal2007entanglement,evenbly2009algorithms,konig2009exact,evenbly2014algorithms,evenbly2015tensor2}
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/tensor-network/peps.pdf}
+  \caption[投影纠缠对态]{投影纠缠对态。图 (a)、(b) 分别对应开放和周期性边界条件。图片来源：\parencite{orus2014practical}。}
+  \label{fig:peps}
+\end{figure}
+
+另一种用来近似表示一维系统的张量网络是\emph{多尺度纠缠重整化方法} (multiscale entanglement renormalization ansatz, MERA)\cite{vidal2007entanglement,evenbly2009algorithms,konig2009exact,evenbly2014algorithms,evenbly2015tensor2}。如图~\ref{fig:mera} 所示，MERA 使用了一组幺正变换
+\begin{equation}
+  u \colon \mathbb{V} \otimes \mathbb{V} \to \mathbb{V} \otimes \mathbb{V}, \quad
+  u u^\dagger = I^{\otimes2}
+\end{equation}
+和投影算符
+\begin{equation}
+  v \colon \mathbb{V} \to \mathbb{V} \otimes \mathbb{V}, \quad
+  v^\dagger v = I
+\end{equation}
+来构建粗粒近似的波函数，其中 $\mathbb{V}=\mathbb{C}^\chi$ 是 $\chi$ 维复向量空间。这里的 $u$ 和 $v$ 分别称为\emph{解纠缠子} (disentangler) 和\emph{等距子} (isometry)。解纠缠子可以消除短程纠缠的影响，因而其纠缠熵满足
+\begin{equation}
+  S_L \sim \mathcal{O}(\log L).
+\end{equation}
+这就使得 MERA 张量网络可以较好地近似一维无能隙的临界系统。
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.6\textwidth]{images/tensor-network/mera.pdf}
+  \caption[多尺度纠缠重整化方法]{多尺度纠缠重整化方法。其中两条腿进、两条腿出的张量单元是解纠缠子 $u$，而两条腿进、一条腿出的张量单元则是等距子 $v$。图片来源：\parencite{evenbly2011tensor}。}
+  \label{fig:mera}
+\end{figure}
 
 \section{重整化算法}
 
@@ -264,20 +338,21 @@ MERA, entanglement renormalization\cite{vidal2007entanglement,evenbly2009algorit
 
 \subsection{张量重整化群}
 
-最基本的一种重整化算法称为\emph{张量重整化群} (tensor renormalization group, TRG)\cite{levin2007tensor}。其步骤为：
+最基本的一种重整化算法称为\emph{张量重整化群} (tensor renormalization group, TRG)\cite{levin2007tensor}。其步骤为\footnote{式~\eqref{eq:trg-factorizing-svd}--\eqref{eq:trg-partition-function} 中图片来源：\url{https://tensornetwork.org/trg/}。}：
 
 \begin{enumerate}
   \item 利用 SVD 对原始的张量单元 $A^{(0)}$ 进行分解：
-    \begin{center}
-      \includegraphics[width=0.75\linewidth]{images/temp/trg-factorizing.png} \\
-      \includegraphics[width=\linewidth]{images/temp/trg-factorizing-svd.png}
-    \end{center}
+    \begin{align}
+      & \vcenter{\hbox{\includegraphics[width=0.8\linewidth]{images/temp/trg-factorizing-svd.png}}}
+        \label{eq:trg-factorizing-svd} \\
+      & \vcenter{\hbox{\includegraphics[width=0.65\linewidth]{images/temp/trg-factorizing.png}}}
+    \end{align}
     在做 SVD 时需要对奇异值进行截断，即只保留 $\chi$ 个最大奇异值，这样可以保证 TRG 的计算开销始终在可控范围内。
 
   \item 把得到的三角形张量缩并为新的张量单元 $A^{(1)}$：
-    \begin{center}
-      \includegraphics[width=0.4\linewidth]{images/temp/trg-group.png}
-    \end{center}
+    \begin{equation}
+      \vcenter{\hbox{\includegraphics[width=0.35\linewidth]{images/temp/trg-group.png}}}
+    \end{equation}
     此时的张量网络相当于旋转了 $45^\circ$，而总的张量数目减少了一半。
 
   \item 重复以上步骤，直至收敛到不动点张量。
@@ -285,7 +360,8 @@ MERA, entanglement renormalization\cite{vidal2007entanglement,evenbly2009algorit
   \item 对最终得到的不动点张量进行求迹操作即可得到配分函数 $Z$：
     \begin{equation}
       Z = \sum_{i,j} A^{(N)}_{ijij}
-        = \vcenter{\hbox{\includegraphics[width=2.5cm]{images/temp/trg-double-trace.png}}}
+        = \vcenter{\hbox{\includegraphics[width=2cm]{images/temp/trg-double-trace.png}}}
+      \label{eq:trg-partition-function}
     \end{equation}
 \end{enumerate}
 
@@ -298,7 +374,7 @@ MERA, entanglement renormalization\cite{vidal2007entanglement,evenbly2009algorit
 \begin{figure}[htb]
   \centering
   \includegraphics[width=\textwidth]{images/temp/trg-ising.png}
-  \caption{利用 TRG 算法计算二维 Ising 模型的配分函数、能量及热容。可以发现在临界点处 TRG 的计算结果与精确值有一定差异。}
+  \caption{利用 TRG 算法计算二维 Ising 模型的配分函数、能量及热容。可以发现在临界点处 TRG 的计算结果与精确值（用虚线标出）有一定差异。}
   \label{fig:trg-ising}
 \end{figure}
 
@@ -310,33 +386,20 @@ TRG 算法对于临界的格点模型效果并不好。这主要是由于临界�
 \end{equation}
 会随着系统尺寸以对数级增长，然而通过 SVD 给出的张量分解并不能很好地保留这些信息。
 
-对于 TRG 的一种改进算法称为\emph{张量网络重整化} (tensor network renormalization, TNR)\cite{evenbly2015tensor1,evenbly2017algorithms}，它在粗粒近似的过程中引入了一组幺正变换
+如图~\ref{fig:tnr} 所示，TRG 的一种改进算法称为\emph{张量网络重整化} (tensor network renormalization, TNR)\cite{evenbly2015tensor1,evenbly2017algorithms}，它借鉴了 MERA 的思想，同样使用解纠缠子 (disentangler) 和等距子 (isometry) 张量单元来实现粗粒近似。它们的具体取值可以通过最小化截断误差\cite{evenbly2015tensor1}
 \begin{equation}
-  u \colon \mathbb{V} \otimes \mathbb{V} \to \mathbb{V} \otimes \mathbb{V}, \quad
-  u u^\dagger = I^{\otimes2}
+  \delta = \vcenter{\hbox{\includegraphics[width=6cm]{images/temp/tnr-truncation-error.png}}}
 \end{equation}
-和投影算符
-\begin{equation}
-  v \colon \mathbb{V} \to \mathbb{V} \otimes \mathbb{V}, \quad
-  v^\dagger v = I,
-\end{equation}
-其中 $\mathbb{V}=\mathbb{C}^\chi$ 是 $\chi$ 维复向量空间。这里的 $u$ 和 $v$ 分别称为\emph{解纠缠子} (disentangler) 和\emph{等距子} (isometry)，它们的具体取值可以通过最小化截断误差
-\begin{equation}
-  \delta = \vcenter{\hbox{\includegraphics[width=6cm]{images/temp/trg-truncation-error.png}}}
-\end{equation}
-来获得。通过角双线 (corner double line, CDL) 张量的方法可以证明\cite{evenbly2015tensor1}，TNR 算法中的 $u$ 和 $v$ 可以消除短程纠缠的影响，使得最终获得的不动点张量的确是标度不变的。
+来获得。利用角双线 (corner double line, CDL) 张量的方法可以证明\cite{evenbly2015tensor1,hauru2018renormalization}，TNR 算法中的 $u$ 和 $v$ 可以消除短程纠缠的影响，使得最终获得的不动点张量的确是标度不变的。
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=0.6\textwidth]{images/temp/tnr.png}
-  \caption{TNR 算法}
+  \includegraphics[width=0.6\textwidth]{images/tensor-network/tnr.pdf}
+  \caption[TNR 算法]{TNR 算法。(a) 在 $2\times2$ 个 $A^{(s)}$ 张量单元之间插入解纠缠子 $u$ 和等距子 $v$。(b) 缩并得到辅助张量 $B^{(s)}$ 和 $C^{(s)}$。(c) 与 TRG 类似，利用 SVD 分解张量 $B^{(s)}$ 和 $C^{(s)}$。(d) 缩并得到新的张量单元 $A^{(s+1)}$。(e)--(g) 张量 $B^{(s)}$、$C^{(s)}$ 和 $A^{(s+1)}$ 的具体定义。图片来源：\parencite{evenbly2015tensor1}。}
   \label{fig:tnr}
 \end{figure}
 
 除了 TNR 之外，还有其他一些工作试图改进原始的 TRG 算法，如引入过滤操作以消除短程纠缠影响的\emph{张量纠缠过滤重整化} (tensor entanglement-filtering renormalization, TEFR) 算法\cite{gu2009tensor1}、基于高阶奇异值分解的\emph{高阶 TRG} (higher order TRG, HOTRG) 算法\cite{xie2012coarse}以及通过将小张量组合成环路并加以优化的\emph{环路 TNR} (loop TNR) 算法\cite{yang2017loop}等。这些方法相比 TRG 和 TNR 在精度与计算效率上各有优劣，需要根据具体问题加以权衡。
-
-% CTMRG\cite{nishino1996corner,orus2012exploring}
-% Differentiable\cite{liao2019differentiable,geng2022differentiable}
 
 \section{具体实现}
 
