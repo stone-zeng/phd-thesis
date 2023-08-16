@@ -42,7 +42,7 @@
     \begin{bmatrix} a & b & c \\ i & j & k \end{bmatrix}
   = \frac{1}{\sqrt{d_a d_b d_c d_i d_j d_k}} \, \Tetrahedron cbjkia
 \end{equation}
-称为\emph{四面体符号} (tetrahedral symbol)，它的对称性（以及相应 $F$ 符号的对称性）可以从四面体的几何性质中获得：
+称为\emph{四面体符号} (tetrahedral symbol) 或 \emph{$6-j$ 符号} ($6-j$ symbol)，它的对称性（以及相应 $F$ 符号的对称性）可以从四面体的几何性质中获得：
 \begin{align}
      \begin{bmatrix} a & b & c \\ i & j & k \end{bmatrix}
   &= \begin{bmatrix} b & c & a \\ j & k & i \end{bmatrix}
@@ -65,6 +65,7 @@
 这也被称为\emph{星—三角变换} (star-triangle transformation)。
 
 \subsection{弦网模型的基态}
+\label{subsec:string-net-ground-state}
 
 接下来我们来给出弦网模型基态的张量网络表示\cite{gu2009tensor2,buerschaper2009explicit}。由于弦网模型的 Hamilton 量
 \begin{equation}
@@ -498,7 +499,7 @@ $F$ 符号为
 \begin{equation}
   g_1 \times g_2 = g_3.
 \end{equation}
-如图~\ref{fig:dw-triangulation} (a) 所示，群乘法也决定了三角形的定向。我们选取圆盘作为底流形，则路径积分将会在圆 $S^1$ 上给出相应二维模型的基态波函数。最简单的三角剖分如图~\ref{fig:dw-triangulation} (b) 所示，它可以表示为一个矩阵乘积态：
+如图~\ref{fig:dw-triangulation}\,(a) 所示，群乘法也决定了三角形的定向。我们选取圆盘作为底流形，则路径积分将会在圆 $S^1$ 上给出相应二维模型的基态波函数。最简单的三角剖分如图~\ref{fig:dw-triangulation}\,(b) 所示，它可以表示为一个矩阵乘积态：
 \begin{equation}
     \ket{\Psi}_G
   = \sum_{\{g_i\}} \sum_{\{h_i\}}
@@ -562,6 +563,47 @@ $F$ 符号为
 的缩并形式，而其中所有的关联函数都会以指数级衰减，这与一维系统的性质也是相符的。
 
 \subsection{2+1 维：基于 Turaev--Viro 理论}
+
+2+1 维的情况实际上就对应了奇异关联子的原始定义（\ref{sec:strange-correlator} 节）。我们考虑一个对应于融合范畴 $\mathcal{C}$ 的 Turaev--Viro TQFT。对于球面 $S^2$ 上的基态波函数，它可由一个三维球 $B^3$ 上的路径积分给出，利用三角剖分则可将 $B^3$ 变为四面体的形式。方便起见，我们不妨令剖分得到的截面与图~\ref{fig:dw-triangulation}\,(b) 中的情形相同，即球面 $S^2$ 被三角形所覆盖，而三角形的每个顶点都有一条边延伸至球心。每条边被赋予了 $\mathcal{C}$ 中的一个对象，而每个四面体则被赋予一个四面体符号的值，它由 $\mathcal{C}$ 中对象的融合关系所定义。这样，我们就获得了基态波函数的张量网络表示（见图~\ref{fig:ground-state-wave-function}，也可参考 \ref{subsec:string-net-ground-state} 小节）。这些四面体符号之间满足的关系在 \ref{subsec:tetrahedral-symmetry} 小节中也已经讨论过了，此处我们重新整理在图~\ref{fig:tetrahedra-symbols} 中。
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.4\textwidth]{images/holographic/ground-state-wave-function.png}
+  \caption[2+1 维 Turaev--Viro TQFT 中基态波函数的张量网络表示]{2+1 维 Turaev--Viro TQFT 中基态波函数的张量网络表示。蓝线代表物理指标，而红点代表垂直于 $S^2$ 面的辅助指标，它们对应了 $\mathcal{C}$ 中对象按量子维数的加权和。图片来源：\parencite{chen2022exact}。}
+  \label{fig:ground-state-wave-function}
+\end{figure}
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.9\textwidth]{images/holographic/tetrahedra-symbols.png}
+  \caption[四面体符号]{张量单元的取值由四面体符号给出，而五边形方程则相当于在原来四面体的表面（即两个三角形）上叠加一个新的四面体，从而改变了表面的三角剖分。图片来源：\parencite{chen2022exact}。}
+  \label{fig:tetrahedra-symbols}
+\end{figure}
+
+与 1+1 维的情况类似，在 2+1 维中重整化算符同样通过连接两个不同格点间距的边界来构造。如图~\ref{fig:rg-2+1d} 所示，我们可以利用一系列的 $F$ 移动及相应的变换关系（图~\ref{fig:tetrahedra-symbols}）来得到重整化算符 $U(\mathcal{C})$\cite{vanhove2018mapping}。它可以表示为一系列四面体的组合，并会将第 $N$ 次粗粒近似的波函数映射到第 $N+1$ 次上。可以发现，$U(\mathcal{C})$ 完全由融合范畴 $\mathcal{C}$ 中的数据所决定，而重复作用 $U(\mathcal{C})$ 将得到 Euclidean AdS 空间的一个离散化表示。
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.9\textwidth]{images/holographic/rg-2+1d.png}
+  \caption[利用五边形方程来实现粗粒近似]{利用五边形方程来实现粗粒近似。重整化算符可以视为一系列四面体的组合，例如第一幅图中的四个三角形在作用一组四面体后（标记为灰色），就变为了两个三角形。图片来源：\parencite{chen2022exact}。}
+  \label{fig:rg-2+1d}
+\end{figure}
+
+% TODO: Frobenius Algebra
+
+特别值得关注的是位于临界点处的配分函数。当非对易的拓扑对称性同时守恒时，即为临界点。
+由于配分函数 $Z(\mathcal{C})$ 是局域的，因而 $\bra{\Omega}$ 可以表示为一个 PEPS 张量网络。我们将张量单元 $T^{a_1 a_2 a_3}_{I_1 I_2 I_3}$ 取在三角形上，其中 $a_i\in\mathcal{C}$ 为物理指标，而 $I_i$ 为辅助指标，连接维数为 $\chi$。在重整化开始前，$\bra{\Omega}$ 是一个直积态，即所有 $I_i$ 都是平凡的；随着重整化的进行，相应的数据会“流入” $I_i$，得到非平凡的 PEPS 结构。
+
+原则上，$T^{a_1 a_2 a_3}_{I_1 I_2 I_3}$ 的具体形式可以根据拓扑序中开弦算符按幂律衰减的性质来确定。然而，幂律衰减意味着 $\chi$ 会随着系统尺寸的增大而增大；对于无限系统而言，应有 $\chi\to\infty$。这在实际计算中显然是无法实现的。为此，我们采取另一套方案来获取临界点数据。考虑单个重整化步骤 $\bra{\Omega(T)}U(\mathcal{C})$。如图~\ref{fig:rg-2+1d} 所示，四个三角形被映射到了两个三角形，而它们之间带有纠缠的边界条件。对于这种边界，我们可以通过奇异值分解 (SVD) 把它编码到辅助指标 $I_i$ 上，并且把相应的连接维数控制在合理范围内。如图~\ref{fig:rg-2+1d-blocking}，这时四个 $T$ 的乘积就可以被改写为两个新张量 $\tilde{T}$ 的缩并。
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.7\textwidth]{images/holographic/rg-2+1d-blocking.png}
+  \caption[边界态 $\bra{\Omega}$ 的 PEPS 张量网络表示]{上图为边界态 $\bra{\Omega}$ 的 PEPS 张量网络表示，其指标位于三角形的边上。每条边都有两个指标，一个是物理指标 $a_i\in\mathcal{C}$，另一个是连接维数为 $\chi$ 的辅助指标 $I_i$。在下图中，我们利用 SVD 把张量 $M(k)$ 分解为两个张量 $\tilde{T}$ 的缩并。指标 $H$（标记为红色）在生成时，连接维数为 $\chi^2$，但我们会将其截断为 $\chi$ 以使得重整化过程得以持续。}
+  \label{fig:rg-2+1d-blocking}
+\end{figure}
+
+需要注意的是，对于有限大小的 $\chi$，临界点是不稳定的，而从重整化过程中获得的 $T$ 序列最终会流向某个拓扑不动点。因此我们认为，在重整化过程中，如果观察到 $T$ 开始向拓扑不动点的方向收敛，即达到了临界点。而对于固定的 $\chi$，总能利用这种方式找到一组 $T$ 使其最接近临界态。
 
 \subsection{3+1 维简介}
 
