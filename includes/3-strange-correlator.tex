@@ -152,11 +152,11 @@
 \section{奇异关联子}
 \label{sec:strange-correlator}
 
-\emph{奇异关联子} (strange correlator) 最早用来在对称保护拓扑序 (symmetry protected topological order, SPT)\footnote{尽管名称中带有“拓扑序”，但 SPT 态中只有短程纠缠，这与本文所说的拓扑序（具有长程纠缠，见 \ref{sec:topological-order} 节）实际上是不同的。} 中寻找不同的相\cite{you2014wave}，之后则被推广到了弦网模型中\cite{vanhove2018mapping,lootens2019cardy,vanhove2022topological}。通过将 2+1 维弦网模型的 PEPS 基态波函数 $\ket{\Psi_\text{SN}}$ 与某些特定的直积态 $\ket{\Omega}$ 做内积，可以获得二维临界格点模型的配分函数
+\emph{奇异关联子} (strange correlator) 最早用来在对称保护拓扑序 (symmetry protected topological order, SPT)\footnote{尽管名称中带有“拓扑序”，但 SPT 态中只有短程纠缠，这与本文所说的拓扑序（具有长程纠缠，见 \ref{sec:topological-order} 节）实际上是不同的。} 中寻找不同的相\cite{you2014wave}，之后则被推广到了弦网模型中\cite{vanhove2018mapping,lootens2019cardy,vanhove2022topological}。通过将 2+1 维弦网模型的 PEPS 基态波函数 $\ket{\Psi_\text{SN}}$ 与某些特定的直积态 $\bra{\Omega}$ 做内积，可以获得二维临界格点模型的配分函数
 \begin{equation}
   Z = \langle\Omega|\Psi_\text{SN}\rangle.
 \end{equation}
-在热力学极限下，配分函数 $Z$ 可由对应的共形场论 (CFT) 来描述。如图~\ref{fig:peps-strange-correlator} 所示，对于由三角形张量单元构成的 PEPS 张量网络，直积态 $\ket{\Omega}$ 相当于为其提供了特定的边界条件，即把物理指标固定到某些值上，而角落上的自由度则需求和。
+在热力学极限下，配分函数 $Z$ 可由对应的共形场论 (CFT) 来描述。如图~\ref{fig:peps-strange-correlator} 所示，对于由三角形张量单元构成的 PEPS 张量网络，直积态 $\bra{\Omega}$ 相当于为其提供了特定的边界条件，即把物理指标固定到某些值上，而角落上的自由度则需求和。
 
 \begin{figure}[htb]
   \centering
@@ -337,10 +337,8 @@ $F$ 符号为
 \end{equation}
 这与对应 CFT 给出的理论值 $1/2$ 和 $4/5$ 是非常接近的，说明通过奇异关联子的确可以从弦网模型基态波函数出发得到正确的 CFT 不动点张量。
 
-\subsection{高度模型}
-
-% TODO: height model
-\emph{高度模型} (height model)
+% \subsection{高度模型}
+% TODO: \emph{高度模型} (height model)
 
 \section{MPO 对称性}
 
@@ -348,11 +346,12 @@ $F$ 符号为
 
 \subsection{推拉条件}
 
-弦网模型中的 MPO 张量单元为：
+弦网模型中的 MPO 张量单元为\footnote{式~\eqref{eq:string-net-mpo}--\eqref{eq:tube-algebra-hermitian-conjugate} 中图片来源：\parencite{williamson2017symmetry}。}：
 \begin{equation}
     \vcenter{\hbox{\includegraphics{images/mpo/TCMPO.pdf}}}
   = \delta_{\alpha\alpha'} \delta_{\beta\beta'} \delta_{\mu\mu'} \delta_{\nu\nu'} \delta_{ii'} \delta_{aa'}
     \frac{F^{a\mu i}_{\beta\alpha\nu}}{\sqrt{d_\alpha d_\nu}}.
+  \label{eq:string-net-mpo}
 \end{equation}
 张量的指标都是融合范畴 $\mathcal{C}$ 中的简单对象。由此组成的 MPO 则为
 \begin{equation}
@@ -425,6 +424,7 @@ $F$ 符号为
      \bigl( \calT{s}{pqr} \bigr)^\dagger
   &= \, \vcenter{\hbox{\includegraphics{images/mpo/TCTubedagger.pdf}}} \,
    = \sqrt{\frac{d_p}{d_r}} \sum_{q'} F^{srs}_{pqq'} \calT{s}{rq'p}.
+  \label{eq:tube-algebra-hermitian-conjugate}
 \end{align}
 由此可见，这些基关于乘法和 Hermitian 共轭都是封闭的，因而它们构成了一个 $C^*$ 代数，称为 \emph{Ocneanu 管状代数} (Ocneanu's tube algebra)\cite{evans1995ocneanu,evans1998quantum}。
 
@@ -469,3 +469,101 @@ $F$ 符号为
 \begin{equation}
   h_1 = 0, \quad h_2 = -\frac45, \quad h_3 = \frac45, \quad h_4 = 0.
 \end{equation}
+
+\section{全息张量网络}
+\label{sec:holographic-tensor-network}
+
+我们在 \ref{sec:strange-correlator} 节中所介绍的奇异关联子也可以被推广到任意维度。对于一个 $D+1$ 维的拓扑序，它可以用一个 $D+1$ 维球 $B^{D+1}$ 上的融合范畴 $\mathcal{C}$ 来描述，其基态波函数为 $\ket{\Psi}$。指定 $D$ 维球面 $S^D$ 上的边界条件，就相当于将 $\ket{\Psi}$ 与某一直积态 $\ket{\Omega}$ 作内积，即
+\begin{equation}
+  Z(\Omega, \mathcal{C}) = \langle \Omega|\Psi \rangle.
+\end{equation}
+由于 $\ket{\Psi}$ 是一个拓扑序的基态波函数，它应该在标度变换下保持不变。设标度变换可由重整化算符 $\mathcal{H}_{\!\mathcal{C}}$ 生成，则可有
+\begin{equation}
+  Z(\Omega, \mathcal{C}) = \langle \Omega | \exp(z\mathcal{H}_{\!\mathcal{C}}) | \Psi \rangle,
+\end{equation}
+其中 $z$ 是重整化坐标。考虑到 $Z(\Omega, \mathcal{C})$ 描述了一个 $D$ 维的拓扑 / 共形系统，因此
+\begin{equation}
+  \bra{\Omega} \exp(z\mathcal{H}_{\!\mathcal{C}}) = \bra{\Omega},
+  \label{eq:rg-operator}
+\end{equation}
+即配分函数的构建可以转化为关于 $\mathcal{H}_{\!\mathcal{C}}$ 的本征值问题。重整化算符 $\mathcal{H}_{\!\mathcal{C}}$ 可以将体（$D+1$ 维球 $B^{D+1}$）与不同格点标度下的边界（$D$ 维球面 $S^D$）联系起来，因而也就能够用来构建一套\emph{全息张量网络} (holographic tensor network)。下面我们讨论几个不同维度中的具体例子。
+
+\subsection{1+1 维：基于 Dijkgraaf--Witten 理论}
+
+我们首先考察由群 $G$ 所刻画的 1+1 维 Dijkgraaf--Witten 模型\cite{dijkgraaf1990topological}。为了计算二维流形 $M^2$ 上的路径积分，我们先对其进行三角剖分，每个三角形对应于
+\begin{equation}
+  \alpha_2(g_1, g_2) \in H^2 \bigl( G, U(1) \bigr),
+\end{equation}
+其中 $H^2$ 是群上同调，而 $g_i\in G$ 满足群乘法
+\begin{equation}
+  g_1 \times g_2 = g_3.
+\end{equation}
+如图~\ref{fig:dw-triangulation} (a) 所示，群乘法也决定了三角形的定向。我们选取圆盘作为底流形，则路径积分将会在圆 $S^1$ 上给出相应二维模型的基态波函数。最简单的三角剖分如图~\ref{fig:dw-triangulation} (b) 所示，它可以表示为一个矩阵乘积态：
+\begin{equation}
+    \ket{\Psi}_G
+  = \sum_{\{g_i\}} \sum_{\{h_i\}}
+    \bigl[ \cdots \tau_{h_i h_{i+1}}(g_i) \, \tau_{h_{i+1} h_{i+2}}(g_{i+1}) \cdots \bigr]
+    \ket{\dots, g_i, g_{i+1}, \dots},
+\end{equation}
+其中
+\begin{equation}
+  \tau_{h_i h_{i+1}}(g) = \alpha^\varepsilon(h_i, h_{i+1}) \, \delta_{g, h_i h_{i+1}},
+\end{equation}
+而 $\varepsilon=\pm1$ 则根据三角形的定向来确定。
+
+\begin{figure}[htb]
+  \centering
+  \begin{tabular}{c@{\qquad}c}
+    $\vcenter{\hbox{\includegraphics[width=0.2\textwidth]{images/holographic/dw-triangle.png}}}$ &
+    $\vcenter{\hbox{\includegraphics[width=0.5\textwidth]{images/holographic/dw-triangulation.png}}}$ \\
+    (a) & (b)
+  \end{tabular}
+  \caption[1+1 维 Dijkgraaf--Witten 模型的三角剖分]{1+1 维 Dijkgraaf--Witten 模型的三角剖分。(a) Dijkgraaf--Witten 模型中，三角形对应了 $\alpha_2(g_1, g_2)$，而其定向则由群乘法决定。(b) 圆盘上最简单的三角剖分及对应 $\bra{\Omega}$ 的张量网络表示。图片来源：\parencite{chen2022exact}。}
+  \label{fig:dw-triangulation}
+\end{figure}
+
+这些三角形满足结合条件：
+\begin{equation}
+  \alpha(g_1, g_2) \, \alpha(g_1 g_2, g_3) = \alpha(g_1, g_2 g_3) \, \alpha(g_2, g_3).
+  \label{eq:associativity-condition}
+\end{equation}
+据此可将边界 $S^1$ 上的 $2N$ 条边变为 $N$ 条边。于是我们就得到了树状结构的算符 $U_N(G,\alpha)$，它联系起了长度为 $2N$ 和 $N$ 的两条边界。我们取
+\begin{equation}
+  \exp(z\mathcal{H}) \to U(G,\alpha) \coloneq \lim_{N\to\infty} U_N(G,\alpha).
+\end{equation}
+根据式~\eqref{eq:rg-operator}，$U(G,\alpha)$ 的本征态 $\bra{\Omega}$ 即给出了标度不变的配分函数 $Z(\Omega,G)$，并且具有全局对称性 $G$［图~\ref{fig:rg-1+1d}］。
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.6\textwidth]{images/holographic/rg-1+1d.png}
+  \caption[结合条件与树状结构的张量网络]{重复利用式~\eqref{eq:associativity-condition} 中的结合条件（图片下半部分），圆盘的三角剖分可以被改写为一个树状结构的张量网络。图片来源：\parencite{chen2022exact}。}
+  \label{fig:rg-1+1d}
+\end{figure}
+
+简单起见，我们只考虑 $H^2$ 中的平凡元素，即 $\alpha(g_1, g_2)=1$。此时，$U(G,1)$ 的本征态 $\bra{\Omega}$ 可以写成 MPS 的形式，
+\begin{equation}
+    \bra{\Omega}
+  = \sum_{\{g\}} \tr\bigl[ \cdots \rho(g_i) \, \rho(g_{i+1}) \cdots \bigr]
+    \bra{\dots, g_i, g_{i+1}, \dots},
+\end{equation}
+其中 $\rho$ 是群 $G$ 的表示矩阵，它满足
+\begin{equation}
+  \bigl[ \rho(g_1) \, \rho(g_2) \bigr]_{ij} = \sum_s \rho_{is}(g_1) \, \rho_{sj}(g_2) = \rho_{ij}(g_1 g_2).
+\end{equation}
+此外还可以证明，重整化算符的一般形式可以分解为 $G$ 表示的直积：
+\begin{equation}
+  \rho(g) = \bigoplus_\mu \rho^\mu(g),
+\end{equation}
+式中 $\mu$ 标记了群 $G$ 的不同不可约表示。这样我们得到的配分函数 $Z=\langle\Omega|\Psi\rangle_G$ 就可以表示为一组张量
+\begin{equation}
+  T_{IJ}(g) \coloneq \rho_{ij}(g) \, \alpha^\varepsilon(h,k) \, \delta_{g, hk}, \quad
+  I = (i,h), \, J = (j,k)
+\end{equation}
+的缩并形式，而其中所有的关联函数都会以指数级衰减，这与一维系统的性质也是相符的。
+
+\subsection{2+1 维：基于 Turaev--Viro 理论}
+
+\subsection{3+1 维简介}
+
+\section{AdS/CFT 的张量网络重建}
+\label{sec:ads-cft-tensor-network}
