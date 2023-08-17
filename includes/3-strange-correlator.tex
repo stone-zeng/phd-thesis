@@ -319,24 +319,23 @@ $F$ 符号为
     可以对使用不同的连接维数 $\chi$ 所获得的数据进行拟合，即可得到中心荷 $c$。
 \end{enumerate}
 
-\begin{figure}[htb]
-  % TODO: update image
-  \centering
-  \begin{tabular}{cc}
-    \includegraphics[width=0.45\textwidth]{images/temp/ising-central-charge.png} &
-    \includegraphics[width=0.45\textwidth]{images/temp/fib-central-charge.png} \\
-    (a) Ising 模型 & (b) Fibonacci 模型
-  \end{tabular}
-  \caption[中心荷拟合结果]{中心荷拟合结果。横坐标：关联长度的对数 $\log\xi$，纵坐标：纠缠熵 $S_A$。使用的连接维数为 $\chi\in\{8,9,\dots,27\}$。}
-  \label{fig:central-charge}
-\end{figure}
-
 我们使用连接维数 $\chi\in\{8,9,\dots,27\}$ 来进行计算，拟合结果如图~\ref{fig:central-charge} 所示。得到的中心荷为
 \begin{equation}
   c_{\text{Ising}} \simeq 0.499 \pm 0.004, \quad
   c_{\text{Fib}}   \simeq 0.792 \pm 0.004.
 \end{equation}
 这与对应 CFT 给出的理论值 $1/2$ 和 $4/5$ 是非常接近的，说明通过奇异关联子的确可以从弦网模型基态波函数出发得到正确的 CFT 不动点张量。
+
+\begin{figure}[htb]
+  % TODO: update image
+  \centering
+  \subcaptionbox{Ising 模型}{%
+    \includegraphics[width=0.45\textwidth]{images/temp/ising-central-charge.png}} \quad
+  \subcaptionbox{Fibonacci 模型}{%
+    \includegraphics[width=0.45\textwidth]{images/temp/fib-central-charge.png}}
+  \caption[中心荷拟合结果]{中心荷拟合结果。横坐标：关联长度的对数 $\log\xi$，纵坐标：纠缠熵 $S_A$。使用的连接维数为 $\chi\in\{8,9,\dots,27\}$。}
+  \label{fig:central-charge}
+\end{figure}
 
 % \subsection{高度模型}
 % TODO: \emph{高度模型} (height model)
@@ -412,19 +411,19 @@ $F$ 符号为
 
 考虑一个圆柱上的 PEPS 张量网络，对于其上的弦算符 (MPO)，我们可以取下面的基来描述：
 \begin{equation}
-    \calT{s}{pqr}
+    \mathcal{T}^{s}_{pqr}
   = \, \vcenter{\hbox{\includegraphics{images/mpo/Tube0.pdf}}} \,
   = \vcenter{\hbox{\includegraphics{images/mpo/TCtensortube.pdf}}}.
 \end{equation}
 它们的乘法和 Hermitian 共轭分别为
 \begin{align}
-     \calT{s}{pqr} \calT{s'}{p'q'r'}
+     \mathcal{T}^{s}_{pqr} \mathcal{T}^{s'}_{p'q'r'}
   &= \delta_{rp'} \, \vcenter{\hbox{\includegraphics{images/mpo/TCTubemult.pdf}}} \notag \\
   &= \delta_{rp'} \sum_{q''s''} F^{sqs'}_{q'rq''} F^{q''s's}_{pqs''} F^{s'sq''}_{r'q's''}
-     \sqrt{\frac{d_s d_{s'}}{d_{s''}}} \calT{s''}{pq''r'}, \\
-     \bigl( \calT{s}{pqr} \bigr)^\dagger
+     \sqrt{\frac{d_s d_{s'}}{d_{s''}}} \mathcal{T}^{s''}_{pq''r'}, \\
+     \bigl( \mathcal{T}^{s}_{pqr} \bigr)^\dagger
   &= \, \vcenter{\hbox{\includegraphics{images/mpo/TCTubedagger.pdf}}} \,
-   = \sqrt{\frac{d_p}{d_r}} \sum_{q'} F^{srs}_{pqq'} \calT{s}{rq'p}.
+   = \sqrt{\frac{d_p}{d_r}} \sum_{q'} F^{srs}_{pqq'} \mathcal{T}^{s}_{rq'p}.
   \label{eq:tube-algebra-hermitian-conjugate}
 \end{align}
 由此可见，这些基关于乘法和 Hermitian 共轭都是封闭的，因而它们构成了一个 $C^*$ 代数，称为 \emph{Ocneanu 管状代数} (Ocneanu's tube algebra)\cite{evans1995ocneanu,evans1998quantum}。
@@ -433,38 +432,38 @@ $F$ 符号为
 
 中心幂等元可以表示为管状代数中基的线性组合：
 \begin{equation}
-  \calP{i} = \frac{1}{D^2} \sum_{pqrs} t^i_{pqrs} \calT{s}{pqr},
+  \mathcal{P}_{i} = \frac{1}{D^2} \sum_{pqrs} t^i_{pqrs} \mathcal{T}^{s}_{pqr},
 \end{equation}
-其中 $D$ 为总量子维数，而系数 $t^i_{pqrs}$ 可根据 $\calP{i}$ 满足的约束条件来求解：
+其中 $D$ 为总量子维数，而系数 $t^i_{pqrs}$ 可根据 $\mathcal{P}_{i}$ 满足的约束条件来求解：
 \begin{equation}
-  \calP{i} \calP{j} = \delta_{ij} \calP{i}, \quad
-  \calP{i}^\dagger = \calP{i}, \quad
-  \calT{s}{pqr} \calP{i} = \calP{i} \calT{s}{pqr}.
+  \mathcal{P}_{i} \mathcal{P}_{j} = \delta_{ij} \mathcal{P}_{i}, \quad
+  \mathcal{P}_{i}^\dagger = \mathcal{P}_{i}, \quad
+  \mathcal{T}^{s}_{pqr} \mathcal{P}_{i} = \mathcal{P}_{i} \mathcal{T}^{s}_{pqr}.
 \end{equation}
 以包含 $\1$、$\tau$ 两种任意子的 Fibonacci 模型为例\cite{bultinck2017anyons}，它的中心幂等元共有 4 个：
 \begin{equation}
   \begin{aligned}
-    \calP{1} &= \frac{1}{\sqrt5} \left(
-      \frac{1}{\varphi} \calT{\1}{\1\1\1} + \sqrt{\varphi} \calT{\tau}{\1\tau\1}
+    \mathcal{P}_{1} &= \frac{1}{\sqrt5} \left(
+      \frac{1}{\varphi} \mathcal{T}^{\1}_{\1\1\1} + \sqrt{\varphi} \mathcal{T}^{\tau}_{\1\tau\1}
     \right), \\
-    \calP{2} &= \frac{1}{\sqrt5} \left(
-      \frac{1}{\varphi} \calT{\1}{\tau\tau\tau} + \frac{1}{\sqrt{\varphi}} \ee^{-4\pi\ii/5} \calT{\tau}{\tau\1\tau} + \ee^{ 3\pi\ii/5} \calT{\tau}{\tau\tau\tau}
+    \mathcal{P}_{2} &= \frac{1}{\sqrt5} \left(
+      \frac{1}{\varphi} \mathcal{T}^{\1}_{\tau\tau\tau} + \frac{1}{\sqrt{\varphi}} \ee^{-4\pi\ii/5} \mathcal{T}^{\tau}_{\tau\1\tau} + \ee^{ 3\pi\ii/5} \mathcal{T}^{\tau}_{\tau\tau\tau}
     \right), \\
-    \calP{3} &= \frac{1}{\sqrt5} \left(
-      \frac{1}{\varphi} \calT{\1}{\tau\tau\tau} + \frac{1}{\sqrt{\varphi}} \ee^{ 4\pi\ii/5} \calT{\tau}{\tau\1\tau} + \ee^{-3\pi\ii/5} \calT{\tau}{\tau\tau\tau}
+    \mathcal{P}_{3} &= \frac{1}{\sqrt5} \left(
+      \frac{1}{\varphi} \mathcal{T}^{\1}_{\tau\tau\tau} + \frac{1}{\sqrt{\varphi}} \ee^{ 4\pi\ii/5} \mathcal{T}^{\tau}_{\tau\1\tau} + \ee^{-3\pi\ii/5} \mathcal{T}^{\tau}_{\tau\tau\tau}
     \right), \\
-    \calP{4} &= \frac{1}{\sqrt5} \left(
-      \varphi \calT{\1}{\1\1\1} + \calT{\1}{\tau\tau\tau} - \sqrt{\varphi} \calT{\tau}{\1\tau\1} + \sqrt{\varphi} \calT{\tau}{\tau\1\tau} + \frac{1}{\varphi} \calT{\tau}{\tau\tau\tau}
+    \mathcal{P}_{4} &= \frac{1}{\sqrt5} \left(
+      \varphi \mathcal{T}^{\1}_{\1\1\1} + \mathcal{T}^{\1}_{\tau\tau\tau} - \sqrt{\varphi} \mathcal{T}^{\tau}_{\1\tau\1} + \sqrt{\varphi} \mathcal{T}^{\tau}_{\tau\1\tau} + \frac{1}{\varphi} \mathcal{T}^{\tau}_{\tau\tau\tau}
     \right),
   \end{aligned}
   \label{eq:fib-idempotents}
 \end{equation}
 分别对应了 doubled Fibonacci（即 Fibonacci 的 Drinfeld 中心）中的 4 种任意子：
 \begin{equation}
-  \calP{1} \mapsto (\1, \1), \quad
-  \calP{2} \mapsto (\1, \bar{\tau}), \quad
-  \calP{3} \mapsto (\tau, \1), \quad
-  \calP{4} \mapsto (\tau, \bar{\tau}),
+  \mathcal{P}_{1} \mapsto (\1, \1), \quad
+  \mathcal{P}_{2} \mapsto (\1, \bar{\tau}), \quad
+  \mathcal{P}_{3} \mapsto (\tau, \1), \quad
+  \mathcal{P}_{4} \mapsto (\tau, \bar{\tau}),
 \end{equation}
 相应的拓扑自旋分别为
 \begin{equation}
@@ -478,16 +477,16 @@ $F$ 符号为
 \begin{equation}
   Z(\Omega, \mathcal{C}) = \langle \Omega|\Psi \rangle.
 \end{equation}
-由于 $\ket{\Psi}$ 是一个拓扑序的基态波函数，它应该在标度变换下保持不变。设标度变换可由重整化算符 $\mathcal{H}_{\!\mathcal{C}}$ 生成，则可有
+由于 $\ket{\Psi}$ 是一个拓扑序的基态波函数，它应该在标度变换下保持不变。设标度变换可由重整化算符 $\mathcal{H}_{\mathcal{C}}$ 生成，则可有
 \begin{equation}
-  Z(\Omega, \mathcal{C}) = \langle \Omega | \exp(z\mathcal{H}_{\!\mathcal{C}}) | \Psi \rangle,
+  Z(\Omega, \mathcal{C}) = \langle \Omega | \exp(z\mathcal{H}_{\mathcal{C}}) | \Psi \rangle,
 \end{equation}
 其中 $z$ 是重整化坐标。考虑到 $Z(\Omega, \mathcal{C})$ 描述了一个 $D$ 维的拓扑 / 共形系统，因此
 \begin{equation}
-  \bra{\Omega} \exp(z\mathcal{H}_{\!\mathcal{C}}) = \bra{\Omega},
+  \bra{\Omega} \exp(z\mathcal{H}_{\mathcal{C}}) = \bra{\Omega},
   \label{eq:rg-operator}
 \end{equation}
-即配分函数的构建可以转化为关于 $\mathcal{H}_{\!\mathcal{C}}$ 的本征值问题。重整化算符 $\mathcal{H}_{\!\mathcal{C}}$ 可以将体（$D+1$ 维球 $B^{D+1}$）与不同格点标度下的边界（$D$ 维球面 $S^D$）联系起来，因而也就能够用来构建一套\emph{全息张量网络} (holographic tensor network)。下面我们讨论几个不同维度中的具体例子。
+即配分函数的构建可以转化为关于 $\mathcal{H}_{\mathcal{C}}$ 的本征值问题。重整化算符 $\mathcal{H}_{\mathcal{C}}$ 可以将体（$D+1$ 维球 $B^{D+1}$）与不同格点标度下的边界（$D$ 维球面 $S^D$）联系起来，因而也就能够用来构建一套\emph{全息张量网络} (holographic tensor network)。下面我们讨论几个不同维度中的具体例子。
 
 \subsection{1+1 维：基于 Dijkgraaf--Witten 理论}
 
@@ -499,7 +498,7 @@ $F$ 符号为
 \begin{equation}
   g_1 \times g_2 = g_3.
 \end{equation}
-如图~\ref{fig:dw-triangulation}\,(a) 所示，群乘法也决定了三角形的定向。我们选取圆盘作为底流形，则路径积分将会在圆 $S^1$ 上给出相应二维模型的基态波函数。最简单的三角剖分如图~\ref{fig:dw-triangulation}\,(b) 所示，它可以表示为一个矩阵乘积态：
+如图~\ref{fig:dw-triangle} 所示，群乘法也决定了三角形的定向。我们选取圆盘作为底流形，则路径积分将会在圆 $S^1$ 上给出相应二维模型的基态波函数。最简单的三角剖分如图~\ref{fig:dw-triangulation} 所示，它可以表示为一个矩阵乘积态：
 \begin{equation}
     \ket{\Psi}_G
   = \sum_{\{g_i\}} \sum_{\{h_i\}}
@@ -514,13 +513,11 @@ $F$ 符号为
 
 \begin{figure}[htb]
   \centering
-  \begin{tabular}{c@{\qquad}c}
-    $\vcenter{\hbox{\includegraphics[width=0.2\textwidth]{images/holographic/dw-triangle.png}}}$ &
-    $\vcenter{\hbox{\includegraphics[width=0.5\textwidth]{images/holographic/dw-triangulation.png}}}$ \\
-    (a) & (b)
-  \end{tabular}
+  \subcaptionbox{\label{fig:dw-triangle}}{%
+    \includegraphics[width=0.2\textwidth]{images/holographic/dw-triangle.png}} \quad
+  \subcaptionbox{\label{fig:dw-triangulation}}{%
+    \includegraphics[width=0.5\textwidth]{images/holographic/dw-triangulation.png}}
   \caption[1+1 维 Dijkgraaf--Witten 模型的三角剖分]{1+1 维 Dijkgraaf--Witten 模型的三角剖分。(a) Dijkgraaf--Witten 模型中，三角形对应了 $\alpha_2(g_1, g_2)$，而其定向则由群乘法决定。(b) 圆盘上最简单的三角剖分及对应 $\bra{\Omega}$ 的张量网络表示。图片来源：\parencite{chen2022exact}。}
-  \label{fig:dw-triangulation}
 \end{figure}
 
 这些三角形满足结合条件：
@@ -564,7 +561,7 @@ $F$ 符号为
 
 \subsection{2+1 维：基于 Turaev--Viro 理论}
 
-2+1 维的情况实际上就对应了奇异关联子的原始定义（\ref{sec:strange-correlator} 节）。我们考虑一个对应于融合范畴 $\mathcal{C}$ 的 Turaev--Viro TQFT。对于球面 $S^2$ 上的基态波函数，它可由一个三维球 $B^3$ 上的路径积分给出，利用三角剖分则可将 $B^3$ 变为四面体的形式。方便起见，我们不妨令剖分得到的截面与图~\ref{fig:dw-triangulation}\,(b) 中的情形相同，即球面 $S^2$ 被三角形所覆盖，而三角形的每个顶点都有一条边延伸至球心。每条边被赋予了 $\mathcal{C}$ 中的一个对象，而每个四面体则被赋予一个四面体符号的值，它由 $\mathcal{C}$ 中对象的融合关系所定义。这样，我们就获得了基态波函数的张量网络表示（见图~\ref{fig:ground-state-wave-function}，也可参考 \ref{subsec:string-net-ground-state} 小节）。这些四面体符号之间满足的关系在 \ref{subsec:tetrahedral-symmetry} 小节中也已经讨论过了，此处我们重新整理在图~\ref{fig:tetrahedra-symbols} 中。
+2+1 维的情况实际上就对应了奇异关联子的原始定义（\ref{sec:strange-correlator} 节）。我们考虑一个对应于融合范畴 $\mathcal{C}$ 的 Turaev--Viro TQFT。对于球面 $S^2$ 上的基态波函数，它可由一个三维球 $B^3$ 上的路径积分给出，利用三角剖分则可将 $B^3$ 变为四面体的形式。方便起见，我们不妨令剖分得到的截面与图~\ref{fig:dw-triangulation} 中的情形相同，即球面 $S^2$ 被三角形所覆盖，而三角形的每个顶点都有一条边延伸至球心。每条边被赋予了 $\mathcal{C}$ 中的一个对象，而每个四面体则被赋予一个四面体符号的值，它由 $\mathcal{C}$ 中对象的融合关系所定义。这样，我们就获得了基态波函数的张量网络表示（见图~\ref{fig:ground-state-wave-function}，也可参考 \ref{subsec:string-net-ground-state} 小节）。这些四面体符号之间满足的关系在 \ref{subsec:tetrahedral-symmetry} 小节中也已经讨论过了，此处我们重新整理在图~\ref{fig:tetrahedra-symbols} 中。
 
 \begin{figure}[htb]
   \centering
@@ -598,14 +595,141 @@ $F$ 符号为
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=0.7\textwidth]{images/holographic/rg-2+1d-blocking.png}
-  \caption[边界态 $\bra{\Omega}$ 的 PEPS 张量网络表示]{上图为边界态 $\bra{\Omega}$ 的 PEPS 张量网络表示，其指标位于三角形的边上。每条边都有两个指标，一个是物理指标 $a_i\in\mathcal{C}$，另一个是连接维数为 $\chi$ 的辅助指标 $I_i$。在下图中，我们利用 SVD 把张量 $M(k)$ 分解为两个张量 $\tilde{T}$ 的缩并。指标 $H$（标记为红色）在生成时，连接维数为 $\chi^2$，但我们会将其截断为 $\chi$ 以使得重整化过程得以持续。}
+  \includegraphics[width=0.8\textwidth]{images/holographic/rg-2+1d-blocking.png}
+  \caption[边界态 $\bra{\Omega}$ 的 PEPS 张量网络表示]{上图为边界态 $\bra{\Omega}$ 的 PEPS 张量网络表示，其指标位于三角形的边上。每条边都有两个指标，一个是物理指标 $a_i\in\mathcal{C}$，另一个是连接维数为 $\chi$ 的辅助指标 $I_i$。在下图中，我们利用 SVD 把张量 $M(k)$ 分解为两个张量 $\tilde{T}$ 的缩并。指标 $H$（标记为红色）在生成时，连接维数为 $\chi^2$，但我们会将其截断为 $\chi$ 以使得重整化过程得以持续。图片来源：\parencite{chen2022exact}。}
   \label{fig:rg-2+1d-blocking}
 \end{figure}
 
 需要注意的是，对于有限大小的 $\chi$，临界点是不稳定的，而从重整化过程中获得的 $T$ 序列最终会流向某个拓扑不动点。因此我们认为，在重整化过程中，如果观察到 $T$ 开始向拓扑不动点的方向收敛，即达到了临界点。而对于固定的 $\chi$，总能利用这种方式找到一组 $T$ 使其最接近临界态。
 
+% TODO: \mathfrak{su}(2)_k / SU(2)_k / A_{k+1}
+
+接下来我们以 $\mathcal{A}_{k+1}$ 模型（见 \ref{subsec:a-k+1-category} 小节）为例给出一些具体的数值计算结果。如图~\ref{fig:su2-k-boundary-condition} 所示，$\mathcal{A}_{k+1}$ 中的边界态可以取为
+\begin{equation}
+  \bra{\Omega} = \sum_{\{a\}} \prod_{a_1, a_2, a_3} T^{a_1, a_2, a_3} \bra{\{a\}},
+\end{equation}
+其中三角形上的 $T$ 张量为
+\begin{equation}
+  T^{a_1, a_2, a_3} = \begin{cases}
+    1, & a_1 = a_3 = \frac12, \, a_2 = 0; \\
+    r, & a_1 = a_3 = \frac12, \, a_2 = 1; \\
+    0, & \text{otherwise}.
+  \end{cases}
+\end{equation}
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/holographic/a-k+1-boundary-condition.png}
+  \caption[$\mathcal{A}_{k+1}$ 模型中的边界条件]{$\mathcal{A}_{k+1}$ 模型中的边界条件。$k=2$ 时 $\mathcal{A}_{k+1}$ 等价于 Ising 模型，因而有 $r=\ee^{-2\beta}$。与图~\ref{fig:rg-2+1d-blocking} 相对比，此处的辅助指标 $I_i$ 是平凡的。图片来源：\parencite{chen2022exact}。}
+  \label{fig:a-k+1-boundary-condition}
+\end{figure}
+
+通过重复作用重整化算符，我们可以让 $T$ 收敛到不动点。作为最粗糙的近似，这里只取连接维数 $\chi=1$。计算结果表明，对于较小的 $r$，不动点张量包含唯一非零分量 $T^{000}$，这对应了可分 Frobenius 代数 $\mathcal{A}_0=\{0\}$；而对于较大的 $r$，不动点张量的非零分量为 $T^{000}=T^{110}=T^{101}=T^{011}$，$k>2$ 时还存在 $T^{111}$，它们的比值为
+\begin{equation}
+  \frac{T^{000}}{T^{111}} \simeq \begin{cases}
+    1.43463, & k = 3; \\
+    1.18921, & k = 4.
+  \end{cases}
+\end{equation}
+这与通过可分 Frobenius 代数 $\mathcal{A}_1=\{0,1\}$ 得到的精确值
+\begin{equation}
+  \frac{T^{000}}{T^{111}} = \frac{\sqrt[4]{2\cos\left(\frac{2\pi}{k+2}\right) + 1}}{\sqrt{2\cos\left(\frac{2\pi}{k+2}\right)}}, \quad
+  k > 2
+\end{equation}
+是相符的。我们还可以得到临界耦合常数 $r_{\text{c}}(k)$（图~\ref{fig:a-k+1-coupling}），这与利用 Kramers--Wannar 对偶得到的精确值
+\begin{equation}
+  r_{\text{c}} = \frac{\sqrt[4]{2\cos\left(\frac{2\pi}{k+2}\right) + 1}}{\sqrt{2\cos\left(\frac{\pi}{k+2}\right) + 1}}
+\end{equation}
+也是基本符合的（至一位有效数字）。
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.6\textwidth]{images/holographic/a-k+1-coupling.png}
+  \caption[$\mathcal{A}_{k+1}$ 模型中的临界耦合常数]{$\mathcal{A}_{k+1}$ 模型中的临界耦合常数，这里 $r^{\text{a}}_{\text{c}}$ 和 $r^{\text{n}}_{\text{c}}$ 分别代表理论结果和数值模拟结果。它们符合的程度大致为一位有效数字。图片来源：\parencite{chen2022exact}。}
+  \label{fig:a-k+1-coupling}
+\end{figure}
+
 \subsection{3+1 维简介}
+
+类似地，三维配分函数也可通过 3+1 维 TQFT 基态波函数与对应的奇异关联子获得。对于 3+1 维 TQFT 而言，输入数据是 \emph{2-融合范畴} (2-fusion category)，而相应张量网络的构建块是\emph{四维单形} (4-simplex)。此时，边会被赋予 2-范畴中的对象，面会被赋予 1-态射，而三维单形则会被赋予 2-态射。
+
+3+1 维 TQFT 基态波函数的张量网络表示是 2+1 维的自然推广，它可由以三维球面 $S^3$ 为边界的四维球 $B^4$ 中的路径积分获得。边界 $S^3$ 可被三角剖分为一系列的三维单形，它们共享的指标则位于四维球 $B^4$ 的球心［即图~\ref{fig:dw-triangulation} 的高维推广］。在张量网络中，这些构建块可以表示为四面体的形式，其边和面上都带有指标。波函数则相当于把这些四面体铺满三维边界，并对共享的指标求和。
+
+具体来说，三维边界由一系列小正方体填充，每个正方体可继续分为 6 个四面体，而顶点则被 8 个正方体共享［图~\ref{fig:3+1d-cube-1}］。注意这样的正方体单元并不是平移不变的，最小可重复的填充单元需要 $2\times2\times2$ 个小正方体［图~\ref{fig:3+1d-cube-2}］。
+
+\begin{figure}[htb]
+  \centering
+  \subcaptionbox{\label{fig:3+1d-cube-1}}{%
+    \includegraphics[width=0.25\textwidth]{images/holographic/3+1d-cube-1.png}} \quad
+  \subcaptionbox{\label{fig:3+1d-cube-2}}{%
+    \includegraphics[width=0.45\textwidth]{images/holographic/3+1d-cube-2.png}}
+  \caption[3+1 维中的三角剖分]{3+1 维中的三角剖分。(a) 每个正方体被分为了 6 个四面体。(b) 每个 $2\times2\times2$ 的大正方体包含了 8 个小正方体，三角剖分的方式由小正方体的对角（红色圆点）来决定。图片来源：\parencite{chen2022exact}。}
+\end{figure}
+
+如图~\ref{fig:rg-3+1d} 所示，3+1 维中的重整化大致通过以下三个步骤来实现：
+
+\begin{enumerate}
+  \item 消去边中间位置的顶点 $m$、$n$ 等，得到新的边 $\overline{12}$、$\overline{23}$ 等；
+  \item 消去面中间位置的顶点 $\alpha$、$\beta$ 等，得到新的边 $\overline{13}$、$\overline{16}$ 等；
+  \item 消去体心 $o$，得到新的边 $\overline{17}$。
+\end{enumerate}
+
+\begin{figure}[htb]
+  \centering
+  \subcaptionbox{重整化的总体效果}{%
+    \includegraphics[width=0.45\textwidth]{images/holographic/rg-3+1d.png}} \quad
+  \subcaptionbox{消去棱心 $m$，得到边 $\overline{12}$}{%
+    \includegraphics[width=0.45\textwidth]{images/holographic/rg-3+1d-step-1.png}} \\
+  \subcaptionbox{消去面心 $\alpha$，得到边 $\overline{13}$}{%
+    \includegraphics[width=0.45\textwidth]{images/holographic/rg-3+1d-step-2.png}} \quad
+  \subcaptionbox{消去体心 $o$，得到边 $\overline{17}$}{%
+    \includegraphics[width=0.45\textwidth]{images/holographic/rg-3+1d-step-3.png}}
+  \caption[3+1 维中重整化算符的构造]{3+1 维中重整化算符的构造。$2\times2\times2$ 个正方体将被粗粒近似为 $1\times1\times1$ 个正方体。图片来源：\parencite{chen2022exact}。}
+  \label{fig:rg-3+1d}
+\end{figure}
+
+我们考虑 3+1 维 toric code 模型（即 3+1 维 $\mathbb{Z}_2$ Dijkgraaf-Witten 模型），其边界态可以取为
+\begin{equation}
+  \bra{\Omega} = \sum_{\{a\}} \Omega_{\{a\}} \bra{\{a\}} = \bigotimes_e \bra{w_e},
+\end{equation}
+其中 $\bra{w_e}$ 是棱 $e$ 上的态。如图~\ref{fig:3+1d-cube-3} 所示，$\bra{w_e}$ 可分为两类：
+\begin{equation}
+  \bra{w_e} = \begin{cases}
+    \bra{1} + \bra{-1}, & \text{red edges}; \\
+    \ee^\beta \bra{1} + \ee^{-\beta} \bra{-1}, & \text{blue edges},
+  \end{cases}
+\end{equation}
+由此得到的奇异关联子为
+\begin{equation}
+  Z = \langle\Omega|\Psi\rangle = \sum_{\{\sigma\}} \prod_{\ev{ij}} \ee^{\beta \sigma_i \sigma_j}
+\end{equation}
+可以发现它和三维 Ising 模型的配分函数是一致的。将正方体单元进一步拆分为四面体，可以给出 $\bra{\Omega}$ 的张量网络表示：
+\begin{equation}
+  \bra{\Omega(u_\beta)} = \sum_{\{a\}} \sum_{i,j,k,l,\dots} \cdots u_\beta^{ijkl} (a_1,a_2,a_3) \cdots \bra{\{a\}}.
+\end{equation}
+其中 $\sum_{\{a\}}$ 表示对所有可能的构型求和，而 $\sum_{i,j,k,l,\dots}$ 则表示对面上的指标求和，而张量单元
+\begin{equation}
+  u_\beta^{ijkl} (a,b,c) = \begin{cases}
+    \ee^{\beta(a+2b+c)/8}, & i=j=k=l=1; \\
+    0, & \text{otherwise}
+  \end{cases}
+\end{equation}
+对应图~\ref{fig:3+1d-tetrahedron} 中的小四面体，其中 $a,b,c=\pm1$。
+
+\begin{figure}[htb]
+  \centering
+  \subcaptionbox{\label{fig:3+1d-cube-3}}{%
+    \includegraphics[width=0.3\textwidth]{images/holographic/3+1d-cube-3.png}} \qquad
+  \subcaptionbox{\label{fig:3+1d-tetrahedron}}{%
+    \includegraphics[width=0.25\textwidth]{images/holographic/3+1d-tetrahedron.png}}
+  \caption[3+1 维 toric code 模型中的边界态]{3+1 维 toric code 模型中的边界态。(a) 边界中的棱分为红色和蓝色两类。(b) $a$、$b$、$c$ 表示棱上的自由度，$i$、$j$、$k$、$l$ 则是面上的指标。图片来源：\parencite{chen2022exact}。}
+\end{figure}
+
+按照上面介绍的重整化方案，我们可以找到 $u_\beta$ 的两个不动点，分别为 $u_0$ 和 $u_\infty$，而临界点大致为
+\begin{equation}
+  0.27 \lesssim \beta_{\text{c}} \lesssim 0.28,
+\end{equation}
+这与通过其他方法得到的三维 Ising 模型数值结果 $\beta_{\text{c}}=0.22165463(8)$\cite{hasenbusch2010finite}同样也是基本符合的（至一位有效数字）。注意到与 2+1 维的情况相同，这里连接维数仍然只取为 $\chi=1$。可以想见，增大连接维数将提高计算的精度。
 
 \section{AdS/CFT 的张量网络重建}
 \label{sec:ads-cft-tensor-network}

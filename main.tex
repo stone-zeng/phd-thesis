@@ -4,6 +4,7 @@
 \usepackage{diagbox}
 \usepackage{enumitem}
 \usepackage{rotating}
+\usepackage{subcaption}
 \usepackage{threeparttable}
 \usepackage{tikz}
 \usepackage{xcolor-material}
@@ -33,7 +34,9 @@
   }
 }
 
-\setmathfont{latinmodern-math.otf}[range={cal,frak}]
+% caption
+\subcaptionsetup[figure]{labelformat=simple}
+\renewcommand\thesubfigure{(\alph{subfigure})}
 
 % enumitem
 \setlist{itemsep=0pt}
@@ -136,8 +139,6 @@
 \newcommand{\ldual}[1]{{}^*\mspace{-2mu}#1}
 \newcommand{\dv}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
 \newcommand{\pdv}[2]{\frac{\partial#1}{\partial#2}}
-\newcommand{\calP}[1]{\mspace{1mu}\mathcal{P}_{\!#1}}
-\newcommand{\calT}[2]{\mspace{1mu}\mathcal{T}^{#1}_{\mspace{-6mu}#2}}
 \NewDocumentCommand{\bra}{som}{%
   \IfBooleanTF{#1}{\langle#3|}{%
     \IfValueTF{#2}{#2\langle#3#2|}{\left\langle#3\right|}}}

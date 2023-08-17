@@ -492,16 +492,16 @@ Fibonacci 弦网模型定义在六边形网格上，包含 $\1$ 和 $\tau$ 两�
   = \frac{1}{\sqrt{d_j d_c}} \bigl[ F^{aik}_b \bigr]_{jc}
   = \frac{1}{\sqrt{d_a d_b d_c d_i d_j d_k}} \, \Tetrahedron jibcka.
 \end{equation}
-对于大小为 $n$ 的圆柱转移矩阵，管状代数的基\footnote{在中心幂等元的构造中，\ref{subsec:tube-algebra-idempotents} 小节中带有 4 个指标的 $\calT{s}{pqr}$ 需要满足 $r=p$，因此这里的 $\calT{c}{ab}\coloneq\calT{c}{bab}$。}可由 $n-1$ 个橙色张量与一个红色张量首尾相连得到：
+对于大小为 $n$ 的圆柱转移矩阵，管状代数的基\footnote{在中心幂等元的构造中，\ref{subsec:tube-algebra-idempotents} 小节中带有 4 个指标的 $\mathcal{T}^{s}_{pqr}$ 需要满足 $r=p$，因此这里的 $\mathcal{T}^{c}_{ab}\coloneq\mathcal{T}^{c}_{bab}$。}可由 $n-1$ 个橙色张量与一个红色张量首尾相连得到：
 \begin{equation}
-  \calT{c}{ab} = \tikzinput{tube-algebra-basis}.
+  \mathcal{T}^{c}_{ab} = \tikzinput{tube-algebra-basis}.
 \end{equation}
 注意图中省略了辅助指标，它们需要被正常缩并掉。
 
 中心幂等元的一般形式可表示为这些基的线性组合。在式~\eqref{eq:fib-idempotents} 中，我们已经给出了 Fibonacci 模型中对应于 $\1$ 的中心幂等元：
 \begin{equation}
-  \calP{1} = \frac{1}{\sqrt5}
-  \left( \frac{1}{\phi} \calT{\1}{\1\1} + \sqrt{\phi} \calT{\tau}{\tau\1} \right).
+  \mathcal{P}_{1} = \frac{1}{\sqrt5}
+  \left( \frac{1}{\phi} \mathcal{T}^{\1}_{\1\1} + \sqrt{\phi} \mathcal{T}^{\tau}_{\tau\1} \right).
 \end{equation}
 它可以与转移矩阵、平移算符相连，再进行对角化便可得到只含真空态、能动量张量等的子能谱。这样，即使是在有限尺寸下，依然可以严格地找到能动量张量对应的本征态。我们在表~\ref{tab:fib-spectrum} 和图~\ref{fig:fib-spectrum} 中都对这些态做了高亮。
 
