@@ -473,6 +473,8 @@ $F$ 符号为
 \section{全息张量网络}
 \label{sec:holographic-tensor-network}
 
+% 首先，我们将奇异关联子的概念推广到了任意维数（$1\leqslant D\leqslant 3$），并且给出了一种系统的方法用以构造配分函数和搜寻临界点。我们的方法基于对 $\bra{\Omega}$ 的理解。根据融合范畴 $\mathcal{C}$ 及其对应的范畴对称性 $\mathcal{Z}(\mathcal{C})$，我们可以构造一套重整化算符，并将其作为全息张量网络。它可以对拓扑序的基态波函数 $\ket{\Psi}$ 进行粗粒近似。为了使 $\langle\Omega|\Psi\rangle$ 能够表示对应共形场论的配分函数，$\bra{\Omega}$ 需要是重整化算符的本征态。实际上，带有范畴对称性 $\mathcal{Z}(\mathcal{C})$ 的 $D$ 维共形场论，也就相当于由 $D+1$ 维拓扑序所确定的重整化算符的本征态。我们发现，对于中心为 $\mathcal{Z}(\mathcal{C})$ 的输入范畴 $\mathcal{C}$，其中的每一个 \emph{Frobenius 代数} (Frobenius algebra) 都确定了一个 $D+1$ 维的格点拓扑模型，它们对应了重整化算符的本征态，能给出一个 $D$ 维的对称 TQFT，而 CFT 就位于这些 TQFT 的相变点处。我们可以在相变点两侧各取一个 Frobenius 代数，而描述 CFT 的边界条件即可通过这两个 Frobenius 代数对应的边界条件插值得到。而在远离 CFT 不动点处，重复作用这些重整化算符将会给出 $\mathcal{C}$ 的 Frobenius 代数。从数值角度上看，当我们对三维的配分函数不断作用重整化算符时，实际上也就相当于实现了类似于三维 TRG 算法的操作。这种全息张量网络与 $p$-adic 张量网络也存在相似之处。后者中的张量单元由 $p$-adic CFT 融合范畴中结合代数的乘积/余积结构给出，而前者则需要利用 $D-1$ 维融合范畴中的 Frobenius 代数结构，这正是结合代数的自然推广。
+
 我们在 \ref{sec:strange-correlator} 节中所介绍的奇异关联子也可以被推广到任意维度。对于一个 $D+1$ 维的拓扑序，它可以用一个 $D+1$ 维球 $B^{D+1}$ 上的融合范畴 $\mathcal{C}$ 来描述，其基态波函数为 $\ket{\Psi}$。指定 $D$ 维球面 $S^D$ 上的边界条件，就相当于将 $\ket{\Psi}$ 与某一直积态 $\ket{\Omega}$ 作内积，即
 \begin{equation}
   Z(\Omega, \mathcal{C}) = \langle \Omega|\Psi \rangle.
@@ -560,6 +562,7 @@ $F$ 符号为
 的缩并形式，而其中所有的关联函数都会以指数级衰减，这与一维系统的性质也是相符的。
 
 \subsection{2+1 维：基于 Turaev--Viro 理论}
+\label{subsec:holographic-tensor-network-2+1d}
 
 2+1 维的情况实际上就对应了奇异关联子的原始定义（\ref{sec:strange-correlator} 节）。我们考虑一个对应于融合范畴 $\mathcal{C}$ 的 Turaev--Viro TQFT。对于球面 $S^2$ 上的基态波函数，它可由一个三维球 $B^3$ 上的路径积分给出，利用三角剖分则可将 $B^3$ 变为四面体的形式。方便起见，我们不妨令剖分得到的截面与图~\ref{fig:dw-triangulation} 中的情形相同，即球面 $S^2$ 被三角形所覆盖，而三角形的每个顶点都有一条边延伸至球心。每条边被赋予了 $\mathcal{C}$ 中的一个对象，而每个四面体则被赋予一个四面体符号的值，它由 $\mathcal{C}$ 中对象的融合关系所定义。这样，我们就获得了基态波函数的张量网络表示（见图~\ref{fig:ground-state-wave-function}，也可参考 \ref{subsec:string-net-ground-state} 小节）。这些四面体符号之间满足的关系在 \ref{subsec:tetrahedral-symmetry} 小节中也已经讨论过了，此处我们重新整理在图~\ref{fig:tetrahedra-symbols} 中。
 
@@ -604,7 +607,7 @@ $F$ 符号为
 
 % TODO: \mathfrak{su}(2)_k / SU(2)_k / A_{k+1}
 
-接下来我们以 $\mathcal{A}_{k+1}$ 模型（见 \ref{subsec:a-k+1-category} 小节）为例给出一些具体的数值计算结果。如图~\ref{fig:su2-k-boundary-condition} 所示，$\mathcal{A}_{k+1}$ 中的边界态可以取为
+接下来我们以 $\mathcal{A}_{k+1}$ 模型（见 \ref{subsec:a-k+1-category} 小节）为例给出一些具体的数值计算结果。如图~\ref{fig:a-k+1-boundary-condition} 所示，$\mathcal{A}_{k+1}$ 中的边界态可以取为
 \begin{equation}
   \bra{\Omega} = \sum_{\{a\}} \prod_{a_1, a_2, a_3} T^{a_1, a_2, a_3} \bra{\{a\}},
 \end{equation}
@@ -649,13 +652,13 @@ $F$ 符号为
   \label{fig:a-k+1-coupling}
 \end{figure}
 
-\subsection{3+1 维简介}
+\subsection{3+1 维概述}
 
-类似地，三维配分函数也可通过 3+1 维 TQFT 基态波函数与对应的奇异关联子获得。对于 3+1 维 TQFT 而言，输入数据是 \emph{2-融合范畴} (2-fusion category)，而相应张量网络的构建块是\emph{四维单形} (4-simplex)。此时，边会被赋予 2-范畴中的对象，面会被赋予 1-态射，而三维单形则会被赋予 2-态射。
+类似地，三维配分函数也可通过 3+1 维 TQFT 基态波函数与对应的奇异关联子获得。对于 3+1 维 TQFT 而言，输入数据是 \emph{2-融合范畴} (2-fusion category)\cite{lan2018classification,lan2019classification,johnson2021dimensional,johnson2022classification}，而相应张量网络的构建块是\emph{四维单形} (4-simplex)。此时，边会被赋予 2-范畴中的对象，面会被赋予 1-态射，而三维单形则会被赋予 2-态射。
 
 3+1 维 TQFT 基态波函数的张量网络表示是 2+1 维的自然推广，它可由以三维球面 $S^3$ 为边界的四维球 $B^4$ 中的路径积分获得。边界 $S^3$ 可被三角剖分为一系列的三维单形，它们共享的指标则位于四维球 $B^4$ 的球心［即图~\ref{fig:dw-triangulation} 的高维推广］。在张量网络中，这些构建块可以表示为四面体的形式，其边和面上都带有指标。波函数则相当于把这些四面体铺满三维边界，并对共享的指标求和。
 
-具体来说，三维边界由一系列小正方体填充，每个正方体可继续分为 6 个四面体，而顶点则被 8 个正方体共享［图~\ref{fig:3+1d-cube-1}］。注意这样的正方体单元并不是平移不变的，最小可重复的填充单元需要 $2\times2\times2$ 个小正方体［图~\ref{fig:3+1d-cube-2}］。
+具体来说，三维边界由一系列小正方体填充，每个正方体可继续分为 6 个四面体，而顶点则被 8 个正方体共享［图~\ref{fig:3+1d-cube-1}］\cite{delcamp2021tensor}。注意这样的正方体单元并不是平移不变的，最小可重复的填充单元需要 $2\times2\times2$ 个小正方体［图~\ref{fig:3+1d-cube-2}］。
 
 \begin{figure}[htb]
   \centering
@@ -688,7 +691,7 @@ $F$ 符号为
   \label{fig:rg-3+1d}
 \end{figure}
 
-我们考虑 3+1 维 toric code 模型（即 3+1 维 $\mathbb{Z}_2$ Dijkgraaf-Witten 模型），其边界态可以取为
+我们考虑 3+1 维 toric code 模型（即 3+1 维 $\mathbb{Z}_2$ Dijkgraaf-Witten 模型）\cite{hamma2005string,zhao2022string}，其边界态可以取为
 \begin{equation}
   \bra{\Omega} = \sum_{\{a\}} \Omega_{\{a\}} \bra{\{a\}} = \bigotimes_e \bra{w_e},
 \end{equation}
@@ -733,3 +736,38 @@ $F$ 符号为
 
 \section{AdS/CFT 的张量网络重建}
 \label{sec:ads-cft-tensor-network}
+
+在上一节中，我们通过 $D+1$ 维拓扑格点模型构造了重整化算符，并且在 $D=1,2,3$ 的各维度中都给出了例子。将这些重整化算符不断堆叠，即取 $\lim_{N\to\infty}U(\mathcal{C})^N$，我们将得到一个类似 MERA 的张量网络结构（见 \ref{subsec:mps-generalization} 小节）。MERA 是一类全息张量网络，在给出特定的边界条件并使其能够流向不动点之后，它可以精确地描述 CFT。我们也通过三维 Ising 模型的例子展示了这一点。
+
+此外，我们还注意到，奇异关联子的构造与 $p$-adic 张量网络也具有相似之处，而后者能够复现 $p$-adic AdS/CFT 中的诸多结论\cite{hung2019padic,chen2021emergent,chen2021bending1,chen2021bending2}。$p$-adic 张量网络的体态通过结合代数（CFT 算符的融合范畴）描述，而我们这里所采用的（高阶）融合范畴实际上是它的推广。在 $p$-adic 张量网络中，$p$-adic CFT 的配分函数也是以类似奇异关联子的形式给出的。在不动点处，边界态也对应了体全息张量网络的本征态。因此，我们这里的构造也有望用来实现 AdS/CFT 对应。
+
+% \subsection{体—边传播子}
+
+考虑在 \ref{subsec:holographic-tensor-network-2+1d} 小节中所探讨的二维 Ising 模型（即 $k=2$ 时的 $\mathcal{A}_{k+1}$ 模型）。我们在紫外 (UV) 层（图~\ref{fig:a-k+1-boundary-condition}）和全息张量网络的第 $n$ 层分别插入两个算符，并数值地计算它们之间的关联函数，即
+\begin{align}
+     \ev[\big]{\mathcal{O}_{n=1}(x=y=0) \, \mathcal{O}_n(x,y)}
+  &= \bigl\langle \Omega(T_{\Lambda_1}) \big|
+     \sigma^z(x=y=0) \, U^{n-1}(\mathcal{C}) \, \sigma^z(x,y) \, U^n(\mathcal{C}) \cdots
+     \big| \Psi \bigr\rangle \notag \\
+  &= \bigl\langle \Omega(T_{\Lambda_1}) \big|
+     \sigma^z(x=y=0) \, U^{n-1}(\mathcal{C}) \, \sigma^z(x,y)
+     \big| \Psi_{\Lambda_n} \bigr\rangle.
+\end{align}
+计算结果如图~\ref{fig:bulk-boundary-propagator} 所示。可以发现，与上图相比，下图中对应于不同 $n$ 的点几乎都重叠在一起，这表明存在满足
+\begin{equation}
+  \ev{\mathcal{O}_1 \, \mathcal{O}_n} \sim \left[ \frac{z}{x^2+z^2} \right]^\Delta
+\end{equation}
+形式的\emph{体—边传播子} (bulk-boundary propagator)。这里所展示的只是一个初步结果，我们还需要对其他模型以及不同共形维数的算符进行进一步的检验。
+
+\begin{figure}[htb]
+  % TODO: update image
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/holographic/bulk-boundary-propagator.png}
+  \caption[体—边传播子的计算结果]{体—边传播子的计算结果。$\mathcal{O}_n$ 表示在第 $n$ 层插入的算符。为了计算方便，$\mathcal{O}_1$ 会和邻近的张量缩并，并推至第 $n$ 层，得到 $\mathcal{O}_{1n}$，因此 $\ev{\mathcal{O}_n\,\mathcal{O}_{1n}}$ 即相当于 $\ev{\mathcal{O}_n\,\mathcal{O}_1}$。(a)(b) 分别是关于 $z_n x_n^2$ 和 $z_n(x_n^2+1)$ 的 log-log 图像，其中 $z_n=(\sqrt{2})^{n-1}$，而 $x_n=x_1/z_n$ 是 $\mathcal{O}_n$ 和 $\mathcal{O}_{1n}$ 间的距离。在 AdS/CFT 字典中，有 $\ev{\mathcal{O}_n\,\mathcal{O}_1}\sim[z_n(x_n^2+1)]^{-\Delta}$，其中 $\Delta$ 是初级场 $\mathcal{O}_1$ 的共形维数。可以发现，在图 (b) 中对应于不同 $n$ 的点几乎都重叠在一起，这说明体—边传播子的形式是符合 AdS/CFT 预测的。图片来源：\parencite{chen2022exact}。}
+  \label{fig:bulk-boundary-propagator}
+\end{figure}
+
+% TODO: entanglement wedge
+% \subsection{Reconstruction Wedge}
+
+\section{本章小结}

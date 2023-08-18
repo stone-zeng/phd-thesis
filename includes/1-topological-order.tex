@@ -74,11 +74,8 @@
 
 \begin{figure}[htb]
   \centering
-  \begin{tabular}{c@{\qquad}c}
-    \includegraphics{images/natural-transformation-1.pdf} &
-    \includegraphics{images/natural-transformation-2.pdf} \\
-    (a) & (b)
-  \end{tabular}
+  \subcaptionbox{}{\includegraphics{images/natural-transformation-1.pdf}} \qquad
+  \subcaptionbox{}{\includegraphics{images/natural-transformation-2.pdf}}
   \caption[自然变换对应的交换图]{自然变换对应的交换图。(a) 此图是“可交换的”，即从 $F(x)$ 到 $G(y)$ 的两条路径等价；(b) 对于结合律的“提升”，图中三棱柱的三个侧面都是可交换的。}
   \label{fig:natural-transformation}
 \end{figure}
@@ -132,11 +129,8 @@
 
 \begin{figure}[htb]
   \centering
-  \begin{tabular}{cc}
-    \includegraphics{images/pentagon-equation.pdf} &
-    \includegraphics{images/triangle-equation.pdf} \\
-    (a) & (b)
-  \end{tabular}
+  \subcaptionbox{}{\includegraphics{images/pentagon-equation.pdf}} \quad
+  \subcaptionbox{}{\includegraphics{images/triangle-equation.pdf}}
   \caption[五边形方程和三角形方程对应的交换图]{(a) 五边形方程和 (b) 三角形方程对应的交换图。}
   \label{fig:pentagon-triangle-equation}
 \end{figure}
@@ -611,19 +605,17 @@ $e$ 和 $m$ 分别绕对方一圈（例如使用 $\sigma^z$ 组成的 $e$ 闭弦
 \emph{弦网模型} (string-net model)\cite{levin2005string,levin2006detecting}可以视为 toric code 模型的一种推广，它是通过 \ref{sec:tensor-category-fusion-category} 节介绍的张量融合范畴来定义的\footnote{准确来说要求模张量范畴。}。弦网模型一般定义在一个三分支 (trivalent) 的网格上，网格的边上带有“弦”的自由度。对于一个具体的弦网模型，我们需要给出下列几组数据：
 \begin{itemize}
   \item \emph{弦的类型}，按照量子力学的语言也被称为\emph{超选择分区} (superselection sector)，它相当于融合范畴中简单对象的集合 $i\in\{0,1,\dots,N\}$；
-  \item \emph{弦的取向}，指定了 $i$ 的对偶 $i^*$，在弦图中相当于把箭头反向［图~\ref{fig:string-net-orientations-branching-rules}\,(a)］；
-  \item \emph{分支规则}，相当于融合规则，规定了哪些弦允许汇聚于一点［图~\ref{fig:string-net-orientations-branching-rules}\,(b)］。
+  \item \emph{弦的取向}，指定了 $i$ 的对偶 $i^*$，在弦图中相当于把箭头反向［图~\ref{fig:string-net-orientations}］；
+  \item \emph{分支规则}，相当于融合规则，规定了哪些弦允许汇聚于一点［图~\ref{fig:string-net-branching-rules}］。
 \end{itemize}
 
 \begin{figure}[htb]
   \centering
-  \begin{tabular}{c@{\qquad}c}
-    \tikzinput{string-net/orientation} &
-    \tikzinput{string-net/fusion-1} \\
-    (a) & (b)
-  \end{tabular}
-  \caption[弦网模型弦的取向与分支规则]{弦网模型弦的取向 (a) 与分支规则 (b)。}
-  \label{fig:string-net-orientations-branching-rules}
+  \subcaptionbox{\label{fig:string-net-orientations}}{%
+    \tikzinput{string-net/orientation}} \qquad
+  \subcaptionbox{\label{fig:string-net-branching-rules}}{%
+    \tikzinput{string-net/fusion-1}}
+  \caption[弦网模型中弦的取向与分支规则]{弦网模型中弦的取向 (a) 与分支规则 (b)。}
 \end{figure}
 
 根据张量融合范畴的精神，弦网模型的基态波函数 $\Phi$ 可通过下面的局域约束条件\cite{levin2005string}
