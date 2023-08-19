@@ -2,11 +2,19 @@
 \__fdu_chapter:n { 引 \quad 言 }
 \ExplSyntaxOff
 
+\begingroup
+
+\renewcommand{\thesection}{\arabic{section}}
+
+\section{拓扑序}
+
 拓扑序 (topological order)\cite{wen1990topological,wen2013topological,wen2017colloquium,zeng2019introduction}的提出源自于上世纪 80 年代分数量子 Hall 效应\cite{tsui1982two,laughlin1983anomalous}、高温超导、手征自旋液体\cite{kalmeyer1987equivalence,wen1989chiral}等新现象的发现。传统上，对相以及相变的描述通常基于 Landau 对称性破缺理论：不同的相可由不同的对称群来刻画，对称性的自发破缺（即对称群的改变）以及相应序参量的变化则提示了相变的出现\cite{landau1980statistical,pathria2011statistical}。然而，随着这些新奇物态的发现，人们逐渐意识到 Landau 理论并不足以全面描述所有的量子物态。例如，不同的分数量子 Hall 态具有相同的对称性，无法通过对称性破缺来区分，也不能用局域序参量来描述\cite{stone1992quantum}。以上结果都表明，存在一种全新类型的序，后来称为拓扑序。拓扑序可以通过新的量子数（即拓扑不变量）来描述，例如基态简并度 (ground state degeneracy)\cite{wen1989vacuum,wen1990ground}、非 Abel 几何相位 (non-Abelian geometric phase)\cite{wen1990topological}等。这些拓扑不变量不易受到局域微扰的影响，因而有望使得拓扑序成为容错量子计算 (fault-tolerant quantum computation) 的物理基础\cite{kitaev2003fault,freedman2003topological,nayak2008nonabelian}。
 
-正如 Newton 力学需要依靠微积分来描述，广义相对论需要利用 Riemann 几何，Landau 对称性破缺理论建立在群论的基础上，拓扑序也迫切需要新的数学语言：范畴论。在物理中，范畴论最早被应用于共形场论\cite{segal1988definition,moore1989classical}与拓扑量子场论\cite{atiyah1988topological,turaev1992state}的研究。而随后，人们很快发现具有特定结构的范畴，即张量范畴 (tensor category)，可以成为描述拓扑序的自然框架\cite{levin2005string,kitaev2006anyons}。2+1 维拓扑序中的准粒子激发称为任意子 (anyon)，它们具有分数自旋的统计性质，在数学上对应于张量范畴中的简单对象。任意子之间可以融合 (fuse)、编织 (braid)，它们同样可用张量范畴的语言来表述，并且可用融合系数、$F$ 符号以及 $S$、$T$ 矩阵等来定量刻画\cite{bakalov2001lectures,kitaev2006anyons,bruillard2016rank,aasen2020topological}。张量范畴还可以通过任意子凝聚 (anyon condensation) 的机制得到拓扑序的体—边对应关系 (bulk-boundary relation)\cite{kong2014anyon,kong2014braided,kong2015boundary,kong2017boundary,lou2021dummy}。
+正如 Newton 力学需要依靠微积分来描述，广义相对论需要利用 Riemann 几何，Landau 对称性破缺理论建立在群论的基础上，拓扑序也迫切需要新的数学语言：范畴论。在物理中，范畴论最早被应用于共形场论\cite{segal1988definition,moore1989classical}与拓扑量子场论\cite{atiyah1988topological,turaev1992state}的研究。随后，人们很快发现具有特定结构的范畴，即张量范畴 (tensor category)，可以成为描述拓扑序的自然框架\cite{levin2005string,kitaev2006anyons}。2+1 维拓扑序中的准粒子激发称为任意子 (anyon)，它们具有分数自旋的统计性质，在数学上对应于张量范畴中的简单对象。任意子之间可以融合 (fuse)、编织 (braid)，这些性质同样可以用张量范畴的语言来表述，并且可用融合系数、$F$ 符号以及 $S$、$T$ 矩阵等来定量刻画\cite{bakalov2001lectures,kitaev2006anyons,bruillard2016rank,aasen2020topological}。张量范畴还可以通过任意子凝聚 (anyon condensation) 的机制得到拓扑序的体—边对应关系 (bulk-boundary relation)\cite{kong2014anyon,kong2014braided,kong2015boundary,kong2017boundary,lou2021dummy}。
 
 格点模型是研究拓扑序的一种重要手段。二维拓扑序中常见的严格可解格点模型主要有两类：一类是基于有限群的 quantum double 模型\cite{kitaev2003fault,kitaev2006anyons}，它是 Dijkgraaf--Witten TQFT\cite{dijkgraaf1990topological}的格点近似；另一类是基于张量融合范畴的弦网模型 (string-net model)\cite{levin2005string}，它是 Turaev--Viro TQFT\cite{turaev1992state,kirillov2011string}的格点近似。通过群 $G$ 到其表示范畴 $\mathbf{Rep}_G$ 的映射，弦网模型也可以视为 quantum double 模型的推广\cite{buerschaper2009mapping,buerschaper2013electric}。更进一步，弦网模型还被认为可以解释光子与电子的起源\cite{levin2005colloquium}。
+
+\section{张量网络}
 
 理解量子多体系统始终是凝聚态物理的核心研究课题。除了理论和实验方法外，数值模拟为人们提供了另一种思考量子多体系统的途径。然而，传统的数值算法如精确对角化、平均场理论、Monte Carlo 方法等，均存在一些限制和不足。例如，精确对角化难以处理规模较大的系统，平均场理论无法精确描述强关联系统，而量子 Monte Carlo 方法则会遇到所谓符号问题。其本质在于，这些传统方案很难对关联（或纠缠）提供准确的刻画。而张量网络 (tensor network)\cite{orus2014practical,bridgeman2017hand,biamonte2017tensor,orus2019tensor,ran2020tensor,evenbly2022practical}算法从一开始就能有效地描述量子态的关联性质，因而成为了一种强有力并且发展迅速的数值模拟手段。
 
@@ -18,9 +26,11 @@
 
 利用张量网络方法来描述拓扑序也很快成为了一种自然的想法，例如 toric code 模型（以 $\mathbb{Z}_2$ 群作为输入数据的 quantum double 模型）和弦网模型的基态波函数都可以表示为 PEPS 张量网络\cite{verstraete2006criticality,gu2009tensor2,buerschaper2009explicit,luo2017structure}。人们进一步发现，这种表示的基础在于 PEPS 面内的 MPO 满足推拉条件 (pulling-through condition)，而这一条件与拓扑序本身的对称性是等价的\cite{bultinck2017anyons,sahinoglu2021characterizing}。此外，不同的拓扑分区 (topological sector) 也可以通过 MPO 代数的中心幂等元 (central idempotent) 来确定\cite{bultinck2017anyons,vanhove2018mapping,aasen2020topological}。
 
-另一方面，人们发现将弦网模型的基态波函数与某些特定的直积态做内积，可以直接得到相应临界格点模型（也对应于一个 CFT）的配分函数，这一构造称为“奇异关联子” (strange correlator)\cite{you2014wave,vanhove2018mapping,lootens2019cardy,aasen2020topological,vanhove2022topological}。
+另一方面，人们发现将弦网模型的基态波函数与某些特定的直积态做内积，可以直接得到相应临界格点模型（也对应于一个 CFT）的配分函数，这一构造称为“奇异关联子” (strange correlator)\cite{you2014wave,vanhove2018mapping,lootens2019cardy,aasen2020topological,vanhove2022topological}。弦网模型的基态给出了重整化的不动点波函数\cite{konig2009exact,konig2010quantum}，因此基于配分函数的 TRG、TNR 等算法就可以改写为对波函数的操作，而具体的重整化算符可以通过 $F$ 符号来构建。这种重整化方案实际上把体 (bulk) 和边界 (boundary) 联系在了一起，因而有望用来构建一套全息张量网络 (holographic tensor network)。
 
-% TODO:
+\section{本文结构}
+
+在上面这些研究的基础上，本文将进一步探讨基于拓扑序的张量网络中的一些问题。首先，我们将奇异关联子的概念推广到任意维度，并据此给出全息张量网络的构造。在这一框架下，我们常需要对不同层中的算符进行操作（例如计算体—边传播子），而一类重要的算符就是 CFT 中的 Virasoro 与 Kac--Moody 生成元，因此给出它们在张量网络中的构建方案也是有必要的。最后，我们还希望利用体算符来重建边界算符，即实现所谓“算符推移”。
 
 本文的具体结构如下：
 
@@ -28,10 +38,12 @@
 
 第 \ref{chap:tensor-network} 章主要介绍张量网络方法，并利用图形方式描述一些常用的张量运算。接着我们将分别介绍一维和二维系统中的两类算法，前者以矩阵乘积态 (MPS) 为代表，后者则以张量重整化群 (TRG) 为代表。
 
-第 \ref{chap:strange-correlator} 章将利用奇异关联子建立起从拓扑序到全息张量网络的桥梁。我们首先将给出弦网模型基态波函数的张量网络表示，然后用奇异关联子获得相应临界格点模型的配分函数，还将介绍其中包含的 MPO 对称性。基于这一方案，我们将尝试构建三维的全息张量网络，并在具体的模型上给出体—边传播子的计算结果。
+第 \ref{chap:strange-correlator} 章将利用奇异关联子建立起从拓扑序到全息张量网络的桥梁。我们首先将给出弦网模型基态波函数的张量网络表示，然后用奇异关联子获得相应临界格点模型的配分函数，还将介绍其中包含的 MPO 对称性。基于这一方案，我们将尝试构建不同维度下的全息张量网络，并在具体的模型上给出体—边传播子的计算结果。
 
-第 \ref{chap:virasoro} 章将介绍在二维格点模型配分函数对应的张量网络表示中构建 Virasoro 与 Kac--Moody 代数的方案。我们首先分别以 Ising 模型和 dimer 模型为例，展示构造并验证 Virasoro 与 Kac--Moody 算符的主要步骤。然后，我们将其推广到更一般的情况，例如 Fibonacci 弦网模型。为了减少有限尺寸效应的影响，我们还需要引入拓扑投影算符。
+第 \ref{chap:virasoro} 章将介绍在二维格点模型配分函数对应的张量网络表示中构建 Virasoro 与 Kac--Moody 代数的方案。我们首先分别以 Ising 模型和 dimer 模型为例，展示了构造与验证 Virasoro 和 Kac--Moody 算符的主要步骤。然后，我们将其推广到更一般的情况，例如 Fibonacci 弦网模型。为了减少有限尺寸效应的影响，我们还需要引入拓扑投影算符。
 
-第 \ref{chap:operator-pushing} 章主要探讨在全息张量网络实现算符推移的方案。我们将利用体算符来重建边界算符，并且得到边界算符为自由场的条件。对 1+1 维和 2+1 维中的几类不同模型，我们将给出具体的计算结果。
+第 \ref{chap:operator-pushing} 章主要探讨在全息张量网络中实现算符推移的方案。我们将利用体算符来重建边界算符，并且得到边界算符为广义自由场的条件。对 1+1 维和 2+1 维中的几类不同模型，我们将给出具体的计算结果。
 
 第 \ref{chap:conclusion} 章是全文的总结，并对进一步的研究可能做出了展望。
+
+\endgroup

@@ -122,6 +122,20 @@
         \do \] \do \) \do \, \do \? \do \& \do \' \do  + \do \= \do \#
       }
   }
+\cs_set_protected:Npn \__fdu_abstract_end:
+  {
+    \__fdu_keywords:nNn
+      { \sffamily \c__fdu_name_keywords_tl \c__fdu_fwid_colon_tl \hspace{ -0.2em } }
+      \l__fdu_info_keywords_clist { \c__fdu_fwid_semicolon_tl \hspace{ -0.2em } }
+    \__fdu_clc_jel:nn
+      { \sffamily \c__fdu_name_clc_tl \c__fdu_fwid_colon_tl }
+      { \l__fdu_info_clc_tl }
+  }
+\cs_set_protected:Npn \__fdu_abstract_en_begin:
+  {
+    \__fdu_chapter:V \c__fdu_name_abstract_en_tl
+    \__fdu_line_spread:n { 1.3 }
+  }
 \ExplSyntaxOff
 
 \AtBeginDocument{
