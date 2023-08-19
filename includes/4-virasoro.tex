@@ -1,15 +1,13 @@
 \chapter{Virasoro 与 Kac--Moody 代数的张量网络实现}
 \label{chap:virasoro}
 
-临界格点模型是研究\emph{共形场论} (conformal field theory, CFT) 的有力工具。有许多格点模型能够揭示出重要的 CFT 数据，而其中最基本也是最重要的一类称为\emph{最小模型} (minimal models)。它们同时也是严格可解模型，而对应的拓扑以及范畴对称性可以通过\emph{融合范畴}添加进来\cite{vanhove2018mapping,aasen2020topological,huang2022numerical,vanhove2022critical}。
+临界格点模型是研究\emph{共形场论} (conformal field theory, CFT) 的有力工具。有许多格点模型能够揭示出重要的 CFT 数据，而其中最基本也是最重要的一类称为\emph{最小模型} (minimal models)。它们同时也是严格可解模型，而对应的拓扑以及范畴对称性可以通过融合范畴（见 \ref{sec:tensor-category-fusion-category} 节）添加进来\cite{vanhove2018mapping,aasen2020topological,huang2022numerical,vanhove2022critical}。
 
-这些经典格点模型的配分函数通常可以表示为张量网络的形式。利用 TRG 和 TNR 等重整化算法\cite{levin2007tensor,evenbly2015tensor1}，可以通过控制连接维数来得到任意精度的不动点张量，从而可以高效地获取基态以及较低能级激发态（即“后代”）的对应数据。因此，这套方案有望能为分类 CFT 提供了一种数值的角度。
+这些经典格点模型的配分函数通常可以表示为张量网络的形式。利用 TRG 和 TNR 等重整化算法（见 \ref{sec:tensor-network-rg} 节），可以通过控制连接维数来得到任意精度的不动点张量，从而可以高效地获取基态以及较低能级激发态（即“后代”）的对应数据。因此，这套方案有望能为分类 CFT 提供了一种数值的角度。
 
-刻画二维 CFT 的一个重要特性是\emph{Virasoro 对称性} (Virasoro symmetry) 以及更一般情况下的\emph{Kac--Moody 对称性} (Kac--Moody symmetry)，在格点模型中已有很多工作给出了它们的实现\cite{pasquier1990common,koo1994representations,milsted2017extraction,zou2018conformal,hongler2022conformal,wang2022emergence}。这些方案主要集中于构造一些作用在一维格点 Hilbert 空间上的离散算符，并对其参数取一些各向异性的极限。然而，对于一般的张量网络表示，特别是通过重整化算法得到的不动点张量，其元素往往都是数值的，没有可供展开的参数。因此使用这些方法将难以构造 Virasoro 和 Kac--Moody 生成元。
+刻画二维 CFT 的一个重要特性是\emph{Virasoro 对称性} (Virasoro symmetry) 以及更一般情况下的\emph{Kac--Moody 对称性} (Kac--Moody symmetry)，在格点模型中已有很多工作给出了它们的实现\cite{pasquier1990common,koo1994representations,milsted2017extraction,zou2018conformal,hongler2022conformal,wang2022emergence}。这些方案主要集中于构造一些作用在一维格点 Hilbert 空间上的离散算符，并对其参数取一些各向异性的极限。然而，对于一般的张量网络表示，特别是通过重整化算法得到的不动点张量，其元素往往都是数值的，没有可供展开的参数。因此使用这些方法将难以构造 Virasoro 和 Kac--Moody 生成元。对于第 \ref{chap:strange-correlator} 章中讨论的全息张量网络，这套方案也有助于在其中构造各类后代场，使得 \ref{sec:ads-cft-tensor-network} 节中体—边传播子的计算可以推广到更多的算符之中。
 
-在本章中，我们将介绍一种构造 Virasoro 代数以及 Kac--Moody 代数的新方案\cite{wang2022virasoro,zeng2023virasoro}。注意到 CFT 中的初级场及其后代可以从圆柱形的配分函数张量网络中提取出来\cite{hauru2016topological}，而其中能动量张量以及流算符则与 Virasoro 和 Kac--Moody 代数相关联。具体来说，我们借用了\emph{离散全纯性} (discrete holomorphicity)\cite{cardy2009discrete}的概念，将代数生成元定义中的积分用一个新的圆柱形张量网络来表示，并把的能动量张量（或流算符）插入其中。由此得到的 Virasoro 和 Kac--Moody 生成元可以作用在任意的本征态上，进而可以用来检验这一方法的有效性。
-
-对于\emph{有限尺寸效应} (finite size effect) 影响更为显著的系统（例如一些弦网模型的配分函数，见 \ref{sec:strange-correlator} 节），即使是采用尺寸相对较大的圆柱，也很难从中得到准确的 CFT 能谱等数据。为此，我们首先对不同大小的圆柱进行精确对角化，并根据拟合结果来区分不同的本征态；对于混淆较为严重的态，我们还使用\emph{拓扑投影算符} (topological projectors)\cite{bultinck2017anyons,williamson2017symmetry,aasen2020topological}将转移矩阵投影到对应于特定拓扑荷的子空间中。这样最终能够获得符合预期精度的能动量张量以及对应的 Virasoro 生成元。
+在本章中，我们将借用\emph{离散全纯性} (discrete holomorphicity)\cite{cardy2009discrete}的概念，给出一种构造 Virasoro 代数以及 Kac--Moody 代数的新方案\cite{wang2022virasoro,zeng2023virasoro}。对于\emph{有限尺寸效应} (finite size effect) 影响更为显著的系统（例如一些弦网模型的配分函数，见 \ref{sec:strange-correlator} 节），我们还将引入\emph{拓扑投影算符} (topological projectors)，以得到符合预期精度的能动量张量以及对应的 Virasoro 生成元。
 
 \section{二维共形场论回顾}
 \label{sec:cft-review}
@@ -523,3 +521,5 @@ Fibonacci 弦网模型定义在六边形网格上，包含 $\1$ 和 $\tau$ 两�
 \end{figure}
 
 \section{本章小结}
+
+本章首先回顾了二维共形场论的基本概念，尤其是 Virasoro 与 Kac--Moody 代数。在二维格点模型配分函数的张量网络表示中，我们给出了通过能动量张量或流算符来构造 Virasoro 与 Kac--Moody 算符的方法。具体来说，我们将积分用一个新的圆柱形张量网络来表示，并把能动量张量（或流算符）插入其中。由此得到的 Virasoro 和 Kac--Moody 生成元可以作用在任意的本征态上，进而可以用来检验这一方法的有效性。在 Ising 和 dimer 模型中的数值结果则表明，即使是在较小的系统中，利用这套方案构造出的 Virasoro 与 Kac--Moody 算符也能达到很高的精度。而在受有限尺寸效应影响较大的系统（如 Fibonacci 模型）中，即使采用尺寸较大的圆柱，也很难从中得到准确的 CFT 能谱等数据。为此，我们首先对不同大小的圆柱进行精确对角化，并根据拟合结果来区分不同的本征态；对于混淆较为严重的态，我们还引入了拓扑投影算符，将转移矩阵投影到对应于特定拓扑荷的子空间中，这样也构造出了符合预期精度的 Virasoro 算符。

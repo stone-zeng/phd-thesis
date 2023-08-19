@@ -1,16 +1,16 @@
 \chapter{张量网络方法介绍}
 \label{chap:tensor-network}
 
+\emph{张量网络} (tensor network)\cite{orus2014practical,bridgeman2017hand,biamonte2017tensor,orus2019tensor,ran2020tensor,evenbly2022practical}方法为凝聚态物理、量子计算\cite{markov2008simulating,huggins2019towards,yuan2021quantum}、机器学习\cite{stoudenmire2016supervised,you2018machine,liu2023tensor}\allowbreak 与可微编程\cite{liao2019differentiable,geng2022differentiable}等领域提供了一套统一的描述框架。顾名思义，张量网络就是根据一定规则连接起来张量单元，而这些局域的张量单元往往能够编码全局波函数的关键性质。相比传统的数值算法，张量网络将刻画量子态的关联与纠缠性质放在了第一优先级，因而在处理复杂的量子多体问题也具有很强的表达能力。
+
 \section{基本概念}
 
-\emph{张量网络} (tensor network)\cite{orus2014practical,bridgeman2017hand,biamonte2017tensor,orus2019tensor,ran2020tensor,evenbly2022practical}为凝聚态物理、量子信息、机器学习等领域提供了一套统一的描述框架。顾名思义，张量网络就是根据一定规则连接起来张量单元。这里的\emph{张量} (tensor) 可以简单理解为多维数组，即标量（0 维张量）、向量（1 维张量）、矩阵（2 维张量）的推广。
-
-如图~\ref{fig:tensors} 所示，张量网络常利用图形方式来描述，其中圆圈（也可用其他图形）表示张量，延伸出来的腿表示张量的指标。
+张量网络中的\emph{张量} (tensor) 可以简单理解为多维数组，即标量（0 维张量）、向量（1 维张量）、矩阵（2 维张量）的推广。如图~\ref{fig:tensors} 所示，张量网络常利用图形方式来描述，其中圆圈（也可用其他图形）表示张量，延伸出来的腿表示张量的指标。
 
 \begin{figure}[htb]
   \centering
   \tikzinput{tensor-network/basic}
-  \caption[张量单元]{三种张量单元，分别为向量、矩阵和三阶张量。}
+  \caption[张量单元]{三种张量单元，分别对应于向量、矩阵和三阶张量。}
   \label{fig:tensors}
 \end{figure}
 
@@ -18,7 +18,7 @@
 
 常用的张量运算包括张量积、缩并、变形等。
 
-\emph{张量积} (tensor product) 其实就是把若干个张量并排放置，并保持指标不变：
+\emph{张量积} (tensor product) 相当于若干个张量并排放置，并保持指标不变：
 \begin{equation}
   A_{i_1,\dots,i_r} B_{j_1,\dots,j_s} \eqcolon (A \otimes B)_{i_1,\dots,i_r,j_1,\dots,j_s}.
 \end{equation}
@@ -331,6 +331,7 @@ DMRG 的总体思路是，对正则化的 MPS 中每个张量单元 $A^{(i)}$ �
 \end{figure}
 
 \section{重整化算法}
+\label{sec:tensor-network-rg}
 
 接下来我们主要考察二维张量网络。与 \ref{subsec:partition-function} 小节相同，我们关注的一个核心问题仍然是格点模型配分函数的计算。类似于 Kadanoff 的实空间重整化群\cite{pathria2011statistical}，张量重整化算法的主要思路是对张量网络进行粗粒近似，直到得到一个不动点张量。
 
@@ -408,3 +409,5 @@ TRG 算法对于临界的格点模型效果并不好。这主要是由于临界�
 在处理较大的系统时，张量缩并往往会成为计算瓶颈。为此人们提出了一系列优化方案\cite{pfeifer2014faster,evenbly2014improving}，以寻找最优的缩并路径。NCON、opt\_einsum\cite{daniel2018opteinsum}等程序包中均给出了实现。
 
 \section{本章小结}
+
+本章主要通过图形方式介绍了张量网络方法，其中重要的运算包括张量缩并和基于 SVD 的张量分解等。我们着重讨论了一维和二维下两类张量网络算法，分别以矩阵乘积态 (MPS) 和张量重整化群 (TRG) 为代表。对于 MPS 而言，密度矩阵重整化群 (DMRG) 算法可以用来获得基态，而无限时间演化块消减 (iTEBD) 算法则可以用来处理波函数的时间演化。TRG 主要用来计算二维格点系统的配分函数，其推广张量网络重整化 (TNR) 算法可以消除短程纠缠的影响，从而能够更准确地模拟临界系统。最后，我们还简要介绍了一些常用的张量网络程序包。

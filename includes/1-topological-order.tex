@@ -1,7 +1,7 @@
 \chapter{拓扑序与张量范畴}
 \label{chap:topological-order}
 
-\emph{拓扑序} (topological order) 是本文探讨的中心对象，它是一类超越了 Landau 理论的新奇物态，并且具有基态简并、非 Abel 几何相位、分数激发等一系列全新的物理图像。描述 2+1 维拓扑序的数学语言是\emph{张量范畴} (tensor category)，从它出发可以构建\emph{弦网模型} (string-net model)，并得到相应的 Hamilton 量以及各种物理性质。
+\emph{拓扑序} (topological order) 是本文探讨的中心对象，它是一种超越了 Landau 理论的新奇量子物态，并且具有基态简并、非 Abel 几何相位、分数激发等一系列全新的物理图像。描述 2+1 维拓扑序的数学语言是\emph{张量范畴} (tensor category)，从它出发可以构建\emph{弦网模型} (string-net model)，并得到相应的 Hamilton 量以及各种物理性质。
 
 \section{拓扑序简介}
 \label{sec:topological-order}
@@ -36,7 +36,7 @@
 
 两个量子态属于同一个相，当且仅当它们之间可以通过局域幺正变换相联系。对于\emph{有能隙} (gapped) 的量子系统，其中的相可以分为短程纠缠态和长程纠缠态两类。短程纠缠态可以通过局域幺正变换转变为直积态，因而所有的短程纠缠态都属于同一个相；长程纠缠态无法通过局域幺正变换转变为直积态，而无法通过局域幺正变换相联系的态就构成了不同的相，它们也对应了不同的拓扑序。
 
-2+1 维的拓扑序可以用张量范畴进行系统地描述与分类，更高维的拓扑序则需要借助高阶范畴来描述。接下来我们先从基本的范畴论出发，并向其中加入各种新的结构。
+2+1 维的拓扑序可以用张量范畴进行系统地描述与分类，更高维的拓扑序则需要借助高阶范畴来描述\cite{baez1997introduction,kong2014braided,kong2015boundary,kong2020classification}。接下来我们先从基本的范畴论出发，并向其中加入各种新的结构。
 
 \section{范畴论基础}
 
@@ -525,15 +525,17 @@ $k=1$、2、3 时对应的融合规则列在了表~\ref{tab:a-k+1-fusion-rules} 
 
 \section{Toric code 模型}
 
-拓扑序的一个基本且重要的例子是 toric code 模型\cite{kitaev2003fault,kong2022invitation}。它定义在一个二维正方形网格 (square lattice) 上，每条边上都存在一个自旋 $1/2$ 的自由度。其 Hamilton 量定义为
+拓扑序的一个基本例子是基于 $\mathbb{Z}_2$ 规范理论的 toric code 模型\cite{kitaev2003fault,kong2022invitation}。尽管与范畴论没有直接关联，但 toric code 模型仍然揭示了拓扑序中的一些重要性质，而其主要研究思路也可以进一步推广。
+
+简单起见，我们主要考虑定义在二维正方形网格 (square lattice) 上的 toric code 模型，在每条边上都存在一个自旋 $1/2$ 的自由度。其 Hamilton 量定义为
 \begin{equation}
   H = -\sum_v A_v - \sum_p B_p,
   \label{eq:toric-code-hamiltonian}
 \end{equation}
 其中
 \begin{equation}
-  A_v = \prod_{i\in\operatorname{star}(v)} \sigma_i^x, \quad
-  B_p = \prod_{i\in\operatorname{boundary}(p)} \sigma_i^z,
+  A_v = \prod_{i\,\in\,\operatorname{star}(v)} \sigma_i^x, \quad
+  B_p = \prod_{i\,\in\,\operatorname{boundary}(p)} \sigma_i^z,
 \end{equation}
 称为\emph{稳定化子} (stabilizer)，而 $\sum_v$ 和 $\sum_p$ 分别表示对所有的顶点 (vertex) 和元格 (plaquette) 求和，如图~\ref{fig:toric-code} 所示。
 
@@ -710,7 +712,7 @@ $F^{ijm}_{kln}$ 是 $F$ 符号的另一种记法，它与 $[F^{ijk}_l]_{mn}$ 的
 
 \section{本章小结}
 
-我们在表~\ref{tab:tensor-category-ingredients} 中总结了张量范畴中的各种结构。
+本章主要介绍了拓扑序以及描述它的数学框架——张量范畴。张量范畴中的简单对象对应了拓扑序中的任意子，任意子的融合、编织可以用范畴论的语言来表述，而融合系数、$F$ 符号以及 $S$、$T$ 矩阵则可以定量刻画这些性质。张量范畴中的各种结构总结在了表~\ref{tab:tensor-category-ingredients} 中。我们还给出了 Fibonacci、Ising 和 $\mathcal{A}_{k+1}$ 等几个融合范畴例子，并简要说明了模张量范畴与共形场论的联系。作为拓扑序中两种重要的格点模型，我们介绍了 toric code 模型和弦网模型。Toric code 模型基于 $\mathbb{Z}_2$ 群，而弦网模型则基于张量融合范畴。它们的 Hamilton 量具有类似的结构，都可以视为一些互相对易的投影算符之和。由此可以计算得到基态简并度和拓扑纠缠熵，并且可以通过构建弦算符的方式来研究准粒子（任意子）激发的统计性质。
 
 \begin{table}[htb]
   \centering
@@ -723,7 +725,7 @@ $F^{ijm}_{kln}$ 是 $F$ 符号的另一种记法，它与 $[F^{ijk}_l]_{mn}$ 的
       融合        (fusion)              & 张量积可以分解为直和    \\
       对称        (symmetric)           & $\sigma=\sigma^{-1}$    \\
       刚性 / 自治 (rigid / autonomous)  & 存在左右对偶            \\
-      中枢        (pivotal / sovereign) & 左右对偶相等            \\
+      中枢 / 至上 (pivotal / sovereign) & 左右对偶相等            \\
       球状        (spherical)           & 左右迹相等              \\
       丝带        (ribbon)              & 定义了扭转结构 $\theta$ \\
       模          (modular)             & $S$ 矩阵可逆            \\

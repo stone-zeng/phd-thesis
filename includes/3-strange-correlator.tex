@@ -1,12 +1,14 @@
 \chapter{奇异关联子与全息张量网络}
 \label{chap:strange-correlator}
 
+在前两章中，我们分别介绍了拓扑序和张量网络的基本概念。作为二维拓扑序的重要模型，弦网模型的 Hamilton 量可以表示为一系列局域算符之和，因此用张量网络来表示其基态也成为了一种很自然的想法。而将弦网模型的基态波函数与某些特定的直积态做内积，可以直接得到相应临界格点模型的配分函数。这种称为\emph{奇异关联子} (strange correlator) 的构造，不仅使我们能够计算相应 CFT 的中心荷和能谱，还给出了一种重整化算符的构造方案，进而使我们得以将体 (bulk) 和边界 (boundary) 联系在一起，并以此来构建全息张量网络 (holographic tensor network)。
+
 \section{弦网模型基态的张量网络表示}
 
 \subsection{四面体对称性}
 \label{subsec:tetrahedral-symmetry}
 
-我们在式~\eqref{eq:f-move} 和 \eqref{eq:string-net-local-rules} 中分别给出了 $F$ 符号的两种定义：
+为了叙述与计算的方便，我们先来澄清一下 $F$ 符号的定义，并介绍其对称性。在式~\eqref{eq:f-move} 和 \eqref{eq:string-net-local-rules} 中分别给出了 $F$ 符号的两种定义：
 \begin{equation}
   \begin{aligned}
        \tikzinput{category-theory/f-symbol-1}
@@ -42,7 +44,7 @@
     \begin{bmatrix} a & b & c \\ i & j & k \end{bmatrix}
   = \frac{1}{\sqrt{d_a d_b d_c d_i d_j d_k}} \, \Tetrahedron cbjkia
 \end{equation}
-称为\emph{四面体符号} (tetrahedral symbol) 或 \emph{$6-j$ 符号} ($6-j$ symbol)，它的对称性（以及相应 $F$ 符号的对称性）可以从四面体的几何性质中获得：
+称为\emph{四面体符号} (tetrahedral symbol) 或 \emph{$6j$ 符号} ($6j$-symbol)，它的对称性（以及相应 $F$ 符号的对称性）可以从四面体的几何性质中获得：
 \begin{align}
      \begin{bmatrix} a & b & c \\ i & j & k \end{bmatrix}
   &= \begin{bmatrix} b & c & a \\ j & k & i \end{bmatrix}
@@ -162,7 +164,7 @@
 \begin{figure}[htb]
   \centering
   \tikzinput{strange-correlator}
-  \caption[奇异关联子]{奇异关联子。其中绿线表示投影到特定值（即与某直积态做内积）之后的物理指标，灰线表示需要求和的辅助指标。整个张量网络缩并后即为对应的配分函数。}
+  \caption[奇异关联子的构造]{奇异关联子的构造。其中绿线表示投影到特定值（即与某直积态做内积）之后的物理指标，灰线表示需要求和的辅助指标。整个张量网络完全缩并后即为对应的配分函数。}
   \label{fig:peps-strange-correlator}
 \end{figure}
 
@@ -218,26 +220,24 @@ $F$ 符号为
   i,j \in \{\1, \psi\}.
 \end{equation}
 于是四面体和三角形张量为：
-\begin{equation}
-  \begin{aligned}
-       \Triangle \sigma\sigma\1\1\sigma\sigma
-    &= (d_{\1} d_\sigma d_\sigma)  ^{-\frac14} (d_{\1} d_\sigma d_\sigma)  ^{-\frac13}
-       \Tetrahedron \1\sigma\sigma\1\sigma\sigma
-       = 2^{-\frac{1}{12}}, \\
-       \Triangle \sigma\sigma\1\psi\sigma\sigma
-    &= (d_{\1} d_\sigma d_\sigma)  ^{-\frac14} (d_\sigma d_\sigma d_\psi)^{-\frac13}
-       \Tetrahedron \1\sigma\sigma\psi\sigma\sigma
-       = 2^{-\frac{1}{12}}, \\
-       \Triangle \sigma\sigma\psi\1\sigma\sigma
-    &= (d_\sigma d_\sigma d_\psi)^{-\frac14} (d_{\1} d_\sigma d_\sigma)  ^{-\frac13}
-       \Tetrahedron \psi\sigma\sigma\1\sigma\sigma
-       = 2^{-\frac{1}{12}}, \\
-       \Triangle \sigma\sigma\psi\psi\sigma\sigma
-    &= (d_\sigma d_\sigma d_\psi)^{-\frac14} (d_\sigma d_\sigma d_\psi)^{-\frac13}
-       \Tetrahedron \psi\sigma\sigma\psi\sigma\sigma
-       = -2^{-\frac{1}{12}}.
-  \end{aligned}
-\end{equation}
+\begin{align}
+     \Triangle \sigma\sigma\1\1\sigma\sigma
+  &= (d_{\1} d_\sigma d_\sigma)  ^{-\frac14} (d_{\1} d_\sigma d_\sigma)  ^{-\frac13}
+     \Tetrahedron \1\sigma\sigma\1\sigma\sigma
+     = 2^{-\frac{1}{12}}, \notag \displaybreak[0] \\
+     \Triangle \sigma\sigma\1\psi\sigma\sigma
+  &= (d_{\1} d_\sigma d_\sigma)  ^{-\frac14} (d_\sigma d_\sigma d_\psi)^{-\frac13}
+     \Tetrahedron \1\sigma\sigma\psi\sigma\sigma
+     = 2^{-\frac{1}{12}}, \notag \displaybreak[0] \\
+     \Triangle \sigma\sigma\psi\1\sigma\sigma
+  &= (d_\sigma d_\sigma d_\psi)^{-\frac14} (d_{\1} d_\sigma d_\sigma)  ^{-\frac13}
+     \Tetrahedron \psi\sigma\sigma\1\sigma\sigma
+     = 2^{-\frac{1}{12}}, \notag \displaybreak[0] \\
+     \Triangle \sigma\sigma\psi\psi\sigma\sigma
+  &= (d_\sigma d_\sigma d_\psi)^{-\frac14} (d_\sigma d_\sigma d_\psi)^{-\frac13}
+     \Tetrahedron \psi\sigma\sigma\psi\sigma\sigma
+     = -2^{-\frac{1}{12}}.
+\end{align}
 在 Ising 模型的奇异关联子构造中，我们需要将物理指标投影到直积态
 \begin{equation}
   \bra{\omega(\beta)} = \sqrt2 \, \bigl( \cosh\beta \bra{\1} + \sinh\beta \bra{\psi} \bigr)
@@ -771,3 +771,5 @@ $F$ 符号为
 % \subsection{Reconstruction Wedge}
 
 \section{本章小结}
+
+本章首先给出了弦网模型基态的 PEPS 张量网络表示，并通过将其与特定的直积态做内积得到奇异关联子。在 Fibonacci 和 Ising 两种模型中，我们利用奇异关联子构造了相应配分函数的张量单元，并通过 iTEBD 算法数值计算了对应 CFT 的中心荷。接下来，我们简要介绍了 PEPS 张量网络表示中的 MPO 对称性，而 MPO 所满足的推拉条件实质也是融合范畴中对称性的一种体现。我们还给出了管状代数与中心幂等元的构造，后者作为投影算符，可以给出 Drinfeld 中心中不同的拓扑分区。最后，我们详细讨论了利用奇异关联子构建全息张量网络的方案。由于拓扑序的基态波函数 $\ket{\Psi}$ 位于重整化的不动点处，因而边界条件 $\ket{\Omega}$ 的选取就可以转化为重整化算符的本征值问题。我们在 1+1、2+1 和 3+1 维中分别给出了重整化算符及边界态的构造，并计算得到了临界点位置的初步数值结果。在二维 Ising 模型中，我们还利用全息张量网络计算了体—边传播子，并发现其形式与 AdS/CFT 的预测基本符合。
