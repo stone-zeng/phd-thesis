@@ -7,6 +7,7 @@
 \usepackage{subcaption}
 \usepackage{threeparttable}
 \usepackage{tikz}
+\usepackage{tikz-cd}
 \usepackage{xcolor-material}
 
 % fduthesis
@@ -42,16 +43,16 @@
 \setlist{itemsep=0pt}
 
 % tikz
-\usetikzlibrary{
-  arrows.meta,
-  calc,
-  decorations.markings,
-}
+\usetikzlibrary{arrows.meta, calc, decorations.markings}
 \tikzset{
-  vector box/.style={thick, MaterialTeal, fill=MaterialTeal100},
-  tensor box/.style={thick, MaterialBlue, fill=MaterialBlue100},
-  tensor leg/.style={semithick, MaterialGrey},
-  covered tensor leg/.style={semithick, dashed, MaterialGrey300},
+  x = 1em,
+  y = 1em,
+  node font = \footnotesize,
+  morphism box/.style = {draw, fill = white, anchor = base},
+  vector box/.style = {thick, MaterialTeal, fill = MaterialTeal100},
+  tensor box/.style = {thick, MaterialBlue, fill = MaterialBlue100},
+  tensor leg/.style = {semithick, MaterialGrey},
+  covered tensor leg/.style = {semithick, dashed, MaterialGrey300},
   ->-/.style = {
     decoration = {
       markings,
@@ -60,6 +61,13 @@
     postaction = {decorate},
   },
 }
+\tikzcdset{
+  arrow style = tikz,
+  diagrams = {>=Stealth},
+  arrows = {thin},
+  labels = {font = \footnotesize},
+}
+\newcommand{\tikzinput}[1]{\input{includes/tikz/#1.tex}}
 \newcommand{\Vertex}[3]{
   \begin{tikzpicture}[baseline=0, thick]
     \draw (0,0) -- (90:1)  node [above] {$#1$}
@@ -168,8 +176,6 @@
 \DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator*{\argmin}{arg\,min}
 
-\newcommand{\tikzinput}[1]{\input{includes/tikz/#1.tex}}
-
 %TC:envir fusionrules [ignore] text
 \newenvironment{fusionrules}[1]{%
   \begingroup
@@ -198,9 +204,6 @@
 \input{includes/introduction}
 
 \input{includes/1-topological-order}
-
-\tikzset{x=1em, y=1em, node font=\footnotesize}
-
 \input{includes/2-tensor-network}
 \input{includes/3-strange-correlator}
 \input{includes/4-virasoro}

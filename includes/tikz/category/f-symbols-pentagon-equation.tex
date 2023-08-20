@@ -1,12 +1,7 @@
-\documentclass[margin={-0.8cm 0 0 0}]{standalone}
-\usepackage{tikz-cd}
-\usetikzlibrary{arrows.meta, decorations.markings}
-\tikzcdset{arrow style=tikz, diagrams={>=Stealth}}
-\begin{document}
 \def\Tree#1#2#3#4#5#6{
-  \def\x{0.25}
-  \def\y{0.2}
-  \begin{tikzpicture}[baseline=0.2cm]
+  \def\x{0.6}
+  \def\y{0.5}
+  \begin{tikzpicture}[baseline=0.2cm, thick]
     \draw
       (0,0) -- (-3*\x,3*\y) node [above] {$a$}
       (#1)  -- (-\x,3*\y)   node [above] {$b$}
@@ -28,4 +23,3 @@
   \A \arrow[urr, "\F fcdegh"] \arrow[dr, start anchor={[xshift=-0.4cm, yshift=0.2cm]}, "\F abcgfj"] & & & & \E \\
   & \C \arrow[rr, "\F ajdegi"] & & \D \arrow[ur, end anchor={[xshift=0.5cm, yshift=0.2cm]}, "\F bcdijh"]
 \end{tikzcd}
-\end{document}

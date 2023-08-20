@@ -1,0 +1,39 @@
+\def\Diagram{
+  \draw [->-=0.49] (1.4,-0.6)
+    .. controls ( 1.4,-1.4) and ( 1.4,-3.0) .. ( 0.0,-3.0)
+    .. controls (-1.4,-3.0) and (-1.4,-1.4) .. (-1.4,-0.6) -- (-1.4,0.6)
+    .. controls (-1.4, 1.4) and (-1.4, 3.0) .. ( 0.0, 3.0)
+    .. controls ( 1.4, 3.0) and ( 1.4, 1.4) .. ( 1.4, 0.6) -- cycle;
+}
+\def\Label{
+  \draw (1.4,-3.2) node {$x$};
+}
+\tr_{\text{L}}(f) =
+\begin{tikzpicture}[baseline=-0.2em, thick]
+  \Diagram
+  \draw (1.4,-0.1) node [morphism box] {$f$};
+  \Label
+\end{tikzpicture} \, ,
+\enspace
+\tr_{\text{R}}(f) =
+\begin{tikzpicture}[baseline=-0.2em, thick]
+  \begin{scope}[xscale=-1]
+    \Diagram
+    \draw (1.4,-0.1) node [morphism box] {$f$};
+  \end{scope}
+  \Label
+\end{tikzpicture};
+\quad
+\dim_{\text{L}}(x) =
+\begin{tikzpicture}[baseline=-0.2em, thick]
+  \Diagram
+  \Label
+\end{tikzpicture} \! ,
+\enspace
+\dim_{\text{R}}(x) =
+\begin{tikzpicture}[baseline=-0.2em, thick]
+  \begin{scope}[xscale=-1]
+    \Diagram
+  \end{scope}
+  \Label
+\end{tikzpicture}

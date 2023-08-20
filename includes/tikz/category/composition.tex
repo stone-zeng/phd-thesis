@@ -1,9 +1,11 @@
-\begin{tikzpicture}[baseline=1cm]
-  \draw [->-=0.2, ->-=0.9] (0,2) node [above] {$x$} -- (0,0) node [below] {$z$};
-  \draw (0,1) node [draw, fill=white, anchor=base] {$\scriptstyle g\circ f$};
-  \draw (1,1) node [anchor=base] {=};
-  \draw [->-=0.53] (2,2) node [above] {$x$} -- (2,0) node [below] {$z$};
-  \draw (2,1.5) node [draw, fill=white, anchor=base, minimum size=0.45cm] {$\scriptstyle f$}
-        (2,0.5) node [draw, fill=white, anchor=base, minimum size=0.45cm] {$\scriptstyle g$}
-        (2.35,1) node {$y$};
+\begin{tikzpicture}[baseline=1.9em, thick]
+  \draw [->-=0.2, ->-=0.86]
+    (0,4) node [above] {$x$} -- (0,0) node [below] {$z$}
+    (0,2) node [morphism box, minimum size=1.5em] {$g\circ f$};
+  \draw (2,2) node [anchor=base] {=};
+  \draw [->-=0.53]
+    (4,5)   node [above] {$x$} -- (4,-1) node [below] {$z$}
+    (4.8,2) node {$y$}
+    (4,3.5) node [morphism box, minimum size=1.5em] {$f$}
+    (4,0.5) node [morphism box, minimum size=1.5em] {$g$};
 \end{tikzpicture}

@@ -70,12 +70,12 @@
 \begin{equation}
   \tau_y \circ F_f = G_f \circ \tau_x, \quad \forall f\colon x\to y.
 \end{equation}
-如图~\ref{fig:natural-transformation}，自然变换可以用交换图来直观地表示。若 $\tau$ 的每一分量 $\tau_x$ 均可逆（即存在 $\tau_x^{-1}$ 使得 $\tau^{-1}_x\circ\tau_x=\id_{F(x)}$ 且 $\tau_x\circ\tau^{-1}_x = \id_{G(x)}$），则称其为\emph{自然同构} (natural isomorphism)，我们用 $\similarrightarrow$ 来表示。
+如图~\ref{fig:natural-transformation}，自然变换可以用交换图来直观地表示。若 $\tau$ 的每一分量 $\tau_x$ 均可逆［即存在 $\tau_x^{-1}$ 使得 $\tau^{-1}_x\circ\tau_x=\id_{F(x)}$ 且 $\tau_x\circ\tau^{-1}_x = \id_{G(x)}$］，则称其为\emph{自然同构} (natural isomorphism)，我们用 $\similarrightarrow$ 来表示。
 
 \begin{figure}[htb]
   \centering
-  \subcaptionbox{}{\includegraphics{images/category/natural-transformation-1.pdf}} \qquad
-  \subcaptionbox{}{\includegraphics{images/category/natural-transformation-2.pdf}}
+  \subcaptionbox{}{\tikzinput{category/natural-transformation-1}} \qquad
+  \subcaptionbox{}{\tikzinput{category/natural-transformation-2}}
   \caption[自然变换对应的交换图]{自然变换对应的交换图。(a) 此图是“可交换的”，即从 $F(x)$ 到 $G(y)$ 的两条路径等价；(b) 对于结合律的“提升”，图中三棱柱的三个侧面都是可交换的。}
   \label{fig:natural-transformation}
 \end{figure}
@@ -129,8 +129,8 @@
 
 \begin{figure}[htb]
   \centering
-  \subcaptionbox{}{\includegraphics{images/category/pentagon-equation.pdf}} \quad
-  \subcaptionbox{}{\includegraphics{images/category/triangle-equation.pdf}}
+  \subcaptionbox{}{\tikzinput{category/pentagon-equation}} \quad
+  \subcaptionbox{}{\tikzinput{category/triangle-equation}}
   \caption[五边形方程和三角形方程对应的交换图]{(a) 五边形方程和 (b) 三角形方程对应的交换图。}
   \label{fig:pentagon-triangle-equation}
 \end{figure}
@@ -154,15 +154,11 @@
 \end{equation}
 如果在弦图中省略单位元（对应于物理中的真空态），则 $e_x$ 和 $i_x$ 可以表示为
 \begin{equation}
-  \tikzinput{category/dual-1},
-  \qquad
-  \tikzinput{category/dual-2}.
+  \tikzinput{category/dual}.
 \end{equation}
 这可以类比于量子力学中的湮灭与产生算符。（右对偶的）刚性公理则可表示为
 \begin{equation}
-  \tikzinput{category/rigidity-axioms-1},
-  \qquad
-  \tikzinput{category/rigidity-axioms-2}.
+  \tikzinput{category/rigidity-axioms}.
   \label{eq:rigidity-axioms-diagrams}
 \end{equation}
 
@@ -193,12 +189,12 @@
 对于中枢范畴 $\mathcal{C}$ 中的自同态 $f\in\End_{\mathcal{C}}(x)$，可以定义\emph{左右迹} (left/right trace)：
 \begin{equation}
   \begin{aligned}
-    \tr_{\text{L}} f &\colon \1
+    \tr_{\text{L}}(f) &\colon \1
       \xrightarrow{i_{x^*}} x^*\otimes x^{**}
       \xrightarrow{\id_{x^*}\otimes\delta_x^{-1}} x^*\otimes x
       \xrightarrow{\id_{x^*}\otimes f} x^*\otimes x
       \xrightarrow{e_x} \1, \\
-    \tr_{\text{R}} f &\colon \1
+    \tr_{\text{R}}(f) &\colon \1
       \xrightarrow{i_x} x\otimes x^*
       \xrightarrow{f\otimes\id_{x^*}} x\otimes x^*
       \xrightarrow{\delta_x\otimes\id_{x^*}} x^{**}\otimes x^*
@@ -207,20 +203,15 @@
 \end{equation}
 当 $f=\id_x$ 时，还可以定义\emph{左右维数} (left/right dimension)：
 \begin{equation}
-  \dim_{\text{L}} x \coloneq \tr_{\text{L}}\id_x, \quad
-  \dim_{\text{R}} x \coloneq \tr_{\text{R}}\id_x.
+  \dim_{\text{L}}(x) \coloneq \tr_{\text{L}}(\id_x), \quad
+  \dim_{\text{R}}(x) \coloneq \tr_{\text{R}}(\id_x).
   \label{eq:left-right-dimension}
 \end{equation}
 迹和维数可以用下图来描述：
 \begin{equation}
-  \begin{gathered}
-    \tr_{\text{L}}  f = \tikzinput{category/trace-1} \, , \quad
-    \tr_{\text{R}}  f = \tikzinput{category/trace-2} \, ; \\
-    \dim_{\text{L}} x = \tikzinput{category/dimension-1} \!, \quad
-    \dim_{\text{R}} x = \tikzinput{category/dimension-2} \!.
-  \end{gathered}
+  \tikzinput{category/trace-dimension}.
 \end{equation}
-如果对于任意的 $f\in\End_{\mathcal{C}}(x)$ 都有 $\tr_{\text{L}}f=\tr_{\text{R}}f$，则称 $\mathcal{C}$ 是\emph{球状} (spherical) 的。
+如果对于任意的 $f\in\End_{\mathcal{C}}(x)$ 都有 $\tr_{\text{L}}(f)=\tr_{\text{R}}(f)$，则称 $\mathcal{C}$ 是\emph{球状} (spherical) 的。
 
 \subsection{融合范畴}
 
@@ -250,7 +241,7 @@
   D = \sqrt{\sum_{i\in I} d_i^2}.
 \end{equation}
 
-融合的逆运算是\emph{分裂} (splitting)。简单对象的融合与分裂都可以用弦图来表示：
+融合的逆运算是\emph{分裂} (splitting)。在弦图中它们可以表示为：
 \begin{equation}
   \tikzinput{category/fusion-tree-1}
   \in \Hom_{\mathcal{C}}(a\otimes b, c) \eqcolon V^{ab}_c, \quad
@@ -277,7 +268,7 @@
 
 \begin{figure}[htb]
   \centering
-  \includegraphics{images/category/f-symbols-pentagon-equation.pdf}
+  \tikzinput{category/f-symbols-pentagon-equation}
   \caption[$F$ 符号所满足的五边形方程]{$F$ 符号所满足的五边形方程，对应的融合空间是 $\Hom_{\mathcal{C}}(a\otimes b\otimes c\otimes d,e)$，即 $V^{abcd}_e$。}
   \label{fig:f-symbols-pentagon-equation}
 \end{figure}
@@ -294,11 +285,7 @@
   \item $F$ 移动，即式~\eqref{eq:f-move}；
   \item 环路消除，这会给出相应的量子维数：
     \begin{equation}
-      \tikzinput{category/loop-removal-1}
-      \! = d_a, \quad
-      \tikzinput{category/loop-removal-2}
-      \! = \delta_{ac} \sqrt{\frac{d_b d_{b'}}{d_a}} \enspace
-      \tikzinput{category/loop-removal-3}.
+      \tikzinput{category/loop-removal}.
       \label{eq:loop-removal}
     \end{equation}
 \end{itemize}
@@ -486,7 +473,7 @@ $k=1$、2、3 时对应的融合规则列在了表~\ref{tab:a-k+1-fusion-rules} 
 
 事实上，我们在 \ref{subsec:fusion-category-examples} 和 \ref{subsec:a-k+1-category} 小节中给出的这几个例子不仅是融合范畴，还是所谓\emph{模张量范畴} (modular tensor category, MTC)\cite{bakalov2001lectures,kitaev2006anyons,bruillard2016rank,beer2018categories,kong2022invitation}。它在融合范畴的基础上加入了\emph{编织} (braiding)、\emph{丝带} (ribbon) 的结构以及\emph{非简并} (non-degeneracy) 等条件。编织范畴或称辫子范畴定义了如下的自然变换：
 \begin{equation}
-  \sigma_{x,y} = \tikzinput{category/braiding} \, , \quad x,y \in \mathcal{C}.
+  \sigma_{x,y} = \tikzinput{category/braiding}, \quad x,y \in \mathcal{C}.
 \end{equation}
 丝带范畴则定义了\emph{扭转} (twist)：
 \begin{equation}
@@ -659,16 +646,16 @@ $F^{ijm}_{kln}$ 是 $F$ 符号的另一种记法，它与 $[F^{ijk}_l]_{mn}$ 的
 \end{equation}
 这里 $D$ 是总量子维数，它使得 $(B_p)^2=B_p$；而 $B_p^s$ 满足
 \begin{align}
-     B_p^s \, \ket[\Bigg]{\tikzinput{string-net/loop-1}}
+     B_p^s \, \ket[\Bigg]{\def\Prime{}\tikzinput{string-net/hexagon}}
   &= \sum_{m,\dots,r} B_{p,ghijkl}^{s,g'h'i'j'k'l'}(abcdef) \,
-     \ket[\Bigg]{\tikzinput{string-net/loop-2}} \notag \\
+     \ket[\Bigg]{\def\Prime{'}\tikzinput{string-net/hexagon}} \notag \\
   &= F^{al^*g}_{s^*g'l'^*}
      F^{bg^*h}_{s^*h'g'^*}
      F^{ch^*i}_{s^*i'h'^*}
      F^{di^*j}_{s^*j'i'^*}
      F^{ej^*k}_{s^*k'j'^*}
      F^{fk^*l}_{s^*l'k'^*} \,
-     \ket[\Bigg]{\tikzinput{string-net/loop-2}}.
+     \ket[\Bigg]{\def\Prime{'}\tikzinput{string-net/hexagon}}.
   \label{eq:string-net-bp}
 \end{align}
 当 $F$ 符号还满足幺正条件

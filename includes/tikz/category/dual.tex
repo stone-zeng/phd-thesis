@@ -1,0 +1,45 @@
+\def\Path{(0.8,2) -- (0.8,0)
+  .. controls ( 0.8,-0.2) and ( 0.8,-1.2) .. ( 0.0,-1.2)
+  .. controls (-0.8,-1.2) and (-0.8,-0.2) .. (-0.8, 0.0) -- (-0.8,2)}
+\tikzset{
+  large morphism box/.style={morphism box, minimum width=4em, minimum height=1.5em}
+}
+\begin{tikzpicture}[baseline=-0.2em, thick]
+  \begin{scope}
+    \draw [->-=0.45] (-0.8,2) node [above=0.2em, anchor=base] {$x^*$} -- (-0.8,0);
+    \draw [->-=0.45] ( 0.8,2) node [above=0.2em, anchor=base] {$x$}   -- ( 0.8,0);
+    \draw [->-=0.75] (0,0) -- (0,-2) node [below=0.7em, anchor=base] {$\1$};
+    \draw (0,0) node [large morphism box] {$e_x$};
+  \end{scope}
+  \begin{scope}[xshift=5em]
+    \draw [->-=0.85] (-0.8,0) -- (-0.8,2) node [above=0.2em, anchor=base] {$x$};
+    \draw [->-=0.45] ( 0.8,2) node [above=0.2em, anchor=base] {$x$} -- (0.8,0);
+    \draw (0,0) node [large morphism box] {$e_x$};
+  \end{scope}
+  \begin{scope}[xshift=9.5em]
+    \draw [->-=0.85] \Path;
+    \draw (0.8,2) node [above=0.2em, anchor=base] {$x$};
+  \end{scope}
+  \draw (2.5,0) node {=}
+        (7.5,0) node {=};
+\end{tikzpicture},
+\qquad
+\begin{tikzpicture}[baseline=-0.2em, thick]
+  \begin{scope}
+    \draw [->-=0.45] (0,2) node [above=0.2em, anchor=base] {$\1$} -- (0,0);
+    \draw [->-=0.75] (-0.8,0) -- (-0.8,-2) node [below=0.7em, anchor=base] {$x$};
+    \draw [->-=0.75] ( 0.8,0) -- ( 0.8,-2) node [below=0.7em, anchor=base] {$x^*$};
+    \draw (0,0) node [large morphism box] {$i_x$};
+  \end{scope}
+  \begin{scope}[xshift=5em]
+    \draw [->-=0.75] (-0.8,0) -- (-0.8,-2) node [below=0.7em, anchor=base] {$x$};
+    \draw [->-=0.52] ( 0.8,-2) node [below=0.7em, anchor=base] {$x$} -- (0.8,0);
+    \draw (0,0) node [large morphism box] {$i_x$};
+  \end{scope}
+  \begin{scope}[xshift=9.5em, yscale=-1]
+    \draw [->-=0.85] \Path;
+    \draw (0.8,2) node [below=0.7em, anchor=base] {$x$};
+  \end{scope}
+  \draw (2.5,0) node {=}
+        (7.5,0) node {=};
+\end{tikzpicture}

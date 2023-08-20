@@ -1,0 +1,10 @@
+\begin{tikzpicture}[baseline=-0.2em, semithick]
+  \draw [->-=1/8, ->-=1/8+1/6, ->-=1/8+2/6, ->-=1/8+3/6, ->-=1/8+4/6, ->-=1/8+5/6]
+    (0:1.2) -- ( 60:1.2) -- (120:1.2) -- (180:1.2) -- (240:1.2) -- (300:1.2) -- cycle;
+  \foreach \x/\xtext in {0/d, 60/c, 120/b, 180/a, 240/{}, 300/e}
+    \draw [->-=0.9] (\x:1.8) -- (\x:1.2)
+      (\x:2.2) node {$\xtext$};
+  \draw (240:2.2) node [below=-0.5em] {$f$};
+  \foreach \x/\xtext in {30/i, 90/h, 150/g, 210/l, 270/k, 330/j}
+    \draw (\x:1.6) node {$\xtext\Prime$};
+\end{tikzpicture}
