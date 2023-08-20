@@ -211,7 +211,7 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.6\textwidth]{images/temp/virasoro-transfer-matrix.pdf}
+  \includegraphics[width=0.6\textwidth]{images/virasoro/transfer-matrix.pdf}
   \caption[格点模型配分函数的张量网络描述]{格点模型配分函数的张量网络描述。图片来源：\parencite{wang2022virasoro}。}
   \label{fig:partition-function-tensor-network}
 \end{figure}
@@ -267,7 +267,7 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.8\textwidth]{images/temp/virasoro-construction.pdf}
+  \includegraphics[width=0.8\textwidth]{images/virasoro/construction.pdf}
   \caption[能动量张量与 Virasoro 算符的构造]{在一般的张量网络中确定能动量张量 $T$，并以此来构造 Virasoro 算符［见式~\eqref{eq:lattice-virasoro-operators}］。对应于与能动量张量的本征态 $\ket*{\phi_T}$ 可以从圆柱转移矩阵中通过精确对角化得到，它被进一步变形为 4 个指标的张量 $T$，并插入到新的圆柱中，由此即可得到 Virasoro 算符 $L_n$。同样的方法也可用来构造 Kac--Moody 算符 $J_n$。图片来源：\parencite{wang2022virasoro}。}
   \label{fig:virasoro-construction}
 \end{figure}
@@ -303,7 +303,7 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.9\textwidth]{images/temp/virasoro-blocking.pdf}
+  \includegraphics[width=0.9\textwidth]{images/virasoro/blocking.pdf}
   \caption[张量 $A$ 的粗粒近似]{对张量 $A$ 进行粗粒近似。上图：$2\times2\mapsto1$ 的粗粒近似操作，$A^{(s+1)}$ 可由 4 个 $A^{(s)}$ 张量缩并得到。下图：相应的算符可以等效为一个指标更少、但连接维数更大的正方形张量。图片来源：\parencite{wang2022virasoro}。}
   \label{fig:virasoro-blocking}
 \end{figure}
@@ -335,7 +335,7 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.4\textwidth]{images/temp/virasoro-operator.pdf}
+  \includegraphics[width=0.4\textwidth]{images/virasoro/operator.pdf}
   \caption[Virasoro 算符作用在本征态上]{Virasoro 算符（或 Kac--Moody 算符）作用在本征态上。图片来源：\parencite{wang2022virasoro}。}
   \label{fig:virasoro-operator}
 \end{figure}
@@ -356,7 +356,7 @@ Virasoro 算符的正确性同样可以通过两点关联函数来检验。在�
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.7\textwidth]{images/virasoro/ising_spectrum.pdf}
+  \includegraphics[width=0.7\textwidth]{images/virasoro/ising-spectrum.pdf}
   \caption[Virasoro 算符在 Ising 模型能谱上的作用示意图]{Virasoro 算符 $L_{-1}$ 在 Ising 模型能谱上的作用示意图。能动量张量 $T$ 由 $n=4$、$\chi=4$ 圆柱的本征态得到（左图），由此构造出的 Virasoro 算符 $L_{-1}$ 则作用在 $N=8$、$\chi=4$ 的圆柱上（右图）。更多的例子见图~\ref{fig:ising-virasoro-all}。图片来源：\parencite{wang2022virasoro}。}
   \label{fig:ising-virasoro}
 \end{figure}
@@ -379,7 +379,7 @@ Virasoro 算符的正确性同样可以通过两点关联函数来检验。在�
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.7\textwidth]{images/virasoro/dimer_spectrum.pdf}
+  \includegraphics[width=0.7\textwidth]{images/virasoro/dimer-spectrum.pdf}
   \caption[Kac--Moody 算符在 dimer 模型能谱上的作用示意图]{Kac--Moody 算符 $J_{-1}$ 在 dimer 模型能谱上的作用示意图。近似的流算符 $J$ 由 $n=4$、$\chi=4$ 圆柱的本征态得到（左图），由此构造出的 Kac--Moody 算符 $J_{-1}$ 则作用在 $N=8$、$\chi=4$ 的圆柱上（右图）。其中，符合 CFT 预测的作用使用黑色实线箭头标记，而不相符的则用灰色虚线箭头标记。更多的例子见图~\ref{fig:dimer-kac-moody-all}。图片来源：\parencite{wang2022virasoro}。}
   \label{fig:dimer-kac-moody}
 \end{figure}
@@ -411,7 +411,7 @@ Fibonacci 弦网模型定义在六边形网格上，包含 $\1$ 和 $\tau$ 两�
     \Triangle \tau\tau\tau\1\tau\tau
   = \varphi^{\frac{7}{12}} \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{\tau\1} = \varphi^{\frac{1}{12}};
   \label{eq:fib-triangles} \\
-    A_{ijkl} = \tikzinput{fib/square-1}.
+    A_{ijkl} = \tikzinput{fibonacci/square-1}.
   \label{eq:fib-square}
 \end{gather}
 同样，转移矩阵也是由张量单元 $A$ 构成的：
@@ -419,7 +419,7 @@ Fibonacci 弦网模型定义在六边形网格上，包含 $\1$ 和 $\tau$ 两�
     \tilde{M}_{i_1 i_2 \cdots i_n, \, j_1 j_2 \cdots j_n}
   = \sum_{\substack{i_1, i_2, \ldots, i_n \\ j_1, j_2, \ldots, j_n}}
     \prod_{\alpha=1}^n A_{i_\alpha j_\alpha j_{\alpha+1} i_{\alpha+1}}
-  = \tikzinput{fib/cylinder} \, .
+  = \tikzinput{fibonacci/cylinder} \, .
 \end{equation}
 但与正方形网格（如二维 Ising 模型）的情况不同，这里 $A_{ijkl}$ 的指标位于四个角，所以在缩并时需要仔细处理各指标的顺序。此外，上述圆柱 $\tilde{M}$ 并不是 Hermitian 的，因此并不能直接构成正确的转移矩阵。如果把 这些圆柱堆叠起来，在最终计算得到的能谱中将会出现额外的相位。我们可以把两个方向相反的圆柱叠加起来，即选取
 \begin{equation}
@@ -434,7 +434,7 @@ Fibonacci 弦网模型定义在六边形网格上，包含 $\1$ 和 $\tau$ 两�
 随着圆柱尺寸 $n$ 的增加，计算中内存消耗是指数级增长的。为了能够处理较大的圆柱，我们这里采用了矩阵无关 (matrix-free) 的线性算符 (linear operator) 方法，即不再显式地构造转移矩阵 $M$，而是计算 $M$ 作用在某个向量上的结果。如图~\ref{fig:fib-linear-operator} 所示，由于 $M$ 是通过张量单元 $A_{ijkl}$ 构造而成的，矩阵乘法 $M\cdot v$ 可利用多次张量缩并来实现。而平移算符则可以通过对数组元素的重新排列来获得。对于大小为 $n$ 的圆柱，线性算符方法可将内存消耗由 $\mathcal{O}(\chi^{2n})$ 降低到 $\mathcal{O}(\chi^n)$。对于 Fibonacci 模型的情况，在典型配置的服务器上最大可以计算到约 $n\simeq30$ 的情形。
 
 \begin{figure}[ht]
-  \tikzinput{fib/linear-operator}
+  \tikzinput{fibonacci/linear-operator}
   \caption[利用线性算符方法实现矩阵乘法]{对于 Fibonacci 弦网模型，利用线性算符方法实现矩阵乘法 $M\cdot v$。图片来源：\parencite{zeng2023virasoro}。}
   \label{fig:fib-linear-operator}
 \end{figure}
@@ -450,7 +450,7 @@ Fibonacci 弦网模型定义在六边形网格上，包含 $\1$ 和 $\tau$ 两�
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.7\textwidth]{images/fibonacci/fib-spectrum.pdf}
-  \caption[Fibonacci 模型的能谱]{Fibonacci 模型的能谱，对应于 $n\to\infty$ 圆柱转移矩阵。“\tikzinput{fib/spectrum-label}\unskip”表明存在二重简并。图中的本征值进行了缩放处理，以使得 $\Delta_{\1}=0$ 和 $\Delta_T=2$。初级场使用对应的算符来标记，它们的共形维数分别为 $h_{\1}=0$，$h_\sigma=1/15$，$h_\epsilon=2/5$，$h_Z=2/3$，$h_X=7/5$ 以及 $h_Y=3$（与 $X$、$Y$ 对应的态本征值较大，在我们的计算中没有考虑）。CFT 配分函数为 $Z=|\chi_{\1}+\chi_Y|^2+|\chi_\epsilon+\chi_X|^2+2|\chi_\sigma|^2\discretionary{}{}{}+2|\chi_Z|^2$\cite{vanhove2018mapping}。对应于 $|\chi_{\1}+\chi_Y|^2$ 的子空间，其中的本征态用橙色标记。图片来源：\parencite{zeng2023virasoro}。}
+  \caption[Fibonacci 模型的能谱]{Fibonacci 模型的能谱，对应于 $n\to\infty$ 圆柱转移矩阵。“\tikzinput{fibonacci/spectrum-label}\unskip”表明存在二重简并。图中的本征值进行了缩放处理，以使得 $\Delta_{\1}=0$ 和 $\Delta_T=2$。初级场使用对应的算符来标记，它们的共形维数分别为 $h_{\1}=0$，$h_\sigma=1/15$，$h_\epsilon=2/5$，$h_Z=2/3$，$h_X=7/5$ 以及 $h_Y=3$（与 $X$、$Y$ 对应的态本征值较大，在我们的计算中没有考虑）。CFT 配分函数为 $Z=|\chi_{\1}+\chi_Y|^2+|\chi_\epsilon+\chi_X|^2+2|\chi_\sigma|^2\discretionary{}{}{}+2|\chi_Z|^2$\cite{vanhove2018mapping}。对应于 $|\chi_{\1}+\chi_Y|^2$ 的子空间，其中的本征态用橙色标记。图片来源：\parencite{zeng2023virasoro}。}
   \label{fig:fib-spectrum}
 \end{figure}
 
@@ -507,7 +507,7 @@ Fibonacci 弦网模型定义在六边形网格上，包含 $\1$ 和 $\tau$ 两�
 
 接下来我们按照 \ref{sec:virasoro-operators} 节中介绍的方法来构造 Virasoro 算符。考虑到 Fibonacci 模型要求圆柱大小 $n=3k$，此时由对角化求得的能动量张量 $T$ 和 $\bar{T}$ 并不能像 Ising 模型的情况一样直接插回圆柱。因此，我们需要首先把 $T$ 和 $\bar{T}$ 变形为三角形，再用式~\eqref{eq:fib-triangles} 中的三角形张量单元补成正方形，这与式~\eqref{eq:fib-square} 是类似的：
 \begin{equation}
-  \tikzinput{fib/padded-tensor-1} = \tikzinput{fib/padded-tensor-2} \to \tikzinput{fib/padded-tensor-3}.
+  \tikzinput{fibonacci/padded-tensor-1} = \tikzinput{fibonacci/padded-tensor-2} \to \tikzinput{fibonacci/padded-tensor-3}.
 \end{equation}
 注意在缩并时只有角上的自由度需要考虑。圆柱中的其他张量也可以用类似的方式构造，但方便起见，也可以等价地用 $k\times k$ 个式~\eqref{eq:fib-square} 中的正方形缩并得到。
 

@@ -11,27 +11,27 @@
 为了叙述与计算的方便，我们先来澄清一下 $F$ 符号的定义，并介绍其对称性。在式~\eqref{eq:f-move} 和 \eqref{eq:string-net-local-rules} 中分别给出了 $F$ 符号的两种定义：
 \begin{equation}
   \begin{aligned}
-       \tikzinput{category-theory/f-symbol-1}
-    &= \sum_y \, \bigl[ F^{abc}_d \bigr]_{xy} \tikzinput{category-theory/f-symbol-2}, \\
-       \tikzinput{category-theory/f-symbol-3}
-    &= \sum_m F^{ijm}_{kln} \tikzinput{category-theory/f-symbol-4}.
+       \tikzinput{category/f-symbol-1}
+    &= \sum_y \, \bigl[ F^{abc}_d \bigr]_{xy} \tikzinput{category/f-symbol-2}, \\
+       \tikzinput{category/f-symbol-3}
+    &= \sum_m F^{ijm}_{kln} \tikzinput{category/f-symbol-4}.
   \end{aligned}
 \end{equation}
 容易知道 $[F^{ijk}_l]_{xy}=F^{jix}_{lky}$。在本文中我们主要使用第一种定义。另一方面，根据式~\eqref{eq:f-move}，我们有
 \begin{equation}
     \bigl[ F^{abc}_d \bigr]_{xy}
   = \frac{\tr \, \Biggl[
-      \Biggl( \tikzinput{category-theory/f-symbol-small-2} \Biggr)^\dagger \,
-      \tikzinput{category-theory/f-symbol-small-1}
+      \Biggl( \tikzinput{category/f-symbol-small-2} \Biggr)^\dagger \,
+      \tikzinput{category/f-symbol-small-1}
     \Biggr]}{\tr \, \Biggl[
-      \Biggl( \tikzinput{category-theory/f-symbol-small-2} \Biggr)^\dagger \,
-      \tikzinput{category-theory/f-symbol-small-2}
+      \Biggl( \tikzinput{category/f-symbol-small-2} \Biggr)^\dagger \,
+      \tikzinput{category/f-symbol-small-2}
     \Biggr]}
-  = \frac{\tikzinput{category-theory/f-symbol-trace-1}}{\tikzinput{category-theory/f-symbol-trace-2}}.
+  = \frac{\tikzinput{category/f-symbol-trace-1}}{\tikzinput{category/f-symbol-trace-2}}.
 \end{equation}
 这里分母部分可以利用环路消除 \eqref{eq:loop-removal} 式化简：
 \begin{equation}
-  \tikzinput{category-theory/f-symbol-trace-2} = \sqrt{d_a d_b d_c d_d},
+  \tikzinput{category/f-symbol-trace-2} = \sqrt{d_a d_b d_c d_d},
 \end{equation}
 而分子部分则等价于一个正四面体，于是
 \begin{equation}
@@ -147,7 +147,7 @@
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=0.6\textwidth]{images/temp/string-net-peps.pdf}
+  \includegraphics[width=0.6\textwidth]{images/string-net-peps.pdf}
   \caption[弦网模型基态的 PEPS 张量网络表示]{弦网模型基态的 PEPS 张量网络表示。图片来源：\parencite{buerschaper2009explicit}。}
   \label{fig:string-net-peps}
 \end{figure}
@@ -304,7 +304,7 @@ $F$ 符号为
 \begin{enumerate}
   \item 利用奇异关联子构造正方形张量单元 $A_{ijkl}$。在 Ising 的情况中，我们已经得到了这样的表示［式~\eqref{eq:ising-octagon}］；而对于 Fibonacci 模型，我们需要把两个三角张量形拼合成一个正方形：
     \begin{equation}
-      A_{ijkl} = \tikzinput{fib/square-1}.
+      A_{ijkl} = \tikzinput{fibonacci/square-1}.
     \end{equation}
   \item 按照 iTEBD 算法，用 $A_{ijkl}$ 作为 iMPO 对随机的初始态进行演化，得到正则化的不动点 iMPS $\{\Gamma,\lambda\}$。
   \item 注意 $\lambda$ 是一个对角矩阵，其对角元可用来计算关联长度 $\xi$ 和 von Neumann 纠缠熵 $S_A$：
@@ -330,9 +330,9 @@ $F$ 符号为
   % TODO: update image
   \centering
   \subcaptionbox{Ising 模型}{%
-    \includegraphics[width=0.45\textwidth]{images/temp/ising-central-charge.png}} \quad
+    \includegraphics[width=0.45\textwidth]{images/ising-central-charge.png}} \quad
   \subcaptionbox{Fibonacci 模型}{%
-    \includegraphics[width=0.45\textwidth]{images/temp/fib-central-charge.png}}
+    \includegraphics[width=0.45\textwidth]{images/fib-central-charge.png}}
   \caption[中心荷拟合结果]{中心荷拟合结果。横坐标：关联长度的对数 $\log\xi$，纵坐标：纠缠熵 $S_A$。使用的连接维数为 $\chi\in\{8,9,\dots,27\}$。}
   \label{fig:central-charge}
 \end{figure}
