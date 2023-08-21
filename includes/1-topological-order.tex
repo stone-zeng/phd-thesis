@@ -169,7 +169,7 @@
 \end{equation}
 这实际上只需要对上面的图沿水平方向做一下镜像操作。如果 $\mathcal{C}$ 中的每个对象既有左对偶也有右对偶，则称其为是\emph{刚性} (rigid) 的或\emph{自治} (autonomous) 的；而如果 $\forall x\in\mathcal{C}$，都有 $x=x^*$，则称 $\mathcal{C}$ 是\emph{自对偶} (self-dual) 的。
 
-在有限维的情形中，向量空间 $V$ 的二重对偶 $V^{**}$ 同构于 $V$。这在张量范畴中的推广即为\emph{中枢} (pivotal) 结构，它是由以下的自然同构给出的：
+在有限维的情形中，向量空间 $\mathbb{V}$ 的二重对偶 $\mathbb{V}^{**}$ 同构于 $\mathbb{V}$。这在张量范畴中的推广即为\emph{中枢} (pivotal) 结构，它是由以下的自然同构给出的：
 \begin{equation}
   \delta_x \colon x \similarrightarrow x^{**}, \quad \forall x\in\mathcal{C},
 \end{equation}
@@ -244,18 +244,18 @@
 融合的逆运算是\emph{分裂} (splitting)。在弦图中它们可以表示为：
 \begin{equation}
   \tikzinput{category/fusion-tree-1}
-  \in \Hom_{\mathcal{C}}(a\otimes b, c) \eqcolon V^{ab}_c, \quad
+  \in \Hom_{\mathcal{C}}(a\otimes b, c) \eqcolon \mathbb{V}^{ab}_c, \quad
   \tikzinput{category/fusion-tree-2}
-  \in \Hom_{\mathcal{C}}(c, a\otimes b) \eqcolon V_{ab}^c.
+  \in \Hom_{\mathcal{C}}(c, a\otimes b) \eqcolon \mathbb{V}_{ab}^c.
 \end{equation}
-由于 $\mathcal{C}$ 的刚性和自对偶性，我们可以省略弦图中的箭头。此时，$\Hom_{\mathcal{C}}(a\otimes b,c)$ 和 $\Hom_{\mathcal{C}}(c,a\otimes b)$ 都是向量空间，分别记为 $V^{ab}_c$ 和 $V_{ab}^c$，上面的“融合树”正是对应的基向量。这两个向量空间的维数相等，都等于融合系数 $N_{ab}^c$。
+由于 $\mathcal{C}$ 的刚性和自对偶性，我们可以省略弦图中的箭头。此时，$\Hom_{\mathcal{C}}(a\otimes b,c)$ 和 $\Hom_{\mathcal{C}}(c,a\otimes b)$ 都是向量空间，分别记为 $\mathbb{V}^{ab}_c$ 和 $\mathbb{V}_{ab}^c$，上面的“融合树”正是对应的基向量。这两个向量空间的维数相等，都等于融合系数 $N_{ab}^c$。
 
-下面我们考虑向量空间 $V^{abc}_d$，它表示从 $a\otimes b\otimes c$ 到 $d$ 的融合。由于 $\mathcal{C}$ 是严格的，$(a\otimes b)\otimes c$ 和 $a\otimes(b\otimes c)$ 的结果相同（都等于 $d$），但却会给出两种融合树的分支结构：
+下面我们考虑向量空间 $\mathbb{V}^{abc}_d$，它表示从 $a\otimes b\otimes c$ 到 $d$ 的融合。由于 $\mathcal{C}$ 是严格的，$(a\otimes b)\otimes c$ 和 $a\otimes(b\otimes c)$ 的结果相同（都等于 $d$），但却会给出两种融合树的分支结构：
 \begin{equation}
   \tikzinput{category/f-symbol-1}
-  \in \bigoplus_x V^{ab}_x \otimes V^{xc}_d \simeq V^{abc}_d, \quad
+  \in \bigoplus_x \mathbb{V}^{ab}_x \otimes \mathbb{V}^{xc}_d \simeq \mathbb{V}^{abc}_d, \quad
   \tikzinput{category/f-symbol-2}
-  \in \bigoplus_x V^{ay}_d \otimes V^{bc}_y \simeq V^{abc}_d.
+  \in \bigoplus_x \mathbb{V}^{ay}_d \otimes \mathbb{V}^{bc}_y \simeq \mathbb{V}^{abc}_d.
 \end{equation}
 联系这两组基的变换称为 \emph{$F$ 移动} ($F$ move)：
 \begin{equation}
@@ -269,7 +269,7 @@
 \begin{figure}[htb]
   \centering
   \tikzinput{category/f-symbols-pentagon-equation}
-  \caption[$F$ 符号所满足的五边形方程]{$F$ 符号所满足的五边形方程，对应的融合空间是 $\Hom_{\mathcal{C}}(a\otimes b\otimes c\otimes d,e)$，即 $V^{abcd}_e$。}
+  \caption[$F$ 符号所满足的五边形方程]{$F$ 符号所满足的五边形方程，对应的融合空间是 $\Hom_{\mathcal{C}}(a\otimes b\otimes c\otimes d,e)$，即 $\mathbb{V}^{abcd}_e$。}
   \label{fig:f-symbols-pentagon-equation}
 \end{figure}
 

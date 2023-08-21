@@ -428,7 +428,7 @@ $F$ 符号为
 \end{align}
 由此可见，这些基关于乘法和 Hermitian 共轭都是封闭的，因而它们构成了一个 $C^*$ 代数，称为 \emph{Ocneanu 管状代数} (Ocneanu's tube algebra)\cite{evans1995ocneanu,evans1998quantum}。
 
-管状代数可以被分块对角化，其中的每一块上的投影算符对应一个\emph{不可约中心幂等元} (irreducible central idempotent)。从范畴论的角度来看，这些中心幂等元构成了一个新的范畴，它对应了输入范畴 $\mathcal{C}$ 的 \emph{Drinfeld 中心} (Drinfeld center) $\mathcal{Z}(\mathcal{C})$。而从拓扑序的角度来看，它们则对应了不同的\emph{拓扑分区} (topological sectors)\cite{lan2014topological,bultinck2017anyons,williamson2017symmetry,vanhove2018mapping}。
+管状代数可以被分块对角化，其中的每一块上的投影算符对应一个\emph{不可约中心幂等元} (irreducible central idempotent)。从范畴论的角度来看，这些中心幂等元构成了一个新的范畴，它对应了输入范畴 $\mathcal{C}$ 的 \emph{Drinfel'd 中心} (Drinfel'd center) $\mathcal{Z}(\mathcal{C})$。而从拓扑序的角度来看，它们则对应了不同的\emph{拓扑分区} (topological sectors)\cite{lan2014topological,bultinck2017anyons,williamson2017symmetry,vanhove2018mapping}。
 
 中心幂等元可以表示为管状代数中基的线性组合：
 \begin{equation}
@@ -458,7 +458,7 @@ $F$ 符号为
   \end{aligned}
   \label{eq:fib-idempotents}
 \end{equation}
-分别对应了 doubled Fibonacci（即 Fibonacci 的 Drinfeld 中心）中的 4 种任意子：
+分别对应了 doubled Fibonacci（即 Fibonacci 的 Drinfel'd 中心）中的 4 种任意子：
 \begin{equation}
   \mathcal{P}_{1} \mapsto (\1, \1), \quad
   \mathcal{P}_{2} \mapsto (\1, \bar{\tau}), \quad
@@ -491,6 +491,7 @@ $F$ 符号为
 即配分函数的构建可以转化为关于 $\mathcal{H}_{\mathcal{C}}$ 的本征值问题。重整化算符 $\mathcal{H}_{\mathcal{C}}$ 可以将体（$D+1$ 维球 $B^{D+1}$）与不同格点标度下的边界（$D$ 维球面 $S^D$）联系起来，因而也就能够用来构建一套\emph{全息张量网络} (holographic tensor network)。下面我们讨论几个不同维度中的具体例子。
 
 \subsection{1+1 维：基于 Dijkgraaf--Witten 理论}
+\label{subsec:holographic-tensor-network-1+1d}
 
 我们首先考察由群 $G$ 所刻画的 1+1 维 Dijkgraaf--Witten 模型\cite{dijkgraaf1990topological}。为了计算二维流形 $M^2$ 上的路径积分，我们先对其进行三角剖分，每个三角形对应于
 \begin{equation}
@@ -772,4 +773,4 @@ $F$ 符号为
 
 \section{本章小结}
 
-本章首先给出了弦网模型基态的 PEPS 张量网络表示，并通过将其与特定的直积态做内积得到奇异关联子。在 Fibonacci 和 Ising 两种模型中，我们利用奇异关联子构造了相应配分函数的张量单元，并通过 iTEBD 算法数值计算了对应 CFT 的中心荷。接下来，我们简要介绍了 PEPS 张量网络表示中的 MPO 对称性，而 MPO 所满足的推拉条件实质也是融合范畴中对称性的一种体现。我们还给出了管状代数与中心幂等元的构造，后者作为投影算符，可以给出 Drinfeld 中心中不同的拓扑分区。最后，我们详细讨论了利用奇异关联子构建全息张量网络的方案。由于拓扑序的基态波函数 $\ket{\Psi}$ 位于重整化的不动点处，因而边界条件 $\ket{\Omega}$ 的选取就可以转化为重整化算符的本征值问题。我们在 1+1、2+1 和 3+1 维中分别给出了重整化算符及边界态的构造，并计算得到了临界点位置的初步数值结果。在二维 Ising 模型中，我们还利用全息张量网络计算了体—边传播子，并发现其形式与 AdS/CFT 的预测基本符合。
+本章首先给出了弦网模型基态的 PEPS 张量网络表示，并通过将其与特定的直积态做内积得到奇异关联子。在 Fibonacci 和 Ising 两种模型中，我们利用奇异关联子构造了相应配分函数的张量单元，并通过 iTEBD 算法数值计算了对应 CFT 的中心荷。接下来，我们简要介绍了 PEPS 张量网络表示中的 MPO 对称性，而 MPO 所满足的推拉条件实质也是融合范畴中对称性的一种体现。我们还给出了管状代数与中心幂等元的构造，后者作为投影算符，可以给出 Drinfel'd 中心中不同的拓扑分区。最后，我们详细讨论了利用奇异关联子构建全息张量网络的方案。由于拓扑序的基态波函数 $\ket{\Psi}$ 位于重整化的不动点处，因而边界条件 $\ket{\Omega}$ 的选取就可以转化为重整化算符的本征值问题。我们在 1+1、2+1 和 3+1 维中分别给出了重整化算符及边界态的构造，并计算得到了临界点位置的初步数值结果。在二维 Ising 模型中，我们还利用全息张量网络计算了体—边传播子，并发现其形式与 AdS/CFT 的预测基本符合。

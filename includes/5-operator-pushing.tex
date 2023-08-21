@@ -1,6 +1,12 @@
 \chapter{全息张量网络中的算符推移}
 \label{chap:operator-pushing}
 
+\renewcommand{\arraystretch}{0.8}
+
+在本章中，我们将沿着第 \ref{chap:strange-correlator} 章的思路，继续考察基于拓扑序的重整化张量网络。这类张量网络可以揭示出对应 CFT 的性质，并且在数值上还可以看到重整化张量与 AdS 体的相似性。因此，研究其中的算符推移及演生广义自由场的条件具有重要意义。
+
+\section{广义自由场与算符推移}
+
 AdS/CFT 对应\cite{maldacena1999large}中的一项重要特征是在 AdS 体 (bulk) 中演生出的\emph{自由场} (free field)。这使得我们可以为体态提供一套半经典的描述，同时也可以通过体来计算边界 CFT 中的物理量。这里所谓“自由场”，是指其关联函数可以通过 Wick 缩并来计算。一般来说，边界 CFT 中的\emph{单迹算符} (single trace operator) 近似对应了半经典的体态理论中的自由 Gauss 场。这就使得 CFT 中的关联函数可以在 AdS 一侧通过 Witten 图来计算\cite{witten1998anti,gubser1998gauge}。也有很多工作探讨了全息 CFT 中所演生出的广义自由场\cite{dutsch2003generalized,liu2019dimensional,collier2019quantum,nebabu2023bulk}。
 
 另一方面，受 Ryu--Takayanagi 公式\cite{ryu2006holographic}的启发，也有人提出张量网络是构建 CFT 与 AdS 自由度之间线性映射的合适框架\cite{swingle2012entanglement}。如图~\ref{fig:mera-ads-cft} 所示，这类张量网络的图形表示也和 AdS 空间的离散版本非常相似。它描述了 CFT 边界自由度的重整化（粗粒近似）过程，而这些自由度同时也位于张量网络的渐进边界。体中的算符作用在张量网络的辅助指标上，而 CFT 中的算符则作用在张量网络的渐进边界上。因此，张量网络提供了这些算符之间的线性映射\cite{pastawski2015holographic,hayden2016holographic}。
@@ -18,7 +24,7 @@ AdS/CFT 对应\cite{maldacena1999large}中的一项重要特征是在 AdS 体 (b
 
 \begin{figure}[htb]
   \centering
-  % \includegraphics[width=0.5\textwidth]{images/temp/mera-ads-cft.pdf}
+  % TODO: operator-pushing
   \caption{算符推移}
   \label{fig:operator-pushing}
 \end{figure}
@@ -49,11 +55,212 @@ AdS/CFT 对应\cite{maldacena1999large}中的一项重要特征是在 AdS 体 (b
 
 \section{1+1 维中的算符推移}
 
-我们首先讨论 1+1 维的情形，即由有限群 $G$ 所描述的 Dijkgraaf--Witten 理论。
+我们首先讨论 1+1 维的情形，即由有限群 $G$ 所描述的 Dijkgraaf--Witten 理论。在 \ref{subsec:holographic-tensor-network-1+1d} 小节中，我们已经给出了重整化算符的构造。它对应了一个树状结构的张量网络，其中每个顶点都是三分支的。在无扭转的 Dijkgraaf--Witten 理论中，每个顶点对应了一个带有三个指标的张量 $M^{g_1g_2}_{g_3}$：
+\begin{equation}
+  \tikzinput{operator-pushing/tensor-1+1d},
+\end{equation}
+其中 $g_1$、$g_2$、$g_3$ 都是群 $G$ 中的元素。张量 $M$ 描述了 $G$ 中的群乘法（也相当于融合规则），即
+\begin{equation}
+  M^{ij}_k = \delta_{G(i,j), k}, \quad
+  G(g_1, g_2) \coloneq g_1 \times g_2 = g_3.
+\end{equation}
 
-\subsection{Abel 的例子：\texorpdfstring{$\mathbb{Z}_n$}{ℤₙ} 群}
+如图~\ref{fig:rg-1+1d} 所示，这一由重整化算富所构成的张量网络具有一维边界。当在体中插入一个算符 $B$ 时，它的作用应当等价于边界上插入的另外一些算符。找到能再现体算符作用的边界算符，也就是我们所说的算符推移或\emph{体算符重建} (bulk operator reconstruction) 问题。
 
-\subsection{非 Abel 的例子：\texorpdfstring{$S_3$}{𝑆₃} 群}
+由于张量网络是局域的，我们可以通过研究重整化张量网络中的一个张量来研究体算符重建。具体来说，对于一个张量单元而言，算符推移或重建相当于为给定的算符 $B$ 找到对应的算符 $A$，并使其满足
+\begin{equation}
+  \tikzinput{operator-pushing/constraint-1+1d}.
+  \label{eq:constraint-1+1d}
+\end{equation}
+当算符 $B$ 是所谓广义自由场时，由 $A$ 给出的算符重建应当可以表示为“简单”形式（即 $\mathbb{I}\otimes\tilde{A}$ 或 $\tilde{A}\otimes\mathbb{I}$ 的线性组合）。为了确保 $B$ 的行为满足广义自由场的条件，我们还要求 $\tilde{A}$ 仍然属于算符集 $\{B\}$，也就是要求这一重建过程可以被不断重复至任意层的张量网络。式~\eqref{eq:constraint-1+1d} 可以表述为
+\begin{equation}
+  A_{(ij), (i'j')} M_{(i'j'), k} = M_{(ij), k'} B_{k', k}.
+  \label{eq:constraint-equation-1+1d}
+\end{equation}
+为计算方便，我们把 $i$、$j$ 合并成了单个指标 $(ij)$，类似张量网络中的变形操作［式~\eqref{eq:tensor-reshape}］。接下来我们考虑对一般的算符 $B$ 求解式~\eqref{eq:constraint-equation-1+1d}，并从中确定广义自由场的集合。还可以注意到，在张量网络中，如果算符 $A$ 能够表示为简单形式，则算符 $B$ 的集合将构成广义自由场的一组完备基。
+
+在式~\eqref{eq:constraint-1+1d} 中张量的每条腿上，都有一个 $|G|$ 维的向量空间。作为 $\mathbb{Z}_2$ 情形中 Pauli 矩阵的推广，我们可以利用\emph{广义 Pauli 矩阵} (generalized Pauli matrices)\cite{patera1988pauli}作为基，来构建作用在每条腿上的算符。对于有限群 $G$ 且有 $|G|=n$，$G$ 中群元标记为 $0, 1, \dots, n-1$，则 $|G|$ 维的向量空间中的基可以表示为
+\begin{equation}
+  \ket{i} = \begin{pmatrix} 0 \\ \vdots \\ 1_{\text{$i$-th}} \\ \vdots \\ 0 \end{pmatrix}, \quad
+  i \in \{ 0, 1, \dots, n-1 \}.
+\end{equation}
+在这组基下，广义 Pauli 矩阵可通过\emph{移位矩阵} (shift matrix) $X$ 和\emph{时钟矩阵} (clock matrix) $Z$ 生成：
+\begin{equation}
+  X = \begin{pmatrix}
+    0      & 1      & 0      & \cdots & 0      \\
+    0      & 0      & 1      & \cdots & 0      \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    0      & 0      & 0      & \cdots & 1      \\
+    1      & 0      & 0      & \cdots & 0
+  \end{pmatrix}, \quad
+  Z = \begin{pmatrix}
+    1      & 0      & \cdots & 0            & 0      \\
+    0      & \omega & \cdots & 0            & 0      \\
+    \vdots & \vdots & \ddots & \vdots       & \vdots \\
+    0      & 0      & \cdots & \omega^{n-2} & 0      \\
+    0      & 0      & \cdots & 0            &\omega^{n-1}
+  \end{pmatrix},
+  \label{eq:generalized-pauli-matrices}
+\end{equation}
+这里 $\omega=\ee^{2\pi i/n}$ 是 $n$ 次单位根。于是广义 Pauli 矩阵为
+\begin{equation}
+  \sigma^\mu \coloneq \sigma^{ns+t} = X^t Z^s,
+\end{equation}
+其中 $s=\lfloor \mu/n\rfloor$、$t=\mu\bmod n$，而 $\mu\in\{0,\dots,n^2-1\}$。此时式~\eqref{eq:constraint-equation-1+1d} 可以写为
+\begin{align}
+     A_{(ij), (i'j')} \delta_{G(i',j'), k}
+  &= \delta_{G(i,j), k'} B_{k', k} \notag \\
+  &= \delta_{G(i,j), k'} \sigma^\mu_{k', k}
+   = \sigma^\mu_{G(i,j), k}.
+  \label{eq:1+1d-constraint-equation}
+\end{align}
+因此，一旦给定了群乘法 $G(i,j)$，我们就可以根据标准的线性代数方法，对于每一个 $\sigma_\mu$ 求解上式中的 $A$。完整的解系应包含通解和特解两个部分，其中通解部分对应于齐次方程
+\begin{equation}
+  A_{(ij), (i'j')} \delta_{G(i',j'), k} = 0
+\end{equation}
+的解，即相当于 $(\sigma^\mu_{G(i,j),k})^{\mathrm{T}}=\sigma^\mu_{k,G(i,j)}$ 的\emph{零空间} (null space)。而注意到
+\begin{equation}
+  G(i,0) = i, \quad G(0,j) = j,
+\end{equation}
+我们可以给出一组特解：
+\begin{equation}
+  A^{(\mu)}_{(ij), (i'j')} = \begin{cases}
+    \sigma^\mu_{G(i,j), j'}, & i' = 0; \\
+    0, & i' \neq 0.
+  \end{cases}
+  \label{eq:1+1d-specific-solution}
+\end{equation}
+
+我们还想找到能使算符 $A$ 为简单形式的体算符 $B$ 的子集，此时要求 $A$ 在张量一条腿上的作用是平凡的，即
+\begin{equation}
+  A_{(ij), (i'j')} = \tilde{A}_{ii'} \delta_{jj'} \quad \text{or} \quad
+  A_{(ij), (i'j')} = \delta_{ii'} \tilde{A}_{jj'}.
+\end{equation}
+于是有
+\begin{equation}
+  \tilde{A}_{ii'} \delta_{G(i',j), k} = \sigma^\mu_{G(i,j), k} \quad \text{or} \quad
+  \tilde{A}_{jj'} \delta_{G(i,j'), k} = \sigma^\mu_{G(i,j), k}, \quad
+  \forall j \in \{ 0, 1, \dots, n-1 \}.
+  \label{eq:1+1d-simple-form-constraint-equation}
+\end{equation}
+$\tilde{A}$ 仍然可以很容易地求解得到。根据线性代数中的 Rouch\'e--Capelli 定理，上式有解的充分必要条件是对于 $(\sigma^\mu_{G(i,j),k})^{\mathrm{T}}$ 的每一列，增广矩阵的秩都满足
+\begin{equation}
+    \rank\bigl[ (\delta_{G(i',j), k})^{\mathrm{T}} \big| (\sigma^\mu_{G(i,j),k})^{\mathrm{T}}_s \bigr]
+  = \rank\bigl[ (\delta_{G(i',j), k})^{\mathrm{T}} \bigr].
+\end{equation}
+又因为
+\begin{equation}
+    \rank\bigl[ (\delta_{G(i',j), k})^{\mathrm{T}} \bigr]
+  = \rank\bigl( \delta_{G(i',j), k} \bigr) = n,
+\end{equation}
+如果式~\eqref{eq:1+1d-simple-form-constraint-equation} 有解，也只存在一组解。
+
+\subsection{Abelian 的例子：\texorpdfstring{$\mathbb{Z}_n$}{ℤₙ} 群}
+
+接下来我们考察几个具体的例子。对于 $\mathbb{Z}_n$ 群，其融合规则由模算术给出：
+\begin{equation}
+  G(i,j) = (i+j)\bmod n,
+  \label{eq:Z_n-fusion-rules}
+\end{equation}
+因此 $\delta_{G(i,j),k}=\delta_{(i+j)\bmod n,k}$ 是一个秩为 $n$ 的 $n^2\times n$ 矩阵，其转置矩阵的零空间可由 $n^2-n$ 个向量 $\mathbf{v}$ 张成：
+\begin{equation}
+  v^{(p)}_q = \delta_{(-p-\lfloor p/n\rfloor-2)\bmod n, \, q} - \delta_{n^2-p-1, \, q},
+\end{equation}
+其中
+\begin{equation}
+  p \in \left\{ 0, 1, \dots, n^2-n-1 \right\}, \quad
+  q \in \left\{ 0, 1, \dots, n^2-1 \right\}.
+\end{equation}
+于是通解 $A^*$ 可由 $v^{(p)}$ 的线性组合给出：
+\begin{equation}
+  A^* = \begin{pmatrix}
+    \beta_{0,0} \mathbf{v}^{(0)} + \dots + \beta_{0,n^2-n-1} \mathbf{v}^{(n^2-n-1)} \\
+    \vdots \\
+    \beta_{n^2-1,0} \mathbf{v}^{(0)} + \dots + \beta_{n^2-1,n^2-n-1} \mathbf{v}^{(n^2-n-1)}
+  \end{pmatrix},
+\end{equation}
+其中 $\beta_{i,j}$ 是任意常数。而根据式~\eqref{eq:1+1d-specific-solution}，特解部分为
+\begin{equation}
+  A^{(\mu)}_{(ij), (0j')} = \sigma^\mu_{(i+j)\bmod n, j'}.
+\end{equation}
+
+对于算符 $A$ 为简单形式的情形，我们注意到当且仅当 $\mu\in\{0,1,\dots,n-1\}$ 时式~\eqref{eq:1+1d-simple-form-constraint-equation} 有解，此时
+\begin{equation}
+  \tilde{A}^{(\mu)}_{ii'} = \sigma_\mu.
+\end{equation}
+这意味着当且仅当 $B=\sigma_k$ 而 $k\in\{1,2,\dots,n-1\}$ 时（$\sigma_0=\mathbb{I}$ 对应了同样是平凡算符的 $A=\mathbb{I}\otimes\mathbb{I}$，因此将其忽略），对应的
+\begin{equation}
+  A = \sigma_k   \otimes \mathbb{I} \quad \text{or} \quad
+  A = \mathbb{I} \otimes \sigma_k
+\end{equation}
+为简单算符。由于 $\tilde{A}=\sigma_k$ 可以作为新一层的体算符 $B$，这样的算符推移操作可以不断进行下去。考虑一个 $L$ 层的张量网络（见图~\ref{fig:rg-1+1d}），对于上述的 $B=\sigma_k$，边界算符仍然具有简单形式，并且可以写为：
+\begin{equation}
+  A_L = \mathbb{I}^{\otimes L-l} \otimes \sigma_k \otimes \mathbb{I}^{\otimes l-1}, \quad l = 0,\dots,L.
+\end{equation}
+
+下面我们以 $\mathbb{Z}_2$ 群（即 $n=2$）为例给出一个具体的解。$\delta_{k,(i+j)\bmod n}$ 的零空间可以由向量组
+\begin{equation}
+  \{ v^{(p)} \} = \Biggl\{ \,
+    \begin{pmatrix} 1 \\ 0 \\ 0 \\ -1 \end{pmatrix}, \,
+    \begin{pmatrix} 0 \\ 1 \\ -1 \\ 0 \end{pmatrix} \,
+  \Biggr\}
+\end{equation}
+张成，这等价于通解
+\begin{equation}
+  A^* = \begin{pmatrix}
+    \beta_{0,0} & \beta_{0,1} & -\beta_{0,1} & -\beta_{0,0} \\
+    \beta_{1,0} & \beta_{1,1} & -\beta_{1,1} & -\beta_{1,0} \\
+    \beta_{2,0} & \beta_{2,1} & -\beta_{2,1} & -\beta_{2,0} \\
+    \beta_{3,0} & \beta_{3,1} & -\beta_{3,1} & -\beta_{3,0}
+  \end{pmatrix},
+\end{equation}
+其中 $\beta_{i,j}$ 是任意常数。因而完整的解可以表示为
+\begin{align}
+  B = \sigma_0 = \mathbb{I}   &\implies A = A^* + \begin{pmatrix} 1 &  0 & 0 & 0 \\ 0 &  1 & 0 & 0 \\ 0 &  1 & 0 & 0 \\ 1 &  0 & 0 & 0 \end{pmatrix}, \notag \displaybreak[0] \\
+  B = \sigma_1 = \sigma_x     &\implies A = A^* + \begin{pmatrix} 0 &  1 & 0 & 0 \\ 1 &  0 & 0 & 0 \\ 1 &  0 & 0 & 0 \\ 0 &  1 & 0 & 0 \end{pmatrix}, \notag \displaybreak[0] \\
+  B = \sigma_2 = \sigma_z     &\implies A = A^* + \begin{pmatrix} 1 &  0 & 0 & 0 \\ 0 & -1 & 0 & 0 \\ 0 & -1 & 0 & 0 \\ 1 &  0 & 0 & 0 \end{pmatrix}, \notag \displaybreak[0] \\
+  B = \sigma_3 = -\ii\sigma_y &\implies A = A^* + \begin{pmatrix} 0 & -1 & 0 & 0 \\ 1 &  0 & 0 & 0 \\ 1 &  0 & 0 & 0 \\ 0 & -1 & 0 & 0 \end{pmatrix}.
+  \label{eq:Z_2-solution}
+\end{align}
+可以看到当且仅当体算符 $B=\sigma_x$ 时，边界算符 $A$ 可以取到简单形式
+\begin{equation}
+  A = \mathbb{I} \otimes \sigma_x = \begin{pmatrix}
+    0 & 1 & 0 & 0 \\
+    1 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 1 \\
+    0 & 0 & 1 & 0
+  \end{pmatrix}
+  \quad \text{or} \quad
+  A = \sigma_x \otimes \mathbb{I} = \begin{pmatrix}
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1 \\
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0
+  \end{pmatrix}.
+\end{equation}
+
+\subsection{非 Abelian 的例子：\texorpdfstring{$S_3$}{𝑆₃} 群}
+
+$S_3$ 群的乘法表为：
+\begin{center}
+  \begin{tabular}{c|cccccc}
+    & $g_0$ & $g_1$ & $g_2$ & $g_3$ & $g_4$ & $g_5$ \\
+    \hline
+    $g_0$ & 0 & 1 & 2 & 3 & 4 & 5 \\
+    $g_1$ & 1 & 0 & 3 & 2 & 5 & 4 \\
+    $g_2$ & 2 & 4 & 0 & 5 & 1 & 3 \\
+    $g_3$ & 3 & 5 & 1 & 4 & 0 & 2 \\
+    $g_4$ & 4 & 2 & 5 & 0 & 3 & 1 \\
+    $g_5$ & 5 & 3 & 4 & 1 & 2 & 0 \\
+  \end{tabular}
+\end{center}
+我们取
+\begin{equation}
+  G(i,j) = g_i g_j,
+\end{equation}
+则可知 $G(1,2)=g_1 g_2=g_3\eqcolon3$，$G(2,1)=g_2 g_1=g_4\eqcolon4$，显然关于 $i$、$j$ 是不对称的。
+
+\section{2+1 维中的算符推移}
 
 \subsection{例子：\texorpdfstring{$\mathbb{Z}_n$}{ℤₙ} 模型}
 

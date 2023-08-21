@@ -1,0 +1,21 @@
+\begin{tikzpicture}[baseline=-0.2em, thick]
+  \def\Label{\draw
+    ( 30:2)   node {$g_2$}
+    (150:2)   node {$g_1$}
+    (270:1.8) node {$g_3$};
+  }
+  \begin{scope}
+    \draw [MaterialGrey, ->-=0.3, ->-=0.8]
+      (210:2) -- ( 90:2)
+      ( 90:2) -- (-30:2);
+    \draw [MaterialGrey, ->-=0.6]
+      (210:2) -- (-30:2);
+    \Label
+  \end{scope}
+  \draw (4.2,0) node [node font=\normalfont] {$\Leftrightarrow$};
+  \begin{scope}[xshift=8em, yshift=0.5em]
+    \draw [MaterialGrey]
+      foreach \x in {30, 150, 270} {(0:0) -- (\x:1.2)};
+    \Label
+  \end{scope}
+\end{tikzpicture}
