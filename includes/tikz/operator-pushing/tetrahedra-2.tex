@@ -1,0 +1,16 @@
+\begin{tikzpicture}[scale=1.2]
+  \fill [MaterialGrey300]
+        (0,0) -- (3.2,0) -- (2,-0.8) -- cycle;
+  \draw [thick, dashed, MaterialGrey] (0,0) -- (3.2,0);
+  \draw [thick, MaterialGrey]
+        (0,0) -- (2,2.5) -- (3.2,0) -- (2,-0.8) -- cycle
+        (2,2.5) -- (2,-0.8);
+  \draw (0.6, 1.7) node {$i$}
+        (2.4, 0.8) node {$j$}
+        (3.2, 1.7) node {$k$}
+        (3  ,-0.9) node {$a$}
+        (0.6,-0.9) node {$b$}
+        (1.1, 0.5) node {$c$}
+        (6.5,-1.2) node {$I=\Phi(b,c,a)$};
+  \draw [MaterialGrey, -Stealth] (2.4,-0.3) to [out=15] (5,-0.6);
+\end{tikzpicture}

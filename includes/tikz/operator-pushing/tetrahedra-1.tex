@@ -1,0 +1,21 @@
+\begin{tikzpicture}
+  \draw [thick, dashed, MaterialGrey]
+    (3.2,3.2) -- (  0,1.6)
+    (3.2,3.2) -- (  2,0)
+    (3.2,3.2) -- (2.7,5.2)
+    (3.2,3.2) -- (  5,1.6);
+  \draw [thick, MaterialGrey]
+    (0,1.6) -- (2,0) -- (5,1.6) -- (2.7,5.2) -- cycle
+    (2.7,5.2) -- (2,0);
+  \draw
+    (0.8,3.8) node {$i$}
+    (4.5,3.6) node {$j$}
+    (1.7,1.3) node {$m$}
+    (5.5,5.4) node {$n$}
+    (3  ,1.4) node {$a$}
+    (0.6,0.3) node {$b$}
+    (1.6,2.9) node {$c$}
+    (4.0,0.3) node {$d$}
+    (3.7,2.1) node {$e$};
+  \draw [MaterialGrey, -Stealth] (3.1,4.2) to [out=30, in=180] (5,5.4);
+\end{tikzpicture}

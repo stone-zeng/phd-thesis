@@ -18,7 +18,7 @@ AdS/CFT 对应\cite{maldacena1999large}中的一项重要特征是在 AdS 体 (b
   \label{fig:mera-ads-cft}
 \end{figure}
 
-由于张量网络实际上是局域化的，它可以分解为一系列张量的乘积，而这些张量只与邻近的张量相缩并（邻近张量的具体数目取决于体空间的维数），因而我们可以通过\emph{算符推移} (operator pushing) 的方法来找出相应的\emph{体—边映射} (bulk-boundary map)\cite{pastawski2015holographic,bhattacharyya2016exploring,bhattacharyya2018tensor}。
+由于张量网络实际上是局域化的，它可以分解为一系列张量的乘积，而这些张量只与邻近的张量相缩并（邻近张量的数目则取决于体空间的维数），因而我们可以通过\emph{算符推移} (operator pushing) 的方法来找出相应的\emph{体—边映射} (bulk-boundary map)\cite{pastawski2015holographic,bhattacharyya2016exploring,bhattacharyya2018tensor}。
 
 于是这就引出了一个自然的问题：对于一个弱耦合的体理论，其中的场几乎都是自由的，那么此时什么样的张量网络最能描述相应 AdS/CFT 中的体—边映射？文献 \parencite{bhattacharyya2018tensor} 对这个问题进行了一些讨论。如图~\ref{fig:operator-pushing} 所示，对于体中的算符 $\mathcal{O}$，它作用在体内部的自由度上；而当利用算符推移把 $\mathcal{O}$ 拉到边界时，这种作用应当等价于另一组算符 $\mathcal{O}'$ 在边界自由度上的作用。在利用边界算符对体算符进行重建时，我们有必要对入射、出射腿的方向做出选择。事实上，当张量网络对应了重整化（粗粒近似）操作时，这种选择是唯一的：作用在粗粒近似后的自由度上的算符，应当由作用在粗粒近似前的自由度上的算符来决定。此时可以证明，一个广义的自由场在利用算符推移穿过张量网络后，可以被分解为一系列\emph{简单算符} (simple operators) 之和\cite{bhattacharyya2018tensor}。
 
@@ -65,21 +65,21 @@ AdS/CFT 对应\cite{maldacena1999large}中的一项重要特征是在 AdS 体 (b
   G(g_1, g_2) \coloneq g_1 \times g_2 = g_3.
 \end{equation}
 
-如图~\ref{fig:rg-1+1d} 所示，这一由重整化算富所构成的张量网络具有一维边界。当在体中插入一个算符 $B$ 时，它的作用应当等价于边界上插入的另外一些算符。找到能再现体算符作用的边界算符，也就是我们所说的算符推移或\emph{体算符重建} (bulk operator reconstruction) 问题。
+如图~\ref{fig:rg-1+1d} 所示，这一由重整化算符所构成的张量网络具有一维边界。当在体中插入一个算符 $B$ 时，它的作用应当等价于边界上插入的另外一些算符。找到能再现体算符作用的边界算符，也就是我们所说的算符推移或\emph{体算符重建} (bulk operator reconstruction) 问题。
 
 由于张量网络是局域的，我们可以通过研究重整化张量网络中的一个张量来研究体算符重建。具体来说，对于一个张量单元而言，算符推移或重建相当于为给定的算符 $B$ 找到对应的算符 $A$，并使其满足
 \begin{equation}
   \tikzinput{operator-pushing/constraint-1+1d}.
-  \label{eq:constraint-1+1d}
+  \label{eq:1+1d-constraint}
 \end{equation}
-当算符 $B$ 是所谓广义自由场时，由 $A$ 给出的算符重建应当可以表示为“简单”形式（即 $\mathbb{I}\otimes\tilde{A}$ 或 $\tilde{A}\otimes\mathbb{I}$ 的线性组合）。为了确保 $B$ 的行为满足广义自由场的条件，我们还要求 $\tilde{A}$ 仍然属于算符集 $\{B\}$，也就是要求这一重建过程可以被不断重复至任意层的张量网络。式~\eqref{eq:constraint-1+1d} 可以表述为
+当算符 $B$ 是所谓广义自由场时，由 $A$ 给出的算符重建应当可以表示为“简单”形式（即 $\mathbb{I}\otimes\tilde{A}$ 或 $\tilde{A}\otimes\mathbb{I}$ 的线性组合）。为了确保 $B$ 的行为满足广义自由场的条件，我们还要求 $\tilde{A}$ 仍然属于算符集 $\{B\}$，也就是要求这一重建过程可以被不断重复至任意层的张量网络。式~\eqref{eq:1+1d-constraint} 可以表述为
 \begin{equation}
   A_{(ij), (i'j')} M_{(i'j'), k} = M_{(ij), k'} B_{k', k}.
-  \label{eq:constraint-equation-1+1d}
+  \label{eq:1+1d-constraint-equation}
 \end{equation}
-为计算方便，我们把 $i$、$j$ 合并成了单个指标 $(ij)$，类似张量网络中的变形操作［式~\eqref{eq:tensor-reshape}］。接下来我们考虑对一般的算符 $B$ 求解式~\eqref{eq:constraint-equation-1+1d}，并从中确定广义自由场的集合。还可以注意到，在张量网络中，如果算符 $A$ 能够表示为简单形式，则算符 $B$ 的集合将构成广义自由场的一组完备基。
+为计算方便，我们把 $i$、$j$ 合并成了单个指标 $(ij)$，类似张量网络中的变形操作［式~\eqref{eq:tensor-reshape}］。接下来我们考虑对一般的算符 $B$ 求解式~\eqref{eq:1+1d-constraint-equation}，并从中确定广义自由场的集合。还可以注意到，在张量网络中，如果算符 $A$ 能够表示为简单形式，则算符 $B$ 的集合将构成广义自由场的一组完备基。
 
-在式~\eqref{eq:constraint-1+1d} 中张量的每条腿上，都有一个 $|G|$ 维的向量空间。作为 $\mathbb{Z}_2$ 情形中 Pauli 矩阵的推广，我们可以利用\emph{广义 Pauli 矩阵} (generalized Pauli matrices)\cite{patera1988pauli}作为基，来构建作用在每条腿上的算符。对于有限群 $G$ 且有 $|G|=n$，$G$ 中群元标记为 $0, 1, \dots, n-1$，则 $|G|$ 维的向量空间中的基可以表示为
+在式~\eqref{eq:1+1d-constraint} 中张量的每条腿上，都有一个 $|G|$ 维的向量空间。作为 $\mathbb{Z}_2$ 情形中 Pauli 矩阵的推广，我们可以利用\emph{广义 Pauli 矩阵} (generalized Pauli matrices)\cite{patera1988pauli}作为基，来构建作用在每条腿上的算符。对于有限群 $G$ 且有 $|G|=n$，$G$ 中群元标记为 $0, 1, \dots, n-1$，则 $|G|$ 维的向量空间中的基可以表示为
 \begin{equation}
   \ket{i} = \begin{pmatrix} 0 \\ \vdots \\ 1_{\text{$i$-th}} \\ \vdots \\ 0 \end{pmatrix}, \quad
   i \in \{ 0, 1, \dots, n-1 \}.
@@ -106,14 +106,13 @@ AdS/CFT 对应\cite{maldacena1999large}中的一项重要特征是在 AdS 体 (b
 \begin{equation}
   \sigma^\mu \coloneq \sigma^{ns+t} = X^t Z^s,
 \end{equation}
-其中 $s=\lfloor \mu/n\rfloor$、$t=\mu\bmod n$，而 $\mu\in\{0,\dots,n^2-1\}$。此时式~\eqref{eq:constraint-equation-1+1d} 可以写为
-\begin{align}
-     A_{(ij), (i'j')} \delta_{G(i',j'), k}
-  &= \delta_{G(i,j), k'} B_{k', k} \notag \\
-  &= \delta_{G(i,j), k'} \sigma^\mu_{k', k}
-   = \sigma^\mu_{G(i,j), k}.
-  \label{eq:1+1d-constraint-equation}
-\end{align}
+其中 $s=\lfloor \mu/n\rfloor$、$t=\mu\bmod n$，而 $\mu\in\{0,1,\dots,n^2-1\}$。此时式~\eqref{eq:1+1d-constraint-equation} 可以写为
+\begin{equation}
+    A_{(ij), (i'j')} \delta_{G(i',j'), k}
+  = \delta_{G(i,j), k'} B_{k', k}
+  = \delta_{G(i,j), k'} \sigma^\mu_{k', k}
+  = \sigma^\mu_{G(i,j), k}.
+\end{equation}
 因此，一旦给定了群乘法 $G(i,j)$，我们就可以根据标准的线性代数方法，对于每一个 $\sigma_\mu$ 求解上式中的 $A$。完整的解系应包含通解和特解两个部分，其中通解部分对应于齐次方程
 \begin{equation}
   A_{(ij), (i'j')} \delta_{G(i',j'), k} = 0
@@ -162,21 +161,16 @@ $\tilde{A}$ 仍然可以很容易地求解得到。根据线性代数中的 Rouc
   G(i,j) = (i+j)\bmod n,
   \label{eq:Z_n-fusion-rules}
 \end{equation}
-因此 $\delta_{G(i,j),k}=\delta_{(i+j)\bmod n,k}$ 是一个秩为 $n$ 的 $n^2\times n$ 矩阵，其转置矩阵的零空间可由 $n^2-n$ 个向量 $\mathbf{v}$ 张成：
+因此 $\delta_{G(i,j),k}=\delta_{(i+j)\bmod n,k}$ 是一个秩为 $n$ 的 $n^2\times n$ 矩阵，其转置矩阵的零空间可由 $n^2-n$ 个向量 $\bm{v}$ 张成：
 \begin{equation}
   v^{(p)}_q = \delta_{(-p-\lfloor p/n\rfloor-2)\bmod n, \, q} - \delta_{n^2-p-1, \, q},
 \end{equation}
-其中
-\begin{equation}
-  p \in \left\{ 0, 1, \dots, n^2-n-1 \right\}, \quad
-  q \in \left\{ 0, 1, \dots, n^2-1 \right\}.
-\end{equation}
-于是通解 $A^*$ 可由 $v^{(p)}$ 的线性组合给出：
+其中 $p\in\{0,1,\dots,n^2-n-1\}$，$q\in\{0,1,\dots,n^2-1\}$。于是通解 $A^*$ 可由 $v^{(p)}$ 的线性组合给出：
 \begin{equation}
   A^* = \begin{pmatrix}
-    \beta_{0,0} \mathbf{v}^{(0)} + \dots + \beta_{0,n^2-n-1} \mathbf{v}^{(n^2-n-1)} \\
+    \beta_{0,0} \bm{v}^{(0)} + \dots + \beta_{0,n^2-n-1} \bm{v}^{(n^2-n-1)} \\
     \vdots \\
-    \beta_{n^2-1,0} \mathbf{v}^{(0)} + \dots + \beta_{n^2-1,n^2-n-1} \mathbf{v}^{(n^2-n-1)}
+    \beta_{n^2-1,0} \bm{v}^{(0)} + \dots + \beta_{n^2-1,n^2-n-1} \bm{v}^{(n^2-n-1)}
   \end{pmatrix},
 \end{equation}
 其中 $\beta_{i,j}$ 是任意常数。而根据式~\eqref{eq:1+1d-specific-solution}，特解部分为
@@ -195,7 +189,7 @@ $\tilde{A}$ 仍然可以很容易地求解得到。根据线性代数中的 Rouc
 \end{equation}
 为简单算符。由于 $\tilde{A}=\sigma_k$ 可以作为新一层的体算符 $B$，这样的算符推移操作可以不断进行下去。考虑一个 $L$ 层的张量网络（见图~\ref{fig:rg-1+1d}），对于上述的 $B=\sigma_k$，边界算符仍然具有简单形式，并且可以写为：
 \begin{equation}
-  A_L = \mathbb{I}^{\otimes L-l} \otimes \sigma_k \otimes \mathbb{I}^{\otimes l-1}, \quad l = 0,\dots,L.
+  A_L = \mathbb{I}^{\otimes L-l} \otimes \sigma_k \otimes \mathbb{I}^{\otimes l-1}, \quad l = 0,1,\dots,L.
 \end{equation}
 
 下面我们以 $\mathbb{Z}_2$ 群（即 $n=2$）为例给出一个具体的解。$\delta_{k,(i+j)\bmod n}$ 的零空间可以由向量组
@@ -259,11 +253,168 @@ $S_3$ 群的乘法表为：
   G(i,j) = g_i g_j,
 \end{equation}
 则可知 $G(1,2)=g_1 g_2=g_3\eqcolon3$，$G(2,1)=g_2 g_1=g_4\eqcolon4$，显然关于 $i$、$j$ 是不对称的。
+% Then we can see that $\rank(\delta_{G(i',j'),k})=6$, and the (transposed) null space and one specific solution is visualized in \autoref{fig:s3-null-space}.
+
+% TODO: S_3
+% \begin{figure}[htb]
+%   \centering
+%   \includegraphics[width=0.4\textwidth]{images/temp/s3-null-space.pdf} \quad
+%   \includegraphics[width=0.4\textwidth]{images/temp/s3-solution.pdf}
+%   \caption{Visualization of the null space and specific solution for $S_3$ case.}
+%   \label{fig:s3-null-space}
+% \end{figure}
 
 \section{2+1 维中的算符推移}
 
+上一节中的讨论可以推广到更高的维度。从弦网模型出发，2+1 维的全息张量网络可利用奇异关联子来构建（见 \ref{subsec:holographic-tensor-network-2+1d} 小节），而其中的张量单元则可以表示为一系列的四面体［图~\ref{fig:tetrahedra-1}］。
+
+\begin{figure}[htb]
+  \centering
+  \subcaptionbox{\label{fig:tetrahedra-1}}{\tikzinput{operator-pushing/tetrahedra-1}} \qquad
+  \subcaptionbox{\label{fig:tetrahedra-2}}{\tikzinput{operator-pushing/tetrahedra-2}}
+  \caption[2+1 维全息张量网络中的四面体张量单元]{2+1 维全息张量网络中的四面体张量单元。(a) 两个并列的四面体，上表面对应边界层，下表面则对应体层。(b) 单个四面体中，$a$、$b$、$c$、$i$、$j$、$k$ 为边指标，而 $I=\Phi(b,c,a)$ 为面指标。}
+\end{figure}
+
+作为一个粗粒近似（重整化）的映射，这个四面体单元将边 $i$、$j$、$m$、$n$ 投影到 $a$，并保持 $b$、$c$、$d$、$e$ 不变。于是在 2+1 维中，算符重建的问题就可以表述为：当在边 $a$ 上插入一个体算符 $B$ 时，相应的边界算符 $A$（作用在边 $i$、$j$、$m$、$n$ 上）是什么？$A$ 又能否表示成简单形式（对应 $B$ 为广义自由场）？
+
+每个四面体有 6 条边，它们以张量融合范畴中的简单对象来标记，而四面体则被赋予一个相应的 $F$ 符号。如果其上的每个三角形都满足融合规则，则这个 $F$ 符号是非零的。考虑到融合规则的约束，为了方便计算，在处理体算符时我们可以将面指标而非边指标作为基本的自由度。于是在图~\ref{fig:tetrahedra-1} 中，我们可以认为体算符 $B$ 作用在三角形 $\overline{abc}$ 或 $\overline{ade}$ 上。
+
+由于图~\ref{fig:tetrahedra-1} 中的两个四面体是对称的，我们可以只考虑其中一个，例如 $\overline{abcinm}$，另一个则可以通过翻转所有边来得到。如图~\ref{fig:tetrahedra-2} 所示，接下来我们选取这样的约定：小写字母 $i,j\in\{0,1,\dots,n-1\}$ 表示边指标，其中 $n$ 为融合范畴中简单对象的数目；大写字母 $I, J\in \{0,1,\dots,N-1\}$ 表示面指标（对应三角形或融合树），而 $N$ 则为融合规则所允许的三角形数目。面指标也可以用边指标来表示：
+\begin{equation}
+  I = \Phi(b,c,a),
+\end{equation}
+其中的 $\Phi$ 根据融合规则决定。
+
+类似于 1+1 维中的式~\eqref{eq:1+1d-constraint-equation}，2+1 维中的约束方程为：
+\begin{equation}
+    A_{(ijk), (i'j'k')} M_{(i'j'k'), I}
+  = M_{(ijk), I'} B_{I', I}
+  = M_{(ijk), I'} \sigma^\mu_{I', I},
+\end{equation}
+其中 $\mu\in\{0,1,\dots,N^2-1\}$。矩阵 $\bm{M}$ 则由式~\eqref{eq:tetrahedra-symbol} 给出：
+\begin{equation}
+  M_{(ijk), I} = M_{(ijk), \Phi(b,c,a)} = \sqrt{d_j d_k d_b d_c} \, \bigl[ F^{jkb}_c \bigr]_{ia},
+\end{equation}
+其中 $[F^{jkb}_c]_{ia}$ 为 $F$ 符号，而 $q_i$ 则为融合范畴中简单对象 $i$ 对应的量子维数。
+
+同理，为了检查 $A$ 是否能表示为简单算符的形式，我们考虑如下形式的 $A$：
+\begin{equation}
+  A_{(ijk), (i'j'k')} = \tilde{A}_{ii'} \delta_{jj'} \delta_{kk'},
+\end{equation}
+并使其满足
+\begin{equation}
+  \tilde{A}_{ii'} M_{(i'jk), I} = M_{(ijk), I'} \sigma^\mu_{I', I}, \quad
+  \forall j, k \in \{ 0, 1, \dots, n-1 \}.
+\end{equation}
+该式有解的条件为
+\begin{equation}
+  \rank\bigl[(M_{(i'jk), I})^{\mathrm{T}} | (M_{(ijk), I'} \sigma^\mu_{I', I})^{\mathrm{T}}_s \bigr] = \rank\bigl( M_{(i'jk), I} \bigr).
+\end{equation}
+令指标 $i$、$j$ 或 $i$、$k$ 相同则可以得到其他简单算符的解。
+
 \subsection{例子：\texorpdfstring{$\mathbb{Z}_n$}{ℤₙ} 模型}
+
+我们仍然先由 $\mathbb{Z}_n$ 群所给出的融合范畴开始。四面体边上的自由度同样选取为 $\mathbb{Z}_n$ 中的群元，而面指标由式~\eqref{eq:Z_n-fusion-rules} 决定。以 $\mathbb{Z}_2$ 为例，其允许的融合规则（相当于三角形）为
+\begin{equation}
+  \Fusion000 \to 0, \quad
+  \Fusion011 \to 1, \quad
+  \Fusion101 \to 2, \quad
+  \Fusion110 \to 3.
+  \label{eq:Z_2-fusion-trees}
+\end{equation}
+此时面指标 $I$ 可以取值 0、1、2 或 3。一般地，我们有
+\begin{equation}
+  I = nb + c = n [(i+j)\bmod n] + [(i+k)\bmod n],
+\end{equation}
+其中 $i$、$j$ 为三角形的两条边（例如式~\eqref{eq:Z_2-fusion-trees} 中上面的两个指标）。可以发现 $N=n^2$，即面指标 $I$ 的取值范围为 $\{0,1,\dots,n^2-1\}$。
+
+考虑平凡的 $\mathbb{Z}_n$ Dijkgraaf--Witten 模型，其中所有合法的（即被融合规则所允许）$F$ 符号都等于 1。这时可有
+\begin{equation}
+  M_{(ijk), I} = \delta_{n[(i+j)\bmod n]+[(i+k)\bmod n], I}.
+\end{equation}
+于是约束方程为
+\begin{equation}
+    A_{(ijk), (i'j'k')} \delta_{n[(i'+j')\bmod n]+[(i'+k')\bmod n], I}
+  = \sigma^\mu_{n[(i+j)\bmod n]+[(i+k)\bmod n], I}.
+\end{equation}
+计算可知矩阵 $\bm{M}$ 的秩为 $n^2$，因而其转置矩阵的零空间可由 $n^3-n^2$ 个向量 $\bm{v}$ 张成：
+\begin{equation}
+    v^{(p)}_q
+  = \delta_{n [(- \lfloor p/n\rfloor - \lfloor p/n^2 \rfloor - 2) \bmod n] + [(- \lfloor p/n^2 \rfloor - 2) \bmod n], q}
+  - \delta_{n^3-p-1, q},
+\end{equation}
+其中 $p\in\{0,1,\dots,n^3-n^2-1\}$，$q\in\{0,1,\dots,n^3-1\}$。特解部分则为
+\begin{equation}
+  A^{(\mu)}_{(ijk), (0j'k')} = \sigma^\mu_{n[(i+j)\bmod n]+[(i+k)\bmod n], nj'+k'}.
+\end{equation}
+
+对于简单算符的求解，我们需要将矩阵变形得到
+\begin{equation}
+  \begin{aligned}
+    M'_{i, (jkI)} &= \delta_{n[(i+j)\bmod n]+[(i+k)\bmod n], I}, \\
+    B'_{(\mu i), (jkI)} &= \sigma^\mu_{n[(i+j)\bmod n]+[(i+k)\bmod n], I}.
+  \end{aligned}
+\end{equation}
+此时有
+\begin{equation}
+  \rank(M') = n, \quad
+  \rank(B') = n^4, \quad
+  \rank(M'^{\mathrm{T}} | B'^{\mathrm{T}}) = n^4,
+\end{equation}
+因此存在关于 $B_\tau$ 的 $n$ 组可能的线性组合，使得 $A=X\otimes\mathbb{I}\otimes\mathbb{I}$ 为简单算符。其中一组解为
+\begin{equation}
+  B = \frac1n \left[ n \sigma_{n+1} + \sum_{k=0}^{n-1} \bigl( \sigma_{kn^3+1} - \sigma_{kn^3+n+1} \bigr) \right] \implies
+  A = \sigma_1 \otimes \mathbb{I} \otimes \mathbb{I}.
+\end{equation}
 
 \subsection{例子：Fibonacci 模型}
 
+最后我们考察一个 2+1 维拓扑序中的例子，即 Fibonacci 模型。它包含了 $\1$ 和 $\tau$ 两种简单对象，并满足融合规则
+\begin{equation}
+  \1 \times \1 = \1, \quad
+  \1 \times \tau = \tau \times \1 = \tau, \quad
+  \tau \times \tau = \1 + \tau,
+\end{equation}
+因此有 5 种允许的三角形（面指标）：
+\begin{equation}
+  \Fusion000 \to 0, \quad
+  \Fusion011 \to 1, \quad
+  \Fusion101 \to 2, \quad
+  \Fusion110 \to 3, \quad
+  \Fusion111 \to 4.
+\end{equation}
+非零的 $F$ 符号为
+\begin{equation}
+  [F^{\tau\tau\tau}_\tau]_{ij} = \begin{pmatrix}
+    \varphi^{-1}   &  \varphi^{-1/2} \\
+    \varphi^{-1/2} & -\varphi^{-1}
+  \end{pmatrix}, \quad
+  i,j \in \{\1, \tau\},
+\end{equation}
+其中 $\varphi=(1+\sqrt5)/2$ 是黄金比。此时矩阵 $\bm{M}$ 可以显式地写为：
+\begin{equation}
+  M_{(ijk), I} = \begin{pmatrix}
+    1 & 0 & 0 & 0 & 0 \\
+    0 & 0 & \phi & 0 & 0 \\
+    0 & 0 & 0 & \phi & 0 \\
+    0 & \phi & 0 & 0 & \phi^{3/2} \\
+    0 & \phi & 0 & 0 & 0 \\
+    0 & 0 & 0 & \phi & \phi^{3/2} \\
+    0 & 0 & \phi & 0 & \phi^{3/2} \\
+    \phi & \phi^{3/2} & \phi^{3/2} & \phi^{3/2} & -\phi
+  \end{pmatrix}.
+\end{equation}
+可以知道 $\rank(\bm{M})=5$，而 $\bm{M}^{\mathrm{T}}$ 的零空间则由向量组
+\begin{equation}
+  \{ v^{(p)} \} = \Biggl\{ \,
+    \begin{pmatrix} \phi^{1/2} \\ 1 \\ 1 \\ -\phi^{-1} \\ \phi \\ 0 \\ 0 \\ -\phi^{1/2} \end{pmatrix}, \,
+    \begin{pmatrix} 0 \\ 1 \\ 0 \\ 1 \\ -1 \\  0 \\ -1 \\ 0 \end{pmatrix}, \,
+    \begin{pmatrix} 0 \\ 0 \\ 1 \\ 1 \\ -1 \\ -1 \\  0 \\ 0 \end{pmatrix} \,
+  \Biggr\}
+\end{equation}
+张成。
+% The general solution for each $\sigma^\mu$ can thus be calculated, see [[...]].
+
 \section{本章小结}
+
+本章探讨了在多种基于拓扑序的全息张量网络中演生出的广义自由场。对于 1+1 维和 2+1 维中几类具体的模型，我们求解得到了算符推移或算符重建的一般形式，并给出了边界算符为简单形式时所满足的条件。对于 1+1 维中的 $Z_n$ 群（一类具有平凡上同调类的 Dijkgraaf--Witten 模型），我们还证明了广义自由场（即对应简单形式边界算符的体算符）的数目，和群的阶数 $|G|$ 相同\footnote{不考虑 $\mathbb{I}$ 则为 $|G|-1$。}。
