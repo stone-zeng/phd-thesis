@@ -39,7 +39,7 @@
 
 同一个张量的指标也可以缩并。部分缩并可以得到\emph{偏迹} (partial trace)，全部缩并则得到\emph{迹} (trace)：
 \begin{align}
-     (\tr_{x,y} A)_{i_1,\dots,i_{x-1},i_{x+1},\dots,i_{y-1},u_{y+1},\dots,i_r}
+     (\tr_{x,y} A)_{i_1,\dots,i_{x-1},i_{x+1},\dots,i_{y-1},i_{y+1},\dots,i_r}
   &= A_{i_1,\dots,i_{x-1},k,i_{x+1},\dots,i_{y-1},k,i_{y+1},\dots,i_r}, \\
      \tr B
   &= B_{ii}
@@ -105,7 +105,7 @@
   \centering
   \subcaptionbox{开放边界条件}{\tikzinput{tensor-network/mps-1}} \qquad
   \subcaptionbox{周期性边界条件}{\tikzinput{tensor-network/mps-2}}
-  \caption[矩阵乘积态]{矩阵乘积态。}
+  \caption[矩阵乘积态]{矩阵乘积态 (MPS)。}
   \label{fig:mps}
 \end{figure}
 
@@ -171,7 +171,14 @@ Hamilton 量的基态 $\Psi_0$ 可以通过变分法求得：
 \begin{equation}
   \ket{\Psi_0} = \argmin_{\ket{\Psi}} \frac{\langle\Psi|H|\Psi\rangle}{\langle\Psi|\Psi\rangle}.
 \end{equation}
-即使 $\ket{\Psi}$ 已经表示成了 MPS 的形式，一般来说也无法直接对 $\ket{\Psi}$ 进行整体优化。但是，如果 Hamilton 量能够写成 MPO 的形式，那么可以通过迭代算法来高效地计算 $H\ket{\Psi}$，进而通过局域优化来获得全局最优解。这实际上就是著名的\emph{密度矩阵重整化群} (density matrix renormalization group, DMRG) 算法\cite{white1992density,white1993density,schollwock2005density,mcculloch2007density,mcculloch2008infinite,schollwock2011density}。
+即使 $\ket{\Psi}$ 已经表示成了 MPS 的形式，一般来说也无法直接对 $\ket{\Psi}$ 进行整体优化。但是，如果 Hamilton 量能够写成图~\ref{fig:mpo} 中\emph{矩阵乘积算符} (matrix product operator, MPO) 的形式，那么就可以通过迭代算法来高效地计算 $H\ket{\Psi}$，进而通过局域优化来获得全局最优解。这实际上就是著名的\emph{密度矩阵重整化群} (density matrix renormalization group, DMRG) 算法\cite{white1992density,white1993density,schollwock2005density,mcculloch2007density,mcculloch2008infinite,schollwock2011density}。
+
+\begin{figure}[htb]
+  \centering
+  \tikzinput{tensor-network/mpo}
+  \caption[矩阵乘积算符]{矩阵乘积算符 (MPO)。}
+  \label{fig:mpo}
+\end{figure}
 
 DMRG 的总体思路是，对正则化的 MPS 中每个张量单元 $A^{(i)}$ 依次进行优化，而这里的优化则相当于计算有效 Hamilton 量（原始 Hamilton 量 + MPS 的剩余部分）的本征态。$i$ 由 1 遍历到 $N$ 再遍历回 1 称为一次\emph{扫描} (sweep)。扫描可重复多次，直至 MPS 收敛。
 

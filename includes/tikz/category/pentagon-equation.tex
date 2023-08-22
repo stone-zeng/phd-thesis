@@ -1,12 +1,13 @@
-\begin{tikzcd}[row sep=small, column sep=-1em]
-  & \bigl( (w\otimes x) \otimes y \bigr) \otimes z
-    \arrow[ddl, "\alpha_{w\otimes x,y,z}"' pos=0.4, start anchor=south west, end anchor=north]
-    \arrow[dr, "\alpha_{w,z,y}\otimes\mathrm{id}_z" near start, end anchor=north] \\
-  & & \bigl( w \otimes (x\otimes y) \bigr) \otimes z
-    \arrow[dd, "\alpha_{w,x\otimes y,z}"] \\
-  (w\otimes x) \otimes (y\otimes z)
-    \arrow[ddr, "\alpha_{w,x,y}\otimes z"' pos=0.6, start anchor=south, end anchor=north west] \\
-  & & w \otimes \bigl( (x\otimes y) \otimes z \bigr)
-    \arrow[dl, "\mathrm{id}_w\otimes\alpha_{x,y,z}" near end, start anchor=south] \\
-  & w \otimes \bigl( x \otimes (y\otimes z) \bigr)
-\end{tikzcd}
+\begin{tikzpicture}[commutative diagrams/every diagram]
+  \node (P0) at ( 90:5) {$\bigl( (w\otimes x) \otimes y \bigr) \otimes z$};
+  \node (P1) at (170:7.2) {$\bigl( w \otimes (x\otimes y) \bigr) \otimes z$};
+  \node (P2) at (220:4.5) {\makebox[5ex][r]{$w \otimes \bigl( (x\otimes y) \otimes z \bigr)$}};
+  \node (P3) at (-40:4.5) {\makebox[5ex][l]{$w \otimes \bigl( x \otimes (y\otimes z) \bigr)$}};
+  \node (P4) at ( 10:7.2) {$(w\otimes x) \otimes (y\otimes z)$};
+  \path[commutative diagrams/.cd, every arrow, every label]
+    (P0) edge node[swap] {$\alpha_{w,z,y}\otimes\mathrm{id}_z$} (P1)
+    (P1) edge node[swap] {$\alpha_{w,x\otimes y,z}$} (P2)
+    (P2) edge node {$\mathrm{id}_w\otimes\alpha_{x,y,z}$} (P3)
+    (P4) edge node {$\alpha_{w,x,y\otimes z}$} (P3)
+    (P0) edge node {$\alpha_{w\otimes x,y,z}$} (P4);
+\end{tikzpicture}

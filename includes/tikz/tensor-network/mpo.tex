@@ -1,0 +1,7 @@
+\begin{tikzpicture}[thick]
+  \draw (0,0) -- (7.5,0);
+  \foreach \x in {0, 2.5, 5, 7.5}
+    \draw (\x,1.5) -- (\x,-1.5);
+  \foreach \x in {0, 2.5, 5, 7.5}
+    \draw [fill=MaterialBlue] (\x,0) circle [radius=0.5];
+\end{tikzpicture}

@@ -37,7 +37,7 @@
 
 % caption
 \subcaptionsetup[figure]{labelformat=simple}
-\renewcommand\thesubfigure{(\alph{subfigure})}
+\renewcommand{\thesubfigure}{(\alph{subfigure})}
 
 % enumitem
 \setlist{itemsep=0pt}
@@ -159,6 +159,7 @@
 \ExplSyntaxOff
 
 \AtBeginDocument{
+  \renewcommand{\arraystretch}{0.8}
   \setlength{\bibsep}{4pt plus 2pt minus 1pt}
 }
 
@@ -187,18 +188,6 @@
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator*{\argmin}{arg\,min}
-
-%TC:envir fusionrules [ignore] text
-\newenvironment{fusionrules}[1]{%
-  \begingroup
-    \renewcommand{\arraystretch}{0.8}%
-    \begin{tabular}{#1}
-      \hline
-}{%
-      \hline
-    \end{tabular}
-  \endgroup
-}
 
 \begin{document}
 

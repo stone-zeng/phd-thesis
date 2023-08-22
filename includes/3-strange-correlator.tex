@@ -4,6 +4,7 @@
 在前两章中，我们分别介绍了拓扑序和张量网络的基本概念。作为二维拓扑序的重要模型，弦网模型的 Hamilton 量可以表示为一系列局域算符之和，因此用张量网络来表示其基态也成为了一种很自然的想法。而将弦网模型的基态波函数与某些特定的直积态做内积，可以直接得到相应临界格点模型的配分函数。这种称为\emph{奇异关联子} (strange correlator) 的构造，不仅使我们能够计算相应 CFT 的中心荷和能谱，还给出了一种重整化算符的构造方案，进而使我们得以将体 (bulk) 和边界 (boundary) 联系在一起，并以此来构建全息张量网络 (holographic tensor network)。
 
 \section{弦网模型基态的张量网络表示}
+\label{sec:string-net-peps}
 
 \subsection{四面体对称性}
 \label{subsec:tetrahedral-symmetry}
@@ -184,17 +185,15 @@ $F$ 符号为
   i,j \in \{\1, \tau\}.
 \end{equation}
 唯一非平凡的四面体以及对应的三角形张量为
-\begin{equation}
-  \begin{aligned}
-       \Tetrahedron \tau mn\tau\tau\tau
-    &= \sqrt{d_\tau d_\tau d_\tau d_\tau} \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{mn}
-     = \varphi^2 \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{mn}, \\
-       \Triangle \tau\tau mn\tau\tau
-    &= (d_\tau d_\tau d_m)^{-\frac14} (d_\tau d_\tau d_n)^{-\frac13} \Tetrahedron \tau mn\tau\tau\tau \\
-    &= \varphi^{\frac56} d_m^{-\frac14} d_n^{-\frac13} \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{mn}, \enspace
-       m,n \in \{\1,\tau\}.
-  \end{aligned}
-\end{equation}
+\begin{align}
+     \Tetrahedron \tau mn\tau\tau\tau
+  &= \sqrt{d_\tau d_\tau d_\tau d_\tau} \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{mn}
+   = \varphi^2 \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{mn}, \displaybreak[0] \\
+     \Triangle \tau\tau mn\tau\tau
+  &= (d_\tau d_\tau d_m)^{-\frac14} (d_\tau d_\tau d_n)^{-\frac13} \Tetrahedron \tau mn\tau\tau\tau \\
+  &= \varphi^{\frac56} d_m^{-\frac14} d_n^{-\frac13} \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{mn}, \enspace
+     m,n \in \{\1,\tau\}.
+\end{align}
 在我们的奇异关联子构造中，所有的物理指标都会被选取为 $\tau$，因而这时将得到两种三角形张量单元：
 \begin{equation}
     \Triangle \tau\tau\tau\tau\tau\tau
@@ -305,7 +304,7 @@ $F$ 符号为
 \begin{enumerate}
   \item 利用奇异关联子构造正方形张量单元 $A_{ijkl}$。在 Ising 的情况中，我们已经得到了这样的表示［式~\eqref{eq:ising-octagon}］；而对于 Fibonacci 模型，我们需要把两个三角张量形拼合成一个正方形：
     \begin{equation}
-      A_{ijkl} = \tikzinput{fibonacci/square-1}.
+      A_{ijkl} = \tikzinput{fibonacci/square-1} = \tikzinput{fibonacci/square-2}.
     \end{equation}
   \item 按照 iTEBD 算法，用 $A_{ijkl}$ 作为 iMPO 对随机的初始态进行演化，得到正则化的不动点 iMPS $\{\Gamma,\lambda\}$。
   \item 注意 $\lambda$ 是一个对角矩阵，其对角元可用来计算关联长度 $\xi$ 和 von Neumann 纠缠熵 $S_A$：
@@ -347,7 +346,7 @@ $F$ 符号为
 
 \subsection{推拉条件}
 
-弦网模型中的 MPO 张量单元为\footnote{式~\eqref{eq:string-net-mpo}--\eqref{eq:tube-algebra-hermitian-conjugate} 中图片来源：\parencite{williamson2017symmetry}。}：
+弦网模型中的 MPO 张量单元为\footnote{不同文献中张量的具体选取会略有不同，这里与 \ref{sec:string-net-peps} 节相比差了一些全局的系数，但并不影响其结论。式~\eqref{eq:string-net-mpo}--\eqref{eq:tube-algebra-hermitian-conjugate} 中图片来源：\parencite{williamson2017symmetry}。}：
 \begin{equation}
     \vcenter{\hbox{\includegraphics{images/mpo/TCMPO.pdf}}}
   = \delta_{\alpha\alpha'} \delta_{\beta\beta'} \delta_{\mu\mu'} \delta_{\nu\nu'} \delta_{ii'} \delta_{aa'}

@@ -302,11 +302,14 @@
   \item 量子维数：$d_{\1}=d_s=1$；
   \item 总量子维数：$D=\sqrt2$；
   \item 融合规则：
-    \begin{fusionrules}{|c|cc|}
-      $\otimes$ & $\1$ & $s$  \\ \hline
+    \begin{tabular}{|c|cc|}
+      \hline
+      $\otimes$ & $\1$ & $s$  \\
+      \hline
       $\1$      & $\1$ & $s$  \\
       $s$       & $s$  & $\1$ \\
-    \end{fusionrules}
+      \hline
+    \end{tabular}
   \item $F$ 符号：$[F^{sss}_s]_{\1\1}=-1$。
 \end{itemize}
 
@@ -317,11 +320,14 @@
   \item 量子维数：$d_{\1}=1, \, d_\tau=\varphi$；
   \item 总量子维数：$D=\sqrt{\frac{5+\sqrt5}{2}}=2\cos\frac{\pi}{10}$；
   \item 融合规则：
-    \begin{fusionrules}{|c|cc|}
-      $\otimes$ & $\1$   & $\tau$ \\ \hline
+    \begin{tabular}{|c|cc|}
+      \hline
+      $\otimes$ & $\1$   & $\tau$ \\
+      \hline
       $\1$      & $\1$   & $\tau$ \\
       $\tau$    & $\tau$ & $\1\oplus\tau$ \\
-    \end{fusionrules}
+      \hline
+    \end{tabular}
   \item $F$ 符号：
     $
       [F^{\tau\tau\tau}_\tau]_{ij} = \dfrac1\varphi \begin{pmatrix} 1 & \sqrt\varphi \\ \sqrt\varphi & -1 \end{pmatrix}, \,
@@ -338,12 +344,15 @@
   \item 量子维数：$d_{\1}=d_\psi=1, \, d_\sigma=\sqrt2$；
   \item 总量子维数：$D=2$；
   \item 融合规则：
-    \begin{fusionrules}{|c|ccc|}
-      $\otimes$ & $\1$     & $\sigma$       & $\psi$   \\ \hline
+    \begin{tabular}{|c|ccc|}
+      \hline
+      $\otimes$ & $\1$     & $\sigma$       & $\psi$   \\
+      \hline
       $\1$      & $\1$     & $\sigma$       & $\psi$   \\
       $\sigma$  & $\sigma$ & $\1\oplus\psi$ & $\sigma$ \\
       $\psi$    & $\psi$   & $\sigma$       & $\1$     \\
-    \end{fusionrules}
+      \hline
+    \end{tabular}
   \item $F$ 符号：
     $
       [F^{\psi\sigma\psi}_\sigma]_{\sigma\sigma} = [F^{\sigma\psi\sigma}_\psi]_{\sigma\sigma} = -1, \,
@@ -359,13 +368,16 @@
   \item 量子维数：$d_{\1}=d_e=d_m=d_f=1$；
   \item 总量子维数：$D=2$；
   \item 融合规则：
-    \begin{fusionrules}{|c|cccc|}
-      $\otimes$ & $\1$ & $e$  & $m$  & $f$  \\ \hline
+    \begin{tabular}{|c|cccc|}
+      \hline
+      $\otimes$ & $\1$ & $e$  & $m$  & $f$  \\
+      \hline
       $\1$      & $\1$ & $e$  & $m$  & $f$  \\
       $e$       & $e$  & $\1$ & $f$  & $m$  \\
       $m$       & $m$  & $f$  & $\1$ & $e$  \\
       $f$       & $f$  & $m$  & $e$  & $\1$ \\
-    \end{fusionrules}
+      \hline
+    \end{tabular}
   \item $F$ 符号：都等于 1。
 \end{itemize}
 
@@ -420,27 +432,36 @@ $k=1$、2、3 时对应的融合规则列在了表~\ref{tab:a-k+1-fusion-rules} 
   \centering
   \addfontfeatures{Fractions=On}
   \begin{tabular}{ccc}
-    $k=1$ & $k=2$ & $k=3$ \\
-    \begin{fusionrules}{|c|cc|}
-      $\otimes$ & 0   & 1/2 \\ \hline
+    $k=1$ & $k=2$ & $k=3$ \\[1ex]
+    \begin{tabular}{|c|cc|}
+      \hline
+      $\otimes$ & 0   & 1/2 \\
+      \hline
       0         & 0   & 1/2 \\
       1/2       & 1/2 & 0   \\
-    \end{fusionrules}
+      \hline
+    \end{tabular}
     &
-    \begin{fusionrules}{|c|ccc|}
-      $\otimes$ & 0   & 1/2        & 1   \\ \hline
+    \begin{tabular}{|c|ccc|}
+      \hline
+      $\otimes$ & 0   & 1/2        & 1   \\
+      \hline
       0         & 0   & 1/2        & 1   \\
       1/2       & 1/2 & $0\oplus1$ & 1/2 \\
       1         & 1   & 1/2        & 0   \\
-    \end{fusionrules}
+      \hline
+    \end{tabular}
     &
-    \begin{fusionrules}{|c|cccc|}
-      $\otimes$ & 0   & 1/2                          & 1                            & 3/2 \\ \hline
+    \begin{tabular}{|c|cccc|}
+      \hline
+      $\otimes$ & 0   & 1/2                          & 1                            & 3/2 \\
+      \hline
       0         & 0   & 1/2                          & 1                            & 3/2 \\
       1/2       & 1/2 & $0\oplus1$                   & $\text{1/2}\oplus\text{3/2}$ & 1   \\
       1         & 1   & $\text{1/2}\oplus\text{3/2}$ & $0\oplus1$                   & 1/2 \\
       3/2       & 3/2 & 1                            & 1/2                          & 0   \\
-    \end{fusionrules}
+      \hline
+    \end{tabular}
   \end{tabular}
   \caption[$k=1$、2、3 时 $\mathcal{A}_{k+1}$ 范畴中的融合规则]{$k=1$、2、3 时 $\mathcal{A}_{k+1}$ 范畴中的融合规则。}
   \label{tab:a-k+1-fusion-rules}
