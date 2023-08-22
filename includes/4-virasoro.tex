@@ -1,7 +1,7 @@
 \chapter{Virasoro 与 Kac--Moody 代数的张量网络实现}
 \label{chap:virasoro}
 
-临界格点模型是研究\emph{共形场论} (conformal field theory, CFT) 的有力工具。有许多格点模型能够揭示出重要的 CFT 数据，而其中最基本也是最重要的一类称为\emph{最小模型} (minimal models)。它们同时也是严格可解模型，而对应的拓扑以及范畴对称性可以通过融合范畴（见 \ref{sec:tensor-category-fusion-category} 节）添加进来\cite{vanhove2018mapping,aasen2020topological,huang2022numerical,vanhove2022critical}。
+临界格点模型是研究\emph{共形场论} (conformal field theory, CFT) 的有力工具。有许多格点模型能够揭示出重要的 CFT 数据，而其中最基本也是最重要的一类称为\emph{最小模型} (minimal models)。它们同时也是严格可解模型，而对应的拓扑序结构可以通过融合范畴（见 \ref{sec:tensor-category-fusion-category} 节）添加进来\cite{aasen2016topological,vanhove2018mapping,aasen2020topological,huang2022numerical,vanhove2022critical}。
 
 这些经典格点模型的配分函数通常可以表示为张量网络的形式。利用 TRG 和 TNR 等重整化算法（见 \ref{sec:tensor-network-rg} 节），可以通过控制连接维数来得到任意精度的不动点张量，从而可以高效地获取基态以及较低能级激发态（即“后代”）的对应数据。因此，这套方案有望能为分类 CFT 提供了一种数值的角度。
 

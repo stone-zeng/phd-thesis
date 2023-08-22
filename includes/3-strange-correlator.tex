@@ -141,7 +141,7 @@
   \Triangle jki\alpha\beta\gamma
   &= D^{-2 (1/n_\alpha + 1/n_\beta + 1/n_\gamma)}
     \bigl( d_\alpha^{1/n_\alpha} d_\beta^{1/n_\beta} d_\gamma^{1/n_\gamma} \bigr) \notag \\
-  &\qquad \cdot (d_i d_j d_k)^{-\frac14} (d_\alpha d_\beta d_\gamma)^{-\frac12} \,
+  &\qquad \cdot (d_i d_j d_k)^{-1/4} (d_\alpha d_\beta d_\gamma)^{-1/2} \,
     \Tetrahedron ik\gamma\alpha\beta j,
   \label{eq:unit-of-string-net-general}
 \end{align}
@@ -267,30 +267,29 @@ $F$ 符号为
   \text{others} = 2^{\frac43}.
   \label{eq:ising-tensor-from-sc}
 \end{equation}
-这和围绕一个方块的 Ising 相互作用（4 个自旋）的张量表示 \eqref{eq:ising-tensor} 是一致的，只相差一个整体因子：
+这和围绕一个方块的 Ising 相互作用（4 个自旋）的张量表示［式~\eqref{eq:ising-tensor}］是一致的，只相差一个整体系数：
 \begin{equation}
   A_{ijkl}
     := A_{\sigma_i \sigma_j \sigma_k \sigma_l}
-    = \ee^{\beta(\sigma_i\sigma_j + \sigma_j\sigma_k + \sigma_k\sigma_l + \sigma_l\sigma_i)},
+    = \ee^{\beta(\sigma_i\sigma_j + \sigma_j\sigma_k + \sigma_k\sigma_l + \sigma_l\sigma_i)}.
   \label{eq:ising-tensor}
 \end{equation}
-
-% TODO: dual lattice
 把这些八边形张量移动 $1/2$ 格可以获得对偶网格的张量表示
 \begin{equation}
   \tilde{A}_{ijkl} = \, \tikzinput{ising/dual-octagon} \quad \text{where} \quad
   i, j, k, l = \1 \text{ or } \psi.
 \end{equation}
-此时
-\begin{equation}
-  \tikzinput{ising/dual-triangles-1} = \tikzinput{ising/dual-triangles-2} =
-  \begin{cases}
-    2^{\frac13} \bigl( \cosh\beta + \sinh\beta \bigr) = 2^{\frac13} \ee^\beta,
-      & (i,j) = (\1,\1) \text{ or } (\psi, \psi); \\
-    2^{\frac13} \bigl( \cosh\beta - \sinh\beta \bigr) = 2^{\frac13} \ee^{-\beta},
-      & (i,j) = (\1,\psi) \text{ or } (\1, \psi).
-  \end{cases}
-\end{equation}
+% TODO: dual lattice
+% 此时
+% \begin{equation}
+%   \tikzinput{ising/dual-triangles-1} = \tikzinput{ising/dual-triangles-2} =
+%   \begin{cases}
+%     2^{\frac13} \bigl( \cosh\beta + \sinh\beta \bigr) = 2^{\frac13} \ee^\beta,
+%       & (i,j) = (\1,\1) \text{ or } (\psi, \psi); \\
+%     2^{\frac13} \bigl( \cosh\beta - \sinh\beta \bigr) = 2^{\frac13} \ee^{-\beta},
+%       & (i,j) = (\1,\psi) \text{ or } (\1, \psi).
+%   \end{cases}
+% \end{equation}
 利用 Kramers--Wannier 对偶，即令 $A=\tilde{A}$，就可以得到临界温度
 \begin{equation}
   \ee^{2\beta_{\text{c}}} = \sqrt{2} + 1 \implies \beta_{\text{c}} = \frac12 \log(1 + \sqrt{2}).
@@ -346,7 +345,7 @@ $F$ 符号为
 
 \subsection{推拉条件}
 
-弦网模型中的 MPO 张量单元为\footnote{不同文献中张量的具体选取会略有不同，这里与 \ref{sec:string-net-peps} 节相比差了一些全局的系数，但并不影响其结论。式~\eqref{eq:string-net-mpo}--\eqref{eq:tube-algebra-hermitian-conjugate} 中图片来源：\parencite{williamson2017symmetry}。}：
+弦网模型中的 MPO 张量单元为\footnote{不同文献中张量的具体选取会略有不同，这里与 \ref{sec:string-net-peps} 节相比差了一些整体的系数，但并不影响其结论。式~\eqref{eq:string-net-mpo}--\eqref{eq:tube-algebra-hermitian-conjugate} 中图片来源：\parencite{williamson2017symmetry}。}：
 \begin{equation}
     \vcenter{\hbox{\includegraphics{images/mpo/TCMPO.pdf}}}
   = \delta_{\alpha\alpha'} \delta_{\beta\beta'} \delta_{\mu\mu'} \delta_{\nu\nu'} \delta_{ii'} \delta_{aa'}
@@ -475,7 +474,7 @@ $F$ 符号为
 
 % 首先，我们将奇异关联子的概念推广到了任意维度（$1\leqslant D\leqslant 3$），并且给出了一种系统的方法用以构造配分函数和搜寻临界点。我们的方法基于对 $\bra{\Omega}$ 的理解。根据融合范畴 $\mathcal{C}$ 及其对应的范畴对称性 $\mathcal{Z}(\mathcal{C})$，我们可以构造一套重整化算符，并将其作为全息张量网络。它可以对拓扑序的基态波函数 $\ket{\Psi}$ 进行粗粒近似。为了使 $\langle\Omega|\Psi\rangle$ 能够表示对应共形场论的配分函数，$\bra{\Omega}$ 需要是重整化算符的本征态。实际上，带有范畴对称性 $\mathcal{Z}(\mathcal{C})$ 的 $D$ 维共形场论，也就相当于由 $D+1$ 维拓扑序所确定的重整化算符的本征态。我们发现，对于中心为 $\mathcal{Z}(\mathcal{C})$ 的输入范畴 $\mathcal{C}$，其中的每一个 \emph{Frobenius 代数} (Frobenius algebra) 都确定了一个 $D+1$ 维的格点拓扑模型，它们对应了重整化算符的本征态，能给出一个 $D$ 维的对称 TQFT，而 CFT 就位于这些 TQFT 的相变点处。我们可以在相变点两侧各取一个 Frobenius 代数，而描述 CFT 的边界条件即可通过这两个 Frobenius 代数对应的边界条件插值得到。而在远离 CFT 不动点处，重复作用这些重整化算符将会给出 $\mathcal{C}$ 的 Frobenius 代数。从数值角度上看，当我们对三维的配分函数不断作用重整化算符时，实际上也就相当于实现了类似于三维 TRG 算法的操作。这种全息张量网络与 $p$-adic 张量网络也存在相似之处。后者中的张量单元由 $p$-adic CFT 融合范畴中结合代数的乘积/余积结构给出，而前者则需要利用 $D-1$ 维融合范畴中的 Frobenius 代数结构，这正是结合代数的自然推广。
 
-我们在 \ref{sec:strange-correlator} 节中所介绍的奇异关联子也可以被推广到任意维度。对于一个 $D+1$ 维的拓扑序，它可以用一个 $D+1$ 维球 $B^{D+1}$ 上的融合范畴 $\mathcal{C}$ 来描述，其基态波函数为 $\ket{\Psi}$。指定 $D$ 维球面 $S^D$ 上的边界条件，就相当于将 $\ket{\Psi}$ 与某一直积态 $\ket{\Omega}$ 作内积，即
+我们在 \ref{sec:strange-correlator} 节中所介绍的奇异关联子也可以被推广到任意维度。对于一个 $D+1$ 维的拓扑序，它可以用一个 $D+1$ 维球 $B^{D+1}$ 上的融合范畴 $\mathcal{C}$ 来描述，其基态波函数为 $\ket{\Psi}$。指定 $D$ 维球面 $S^D$ 上的边界条件，就相当于将 $\ket{\Psi}$ 与某一直积态 $\bra{\Omega}$ 作内积，即
 \begin{equation}
   Z(\Omega, \mathcal{C}) = \langle \Omega|\Psi \rangle.
 \end{equation}
@@ -592,8 +591,7 @@ $F$ 符号为
 
 % TODO: Frobenius Algebra
 
-特别值得关注的是位于临界点处的配分函数。当非对易的拓扑对称性同时守恒时，即为临界点。
-由于配分函数 $Z(\mathcal{C})$ 是局域的，因而 $\bra{\Omega}$ 可以表示为一个 PEPS 张量网络。我们将张量单元 $T^{a_1 a_2 a_3}_{I_1 I_2 I_3}$ 取在三角形上，其中 $a_i\in\mathcal{C}$ 为物理指标，而 $I_i$ 为辅助指标，连接维数为 $\chi$。在重整化开始前，$\bra{\Omega}$ 是一个直积态，即所有 $I_i$ 都是平凡的；随着重整化的进行，相应的数据会“流入” $I_i$，得到非平凡的 PEPS 结构。
+特别值得关注的是位于临界点处的配分函数。当非对易的拓扑对称性同时守恒时，即为临界点。由于配分函数 $Z(\mathcal{C})$ 是局域的，因而 $\bra{\Omega}$ 可以表示为一个 PEPS 张量网络。我们将张量单元 $T^{a_1 a_2 a_3}_{I_1 I_2 I_3}$ 取在三角形上，其中 $a_i\in\mathcal{C}$ 为物理指标，而 $I_i$ 为辅助指标，连接维数为 $\chi$。在重整化开始前，$\bra{\Omega}$ 是一个直积态，即所有 $I_i$ 都是平凡的；随着重整化的进行，相应的数据会“流入” $I_i$，得到非平凡的 PEPS 结构。
 
 原则上，$T^{a_1 a_2 a_3}_{I_1 I_2 I_3}$ 的具体形式可以根据拓扑序中开弦算符按幂律衰减的性质来确定。然而，幂律衰减意味着 $\chi$ 会随着系统尺寸的增大而增大；对于无限系统而言，应有 $\chi\to\infty$。这在实际计算中显然是无法实现的。为此，我们采取另一套方案来获取临界点数据。考虑单个重整化步骤 $\bra{\Omega(T)}U(\mathcal{C})$。如图~\ref{fig:rg-2+1d} 所示，四个三角形被映射到了两个三角形，而它们之间带有纠缠的边界条件。对于这种边界，我们可以通过奇异值分解 (SVD) 把它编码到辅助指标 $I_i$ 上，并且把相应的连接维数控制在合理范围内。如图~\ref{fig:rg-2+1d-blocking}，这时四个 $T$ 的乘积就可以被改写为两个新张量 $\tilde{T}$ 的缩并。
 
@@ -773,4 +771,4 @@ $F$ 符号为
 
 \section{本章小结}
 
-本章首先给出了弦网模型基态的 PEPS 张量网络表示，并通过将其与特定的直积态做内积得到奇异关联子。在 Fibonacci 和 Ising 两种模型中，我们利用奇异关联子构造了相应配分函数的张量单元，并通过 iTEBD 算法数值计算了对应 CFT 的中心荷。接下来，我们简要介绍了 PEPS 张量网络表示中的 MPO 对称性，而 MPO 所满足的推拉条件实质也是融合范畴中对称性的一种体现。我们还给出了管状代数与中心幂等元的构造，后者作为投影算符，可以给出 Drinfel'd 中心中不同的拓扑分区。最后，我们详细讨论了利用奇异关联子构建全息张量网络的方案。由于拓扑序的基态波函数 $\ket{\Psi}$ 位于重整化的不动点处，因而边界条件 $\ket{\Omega}$ 的选取就可以转化为重整化算符的本征值问题。我们在 1+1、2+1 和 3+1 维中分别给出了重整化算符及边界态的构造，并计算得到了临界点位置的初步数值结果。在二维 Ising 模型中，我们还利用全息张量网络计算了体—边传播子，并发现其形式与 AdS/CFT 的预测基本符合。
+本章首先给出了弦网模型基态的 PEPS 张量网络表示，并通过将其与特定的直积态做内积得到奇异关联子。在 Fibonacci 和 Ising 两种模型中，我们利用奇异关联子构造了相应配分函数的张量单元，并通过 iTEBD 算法数值计算了对应 CFT 的中心荷。接下来，我们简要介绍了 PEPS 张量网络表示中的 MPO 对称性，而 MPO 所满足的推拉条件实质也是融合范畴中对称性的一种体现。我们还给出了管状代数与中心幂等元的构造，后者作为投影算符，可以给出 Drinfel'd 中心中不同的拓扑分区。最后，我们详细讨论了利用奇异关联子构建全息张量网络的方案。由于拓扑序的基态波函数 $\ket{\Psi}$ 位于重整化的不动点处，因而边界条件 $\bra{\Omega}$ 的选取就可以转化为重整化算符的本征值问题。我们在 1+1、2+1 和 3+1 维中分别给出了重整化算符及边界态的构造，并计算得到了临界点位置的初步数值结果。在二维 Ising 模型中，我们还利用全息张量网络计算了体—边传播子，并发现其形式与 AdS/CFT 的预测基本符合。

@@ -158,11 +158,6 @@
   }
 \ExplSyntaxOff
 
-\AtBeginDocument{
-  \renewcommand{\arraystretch}{0.8}
-  \setlength{\bibsep}{4pt plus 2pt minus 1pt}
-}
-
 % Math commands
 \newcommand{\dd}{\mathrm{d}}
 \newcommand{\ee}{\mathrm{e}}
@@ -202,6 +197,8 @@
 
 \mainmatter
 
+\renewcommand{\arraystretch}{0.8}
+
 \input{includes/introduction}
 
 \input{includes/1-topological-order}
@@ -215,6 +212,7 @@
 
 \backmatter
 
+\setlength{\bibsep}{4pt plus 2pt minus 1pt}
 \printbibliography
 
 \input{includes/academic-resume}
