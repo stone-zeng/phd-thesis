@@ -18,6 +18,7 @@
     fullwidth-stop = mapping,
     bib-backend = bibtex,
     bib-resource = {main.bib},
+    auto-make-cover = false,
   },
   info = {
     title = {基于拓扑序的张量网络中若干问题的研究},
@@ -186,13 +187,20 @@
 
 \begin{document}
 
+\begin{titlepage}
+  \makecoveri
+  \newpage
+  \makecoverii
+\end{titlepage}
+
 \frontmatter
+
+\input{includes/abstracts}
 
 \tableofcontents
 \listoffigures
 \listoftables
 
-\input{includes/abstracts}
 \input{includes/notation}
 
 \mainmatter

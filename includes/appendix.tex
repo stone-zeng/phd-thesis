@@ -2,28 +2,31 @@
 
 \chapter{图表}
 
+\subcaptionsetup[figure]{skip=0pt}
+
 \begin{figure}[ht]
-  \vspace{-1.5cm}
+  \vspace*{-1.2cm}
   \centering
-  \includegraphics[width=0.45\textwidth]{images/virasoro/ising-lm1.pdf}    \quad
-  \includegraphics[width=0.45\textwidth]{images/virasoro/ising-lbarm1.pdf} \\
-  \includegraphics[width=0.45\textwidth]{images/virasoro/ising-l1.pdf}     \quad
-  \includegraphics[width=0.45\textwidth]{images/virasoro/ising-lbar1.pdf}  \\
-  \includegraphics[width=0.45\textwidth]{images/virasoro/ising-lm2.pdf}    \quad
-  \includegraphics[width=0.45\textwidth]{images/virasoro/ising-lbarm2.pdf} \\
-  \includegraphics[width=0.45\textwidth]{images/virasoro/ising-l2.pdf}     \quad
-  \includegraphics[width=0.45\textwidth]{images/virasoro/ising-lbar2.pdf}
-  \caption[Virasoro 算符在 Ising 模型能谱上的作用示意图]{Virasoro 算符在 Ising 模型能谱上的作用示意图。图片来源：\parencite{wang2022virasoro}。}
+  \subcaptionbox{$      L_{-1}$}{\includegraphics[width=0.42\textwidth]{images/virasoro/ising-lm1.pdf}}    \qquad
+  \subcaptionbox{$\bar{L}_{-1}$}{\includegraphics[width=0.42\textwidth]{images/virasoro/ising-lbarm1.pdf}} \\
+  \subcaptionbox{$      L_{+1}$}{\includegraphics[width=0.42\textwidth]{images/virasoro/ising-l1.pdf}}     \qquad
+  \subcaptionbox{$\bar{L}_{+1}$}{\includegraphics[width=0.42\textwidth]{images/virasoro/ising-lbar1.pdf}}  \\
+  \subcaptionbox{$      L_{-2}$}{\includegraphics[width=0.42\textwidth]{images/virasoro/ising-lm2.pdf}}    \qquad
+  \subcaptionbox{$\bar{L}_{-2}$}{\includegraphics[width=0.42\textwidth]{images/virasoro/ising-lbarm2.pdf}} \\
+  \subcaptionbox{$      L_{+2}$}{\includegraphics[width=0.42\textwidth]{images/virasoro/ising-l2.pdf}}     \qquad
+  \subcaptionbox{$\bar{L}_{+2}$}{\includegraphics[width=0.42\textwidth]{images/virasoro/ising-lbar2.pdf}}
+  \caption[Virasoro 算符在 Ising 模型能谱上的作用]{Virasoro 算符在 Ising 模型能谱上的作用。图片来源：\parencite{wang2022virasoro}。}
+  \vspace*{-1.5cm}
   \label{fig:ising-virasoro-all}
 \end{figure}
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=0.45\textwidth]{images/virasoro/dimer-jm1.pdf}    \quad
-  \includegraphics[width=0.45\textwidth]{images/virasoro/dimer-jbarm1.pdf} \\
-  \includegraphics[width=0.45\textwidth]{images/virasoro/dimer-jm2.pdf}    \quad
-  \includegraphics[width=0.45\textwidth]{images/virasoro/dimer-jbarm2.pdf}
-  \caption[Kac--Moody 算符在 dimer 模型能谱上的作用示意图]{Kac--Moody 算符在 dimer 模型能谱上的作用示意图。图片来源：\parencite{wang2022virasoro}。}
+  \subcaptionbox{$      J_{-1}$}{\includegraphics[width=0.42\textwidth]{images/virasoro/dimer-jm1.pdf}}    \qquad
+  \subcaptionbox{$\bar{J}_{-1}$}{\includegraphics[width=0.42\textwidth]{images/virasoro/dimer-jbarm1.pdf}} \\
+  \subcaptionbox{$      J_{-2}$}{\includegraphics[width=0.42\textwidth]{images/virasoro/dimer-jm2.pdf}}    \qquad
+  \subcaptionbox{$\bar{J}_{-2}$}{\includegraphics[width=0.42\textwidth]{images/virasoro/dimer-jbarm2.pdf}}
+  \caption[Kac--Moody 算符在 dimer 模型能谱上的作用]{Kac--Moody 算符在 dimer 模型能谱上的作用。图片来源：\parencite{wang2022virasoro}。}
   \label{fig:dimer-kac-moody-all}
 \end{figure}
 
@@ -31,7 +34,7 @@
   \centering
   \includegraphics[width=\textwidth]{images/fibonacci/fib-virasoro-all-1.pdf} \\
   \includegraphics[width=\textwidth]{images/fibonacci/fib-virasoro-all-2.pdf}
-  \caption[Virasoro 算符在 Fibonacci 模型能谱上的作用示意图]{Virasoro 算符在 Fibonacci 模型能谱上的作用示意图。图片来源：\parencite{zeng2023virasoro}。}
+  \caption[Virasoro 算符在 Fibonacci 模型能谱上的作用]{Virasoro 算符在 Fibonacci 模型能谱上的作用。图片来源：\parencite{zeng2023virasoro}。}
   \label{fig:fib-virasoro-all}
 \end{figure}
 
