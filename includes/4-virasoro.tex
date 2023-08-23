@@ -12,9 +12,10 @@
 \section{二维共形场论回顾}
 \label{sec:cft-review}
 
-\emph{共形场论} (conformal field theory, CFT)\cite{belavin1984infinite,ginsparg1988applied,francesco2012conformal}的诞生源于对相变与临界现象的研究。在（二阶）相变点附近，系统应当具有\emph{标度不变性} (scaling invariance)；而在二维情况下，标度不变性与共形不变性是等价的。这就意味着可以用满足\emph{共形对称性} (conformal symmetry) 的量子场论——即共形场论——来处理临界系统。
+\emph{共形场论} (conformal field theory, CFT)\cite{belavin1984infinite,ginsparg1988applied,francesco2012conformal}的诞生源于对相变与临界现象的研究。在（二阶）相变点附近，系统应当具有\emph{标度不变性} (scaling invariance)；而在二维情况下，标度不变性与共形不变性是等价的。这就意味着我们可以用满足\emph{共形对称性} (conformal symmetry) 的量子场论——即共形场论——来处理临界系统。
 
 \subsection{共形对称性与能动量张量}
+\label{sec:conformal-symmetry}
 
 二维 CFT 可以用复平面上的坐标 $z$ 和 $\bar{z}$ 来描述。根据 Cauchy--Riemann 条件，共形变换 $z\to w(z)$ 和 $\bar{z}\to\bar{w}(\bar{z})$ 分别是\emph{全纯} (holomorphic) 和\emph{反全纯} (anti-holomorphic) 的，即它们只是 $z$ 和 $\bar{z}$ 的函数。在这一共形变换下，满足
 \begin{equation}
@@ -396,7 +397,7 @@ Virasoro 算符的正确性同样可以通过两点关联函数来检验。在�
   \item 同一组 Kac--Moody 后代中升/降作用的混淆，这表明格点流算符的全纯与反全纯部分很可能没有完全分离。
 \end{itemize}
 
-需要指出的是，这些矩阵元之间的混淆具有一些特定的模式（见文献 \parencite{wang2022virasoro} 补充材料中的数据），这说明计算所得的基态是真实的真空态与一些较低能级简并态的混合，而且混合关系是固定的。此外我们还可以观察到，相比那些不能通过 Kac--Moody 代数从某些初级场生成的能级，矩阵元之间的差异仍有 5--6 个数量级。因而这表明我们的构造方案仍染有效，并且原则上也可以将这些本征态分离开来（可能需要使用更大的圆柱以减小有限尺寸效应的影响）。
+需要指出的是，这些矩阵元之间的混淆具有一些特定的模式（见文献 \parencite{wang2022virasoro} 补充材料中的数据），这说明计算所得的基态是真实的真空态与一些较低能级简并态的混合，而且混合关系是固定的。此外我们还可以观察到，相比那些不能通过 Kac--Moody 代数从某些初级场生成的能级，矩阵元之间的差异仍有 5--6 个数量级。因而这表明我们的构造方案仍然有效，并且原则上也可以将这些本征态分离开来（可能需要使用更大的圆柱以减小有限尺寸效应的影响）。
 
 \section{例子：Fibonacci 模型}
 

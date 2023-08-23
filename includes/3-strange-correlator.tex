@@ -740,11 +740,10 @@ $F$ 符号为
 
 此外，我们还注意到，奇异关联子的构造与 $p$-adic 张量网络也具有相似之处，而后者能够复现 $p$-adic AdS/CFT 中的诸多结论\cite{hung2019padic,chen2021emergent,chen2021bending1,chen2021bending2}。$p$-adic 张量网络的体态通过结合代数（CFT 算符的融合范畴）描述，而我们这里所采用的（高阶）融合范畴实际上是它的推广。在 $p$-adic 张量网络中，$p$-adic CFT 的配分函数也是以类似奇异关联子的形式给出的。在不动点处，边界态也对应了体全息张量网络的本征态。因此，我们这里的构造也有望用来实现 AdS/CFT 对应。
 
-% \subsection{体—边传播子}
-
-考虑在 \ref{subsec:holographic-tensor-network-2+1d} 小节中所探讨的二维 Ising 模型（即 $k=2$ 时的 $\mathcal{A}_{k+1}$ 模型）。我们在紫外 (UV) 层（图~\ref{fig:a-k+1-boundary-condition}）和全息张量网络的第 $n$ 层分别插入两个算符，并数值地计算它们之间的关联函数，即
+考虑在 \ref{subsec:holographic-tensor-network-2+1d} 小节中所探讨的二维 Ising 模型（即 $k=2$ 时的 $\mathcal{A}_{k+1}$ 模型）。我们在紫外 (UV) 层（图~\ref{fig:a-k+1-boundary-condition}）和全息张量网络的第 $n$ 层分别插入两个算符 $\mathcal{O}_1$ 和 $\mathcal{O}_n$，并数值地计算它们之间的关联函数，即
 \begin{align}
-     \ev[\big]{\mathcal{O}_{n=1}(x=y=0) \, \mathcal{O}_n(x,y)}
+  &\mathrel{\phantom{=}}
+     \ev[\big]{\mathcal{O}_{n=1}(x=y=0) \, \mathcal{O}_n(x,y)} \notag \\
   &= \bigl\langle \Omega(T_{\Lambda_1}) \big|
      \sigma^z(x=y=0) \, U^{n-1}(\mathcal{C}) \, \sigma^z(x,y) \, U^n(\mathcal{C}) \cdots
      \big| \Psi \bigr\rangle \notag \\
@@ -756,19 +755,17 @@ $F$ 符号为
 \begin{equation}
   \ev{\mathcal{O}_1 \, \mathcal{O}_n} \sim \left[ \frac{z}{x^2+z^2} \right]^\Delta
 \end{equation}
-形式的\emph{体—边传播子} (bulk-boundary propagator)。这里所展示的只是一个初步结果，我们还需要对其他模型以及不同共形维数的算符进行进一步的检验。
+形式的\emph{体—边传播子} (bulk-boundary propagator)\cite{witten1998anti}。式中，$x$ 为两算符间的距离，$z$ 为体到边界的距离，而 $\Delta$ 则是相应的标度维数（见 \ref{sec:conformal-symmetry} 小节）。这里所展示的只是一个初步结果，我们还需要对其他模型以及不同标度维数的算符进行进一步的检验。
 
 \begin{figure}[htb]
   % TODO: update image
   \centering
-  \includegraphics[width=0.5\textwidth]{images/holographic/bulk-boundary-propagator.png}
-  \caption[体—边传播子的计算结果]{体—边传播子的计算结果。$\mathcal{O}_n$ 表示在第 $n$ 层插入的算符。为了计算方便，$\mathcal{O}_1$ 会和邻近的张量缩并，并推至第 $n$ 层，得到 $\mathcal{O}_{1n}$，因此 $\ev{\mathcal{O}_n\,\mathcal{O}_{1n}}$ 即相当于 $\ev{\mathcal{O}_n\,\mathcal{O}_1}$。(a)(b) 分别是关于 $z_n x_n^2$ 和 $z_n(x_n^2+1)$ 的 log-log 图像，其中 $z_n=(\sqrt{2})^{n-1}$，而 $x_n=x_1/z_n$ 是 $\mathcal{O}_n$ 和 $\mathcal{O}_{1n}$ 间的距离。在 AdS/CFT 字典中，有 $\ev{\mathcal{O}_n\,\mathcal{O}_1}\sim[z_n(x_n^2+1)]^{-\Delta}$，其中 $\Delta$ 是初级场 $\mathcal{O}_1$ 的共形维数。可以发现，在图 (b) 中对应于不同 $n$ 的点几乎都重叠在一起，这说明体—边传播子的形式是符合 AdS/CFT 预测的。图片来源：\parencite{chen2022exact}。}
+  \includegraphics[width=0.45\textwidth]{images/holographic/bulk-boundary-propagator-1.png}
+  \includegraphics[width=0.45\textwidth]{images/holographic/bulk-boundary-propagator-2.png}
+  \caption[体—边传播子的计算结果]{体—边传播子的计算结果。$\mathcal{O}_n$ 表示在第 $n$ 层插入的算符。为了计算方便，$\mathcal{O}_1$ 会和邻近的张量缩并，并推至第 $n$ 层，得到 $\mathcal{O}_{1n}$，因此 $\ev{\mathcal{O}_n\,\mathcal{O}_{1n}}$ 即相当于 $\ev{\mathcal{O}_n\,\mathcal{O}_1}$。(a)(b) 分别是关于 $z_n x_n^2$ 和 $z_n(x_n^2+1)$ 的 log-log 图像，其中 $z_n=(\sqrt{2})^{n-1}$，而 $x_n=x_1/z_n$ 是 $\mathcal{O}_n$ 和 $\mathcal{O}_{1n}$ 间的距离。在 AdS/CFT 中，有 $\ev{\mathcal{O}_n\,\mathcal{O}_1}\sim[z_n(x_n^2+1)]^{-\Delta}$，其中 $\Delta$ 是初级场 $\mathcal{O}_1$ 的标度维数。可以发现，在图 (b) 中对应于不同 $n$ 的点几乎都重叠在一起，这说明体—边传播子的形式是符合 AdS/CFT 预测的。图片来源：\parencite{chen2022exact}。}
   \label{fig:bulk-boundary-propagator}
 \end{figure}
 
-% TODO: entanglement wedge
-% \subsection{Reconstruction Wedge}
-
 \section{本章小结}
 
-本章首先给出了弦网模型基态的 PEPS 张量网络表示，并通过将其与特定的直积态做内积得到奇异关联子。在 Fibonacci 和 Ising 两种模型中，我们利用奇异关联子构造了相应配分函数的张量单元，并通过 iTEBD 算法数值计算了对应 CFT 的中心荷。接下来，我们简要介绍了 PEPS 张量网络表示中的 MPO 对称性，而 MPO 所满足的推拉条件实质也是融合范畴中对称性的一种体现。我们还给出了管状代数与中心幂等元的构造，后者作为投影算符，可以给出 Drinfel'd 中心中不同的拓扑分区。最后，我们详细讨论了利用奇异关联子构建全息张量网络的方案。由于拓扑序的基态波函数 $\ket{\Psi}$ 位于重整化的不动点处，因而边界条件 $\bra{\Omega}$ 的选取就可以转化为重整化算符的本征值问题。我们在 1+1、2+1 和 3+1 维中分别给出了重整化算符及边界态的构造，并计算得到了临界点位置的初步数值结果。在二维 Ising 模型中，我们还利用全息张量网络计算了体—边传播子，并发现其形式与 AdS/CFT 的预测基本符合。
+本章首先给出了弦网模型基态的 PEPS 张量网络表示，并通过将其与特定的直积态做内积得到奇异关联子。在 Fibonacci 和 Ising 两种模型中，我们利用奇异关联子构造了相应配分函数的张量单元，并通过 iTEBD 算法数值计算了对应 CFT 的中心荷。接下来，我们简要介绍了 PEPS 张量网络表示中的 MPO 对称性，而 MPO 所满足的推拉条件实质也是融合范畴结构的一种体现。我们还给出了管状代数与中心幂等元的构造，后者作为投影算符，可以给出 Drinfel'd 中心中不同的拓扑分区。最后，我们详细讨论了利用奇异关联子构建全息张量网络的方案。由于拓扑序的基态波函数 $\ket{\Psi}$ 位于重整化的不动点处，因而边界条件 $\bra{\Omega}$ 的选取就可以转化为重整化算符的本征值问题。我们在 1+1、2+1 和 3+1 维中分别给出了重整化算符及边界态的构造，并计算得到了临界点位置的初步数值结果。在二维 Ising 模型中，我们还利用全息张量网络计算了体—边传播子，并发现其形式与 AdS/CFT 的预测基本符合。
