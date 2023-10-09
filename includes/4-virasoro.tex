@@ -73,9 +73,9 @@
 把能动量张量进行模展开，可以得到
 \begin{equation}
   \begin{aligned}
-    T(z)             &= \sum_{n\in\mathbb{Z}} z^{-n-2} L_n, &\quad
+    T(z)             &= \sum_{n\in\Z} z^{-n-2} L_n, &\quad
     L_n              &= \frac{1}{2\pi\ii} \oint z^{n+1} T(z) \, \dd z; \\
-    \bar{T}(\bar{z}) &= \sum_{n\in\mathbb{Z}} \bar{z}^{-n-2} \bar{L}_n, &\quad
+    \bar{T}(\bar{z}) &= \sum_{n\in\Z} \bar{z}^{-n-2} \bar{L}_n, &\quad
     \bar{L}_n        &= \frac{1}{2\pi\ii} \oint \bar{z}^{n+1} \bar{T}(\bar{z}) \, \dd\bar{z}.
   \end{aligned}
   \label{eq:virasoro-operators}
@@ -150,9 +150,9 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
 
 将圆柱面的 $t\to\pm\infty$ 等时面“粘”在一起便可得到环面。环面的几何由参数 $\tau=\tau_1+\ii\tau_2$ 表示，它需要在变换
 \begin{equation}
-  \tau \to \frac{a\tau+b}{c\tau+d}, \quad \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in PSL(2,\mathbb{Z})
+  \tau \to \frac{a\tau+b}{c\tau+d}, \quad \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in PSL(2,\Z)
 \end{equation}
-下保持不变，其中 $PSL(2,\mathbb{Z})=SL(2,\mathbb{Z})/\mathbb{Z}_2$ 称为\emph{模群} (modular group)。此时配分函数可以写为\cite{cardy1986operator,francesco2012conformal}
+下保持不变，其中 $PSL(2,\Z)=SL(2,\Z)/\Z_2$ 称为\emph{模群} (modular group)。此时配分函数可以写为\cite{cardy1986operator,francesco2012conformal}
 \begin{align}
   Z &= \tr \Bigl[ \exp \bigl( -2\pi\tau_2 H \bigr) \exp \bigl( 2\pi\ii\tau_1 P \bigr) \Bigr] \notag \\
     &= \tr \Bigl[
@@ -401,7 +401,7 @@ Virasoro 算符的正确性同样可以通过两点关联函数来检验。在�
 
 \section{例子：Fibonacci 模型}
 
-在很大程度上，Ising 模型具有一定的特殊性，例如它受有限尺寸效应的影响较小。对于更一般的模型，无论是计算与确定圆柱本征态，还是构造对应的 Virasoro 算符，都较为困难。本小节我们将考察 $\mathbb{Z}_3$ parafermion CFT，它可以通过为 Fibonacci 弦网模型添加适当的边界条件而得到。
+在很大程度上，Ising 模型具有一定的特殊性，例如它受有限尺寸效应的影响较小。对于更一般的模型，无论是计算与确定圆柱本征态，还是构造对应的 Virasoro 算符，都较为困难。本小节我们将考察 $\Z_3$ parafermion CFT，它可以通过为 Fibonacci 弦网模型添加适当的边界条件而得到。
 
 \subsection{转移矩阵}
 
@@ -430,7 +430,7 @@ Fibonacci 弦网模型定义在六边形网格上，包含 $\1$ 和 $\tau$ 两�
 
 \subsection{CFT 能谱与能动量张量}
 
-在热力学极限下，Fibonacci 弦网模型（也即中心荷 $c=4/5$ 的 hard-hexagon 模型）将会收敛到 $\mathbb{Z}_3$ parafermion CFT，但并非所有的拓扑缺陷在格点近似中都存在对应的矩阵乘积算符 (MPO) 表示\cite{vanhove2018mapping}。我们并不需要考虑拓扑缺陷，而这种“空”的环面配分函数可以通过取大小为 $n=3k$ 的圆柱得到。相应地，平移算符也需要改为使用把格点平移 3 个单位的 $P^3$。
+在热力学极限下，Fibonacci 弦网模型（也即中心荷 $c=4/5$ 的 hard-hexagon 模型）将会收敛到 $\Z_3$ parafermion CFT，但并非所有的拓扑缺陷在格点近似中都存在对应的矩阵乘积算符 (MPO) 表示\cite{vanhove2018mapping}。我们并不需要考虑拓扑缺陷，而这种“空”的环面配分函数可以通过取大小为 $n=3k$ 的圆柱得到。相应地，平移算符也需要改为使用把格点平移 3 个单位的 $P^3$。
 
 随着圆柱尺寸 $n$ 的增加，计算中内存消耗是指数级增长的。为了能够处理较大的圆柱，我们这里采用了矩阵无关 (matrix-free) 的线性算符 (linear operator) 方法，即不再显式地构造转移矩阵 $M$，而是计算 $M$ 作用在某个向量上的结果。如图~\ref{fig:fib-linear-operator} 所示，由于 $M$ 是通过张量单元 $A_{ijkl}$ 构造而成的，矩阵乘法 $M\cdot v$ 可利用多次张量缩并来实现。而平移算符则可以通过对数组元素的重新排列来获得。对于大小为 $n$ 的圆柱，线性算符方法可将内存消耗由 $\mathcal{O}(\chi^{2n})$ 降低到 $\mathcal{O}(\chi^n)$。对于 Fibonacci 模型的情况，在典型配置的服务器上最大可以计算到约 $n\simeq30$ 的情形。
 

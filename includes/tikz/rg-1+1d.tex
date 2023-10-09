@@ -1,0 +1,33 @@
+\begin{tikzpicture}
+  \begin{scope}
+    \def\r{3.5}
+    \draw [thick, MaterialGrey]
+      foreach \x/\xText in {20/e,55/d,90/c,125/b,160/a} {
+        (0,0) -- (\x:\r) (\x:1.2*\r) node [black] {$\xText$}
+      }
+      (0,0) node [below, black] {$o$} circle [radius=\r];
+    \draw [very thick, MaterialRed]  (20:\r) -- (90:\r) -- (160:\r);
+    \draw [very thick, MaterialBlue] (20:\r) -- (160:\r);
+    \draw (195:0.6*\r) node [rotate= 70] {$\cdots$}
+          (-15:0.6*\r) node [rotate=-70] {$\cdots$}
+          (6,0) node {$\implies$};
+  \end{scope}
+  \begin{scope}[xshift=12em]
+    \def\a{1}
+    \def\b{1}
+    \draw [thick, MaterialGrey]
+      (0,0) -- (0,-2*\b)
+      (-3*\a,3*\b) -- (0,0) -- (3*\a,3*\b)
+      (-1.8*\a,1.8*\b) -- (-0.6*\a,3*\b)
+      ( 1.8*\a,1.8*\b) -- ( 0.6*\a,3*\b);
+    \draw [very thick, MaterialRed]
+      (-3.5*\a,1.5*\b) -- (-1.8*\a,2.6*\b) -- (-0.1*\a,1.5*\b) -- cycle
+      ( 3.5*\a,1.5*\b) -- ( 1.8*\a,2.6*\b) -- ( 0.1*\a,1.5*\b) -- cycle;
+    \draw [very thick, MaterialBlue]
+      (-1.7*\a,-0.4*\b) -- (0,0.8*\b) -- (1.7*\a,-0.4*\b) -- cycle;
+    \draw ( 6.8*\a,1.5*\b) node {$\left.\vphantom{\rule{0.1em}{5ex}}\right\}U_N(G,\alpha)$}
+          (-4*\a,2.5*\b) node {$\cdots$}
+          ( 4*\a,2.5*\b) node {$\cdots$}
+          (   0,-2.5*\b) node {$\vdots$};
+  \end{scope}
+\end{tikzpicture}

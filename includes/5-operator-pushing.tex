@@ -5,6 +5,7 @@
 
 \section{广义自由场与算符推移}
 
+% TODO: 广义自由场 \cite{greenberg1961generalized}
 AdS/CFT 对应\cite{maldacena1999large}中的一项重要特征是在 AdS 体中所演生出的\emph{广义自由场} (generalized free field)，它是指那些关联函数满足 Wick 定理的场\cite{dutsch2003generalized,liu2019dimensional,collier2019quantum,nebabu2023bulk}。这使得我们可以为体态提供一套半经典的描述，同时也可以通过体来计算边界 CFT 中的物理量。一般来说，边界 CFT 中的\emph{单迹算符} (single trace operator) 近似对应了半经典的体态理论中的自由 Gauss 场。这就使得 CFT 中的关联函数可以在 AdS 一侧通过 Witten 图来计算\cite{witten1998anti,gubser1998gauge}。
 
 \begin{figure}[htb]
@@ -71,16 +72,16 @@ AdS/CFT 对应\cite{maldacena1999large}中的一项重要特征是在 AdS 体中
 由于张量网络是局域的，我们可以通过研究重整化张量网络中的一个张量来研究体算符重建。具体来说，对于一个张量单元而言，算符推移或重建相当于为给定的算符 $B$ 找到对应的算符 $A$，并使其满足
 \begin{equation}
   \tikzinput{operator-pushing/constraint-1+1d}.
+  \label{eq:1+1d-constraint-diagram}
+\end{equation}
+当算符 $B$ 是所谓广义自由场时，由 $A$ 给出的算符重建应当可以表示为“简单”形式（即 $\mathbb{I}\otimes\tilde{A}$ 或 $\tilde{A}\otimes\mathbb{I}$ 的线性组合）。为了确保 $B$ 的行为满足广义自由场的条件，我们还要求 $\tilde{A}$ 仍然属于算符集 $\{B\}$，也就是要求这一重建过程可以被不断重复至任意层的张量网络。式~\eqref{eq:1+1d-constraint-diagram} 可以表述为
+\begin{equation}
+  A_{(ij), (i'j')} M^{i'j'}_{ k} = M^{ij}_{k'} B_{k'k}.
   \label{eq:1+1d-constraint}
 \end{equation}
-当算符 $B$ 是所谓广义自由场时，由 $A$ 给出的算符重建应当可以表示为“简单”形式（即 $\mathbb{I}\otimes\tilde{A}$ 或 $\tilde{A}\otimes\mathbb{I}$ 的线性组合）。为了确保 $B$ 的行为满足广义自由场的条件，我们还要求 $\tilde{A}$ 仍然属于算符集 $\{B\}$，也就是要求这一重建过程可以被不断重复至任意层的张量网络。式~\eqref{eq:1+1d-constraint} 可以表述为
-\begin{equation}
-  A_{(ij), (i'j')} M_{(i'j'), k} = M_{(ij), k'} B_{k', k}.
-  \label{eq:1+1d-constraint-equation}
-\end{equation}
-为计算方便，我们把 $i$、$j$ 合并成了单个指标 $(ij)$，类似张量网络中的变形操作［式~\eqref{eq:tensor-reshape}］。接下来我们考虑对一般的算符 $B$ 求解式~\eqref{eq:1+1d-constraint-equation}，并从中确定广义自由场的集合。还可以注意到，在张量网络中，如果算符 $A$ 能够表示为简单形式，则算符 $B$ 的集合将构成广义自由场的一组完备基。
+为计算方便，我们把 $i$、$j$ 合并成了单个指标 $(ij)$，类似张量网络中的变形操作［式~\eqref{eq:tensor-reshape}］。接下来我们考虑对一般的算符 $B$ 求解式~\eqref{eq:1+1d-constraint}，并从中确定广义自由场的集合。还可以注意到，在张量网络中，如果算符 $A$ 能够表示为简单形式，则算符 $B$ 的集合将构成广义自由场的一组完备基。
 
-在式~\eqref{eq:1+1d-constraint} 中张量的每条腿上，都有一个 $|G|$ 维的向量空间。作为 $\mathbb{Z}_2$ 情形中 Pauli 矩阵的推广，我们可以利用\emph{广义 Pauli 矩阵} (generalized Pauli matrices)\cite{patera1988pauli}作为基，来构建作用在每条腿上的算符。对于有限群 $G$ 且有 $|G|=n$，$G$ 中群元标记为 $0, 1, \dots, n-1$，则 $|G|$ 维的向量空间中的基可以表示为
+在式~\eqref{eq:1+1d-constraint-diagram} 中张量的每条腿上，都有一个 $|G|$ 维的向量空间。作为 $\Z_2$ 情形中 Pauli 矩阵的推广，我们可以利用\emph{广义 Pauli 矩阵} (generalized Pauli matrices)\cite{patera1988pauli}作为基，来构建作用在每条腿上的算符。对于有限群 $G$ 且有 $|G|=n$，$G$ 中群元标记为 $0,1,\dots,n-1$，则 $|G|$ 维的向量空间中的基可以表示为
 \begin{equation}
   \ket{i} = \begin{pmatrix} 0 \\ \vdots \\ 1_{\text{$i$-th}} \\ \vdots \\ 0 \end{pmatrix}, \quad
   i \in \{ 0, 1, \dots, n-1 \}.
@@ -99,33 +100,33 @@ AdS/CFT 对应\cite{maldacena1999large}中的一项重要特征是在 AdS 体中
     0      & \omega & \cdots & 0            & 0      \\
     \vdots & \vdots & \ddots & \vdots       & \vdots \\
     0      & 0      & \cdots & \omega^{n-2} & 0      \\
-    0      & 0      & \cdots & 0            &\omega^{n-1}
+    0      & 0      & \cdots & 0            & \omega^{n-1}
   \end{pmatrix},
   \label{eq:generalized-pauli-matrices}
 \end{equation}
-这里 $\omega=\ee^{2\pi i/n}$ 是 $n$ 次单位根。于是广义 Pauli 矩阵为
+这里 $\omega=\ee^{2\pi\ii/n}$ 是 $n$ 次单位根。于是广义 Pauli 矩阵为
 \begin{equation}
-  \sigma^\mu \coloneq \sigma^{ns+t} = X^t Z^s,
+  \sigma_\mu \coloneq \sigma_{ns+t} = X^t Z^s,
 \end{equation}
-其中 $s=\lfloor \mu/n\rfloor$、$t=\mu\bmod n$，而 $\mu\in\{0,1,\dots,n^2-1\}$。此时式~\eqref{eq:1+1d-constraint-equation} 可以写为
+其中 $s=\lfloor\mu/n\rfloor$、$t=\mu\bmod n$，而 $\mu\in\{0,1,\dots,n^2-1\}$。此时式~\eqref{eq:1+1d-constraint} 可以写为
 \begin{equation}
     A_{(ij), (i'j')} \delta_{G(i',j'), k}
-  = \delta_{G(i,j), k'} B_{k', k}
-  = \delta_{G(i,j), k'} \sigma^\mu_{k', k}
-  = \sigma^\mu_{G(i,j), k}.
+  = \delta_{G(i,j), k'} B_{k'k}
+  = \delta_{G(i,j), k'} (\sigma_\mu)_{k'k}
+  = (\sigma_\mu)_{G(i,j), k}.
 \end{equation}
-因此，一旦给定了群乘法 $G(i,j)$，我们就可以根据标准的线性代数方法，对于每一个 $\sigma^\mu$ 求解上式中的 $A$。完整的解系应包含通解和特解两个部分，其中通解部分对应于齐次方程
+因此，一旦给定了群乘法 $G(i,j)$，我们就可以根据标准的线性代数方法，对于每一个 $\sigma_\mu$ 求解上式中的 $A$。完整的解系应包含通解和特解两个部分，其中通解部分对应于齐次方程
 \begin{equation}
   A_{(ij), (i'j')} \delta_{G(i',j'), k} = 0
 \end{equation}
-的解，即相当于 $(\sigma^\mu_{G(i,j),k})^{\mathrm{T}}=\sigma^\mu_{k,G(i,j)}$ 的\emph{零空间} (null space)。而注意到
+的解，即相当于 $[(\sigma_\mu)_{G(i,j),k}]^\trans=(\sigma_\mu)_{k,G(i,j)}$ 的\emph{零空间} (null space)。而注意到
 \begin{equation}
   G(i,0) = i, \quad G(0,j) = j,
 \end{equation}
 我们可以给出一组特解：
 \begin{equation}
   A^{(\mu)}_{(ij), (i'j')} = \begin{cases}
-    \sigma^\mu_{G(i,j), j'}, & i' = 0; \\
+    (\sigma_\mu)_{G(i,j), j'}, & i' = 0; \\
     0, & i' \neq 0.
   \end{cases}
   \label{eq:1+1d-specific-solution}
@@ -133,72 +134,76 @@ AdS/CFT 对应\cite{maldacena1999large}中的一项重要特征是在 AdS 体中
 
 我们还想找到能使算符 $A$ 为简单形式的体算符 $B$ 的子集，此时要求 $A$ 在张量一条腿上的作用是平凡的，即
 \begin{equation}
-  A_{(ij), (i'j')} = \tilde{A}_{ii'} \delta_{jj'} \quad \text{or} \quad
+  A_{(ij), (i'j')} = \tilde{A}_{ii'} \delta_{jj'} \quad \text{或} \quad
   A_{(ij), (i'j')} = \delta_{ii'} \tilde{A}_{jj'}.
 \end{equation}
 于是有
 \begin{equation}
-  \tilde{A}_{ii'} \delta_{G(i',j), k} = \sigma^\mu_{G(i,j), k} \quad \text{or} \quad
-  \tilde{A}_{jj'} \delta_{G(i,j'), k} = \sigma^\mu_{G(i,j), k}, \quad
+  \tilde{A}_{ii'} \delta_{G(i',j), k} = (\sigma_\mu)_{G(i,j), k} \quad \text{或} \quad
+  \tilde{A}_{jj'} \delta_{G(i,j'), k} = (\sigma_\mu)_{G(i,j), k}, \quad
   \forall j \in \{ 0, 1, \dots, n-1 \}.
-  \label{eq:1+1d-simple-form-constraint-equation}
+  \label{eq:1+1d-simple-form-constraint}
 \end{equation}
-$\tilde{A}$ 仍然可以很容易地求解得到。根据线性代数中的 Rouch\'e--Capelli 定理，上式有解的充分必要条件是对于 $(\sigma^\mu_{G(i,j),k})^{\mathrm{T}}$ 的每一列，增广矩阵的秩都满足
+$\tilde{A}$ 仍然可以很容易地求解得到。根据线性代数中的 Rouch\'e--Capelli 定理，上式有解的充分必要条件是对于 $[(\sigma_\mu)_{G(i,j),k}]^\trans_s$ 中的每一列，增广矩阵的秩都满足
 \begin{equation}
-    \rank\bigl[ (\delta_{G(i',j), k})^{\mathrm{T}} \big| (\sigma^\mu_{G(i,j),k})^{\mathrm{T}}_s \bigr]
-  = \rank\bigl[ (\delta_{G(i',j), k})^{\mathrm{T}} \bigr].
+    \rank\bigl[ (\delta_{G(i',j), k})^\trans \big| \bigl( (\sigma_\mu)_{G(i,j),k} \bigr)^\trans_s \bigr]
+  = \rank\bigl[ (\delta_{G(i',j), k})^\trans \bigr].
 \end{equation}
 又因为
 \begin{equation}
-    \rank\bigl[ (\delta_{G(i',j), k})^{\mathrm{T}} \bigr]
+    \rank\bigl[ (\delta_{G(i',j), k})^\trans \bigr]
   = \rank\bigl( \delta_{G(i',j), k} \bigr) = n,
 \end{equation}
-如果式~\eqref{eq:1+1d-simple-form-constraint-equation} 有解，也只存在一组解。在实际计算中，我们可以取一组系数 $\{\alpha_\mu\}$，使得
+如果式~\eqref{eq:1+1d-simple-form-constraint} 有解，也只存在一组解。在实际计算中，我们可以取一组系数 $\{\alpha_\mu\}$，使得
 \begin{equation}
-  \tilde{A}_{ii'} \delta_{G(i',j), k} - \sum_\mu \alpha_\mu \sigma^\mu_{G(i,j), k} = 0,
-  \label{eq:1+1d-simple-form-augmented-constraint-equation}
+  \tilde{A}_{ii'} \delta_{G(i',j), k} - \sum_\mu \alpha_\mu (\sigma_\mu)_{G(i,j), k} = 0 \quad \text{或} \quad
+  \tilde{A}_{jj'} \delta_{G(i,j'), k} - \sum_\mu \alpha_\mu (\sigma_\mu)_{G(i,j), k} = 0,
+  \label{eq:1+1d-simple-form-augmented-constraint}
 \end{equation}
-这是一组同时以 $\tilde{A}_{ii'}$ 和 $\alpha_\mu$ 为变量的（齐次）方程。求解它即可得到符合要求的 $B=\sum_\mu\alpha_\mu\sigma^\mu$ 以及相应的算符 $A$。
+这是一组同时以 $\tilde{A}_{ii'}$（或 $\tilde{A}_{jj'}$）和 $\alpha_\mu$ 为变量的齐次方程，求解它即可得到符合要求的 $B=\sum_\mu\alpha_\mu\sigma_\mu$ 以及相应的算符 $A$。为表述方便，我们将上式左侧的系数矩阵记为 $\tilde{M}$。
 
-\subsection{Abelian 的例子：\texorpdfstring{$\mathbb{Z}_n$}{ℤₙ} 群}
+\subsection{Abelian 的例子：\texorpdfstring{$\Z_n$}{ℤₙ} 群}
 
-接下来我们考察几个具体的例子。对于 $\mathbb{Z}_n$ 群，其融合规则由模算术给出：
+接下来我们考察几个具体的例子。对于 $\Z_n$ 群，其融合规则由模算术给出：
 \begin{equation}
   G(i,j) = (i+j)\bmod n,
-  \label{eq:Z_n-fusion-rules}
+  \label{eq:zn-fusion-rules}
 \end{equation}
-因此 $\delta_{G(i,j),k}=\delta_{(i+j)\bmod n,k}$ 是一个秩为 $n$ 的 $n^2\times n$ 矩阵，其转置矩阵的零空间可由 $n^2-n$ 个向量 $\bm{v}$ 张成：
+因此 $\delta_{G(i,j),k}=\delta_{(i+j)\bmod n,k}$ 是一个秩为 $n$ 的 $n^2\times n$ 矩阵，其转置矩阵的零空间可由 $n^2-n$ 个向量 $v^{(p)}$ 张成：
 \begin{equation}
   v^{(p)}_q = \delta_{(-p-\lfloor p/n\rfloor-2)\bmod n, \, q} - \delta_{n^2-p-1, \, q},
 \end{equation}
 其中 $p\in\{0,1,\dots,n^2-n-1\}$，$q\in\{0,1,\dots,n^2-1\}$。于是通解 $A^*$ 可由 $v^{(p)}$ 的线性组合给出：
 \begin{equation}
   A^* = \begin{pmatrix}
-    \beta_{0,0} \bm{v}^{(0)} + \dots + \beta_{0,n^2-n-1} \bm{v}^{(n^2-n-1)} \\
+    \beta_{0,0} v^{(0)} + \dots + \beta_{0,n^2-n-1} v^{(n^2-n-1)} \\
     \vdots \\
-    \beta_{n^2-1,0} \bm{v}^{(0)} + \dots + \beta_{n^2-1,n^2-n-1} \bm{v}^{(n^2-n-1)}
+    \beta_{n^2-1,0} v^{(0)} + \dots + \beta_{n^2-1,n^2-n-1} v^{(n^2-n-1)}
   \end{pmatrix},
 \end{equation}
-其中 $\beta_{i,j}$ 是任意常数。而根据式~\eqref{eq:1+1d-specific-solution}，特解部分为
+其中 $\beta_{ij}$ 是任意常数。而根据式~\eqref{eq:1+1d-specific-solution}，特解部分为
 \begin{equation}
-  A^{(\mu)}_{(ij), (0j')} = \sigma^\mu_{(i+j)\bmod n, j'}.
+  A^{(\mu)}_{(ij), (0j')} = (\sigma_\mu)_{(i+j)\bmod n, j'}.
+\end{equation}
+这样我们就获得了 $\Z_n$ 群中一般形式的解。
+
+对于算符 $A$ 为简单形式的情况，式~\eqref{eq:1+1d-simple-form-augmented-constraint} 中系数矩阵 $\tilde{M}$ 大小为 $n^3\times2n^2$，秩为 $2n^2-n$，因此恰好有 $n$ 组解：
+\begin{equation}
+  \tilde{A}^{(k)}_{ii'} = (\sigma_k)_{ii'}, \quad
+  \alpha^{(k)}_\mu = \delta_{k\mu},
+\end{equation}
+而其中 $k\in\{0,1,\dots,n-1\}$。这意味着由 $B=\sigma_k$ 所给出的广义自由场，对应了简单算符
+\begin{equation}
+  A = \sigma_k   \otimes \mathbb{I} \quad \text{或} \quad
+  A = \mathbb{I} \otimes \sigma_k.
+  \label{eq:1+1d-zn-solution}
+\end{equation}
+注意到 $\tilde{A}=\sigma_k$ 和 $B$ 的取值范围是一致的，因而它可以作为新一层的体算符 $B$，使得这样的算符推移操作不断进行下去。考虑一个 $L$ 层的张量网络［见图~\ref{fig:rg-1+1d}］，对于上述的 $B=\sigma^k$，边界算符仍然具有简单形式，并且可以写为：
+\begin{equation}
+  A_L = \mathbb{I}^{\otimes L-l} \otimes \sigma_k \otimes \mathbb{I}^{\otimes l-1}, \quad l = 0,1,\dots,L.
 \end{equation}
 
-对于算符 $A$ 为简单形式的情形，求解式~\eqref{eq:1+1d-simple-form-augmented-constraint-equation} 可知，对于 $\mu\geqslant n$，有 $\alpha_\mu=0$，这意味着 $\mu\in\{0,1,\dots,n-1\}$ 时式~\eqref{eq:1+1d-simple-form-constraint-equation} 有解。而此时
-\begin{equation}
-  \tilde{A}^{(\mu)}_{ii'} = \sigma^\mu.
-\end{equation}
-因而当且仅当 $B=\sigma^k$ 而 $k\in\{1,2,\dots,n-1\}$ 时（$\sigma^0=\mathbb{I}$ 对应了同样是平凡算符的 $A=\mathbb{I}\otimes\mathbb{I}$，因此将其忽略），对应的
-\begin{equation}
-  A = \sigma^k   \otimes \mathbb{I} \quad \text{or} \quad
-  A = \mathbb{I} \otimes \sigma^k
-\end{equation}
-为简单算符。由于 $\tilde{A}=\sigma^k$ 可以作为新一层的体算符 $B$，这样的算符推移操作可以不断进行下去。考虑一个 $L$ 层的张量网络（见图~\ref{fig:rg-1+1d}），对于上述的 $B=\sigma^k$，边界算符仍然具有简单形式，并且可以写为：
-\begin{equation}
-  A_L = \mathbb{I}^{\otimes L-l} \otimes \sigma^k \otimes \mathbb{I}^{\otimes l-1}, \quad l = 0,1,\dots,L.
-\end{equation}
-
-下面我们以 $\mathbb{Z}_2$ 群（即 $n=2$）为例给出一个具体的解。$\delta_{k,(i+j)\bmod 2}$ 的零空间可以由向量组
+下面我们以 $\Z_2$ 群（即 $n=2$）为例给出一个具体的解。$M^\trans=\delta_{k,i+j\bmod2}$ 的零空间可由向量组
 \begin{equation}
   \{ v^{(p)} \} = \Biggl\{ \,
     \begin{pmatrix} 1 \\ 0 \\ 0 \\ -1 \end{pmatrix}, \,
@@ -216,32 +221,33 @@ $\tilde{A}$ 仍然可以很容易地求解得到。根据线性代数中的 Rouc
 \end{equation}
 其中 $\beta_{i,j}$ 是任意常数。因而完整的解可以表示为
 \begin{align}
-  B = \sigma^0 = \mathbb{I}   &\implies A = A^* + \begin{pmatrix} 1 &  0 & 0 & 0 \\ 0 &  1 & 0 & 0 \\ 0 &  1 & 0 & 0 \\ 1 &  0 & 0 & 0 \end{pmatrix}, \notag \displaybreak[0] \\
-  B = \sigma^1 = \sigma^x     &\implies A = A^* + \begin{pmatrix} 0 &  1 & 0 & 0 \\ 1 &  0 & 0 & 0 \\ 1 &  0 & 0 & 0 \\ 0 &  1 & 0 & 0 \end{pmatrix}, \notag \displaybreak[0] \\
-  B = \sigma^2 = \sigma^z     &\implies A = A^* + \begin{pmatrix} 1 &  0 & 0 & 0 \\ 0 & -1 & 0 & 0 \\ 0 & -1 & 0 & 0 \\ 1 &  0 & 0 & 0 \end{pmatrix}, \notag \displaybreak[0] \\
-  B = \sigma^3 = -\ii\sigma^y &\implies A = A^* + \begin{pmatrix} 0 & -1 & 0 & 0 \\ 1 &  0 & 0 & 0 \\ 1 &  0 & 0 & 0 \\ 0 & -1 & 0 & 0 \end{pmatrix}.
-  \label{eq:Z_2-solution}
+  B = \sigma_0 = \mathbb{I}   &\implies A = A^* + \begin{pmatrix} 1 &  0 & 0 & 0 \\ 0 &  1 & 0 & 0 \\ 0 &  1 & 0 & 0 \\ 1 &  0 & 0 & 0 \end{pmatrix}, \notag \displaybreak[0] \\
+  B = \sigma_1 = \sigma_x     &\implies A = A^* + \begin{pmatrix} 0 &  1 & 0 & 0 \\ 1 &  0 & 0 & 0 \\ 1 &  0 & 0 & 0 \\ 0 &  1 & 0 & 0 \end{pmatrix}, \notag \displaybreak[0] \\
+  B = \sigma_2 = \sigma_z     &\implies A = A^* + \begin{pmatrix} 1 &  0 & 0 & 0 \\ 0 & -1 & 0 & 0 \\ 0 & -1 & 0 & 0 \\ 1 &  0 & 0 & 0 \end{pmatrix}, \notag \displaybreak[0] \\
+  B = \sigma_3 = -\ii\sigma_y &\implies A = A^* + \begin{pmatrix} 0 & -1 & 0 & 0 \\ 1 &  0 & 0 & 0 \\ 1 &  0 & 0 & 0 \\ 0 & -1 & 0 & 0 \end{pmatrix}.
+  \label{eq:1+1d-z2-solution}
 \end{align}
-可以看到当且仅当体算符 $B=\sigma^x$ 时，边界算符 $A$ 可以取到简单形式
+可以看到当且仅当体算符 $B=\sigma_x$ 时，边界算符 $A$ 可以取到简单形式
 \begin{equation}
-  A = \mathbb{I} \otimes \sigma^x = \begin{pmatrix}
+  A = \mathbb{I} \otimes \sigma_x = \begin{pmatrix}
     0 & 1 & 0 & 0 \\
     1 & 0 & 0 & 0 \\
     0 & 0 & 0 & 1 \\
     0 & 0 & 1 & 0
   \end{pmatrix}
-  \quad \text{or} \quad
-  A = \sigma^x \otimes \mathbb{I} = \begin{pmatrix}
+  \quad \text{或} \quad
+  A = \sigma_x \otimes \mathbb{I} = \begin{pmatrix}
     0 & 0 & 1 & 0 \\
     0 & 0 & 0 & 1 \\
     1 & 0 & 0 & 0 \\
     0 & 1 & 0 & 0
   \end{pmatrix}.
 \end{equation}
+若不考虑平凡算符 $\mathbb{I}$，这与式~\eqref{eq:1+1d-zn-solution} 中的结果也是相符的。
 
 \subsection{非 Abelian 的例子：\texorpdfstring{$S_3$}{𝑆₃} 群}
 
-$S_3$ 群的乘法表为：
+$\Z_n$ 的群乘法是可交换的，这会给我们的推导过程带来一定的特殊性。例如，若 $A=\tilde{A}\otimes\mathbb{I}$ 是式~\eqref{eq:1+1d-constraint} 的一组解，则 $A=\mathbb{I}\otimes\tilde{A}$ 必然也是一组解。下面我们考察最简单的非 Abelian 群 $S_3$，它的乘法表为：
 \begin{center}
   \begin{tabular}{c|cccccc}
     & $g_0$ & $g_1$ & $g_2$ & $g_3$ & $g_4$ & $g_5$ \\
@@ -254,125 +260,149 @@ $S_3$ 群的乘法表为：
     $g_5$ & 5 & 3 & 4 & 1 & 2 & 0
   \end{tabular}
 \end{center}
-我们取
+我们取 $G(i,j)=g_i g_j$，则可知
 \begin{equation}
-  G(i,j) = g_i g_j,
+  G(1,2) = g_1 g_2 = g_3 \eqcolon4 3, \quad
+  G(2,1) = g_2 g_1 = g_4 \eqcolon4 4
 \end{equation}
-则可知 $G(1,2)=g_1 g_2=g_3\eqcolon3$，$G(2,1)=g_2 g_1=g_4\eqcolon4$ 等。显然此时融合规则关于 $i$、$j$ 不对称。
+等。显然此时融合规则关于 $i$、$j$ 并不对称。
 
-这里我们主要关注简单形式的解。此时式~\eqref{eq:1+1d-simple-form-augmented-constraint-equation} 的系数矩阵大小为 $216\times72$，而其秩为 66，因而存在 6 组解，分别为
+此时，矩阵 $\delta_{G(i,j),k}$ 的大小为 $36\times6$，秩为 6。$\delta_{G(i,j),k}^\trans$ 的零空间则由 30 个向量
+\begin{equation}
+  v^{(p)} = \begin{pmatrix}
+    \tilde{v}^{(p)} \\ \hat{v}^{(p)}
+  \end{pmatrix}, \quad p \in \{0, 1, \dots, 29\}
+\end{equation}
+张成，其中 $\tilde{v}^{(p)}$ 是长度为 6 的向量：
+\begin{equation}
+  \def\V#1{\tilde{v}^{(#1)}}
+  \begin{aligned}
+    \V{1} = \V{8}  = \V{16} = \V{21} = \V{29} &= \bigl( 1, 0, 0, 0, 0, 0 \bigr)^\trans, \\
+    \V{0} = \V{10} = \V{14} = \V{23} = \V{27} &= \bigl( 0, 1, 0, 0, 0, 0 \bigr)^\trans, \\
+    \V{3} = \V{6}  = \V{17} = \V{19} = \V{28} &= \bigl( 0, 0, 1, 0, 0, 0 \bigr)^\trans, \\
+    \V{2} = \V{11} = \V{12} = \V{22} = \V{25} &= \bigl( 0, 0, 0, 1, 0, 0 \bigr)^\trans, \\
+    \V{5} = \V{7}  = \V{15} = \V{18} = \V{26} &= \bigl( 0, 0, 0, 0, 1, 0 \bigr)^\trans, \\
+    \V{4} = \V{9}  = \V{13} = \V{20} = \V{24} &= \bigl( 0, 0, 0, 0, 0, 1 \bigr)^\trans.
+  \end{aligned}
+\end{equation}
+而 $\hat{v}^{(p)}$ 则是长度为 30 的向量：
+\begin{equation}
+  \hat{v}^{(p)}_q = \delta_{pq}, \quad p,q \in \{0, 1, \dots, 29\}.
+\end{equation}
+因此，$S_3$ 群中一般形式的解可以表示为这些 $v^{(p)}$ 的线性组合，再加上式~\eqref{eq:1+1d-specific-solution} 中的特解部分 $A^{(\mu)}_{(ij),(0j')}=(\sigma_\mu)_{G(i,j),j'}$。
+
+\begingroup
+\setlength{\arraycolsep}{4pt}
+对于简单形式的解，此时式~\eqref{eq:1+1d-simple-form-augmented-constraint} 中的系数矩阵大小为 $216\times72$，而秩为 66，因而存在 6 组 $A=\tilde{A}_L\otimes\mathbb{I}$ 形式的解，分别为：
 \begin{align}
-  B^{(0)} &= \sigma^0, \notag \\
-  B^{(1)} &= \sigma^1 + \sigma^2 + \sigma^3 + \sigma^4 + \sigma^5, \notag \\
-  B^{(2)} &= \sigma^2 + \sigma^3 + \sigma^4 + \sigma^{19} - \sigma^{23}, \notag \\
-  B^{(3)} &= \frac13 \, \bigl[
-        (\sigma^2 + \sigma^3 + \sigma^4 + \sigma^{16} + \sigma^{28})
-      - \omega \, (\sigma^{15} + \sigma^{26})
-      + \omega^2  (\sigma^{14} + \sigma^{27})
-    \bigr], \notag \\
-  B^{(4)} &= \frac{1}{2\sqrt{3}} \Bigl(
-        \ii \sigma^3
-      + \frac{2}{\sqrt{3}} \ee^{\frac{\ii\pi}{3}} \sigma^8
-      + \ee^{-\frac{5 \ii\pi}{6}} \sigma^9
-      - \frac{1}{\sqrt{3}} \sigma^{10}
-      + \ee^{-\frac{\ii\pi}{6}} \sigma^{11}
-      - \ii \sigma^{13}
-      + \ii \sigma^{16} \notag \\
-    &\quad {}
-      + \frac{1}{\sqrt{3}} \sigma^{20}
-      - \frac{1}{\sqrt{3}} \sigma^{22}
-      + \ee^{-\frac{\ii\pi}{6}} \sigma^{26}
-      + \ee^{\frac{5 \ii\pi}{6}} \sigma^{29}
-      - \ii \sigma^{31}
-      + \frac{1}{\sqrt{3}} \ee^{\frac{2\ii\pi}{3}} \sigma^{32}
-      + \ee^{\frac{5 \ii\pi}{6}} \sigma^{33}
-      + \frac{2}{\sqrt{3}} \sigma^{34}
-    \Bigr), \notag \\
-  B^{(5)} &= \frac12 \Bigl(
-        2 \ee^{\frac{\ii\pi}{3}} \sigma^2
-      + \ee^{\frac{\ii\pi}{3}} \sigma^3
-      + 2 \ee^{\frac{\ii\pi}{3}} \sigma^4
-      + 2 \ee^{\frac{\ii\pi}{3}} \sigma^7
-      - 3 \sigma^9 \notag \\
-    &\quad {}
-      + \sqrt{3} \ee^{-\frac{\ii\pi}{6}} \sigma^{10}
-      + \ee^{-\frac{\ii}{3}} \sigma^{11}
-      + \ee^{-\frac{2\ii\pi}{3}} \sigma^{13}
-      + 2 \ee^{-\frac{\ii}{3}} \sigma^{15}
-      + 3 \ee^{\frac{\ii\pi}{3}} \sigma^{16}
-      - 2 \sigma^{17} \notag \\
-    &\quad {}
-      + \sqrt{3} \ee^{-\frac{\ii\pi}{6}} \sigma^{20}
-      + \sqrt{3} \ee^{\frac{5\ii\pi}{6}} \sigma^{22}
-      + 2 \ee^{\frac{\ii\pi}{3}} \sigma^{25}
-      + 3 \ee^{-\frac{\ii}{3}} \sigma^{26}
-      - 2 \sigma^{27} \notag \\
-    &\quad {}
-      + \ee^{\frac{2\ii\pi}{3}} \sigma^{29}
-      + \ee^{-\frac{2\ii\pi}{3}} \sigma^{31}
-      - i \sqrt{3} \sigma^{32}
-      + 3 \ee^{\frac{2\ii\pi}{3}} \sigma^{33}
-      + 2 \sigma^{35}
-    \Bigr).
-\end{align}
-对应的算符 $\tilde{A}$ 则为：
-\begin{align}
-  \tilde{A}^{(0)} &= \begin{pmatrix}
+  \tilde{A}^{(0)}_L = B^{(0)}_L &= \begin{pmatrix}
     1 & 0 & 0 & 0 & 0 & 0 \\
     0 & 1 & 0 & 0 & 0 & 0 \\
     0 & 0 & 1 & 0 & 0 & 0 \\
     0 & 0 & 0 & 1 & 0 & 0 \\
     0 & 0 & 0 & 0 & 1 & 0 \\
-    0 & 0 & 0 & 0 & 0 & 1
-  \end{pmatrix}
-  = \sigma^0 = B^{(0)}, \notag \displaybreak[0] \\
-  \tilde{A}^{(1)} &= \begin{pmatrix}
+    0 & 0 & 0 & 0 & 0 & 1 \\
+  \end{pmatrix}, &
+  \tilde{A}^{(1)}_L = B^{(1)}_L &= \begin{pmatrix}
     0 & 1 & 1 & 1 & 1 & 1 \\
     1 & 0 & 1 & 1 & 1 & 1 \\
     1 & 1 & 0 & 1 & 1 & 1 \\
     1 & 1 & 1 & 0 & 1 & 1 \\
     1 & 1 & 1 & 1 & 0 & 1 \\
-    1 & 1 & 1 & 1 & 1 & 0
-  \end{pmatrix}
-  = \sigma^1 + \sigma^2 + \sigma^3 + \sigma^4 + \sigma^5 = B^{(1)}, \notag \displaybreak[0] \\
-  \tilde{A}^{(2)} &= \begin{pmatrix}
+    1 & 1 & 1 & 1 & 1 & 0 \\
+  \end{pmatrix}, \notag \displaybreak[0] \\
+  %
+  \tilde{A}^{(2)}_L = B^{(2)}_L &= \begin{pmatrix}
     0 & -1 & 1 & 1 & 1 & 1 \\
     -1 & 0 & 1 & 1 & 1 & 1 \\
     1 & 1 & 0 & -1 & 1 & 1 \\
     1 & 1 & -1 & 0 & 1 & 1 \\
     1 & 1 & 1 & 1 & 0 & -1 \\
-    1 & 1 & 1 & 1 & -1 & 0
-  \end{pmatrix}
-  = \sigma^2 + \sigma^3 + \sigma^4 + \sigma^{19} - \sigma^{23} = B^{(2)}, \notag \displaybreak[0] \\
-  \tilde{A}^{(3)} &= \begin{pmatrix}
+    1 & 1 & 1 & 1 & -1 & 0 \\
+  \end{pmatrix}, &
+  \tilde{A}^{(3)}_L = B^{(3)}_L &= \begin{pmatrix}
     0 & 0 & 1 & 0 & 0 & 0 \\
     0 & 0 & 0 & 0 & 1 & 0 \\
     1 & 0 & 0 & 0 & 0 & 0 \\
     0 & 0 & 0 & 0 & 0 & 1 \\
     0 & 1 & 0 & 0 & 0 & 0 \\
-    0 & 0 & 0 & 1 & 0 & 0
-  \end{pmatrix}
-  = B^{(3)}, \notag \displaybreak[0] \\
-  \tilde{A}^{(4)} &= \begin{pmatrix}
-    0 & 0 & \frac{\ii}{2} & \ee^{\frac{i \pi }{6}} & \ee^{\frac{5\ii\pi}{6}} & -\ii \\[1ex]
-    0 & 0 & \ee^{\frac{5\ii\pi}{6}} & -\ii & \frac{\ii}{2} & \ee^{\frac{i \pi }{6}} \\[1ex]
-    \frac{\ii}{2} & \ee^{\frac{i \pi }{6}} & 0 & 0 & -\ii & \ee^{\frac{5\ii\pi}{6}} \\[1ex]
-    \ee^{\frac{5\ii\pi}{6}} & -\ii & 0 & 0 & \ee^{\frac{i \pi }{6}} & \frac{\ii}{2} \\[1ex]
-    \ee^{\frac{i \pi }{6}} & \frac{\ii}{2} & -\ii & \ee^{\frac{5\ii\pi}{6}} & 0 & 0 \\[1ex]
-    -\ii & \ee^{\frac{5\ii\pi}{6}} & \ee^{\frac{i \pi }{6}} & \frac{\ii}{2} & 0 & 0
-  \end{pmatrix}
-  = B^{(4)}, \notag \displaybreak[0] \\
-  \tilde{A}^{(5)} &= \begin{pmatrix}
-    0 & 0 & \frac{5}{2} \ee^{\frac{\ii\pi}{3}} & 2-\ii\sqrt{3} & \frac{\ii(\sqrt{3}+5\ii)}{2} & \ee^{\frac{\ii\pi}{3}} \\[1ex]
-    0 & 0 & \frac{\ii(\sqrt{3}+5\ii)}{2} & \ee^{\frac{\ii\pi}{3}} & \frac{5}{2} \ee^{\frac{\ii\pi}{3}} & 2-\ii\sqrt{3} \\[1ex]
-    \frac{5}{2} \ee^{\frac{\ii\pi}{3}} & 2-\ii\sqrt{3} & 0 & 0 & \ee^{\frac{\ii\pi}{3}} & \frac{\ii(\sqrt{3}+5\ii)}{2} \\[1ex]
-    \frac{\ii(\sqrt{3}+5\ii)}{2} & \ee^{\frac{\ii\pi}{3}} & 0 & 0 & 2-\ii\sqrt{3} & \frac{5}{2} \ee^{\frac{\ii\pi}{3}} \\[1ex]
-    2-\ii\sqrt{3} & \frac{5}{2} \ee^{\frac{\ii\pi}{3}} & \ee^{\frac{\ii\pi}{3}} & \frac{\ii(\sqrt{3}+5\ii)}{2} & 0 & 0 \\[1ex]
-    \ee^{\frac{\ii\pi}{3}} & \frac{\ii(\sqrt{3}+5\ii)}{2} & 2-\ii\sqrt{3} & \frac{5}{2} \ee^{\frac{\ii\pi}{3}} & 0 & 0
-  \end{pmatrix}
-  = B^{(5)}.
+    0 & 0 & 0 & 1 & 0 & 0 \\
+  \end{pmatrix}, \notag \displaybreak[0] \\
+  %
+  \tilde{A}^{(4)}_L = B^{(4)}_L &= \begin{pmatrix}
+    0 & 0 & \frac12 & -\omega & \omega & -1 \\
+    0 & 0 & \omega & -1 & \frac12 & -\omega \\
+    \frac12 & -\omega & 0 & 0 & -1 & \omega \\
+    \omega & -1 & 0 & 0 & -\omega & \frac12 \\
+    -\omega & \frac12 & -1 & \omega & 0 & 0 \\
+    -1 & \omega & -\omega & \frac12 & 0 & 0 \\
+  \end{pmatrix}, &
+  \tilde{A}^{(5)}_L = B^{(5)}_L &= \begin{pmatrix}
+    0 & 0 & \frac52 & \eta & \bar{\eta} & 1 \\
+    0 & 0 & \bar{\eta} & 1 & \frac52 & \eta \\
+    \frac52 & \eta & 0 & 0 & 1 & \bar{\eta} \\
+    \bar{\eta} & 1 & 0 & 0 & \eta & \frac52 \\
+    \eta & \frac52 & 1 & \bar{\eta} & 0 & 0 \\
+    1 & \bar{\eta} & \eta & \frac52 & 0 & 0 \\
+  \end{pmatrix},
 \end{align}
-可以发现这些 $\tilde{A}^{(i)}$ 和对应的 $B^{(i)}$ 恰好相等，因此算符推移的操作可以不断进行。并且与 $\mathbb{Z}_n$ 的情况相同，简单形式解的个数（即广义自由场的个数）也和群的阶数一致。
+其中 $\omega=\ee^{\pi\ii/3}$，$\eta=-\frac{1+3\sqrt3\ii}{2}$，$\bar{\eta}$ 则为复共轭。由于 $S_3$ 群是非 Abelian 的，我们还需要额外求解 $A=\mathbb{I}\otimes\tilde{A}_R$，其结果为：
+\begin{align}
+  \tilde{A}^{(0)}_R = B^{(0)}_R &= \begin{pmatrix}
+    1 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 1 \\
+  \end{pmatrix}, &
+  \tilde{A}^{(1)}_R = B^{(1)}_R &= \begin{pmatrix}
+    0 & 1 & 1 & 1 & 1 & 1 \\
+    1 & 0 & 1 & 1 & 1 & 1 \\
+    1 & 1 & 0 & 1 & 1 & 1 \\
+    1 & 1 & 1 & 0 & 1 & 1 \\
+    1 & 1 & 1 & 1 & 0 & 1 \\
+    1 & 1 & 1 & 1 & 1 & 0 \\
+  \end{pmatrix}, \notag \displaybreak[0] \\
+  %
+  \tilde{A}^{(2)}_R = B^{(2)}_R &= \begin{pmatrix}
+    0 & 1 & 1 & 1 & 1 & -2 \\
+    1 & 0 & 1 & 1 & -2 & 1 \\
+    1 & 1 & 0 & -2 & 1 & 1 \\
+    1 & 1 & -2 & 0 & 1 & 1 \\
+    1 & -2 & 1 & 1 & 0 & 1 \\
+    -2 & 1 & 1 & 1 & 1 & 0 \\
+  \end{pmatrix}, &
+  \tilde{A}^{(3)}_R = B^{(3)}_R &= \begin{pmatrix}
+    0 & 0 & 0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 1 \\
+    0 & 0 & 0 & 0 & 1 & 0 \\
+    1 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 & 0 & 0 \\
+  \end{pmatrix}, \notag \displaybreak[0] \\
+  %
+  \tilde{A}^{(4)}_R = B^{(4)}_R &= \begin{pmatrix}
+    0 & -\omega & \omega^2 & 1 & 1 & -\frac12 \\
+    -\omega & 0 & 1 & \omega^2 & -\frac12 & 1 \\
+    \omega^2 & 1 & 0 & -\frac12 & -\omega & 1 \\
+    1 & \omega^2 & -\frac12 & 0 & 1 & -\omega \\
+    1 & -\frac12 & -\omega & 1 & 0 & \omega^2 \\
+    -\frac12 & 1 & 1 & -\omega & \omega^2 & 0 \\
+  \end{pmatrix}, &
+  \tilde{A}^{(5)}_R = B^{(5)}_R &= \begin{pmatrix}
+    0 & \xi & \bar{\xi} & 1 & 1 & 1 \\
+    \xi & 0 & 1 & \bar{\xi} & 1 & 1 \\
+    \bar{\xi} & 1 & 0 & 1 & \xi & 1 \\
+    1 & \bar{\xi} & 1 & 0 & 1 & \xi \\
+    1 & 1 & \xi & 1 & 0 & \bar{\xi} \\
+    1 & 1 & 1 & \xi & \bar{\xi} & 0 \\
+  \end{pmatrix},
+\end{align}
+其中 $\xi=-2+\sqrt3\ii$。由于这些 $\tilde{A}^{(i)}$ 和对应的 $B^{(i)}$ 恰好相等，因此算符推移的操作也可以不断进行。
+\endgroup
+
+与 $\Z_n$ 的情况相同，我们可以发现 $S_3$ 群中简单形式解的个数（即对应广义自由场的个数）也和与群元的数量（即群的阶数）相等。还可以注意到，每种形式的解中恰好有两组是相同的，即 $\tilde{A}^{(0)}_L=\tilde{A}^{(0)}_R$、$\tilde{A}^{(1)}_L=\tilde{A}^{(1)}_R$。这反映了 $S_3$ 中的 $\Z_2$ 子群结构。
 
 \section{2+1 维中的算符推移}
 
@@ -395,7 +425,7 @@ $S_3$ 群的乘法表为：
 \end{equation}
 其中的 $\Phi$ 根据融合规则决定。
 
-类似于 1+1 维中的式~\eqref{eq:1+1d-constraint-equation}，2+1 维中的约束方程为：
+类似于 1+1 维中的式~\eqref{eq:1+1d-constraint}，2+1 维中的约束方程为：
 \begin{equation}
     A_{(ijk), (i'j'k')} M_{(i'j'k'), I}
   = M_{(ijk), I'} B_{I', I}
@@ -418,32 +448,32 @@ $S_3$ 群的乘法表为：
 \end{equation}
 该式有解的条件为
 \begin{equation}
-  \rank\bigl[(M_{(i'jk), I})^{\mathrm{T}} | (M_{(ijk), I'} \sigma^\mu_{I', I})^{\mathrm{T}}_s \bigr] = \rank\bigl( M_{(i'jk), I} \bigr).
+  \rank\bigl[(M_{(i'jk), I})^\trans | (M_{(ijk), I'} \sigma^\mu_{I', I})^\trans_s \bigr] = \rank\bigl( M_{(i'jk), I} \bigr).
 \end{equation}
 我们同样也可以将其改写为
 \begin{equation}
   \tilde{A}_{ii'} M_{(i'jk), I} - \sum_\mu \alpha_\mu M_{(ijk), I'} \sigma^\mu_{I', I} = 0
-  \label{eq:2+1d-simple-form-augmented-constraint-equation}
+  \label{eq:2+1d-simple-form-augmented-constraint}
 \end{equation}
 的形式，从而具体解出算符 $B$。而令指标 $i$、$j$ 或 $i$、$k$ 相同则可以获得其他简单算符的解。
 
-\subsection{例子：\texorpdfstring{$\mathbb{Z}_n$}{ℤₙ} 模型}
+\subsection{例子：\texorpdfstring{$\Z_n$}{ℤₙ} 模型}
 
-我们仍然先由 $\mathbb{Z}_n$ 群所给出的融合范畴开始。四面体边上的自由度同样选取为 $\mathbb{Z}_n$ 中的群元，而面指标由式~\eqref{eq:Z_n-fusion-rules} 决定。以 $\mathbb{Z}_2$ 为例，其允许的融合规则（相当于三角形）为
+我们仍然先由 $\Z_n$ 群所给出的融合范畴开始。四面体边上的自由度同样选取为 $\Z_n$ 中的群元，而面指标由式~\eqref{eq:zn-fusion-rules} 决定。以 $\Z_2$ 为例，其允许的融合规则（相当于三角形）为
 \begin{equation}
   \Fusion000 \to 0, \quad
   \Fusion011 \to 1, \quad
   \Fusion101 \to 2, \quad
   \Fusion110 \to 3.
-  \label{eq:Z_2-fusion-trees}
+  \label{eq:z2-fusion-trees}
 \end{equation}
 此时面指标 $I$ 可以取值 0、1、2 或 3。一般地，我们有
 \begin{equation}
   I = nb + c = n [(i+j)\bmod n] + [(i+k)\bmod n],
 \end{equation}
-其中 $i$、$j$ 为三角形的两条边［例如式~\eqref{eq:Z_2-fusion-trees} 中上面的两个指标］。可以发现 $N=n^2$，即面指标 $I$ 的取值范围为 $\{0,1,\dots,n^2-1\}$。
+其中 $i$、$j$ 为三角形的两条边［例如式~\eqref{eq:z2-fusion-trees} 中上面的两个指标］。可以发现 $N=n^2$，即面指标 $I$ 的取值范围为 $\{0,1,\dots,n^2-1\}$。
 
-考虑平凡的 $\mathbb{Z}_n$ Dijkgraaf--Witten 模型，其中所有合法的（即被融合规则所允许）$F$ 符号都等于 1。这时可有
+考虑平凡的 $\Z_n$ Dijkgraaf--Witten 模型，其中所有合法的（即被融合规则所允许）$F$ 符号都等于 1。这时可有
 \begin{equation}
   M_{(ijk), I} = \delta_{n[(i+j)\bmod n]+[(i+k)\bmod n], I}.
 \end{equation}
@@ -463,7 +493,7 @@ $S_3$ 群的乘法表为：
   A^{(\mu)}_{(ijk), (0j'k')} = \sigma^\mu_{n[(i+j)\bmod n]+[(i+k)\bmod n], nj'+k'}.
 \end{equation}
 
-对于简单算符的求解，我们考察式~\eqref{eq:2+1d-simple-form-augmented-constraint-equation}，其系数矩阵大小为 $n^5\times(n^4+n^2)$，而秩为 $n^4+n^2-n$，因此其零空间可由 $n$ 个向量张成。由于对一般的 $n$ 求解式~\eqref{eq:2+1d-simple-form-augmented-constraint-equation} 是困难的，下面我们仅给出 $n=2$ 和 3 的情况。$n=2$ 时，解为
+对于简单算符的求解，我们考察式~\eqref{eq:2+1d-simple-form-augmented-constraint}，其系数矩阵大小为 $n^5\times(n^4+n^2)$，而秩为 $n^4+n^2-n$，因此其零空间可由 $n$ 个向量张成。由于对一般的 $n$ 求解式~\eqref{eq:2+1d-simple-form-augmented-constraint} 是困难的，下面我们仅给出 $n=2$ 和 3 的情况。$n=2$ 时，解为
 \begin{align}
   B^{(0)} &= \sigma^0
     \implies \tilde{A}^{(0)} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = \sigma^0, \notag \\
@@ -480,7 +510,7 @@ $S_3$ 群的乘法表为：
       2\sigma^5 + \sigma^8 + \ee^{-\frac{\ii\pi}{3}} \bigl( \sigma^{32} - \sigma^{35} \bigr)
     - \ee^{-\frac{2\ii\pi}{3}} \bigl( \sigma^{59} - \sigma^{62} \bigr)
   \Bigr] \notag \\
-    &\quad \implies \tilde{A}^{(1)} = \begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix} = \sigma^2.
+    &\quad \implies \tilde{A}^{(2)} = \begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix} = \sigma^2.
 \end{align}
 % TODO: general n
 % \begin{equation}
@@ -525,7 +555,7 @@ $S_3$ 群的乘法表为：
     \phi & \phi^{3/2} & \phi^{3/2} & \phi^{3/2} & -\phi
   \end{pmatrix}.
 \end{equation}
-可以知道 $\rank(\bm{M})=5$，而 $\bm{M}^{\mathrm{T}}$ 的零空间则由向量组
+可以知道 $\rank(\bm{M})=5$，而 $\bm{M}^\trans$ 的零空间则由向量组
 \begin{equation}
   \{ v^{(p)} \} = \Biggl\{ \,
     \begin{pmatrix} \phi^{1/2} \\ 1 \\ 1 \\ -\phi^{-1} \\ \phi \\ 0 \\ 0 \\ -\phi^{1/2} \end{pmatrix}, \,
@@ -535,7 +565,7 @@ $S_3$ 群的乘法表为：
 \end{equation}
 张成。特解部分以及完整的解系可以通过数值方法给出，具体结果此处从略。
 
-对于简单形式的解，我们仍然利用式~\eqref{eq:2+1d-simple-form-augmented-constraint-equation}，此时系数矩阵大小为 $32\times20$，而秩为 19，这也就意味着仅存在一组解，但它同时是平凡的（即 $A=B=\mathbb{I}$）。因此在 Fibonacci 模型中并不存在广义自由场。
+对于简单形式的解，我们仍然利用式~\eqref{eq:2+1d-simple-form-augmented-constraint}，此时系数矩阵大小为 $32\times20$，而秩为 19，这也就意味着仅存在一组解，但它同时是平凡的（即 $A=B=\mathbb{I}$）。因此在 Fibonacci 模型中并不存在广义自由场。
 
 \section{本章小结}
 

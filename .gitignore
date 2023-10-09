@@ -9,7 +9,9 @@
 *.lof
 *.log
 *.lot
+*.nav
 *.out
+*.snm
 *.synctex.gz
 *.synctex\(busy\)
 *.thm

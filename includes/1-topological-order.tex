@@ -17,7 +17,7 @@
 \begin{equation}
   H = -\sum_{\ev{ij}} \sigma^z_i\sigma^z_j - J \sum_i \sigma^x_i
 \end{equation}
-为例。当外场 $J=0$ 时，存在 $\mathbb{Z}_2$ 对称性 $\ket{\uparrow}\leftrightarrow\ket{\downarrow}$，因此其基态也有一个二重简并。但一旦增加一个小的微扰 （例如令 $J\neq0$），这种简并就会被破坏。拓扑序中的基态简并则与之不同，它在局域微扰下仍保持不变。注意到微扰往往会破坏系统的对称性，因此这种拓扑简并实际上是与对称性无关的，因而也就超越了传统 Landau 理论的范围。此外，拓扑序中的基态简并度通常还会和系统的拓扑有关，这在传统理论中也是无法解释的。
+为例。当外场 $J=0$ 时，存在 $\Z_2$ 对称性 $\ket{\uparrow}\leftrightarrow\ket{\downarrow}$，因此其基态也有一个二重简并。但一旦增加一个小的微扰 （例如令 $J\neq0$），这种简并就会被破坏。拓扑序中的基态简并则与之不同，它在局域微扰下仍保持不变。注意到微扰往往会破坏系统的对称性，因此这种拓扑简并实际上是与对称性无关的，因而也就超越了传统 Landau 理论的范围。此外，拓扑序中的基态简并度通常还会和系统的拓扑有关，这在传统理论中也是无法解释的。
 
 仅通过基态简并度并不足以完整地描述拓扑序，我们还需要引入一些新的拓扑不变量，即非 Abel 几何相位。设系统基态的简并度为 $g$，则非 Abel 几何相位定义为一个 $g\times g$ 的幺正矩阵 $U$，它可由系统底流形上的自同构给出。$U$ 会将 Hamilton 量 $H$ 变为 $H'$，并使这种变换的路径构成闭合环路，因而能够产生一个相位。以环面 (torus) 拓扑为例，底流形上有两种自同构，一种是剪切 (shear) 变形，另一种是挤压 (squeezing) 变形，它们分别对应了 $S$ 矩阵和 $T$ 矩阵。这两个矩阵也是\emph{模变换} (modular transformation) 的投影表示，从中还可以得到拓扑序的更多性质，例如分数统计等。
 
@@ -219,13 +219,13 @@
 \begin{equation}
   x = \bigoplus_{i\in I} n_i x_i, \quad \forall x \in \mathcal{C},
 \end{equation}
-其中 $x_i\in\mathcal{C}$ 是简单对象，$I$ 是由非零简单对象（等价类）构成的指标集，而系数 $n_i\in\mathbb{Z}_+$，则称 $\mathcal{C}$ 是一个\emph{半单范畴} (semi-simple category)。简单对象的例子包括向量空间范畴 $\mathbf{Vec}$ 中的一维空间（直线），以及 Abel 群范畴 $\mathbf{Ab}$ 中的单群。
+其中 $x_i\in\mathcal{C}$ 是简单对象，$I$ 是由非零简单对象（等价类）构成的指标集，而系数 $n_i\in\Z_+$，则称 $\mathcal{C}$ 是一个\emph{半单范畴} (semi-simple category)。简单对象的例子包括向量空间范畴 $\mathbf{Vec}$ 中的一维空间（直线），以及 Abel 群范畴 $\mathbf{Ab}$ 中的单群。
 
 若张量范畴 $\mathcal{C}$ 同时也是半单的，并且简单对象只有有限多个，那么这样的 $\mathcal{C}$ 称为\emph{融合范畴} (fusion category)\cite{bakalov2001lectures,kitaev2006anyons,bruillard2016rank,aasen2020topological,lou2021dummy}。此时简单对象的张量积可以写成：
 \begin{equation}
   x_a \otimes x_b = \bigoplus_c N_{ab}^c x_c,
 \end{equation}
-其中 $N_{ab}^c\in\mathbb{Z}_+$，称为\emph{融合系数} (fusion coefficient)。在物理学中一般可以假设 $N_{ab}^c$ 只能取到 0 或 1，即是否允许该融合发生。所有允许的融合称为\emph{融合规则} (fusion rule)。融合范畴还要与张量范畴的结构相容，这意味着
+其中 $N_{ab}^c\in\Z_+$，称为\emph{融合系数} (fusion coefficient)。在物理学中一般可以假设 $N_{ab}^c$ 只能取到 0 或 1，即是否允许该融合发生。所有允许的融合称为\emph{融合规则} (fusion rule)。融合范畴还要与张量范畴的结构相容，这意味着
 \begin{equation}
   N_{\1 a}^b = N_{a\1}^b = \delta_{ab}, \quad
   \sum_x N_{ax}^z N_{bc}^x = \sum_y N_{ab}^y N_{yc}^z.
@@ -391,7 +391,7 @@ $\mathcal{A}_{k+1}$ 范畴\cite{coquereaux2007racah,gils2013anyonic,aasen2020top
 融合规则由下式确定：
 \begin{equation}
   N_{ab}^c = \begin{cases}
-    1, & a+b\geqslant c, \, b+c\geqslant a, \, c+a\geqslant b, \, a+b+c\leqslant k, \, a+b+c\in\mathbb{Z}; \\
+    1, & a+b\geqslant c, \, b+c\geqslant a, \, c+a\geqslant b, \, a+b+c\leqslant k, \, a+b+c\in\Z; \\
     0, & \text{otherwise}.
   \end{cases}
 \end{equation}
@@ -533,7 +533,7 @@ $k=1$、2、3 时对应的融合规则列在了表~\ref{tab:a-k+1-fusion-rules} 
 
 \section{Toric code 模型}
 
-拓扑序的一个基本例子是基于 $\mathbb{Z}_2$ 规范理论的 toric code 模型\cite{kitaev2003fault,kong2022invitation}。尽管与范畴论没有直接关联，但 toric code 模型仍然揭示了拓扑序中的一些重要性质，而其主要研究思路也可以进一步推广。
+拓扑序的一个基本例子是基于 $\Z_2$ 规范理论的 toric code 模型\cite{kitaev2003fault,kong2022invitation}。尽管与范畴论没有直接关联，但 toric code 模型仍然揭示了拓扑序中的一些重要性质，而其主要研究思路也可以进一步推广。
 
 简单起见，我们主要考虑定义在二维正方形网格 (square lattice) 上的 toric code 模型，在每条边上都存在一个自旋 $1/2$ 的自由度。其 Hamilton 量定义为
 \begin{equation}
@@ -606,7 +606,7 @@ $e$ 和 $m$ 分别绕对方一圈（例如使用 $\sigma^z$ 组成的 $e$ 闭弦
 \end{equation}
 
 % TODO: quantum double
-可以发现，这里的融合规则与 \ref{subsec:fusion-category-examples} 小节中 toric code 范畴中的融合规则是完全相同的。实际上，toric code 模型是基于 $\mathbb{Z}_2$ 群的 quantum double 模型，其进一步推广则可以得到基于张量融合范畴的弦网模型。
+可以发现，这里的融合规则与 \ref{subsec:fusion-category-examples} 小节中 toric code 范畴中的融合规则是完全相同的。实际上，toric code 模型是基于 $\Z_2$ 群的 quantum double 模型，其进一步推广则可以得到基于张量融合范畴的弦网模型。
 
 \section{弦网模型}
 
@@ -720,7 +720,7 @@ $F^{ijm}_{kln}$ 是 $F$ 符号的另一种记法，它与 $[F^{ijk}_l]_{mn}$ 的
 
 \section{本章小结}
 
-本章主要介绍了拓扑序以及描述它的数学框架——张量范畴。张量范畴中的简单对象对应了拓扑序中的任意子，任意子的融合、编织可以用范畴论的语言来表述，而融合系数、$F$ 符号以及 $S$、$T$ 矩阵则可以定量刻画这些性质。张量范畴中的各种结构总结在了表~\ref{tab:tensor-category-ingredients} 中。我们还给出了 Fibonacci、Ising 和 $\mathcal{A}_{k+1}$ 等几个融合范畴例子，并简要说明了模张量范畴与共形场论的联系。作为拓扑序中两种重要的格点模型，我们介绍了 toric code 模型和弦网模型。Toric code 模型基于 $\mathbb{Z}_2$ 群，而弦网模型则基于张量融合范畴。它们的 Hamilton 量具有类似的结构，都可以视为一些互相对易的投影算符之和。由此可以计算得到基态简并度和拓扑纠缠熵，并且可以通过构建弦算符的方式来研究准粒子（任意子）激发的统计性质。
+本章主要介绍了拓扑序以及描述它的数学框架——张量范畴。张量范畴中的简单对象对应了拓扑序中的任意子，任意子的融合、编织可以用范畴论的语言来表述，而融合系数、$F$ 符号以及 $S$、$T$ 矩阵则可以定量刻画这些性质。张量范畴中的各种结构总结在了表~\ref{tab:tensor-category-ingredients} 中。我们还给出了 Fibonacci、Ising 和 $\mathcal{A}_{k+1}$ 等几个融合范畴例子，并简要说明了模张量范畴与共形场论的联系。作为拓扑序中两种重要的格点模型，我们介绍了 toric code 模型和弦网模型。Toric code 模型基于 $\Z_2$ 群，而弦网模型则基于张量融合范畴。它们的 Hamilton 量具有类似的结构，都可以视为一些互相对易的投影算符之和。由此可以计算得到基态简并度和拓扑纠缠熵，并且可以通过构建弦算符的方式来研究准粒子（任意子）激发的统计性质。
 
 \begin{table}[htb]
   \centering

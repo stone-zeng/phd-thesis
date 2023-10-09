@@ -522,22 +522,24 @@ $F$ 符号为
   \caption[1+1 维 Dijkgraaf--Witten 模型的三角剖分]{1+1 维 Dijkgraaf--Witten 模型的三角剖分。(a) Dijkgraaf--Witten 模型中，三角形对应了 $\alpha_2(g_1, g_2)$，而其定向则由群乘法决定。(b) 圆盘上最简单的三角剖分及对应 $\bra{\Omega}$ 的张量网络表示。图片来源：\parencite{chen2022exact}。}
 \end{figure}
 
-这些三角形满足结合条件：
+如图~\ref{fig:associativity-condition} 所示，这些三角形满足结合条件：
 \begin{equation}
   \alpha(g_1, g_2) \, \alpha(g_1 g_2, g_3) = \alpha(g_1, g_2 g_3) \, \alpha(g_2, g_3).
   \label{eq:associativity-condition}
 \end{equation}
-据此可将边界 $S^1$ 上的 $2N$ 条边变为 $N$ 条边。于是我们就得到了树状结构的算符 $U_N(G,\alpha)$，它联系起了长度为 $2N$ 和 $N$ 的两条边界。我们取
+据此可将边界 $S^1$ 上的 $2N$ 条边变为 $N$ 条边。于是我们就得到了图~\ref{fig:rg-1+1d} 中树状结构的算符 $U_N(G,\alpha)$，它联系起了长度为 $2N$ 和 $N$ 的两条边界。我们取
 \begin{equation}
   \exp(z\mathcal{H}) \to U(G,\alpha) \coloneq \lim_{N\to\infty} U_N(G,\alpha).
 \end{equation}
-根据式~\eqref{eq:rg-operator}，$U(G,\alpha)$ 的本征态 $\bra{\Omega}$ 即给出了标度不变的配分函数 $Z(\Omega,G)$，并且具有全局对称性 $G$（图~\ref{fig:rg-1+1d}）。
+根据式~\eqref{eq:rg-operator}，$U(G,\alpha)$ 的本征态 $\bra{\Omega}$ 即给出了标度不变的配分函数 $Z(\Omega,G)$，并且具有全局对称性 $G$。
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=0.6\textwidth]{images/holographic/rg-1+1d.png}
-  \caption[结合条件与树状结构的张量网络]{重复利用式~\eqref{eq:associativity-condition} 中的结合条件（图片下半部分），圆盘的三角剖分可以被改写为一个树状结构的张量网络。图片来源：\parencite{chen2022exact}。}
-  \label{fig:rg-1+1d}
+  \subcaptionbox{\label{fig:associativity-condition}}{%
+    \tikzinput{associativity-condition}} \\
+  \subcaptionbox{\label{fig:rg-1+1d}}{%
+    \tikzinput{rg-1+1d}}
+  \caption[结合条件与树状结构的张量网络]{重复利用式~\eqref{eq:associativity-condition} 中的结合条件 (a)，圆盘的三角剖分可以被改写为一个树状结构的张量网络 (b)，即重整化算符 $U_N(G,\alpha)$。图片来源：\parencite{chen2022exact,zeng2023bulk}。}
 \end{figure}
 
 简单起见，我们只考虑 $H^2$ 中的平凡元素，即 $\alpha(g_1, g_2)=1$。此时，$U(G,1)$ 的本征态 $\bra{\Omega}$ 可以写成 MPS 的形式，
@@ -690,7 +692,7 @@ $F$ 符号为
   \label{fig:rg-3+1d}
 \end{figure}
 
-考虑 3+1 维 toric code 模型（对应于 3+1 维 $\mathbb{Z}_2$ Dijkgraaf--Witten 模型）\cite{hamma2005string,zhao2022string}，其边界态可以取为
+考虑 3+1 维 toric code 模型（对应于 3+1 维 $\Z_2$ Dijkgraaf--Witten 模型）\cite{hamma2005string,zhao2022string}，其边界态可以取为
 \begin{equation}
   \bra{\Omega} = \sum_{\{a\}} \Omega_{\{a\}} \bra{\{a\}} = \bigotimes_e \bra{w_e},
 \end{equation}
