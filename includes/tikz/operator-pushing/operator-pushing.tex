@@ -1,0 +1,29 @@
+\begin{tikzpicture}
+  \def\a{0.75}
+  \def\b{0.75}
+  \def\PathI{
+    (0,0) -- (0,-3*\b)
+    (-7*\a,7*\b) -- (0,0) -- (7*\a,7*\b)
+    (-4*\a,4*\b) -- (-\a,7*\b)
+    ( 4*\a,4*\b) -- ( \a,7*\b)
+    (-6*\a,6*\b) -- (-5*\a,7*\b)
+    ( 6*\a,6*\b) -- ( 5*\a,7*\b)
+    (-2*\a,6*\b) -- (-3*\a,7*\b)
+    ( 2*\a,6*\b) -- ( 3*\a,7*\b)
+  }
+  \begin{scope}
+    \draw [very thick, MaterialRed] \PathI;
+    \draw (0,7*\b) node [above=1.2ex, anchor=base] {$\mathcal{O}(\mathbb{V}^K)$}
+          (0,-1) node [left] {$\mathcal{O}(\mathbb{V}^H)$}
+          (0,-4) node {(a)};
+  \end{scope}
+  \begin{scope}[xshift=14em]
+    \draw [thick, MaterialGrey] \PathI;
+    \draw [very thick, MaterialRed] (0,-3*\b) -- (0,0) -- (-4*\a,4*\b) -- (-\a,7*\b);
+    \draw foreach \i in {-7, -3, 1, 7} {(\i*\a,7*\b) node [above=1.2ex, anchor=base] {$\I$}}
+          foreach \i in {-5, 4}        {(\i*\a,7*\b) node [above=1.2ex, anchor=base] {$\cdots$}}
+          (-\a,7*\b) node [above=1.2ex, anchor=base] {$X_i$}
+          (0,-1) node [left] {$\mathcal{O}(\mathbb{V}^H)=X$}
+          (0,-4) node {(b)};
+  \end{scope}
+\end{tikzpicture}

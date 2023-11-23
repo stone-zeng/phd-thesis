@@ -1,0 +1,10 @@
+\begin{tikzpicture}
+  \draw [thick, MaterialGrey, ->-=0.08, ->-=0.42, ->-=0.85]
+    (0,1.6) -- (2,0) -- (5,1.6) -- (2.7,5.2) -- cycle
+    (2.7,5.2) -- (2,0);
+  \draw [thick, MaterialGrey, ->-=0.35, ->-=0.8]
+    (0,1.6) -- (2.7,5.2)
+    (5,1.6) -- (2,0);
+  \foreach \x/\pos in { (0,1.6)/0.55, (2,0)/0.7, (2.7,5.2)/0.8, (5,1.6)/0.75 }
+    \draw [thick, dashed, MaterialGrey, ->-=\pos] \x -- (3.2,3.2);
+\end{tikzpicture}

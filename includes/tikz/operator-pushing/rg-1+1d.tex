@@ -1,0 +1,17 @@
+\begin{tikzpicture}
+  \def\a{1}
+  \def\b{1}
+  \draw [thick, MaterialGrey]
+    (0,0) -- (0,-2*\b)
+    (-3*\a,3*\b) -- (0,0) -- (3*\a,3*\b)
+    (-1.8*\a,1.8*\b) -- (-0.6*\a,3*\b)
+    ( 1.8*\a,1.8*\b) -- ( 0.6*\a,3*\b);
+  \draw [very thick, MaterialGrey, fill=MaterialGrey, fill opacity=0.2]
+    (-3.5*\a,1.5*\b) -- (-1.8*\a,2.6*\b) -- (-0.1*\a,1.5*\b) -- cycle
+    ( 3.5*\a,1.5*\b) -- ( 1.8*\a,2.6*\b) -- ( 0.1*\a,1.5*\b) -- cycle
+    (-1.7*\a,-0.4*\b) -- (0,0.8*\b) -- (1.7*\a,-0.4*\b) -- cycle;
+  \draw ( 6.8*\a,1.5*\b) node {$\left.\vphantom{\rule{0.1em}{5ex}}\right\}L\ \text{layers}$}
+        (-4*\a,2.5*\b) node {$\cdots$}
+        ( 4*\a,2.5*\b) node {$\cdots$}
+        (   0,-2.5*\b) node {$\vdots$};
+\end{tikzpicture}

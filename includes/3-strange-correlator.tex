@@ -270,7 +270,7 @@ $F$ 符号为
 这和围绕一个方块的 Ising 相互作用（4 个自旋）的张量表示［式~\eqref{eq:ising-tensor}］是一致的，只相差一个整体系数：
 \begin{equation}
   A_{ijkl}
-    := A_{\sigma_i \sigma_j \sigma_k \sigma_l}
+    \coloneq A_{\sigma_i \sigma_j \sigma_k \sigma_l}
     = \ee^{\beta(\sigma_i\sigma_j + \sigma_j\sigma_k + \sigma_k\sigma_l + \sigma_l\sigma_i)}.
   \label{eq:ising-tensor}
 \end{equation}
@@ -527,7 +527,7 @@ $F$ 符号为
   \alpha(g_1, g_2) \, \alpha(g_1 g_2, g_3) = \alpha(g_1, g_2 g_3) \, \alpha(g_2, g_3).
   \label{eq:associativity-condition}
 \end{equation}
-据此可将边界 $S^1$ 上的 $2N$ 条边变为 $N$ 条边。于是我们就得到了图~\ref{fig:rg-1+1d} 中树状结构的算符 $U_N(G,\alpha)$，它联系起了长度为 $2N$ 和 $N$ 的两条边界。我们取
+据此可将边界 $S^1$ 上的 $2N$ 条边变为 $N$ 条边。于是我们就得到了图~\ref{fig:rg-1+1d-disk} 中树状结构的算符 $U_N(G,\alpha)$，它联系起了长度为 $2N$ 和 $N$ 的两条边界。我们取
 \begin{equation}
   \exp(z\mathcal{H}) \to U(G,\alpha) \coloneq \lim_{N\to\infty} U_N(G,\alpha).
 \end{equation}
@@ -537,8 +537,8 @@ $F$ 符号为
   \centering
   \subcaptionbox{\label{fig:associativity-condition}}{%
     \tikzinput{associativity-condition}} \\
-  \subcaptionbox{\label{fig:rg-1+1d}}{%
-    \tikzinput{rg-1+1d}}
+  \subcaptionbox{\label{fig:rg-1+1d-disk}}{%
+    \tikzinput{rg-1+1d-disk}}
   \caption[结合条件与树状结构的张量网络]{重复利用式~\eqref{eq:associativity-condition} 中的结合条件 (a)，圆盘的三角剖分可以被改写为一个树状结构的张量网络 (b)，即重整化算符 $U_N(G,\alpha)$。图片来源：\parencite{chen2022exact,zeng2023bulk}。}
 \end{figure}
 

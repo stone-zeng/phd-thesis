@@ -1,0 +1,34 @@
+\begin{tikzpicture}
+  \begin{scope}
+    \draw [thick, MaterialBlue]
+      ( 0,2) -- (0,-2)
+      (-2,0) -- (2, 0);
+    \draw [thick, MaterialGrey]
+      (0,2) -- (2,0) -- (0,-2) -- (-2,0) -- cycle;
+  \end{scope}
+  \begin{scope}[xshift=4em, yshift=0.5em, scale=0.8]
+    \draw [thick, dashed, MaterialBlue]
+      (3.2,3.2) -- (2.7,5.2);
+    \draw [thick, dashed, MaterialRed]
+      (3.2,3.2) -- (  2,0);
+    \draw [thick, dashed, MaterialGrey]
+      (3.2,3.2) -- (  0,1.6)
+      (3.2,3.2) -- (  5,1.6);
+    \draw [thick, MaterialGrey]
+      (0,1.6) -- (2,0) -- (5,1.6);
+    \draw [thick, MaterialBlue]
+      (0,1.6) -- (2.7,5.2) -- (5,1.6)
+      (2.7,5.2) -- (2,0);
+  \end{scope}
+  \begin{scope}[xshift=12em]
+    \draw [thick, MaterialRed]
+      (0,2) -- (0,-2);
+    \draw [thick, MaterialGrey]
+      (0,2) -- (2,0) -- (0,-2) -- (-2,0) -- cycle;
+  \end{scope}
+  \draw [-Stealth] (3,0) -- (9,0);
+  \draw
+    ( 0, 3) node {Boundary}
+    (12, 3) node {Bulk}
+    ( 6,-1) node {RG operator};
+\end{tikzpicture}
