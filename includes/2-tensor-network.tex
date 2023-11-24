@@ -186,7 +186,7 @@ DMRG 的总体思路是，对正则化的 MPS 中每个张量单元 $A^{(i)}$ �
 \begin{align}
      E[A, \tilde{A}, \lambda]
   &= \langle \Psi(A)|H|\Psi(A) \rangle - \lambda \langle \Psi(A)|\Psi(A) \rangle \notag \\
-  &= \vcenter{\hbox{\includegraphics[height=1.7cm]{images/tensor-network/dmrg-energy-functional.pdf}}}.
+  &= \vcenter{\hbox{\includegraphics[height=2cm]{images/tensor-network/dmrg-energy-functional.pdf}}}.
   \label{eq:dmrg-energy-functional}
 \end{align}
 其中 $\lambda$ 是 Lagrange 乘子。能量取极小值的（必要）条件为
@@ -197,11 +197,11 @@ DMRG 的总体思路是，对正则化的 MPS 中每个张量单元 $A^{(i)}$ �
 \end{equation}
 在张量网络中，由于 $\langle\Psi(A)|H|\Psi(A)\rangle$ 和 $\langle\Psi(A)|\Psi(A)\rangle$ 都可以写成关于 $\tilde{A}^{s_i}_{\alpha_i\alpha_{i+1}}$ 的一次多项式（即其他张量与它的缩并），因此偏导数相当于在整个张量网络中“挖去” $\tilde{A}$ 的结果：
 \begin{equation}
-  \vcenter{\hbox{\includegraphics[height=1.9cm]{images/tensor-network/dmrg-energy-equation.pdf}}}.
+  \vcenter{\hbox{\includegraphics[height=2.2cm]{images/tensor-network/dmrg-energy-equation.pdf}}}.
 \end{equation}
 由于 MPS 已被正则化（$R$、$L$ 的特征向量均为单位向量），上式中的第二项可以被大大简化：
 \begin{equation}
-  \vcenter{\hbox{\includegraphics[height=1.9cm]{images/tensor-network/dmrg-normalized-energy-equation.pdf}}}.
+  \vcenter{\hbox{\includegraphics[height=2.2cm]{images/tensor-network/dmrg-normalized-energy-equation.pdf}}}.
   \label{eq:dmrg-normalized-energy-equation}
 \end{equation}
 此时，我们可以看到上式是一个关于 $A^{s'_i}_{\alpha'_i\alpha'_{i+1}}$（圆圈部分）的特征值方程：
@@ -376,12 +376,12 @@ DMRG 的总体思路是，对正则化的 MPS 中每个张量单元 $A^{(i)}$ �
 \begin{equation}
   \bigl| A^{(n)} \bigr|_{\mathrm{F}} = \left( \sum_{i,j,k,l} A^{(n)}_{ijkl} \right)^{1/2} = 1,
 \end{equation}
-并记录每步所得的范数。最终的配分函数就相当于不动点张量 $A^{(N)}$ 与这些范数的乘积。
+并记录每步所得的范数。最终的配分函数就相当于不动点张量 $A^{(N)}$ 与这些范数的乘积。如图~\ref{fig:trg-ising} 所示，我们利用 TRG 算法计算了二维 Ising 模型的配分函数、能量及热容。这一方法实现简单、计算快捷，但可以看到在临界点处其结果与精确值仍有一定差异。
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=\textwidth]{images/tensor-network/trg-ising.png}
-  \caption[利用 TRG 算法计算得到的二维 Ising 模型的各物理量]{利用 TRG 算法计算得到的二维 Ising 模型的配分函数、能量及热容。可以发现在临界点处 TRG 的计算结果与精确值（用虚线标记）有一定差异。}
+  \includegraphics[width=\textwidth]{images/tensor-network/trg-ising.pdf}
+  \caption[利用 TRG 算法计算得到的二维 Ising 模型的各物理量]{利用 TRG 算法计算得到的二维 Ising 模型的配分函数、能量及热容。横坐标为温度，纵坐标为各物理量在单位格点上的取值，不同颜色的曲线代表不同的系统尺寸（$2^N\times2^N$，其中 $N$ 为 TRG 步数）。计算中选取连接维数 $\chi=16$。可以发现在临界点处 TRG 的计算结果与精确值（用虚线标记）仍有一定差异。}
   \label{fig:trg-ising}
 \end{figure}
 
@@ -406,7 +406,7 @@ TRG 算法对于临界的格点模型效果并不好。这主要是由于临界�
   \label{fig:tnr}
 \end{figure}
 
-除了 TNR 之外，还有其他一些工作试图改进原始的 TRG 算法，如引入过滤操作以消除短程纠缠影响的\emph{张量纠缠过滤重整化} (tensor entanglement-filtering renormalization, TEFR) 算法\cite{gu2009tensor1}、基于高阶奇异值分解的\emph{高阶 TRG} (higher order TRG, HOTRG) 算法\cite{xie2012coarse}以及通过将小张量组合成环路并加以优化的\emph{环路 TNR} (loop TNR) 算法\cite{yang2017loop}等。这些方法相比 TRG 和 TNR 在精度与计算效率上各有优劣，需要根据具体问题加以权衡。
+除了 TNR 之外，还有其他一些工作试图改进原始的 TRG 算法，如利用张量乘积态作为试探波函数的\emph{张量纠缠重整化群} (tensor-entanglement renormalization group, TERG) 算法\cite{gu2008tensor}、引入过滤操作以消除短程纠缠影响的\emph{张量纠缠过滤重整化} (tensor entanglement-filtering renormalization, TEFR) 算法\cite{gu2009tensor1}、基于高阶奇异值分解的\emph{高阶 TRG} (higher order TRG, HOTRG) 算法\cite{xie2012coarse}以及通过将小张量组合成环路并加以优化的\emph{环路 TNR} (loop TNR) 算法\cite{yang2017loop}等。这些方法相比 TRG 和 TNR 在精度、计算效率与适用范围上各有优劣，需要根据具体问题加以权衡。
 
 \section{具体实现}
 
