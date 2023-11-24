@@ -1,6 +1,6 @@
 \appendix
 
-\chapter{图表}
+\chapter{图表与公式}
 
 \subcaptionsetup[figure]{skip=0pt}
 
@@ -93,3 +93,283 @@
     \label{tab:fib-spectrum}
   \end{threeparttable}
 \end{sidewaystable}
+
+\cleardoublepage
+
+在 \ref{subsec:operator-pushing-fib} 小节中，2+1 维 Fibonacci 模型的通解由式~\eqref{eq:2+1d-fib-null-space} 中向量 $v^{(p)}$ 的线性组合与特解部分 $A^{(\mu)}$ 共同组成，且分别对应不同的 $B=\sigma_\mu$。这些 $A^{(\mu)}$ 是 $8\times8$ 的矩阵，它们的最后 3 列均为零，即
+\begin{equation}
+  A^{(\mu)} = \begin{pmatrix}
+    \tilde{A}^{(\mu)} & \mathbf{0} & \mathbf{0} & \mathbf{0}
+  \end{pmatrix}.
+  \label{eq:2+1d-fib-solution-1}
+\end{equation}
+这里 $8\times5$ 的矩阵 $\tilde{A}^{(\mu)}$ 由下式给出，其中 $\phi=(1+\sqrt5)/2$，$\omega=\ee^{\ii\pi/5}$：
+\begingroup
+\small
+\allowdisplaybreaks
+\begin{align}
+  \tilde{A}^{(0)} &= \begin{pmatrix}
+    1 & 0 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 0 & 1 \\
+    0 & 0 & 1 & 1 & -1 \\
+    0 & 1 & 0 & 1 & -1 \\
+    \phi & \sqrt{\phi} & \sqrt{\phi} & -\frac{1}{\sqrt{\phi}} & \frac{\phi+1}{\sqrt{\phi}} \\
+  \end{pmatrix}, &
+  \tilde{A}^{(1)} &= \begin{pmatrix}
+    0 & 0 & 0 & 0 & \frac{1}{\phi} \\
+    0 & 0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & \frac{1}{\sqrt{\phi}} & -\frac{1}{\sqrt{\phi}} \\
+    \phi^{3/2} & 1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 & 0 \\
+    \phi^{3/2} & 0 & 0 & \frac{1}{\sqrt{\phi}} & -\frac{1}{\sqrt{\phi}} \\
+    \phi^{3/2} & 0 & 1 & 0 & 0 \\
+    -\phi & \sqrt{\phi} & \sqrt{\phi} & 1 & 0 \\
+  \end{pmatrix}, \notag \\[2ex]
+  %
+  \tilde{A}^{(2)} &= \begin{pmatrix}
+    0 & \frac{1}{\phi} & 0 & 0 & 0 \\
+    0 & 0 & 0 & \frac{1}{\sqrt{\phi}} & -\frac{1}{\sqrt{\phi}} \\
+    \phi & 0 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 0 & \sqrt{\phi} \\
+    0 & 0 & 1 & 0 & 0 \\
+    \phi & 0 & 0 & 0 & \sqrt{\phi} \\
+    0 & 0 & 0 & \frac{1}{\sqrt{\phi}} & \frac{\phi-1}{\sqrt{\phi}} \\
+    \phi^{3/2} & 1 & \sqrt{\phi} & 1 & -2 \\
+  \end{pmatrix}, &
+  \tilde{A}^{(3)} &= \begin{pmatrix}
+    0 & 0 & \frac{1}{\phi} & 0 & 0 \\
+    \phi & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 1 \\
+    0 & \sqrt{\phi} & 0 & \frac{1}{\sqrt{\phi}} & -\frac{1}{\sqrt{\phi}} \\
+    0 & 0 & 0 & \frac{1}{\sqrt{\phi}} & -\frac{1}{\sqrt{\phi}} \\
+    0 & \sqrt{\phi} & 0 & 0 & 1 \\
+    \phi & \sqrt{\phi} & 0 & 0 & 0 \\
+    \phi^{3/2} & -1 & 1 & 1 & \sqrt{\phi}-1 \\
+  \end{pmatrix}, \notag \\[2ex]
+  %
+  \tilde{A}^{(4)} &= \begin{pmatrix}
+    0 & 0 & 0 & \frac{1}{\phi^{3/2}} & -\frac{1}{\phi^{3/2}} \\
+    0 & 0 & 0 & 0 & 1 \\
+    0 & 1 & 0 & 0 & 0 \\
+    \phi & 0 & \sqrt{\phi} & 0 & 0 \\
+    \phi & 0 & 0 & 0 & 0 \\
+    0 & 1 & \sqrt{\phi} & 0 & 0 \\
+    0 & 0 & \sqrt{\phi} & 0 & 1 \\
+    \phi^{3/2} & \sqrt{\phi} & -1 & \frac{1}{\sqrt{\phi}} & \frac{\phi-1}{\sqrt{\phi}} \\
+  \end{pmatrix}, &
+  \tilde{A}^{(5)} &= \begin{pmatrix}
+    1 & 0 & 0 & 0 & 0 \\
+    0 & \omega^4 & 0 & 0 & 0 \\
+    0 & 0 & -\omega & 0 & 0 \\
+    0 & 0 & 0 & -\omega^3 & \omega^3+\omega^2 \\
+    0 & 0 & 0 & 0 & \omega^2 \\
+    0 & 0 & -\omega & -\omega^3 & \omega^3 \\
+    0 & \omega^4 & 0 & -\omega^3 & \omega^3 \\
+    \phi & \omega^4 \sqrt{\phi} & -\omega\sqrt{\phi} & \frac{\omega^3}{\sqrt{\phi}} & \frac{\omega^2 \phi-\omega^3}{\sqrt{\phi}} \\
+  \end{pmatrix}, \notag \\[2ex]
+  %
+  \tilde{A}^{(6)} &= \begin{pmatrix}
+    0 & 0 & 0 & 0 & \frac{\omega^2}{\phi} \\
+    0 & 0 & -\omega & 0 & 0 \\
+    0 & 0 & 0 & -\frac{\omega^3}{\sqrt{\phi}} & \frac{\omega^3}{\sqrt{\phi}} \\
+    \phi^{3/2} & \omega^4 & 0 & 0 & 0 \\
+    0 & \omega^4 & 0 & 0 & 0 \\
+    \phi^{3/2} & 0 & 0 & -\frac{\omega^3}{\sqrt{\phi}} & \frac{\omega^3}{\sqrt{\phi}} \\
+    \phi^{3/2} & 0 & -\omega & 0 & 0 \\
+    -\phi & \omega^4 \sqrt{\phi} & -\omega\sqrt{\phi} & -\omega^3 & \omega^3+\omega^2 \\
+  \end{pmatrix}, &
+  \tilde{A}^{(7)} &= \begin{pmatrix}
+    0 & \frac{\omega^4}{\phi} & 0 & 0 & 0 \\
+    0 & 0 & 0 & -\frac{\omega^3}{\sqrt{\phi}} & \frac{\omega^3}{\sqrt{\phi}} \\
+    \phi & 0 & 0 & 0 & 0 \\
+    0 & 0 & -\omega & 0 & \omega^2 \sqrt{\phi} \\
+    0 & 0 & -\omega & 0 & 0 \\
+    \phi & 0 & 0 & 0 & \omega^2 \sqrt{\phi} \\
+    0 & 0 & 0 & -\frac{\omega^3}{\sqrt{\phi}} & \frac{\omega^3+\omega^2 \phi}{\sqrt{\phi}} \\
+    \phi^{3/2} & \omega^4 & -\omega\sqrt{\phi} & -\omega^3 & \omega^3-\omega^2 \\
+  \end{pmatrix}, \notag \\[2ex]
+  %
+  \tilde{A}^{(8)} &= \begin{pmatrix}
+    0 & 0 & -\frac{\omega}{\phi} & 0 & 0 \\
+    \phi & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & \omega^2 \\
+    0 & \omega^4 \sqrt{\phi} & 0 & -\frac{\omega^3}{\sqrt{\phi}} & \frac{\omega^3}{\sqrt{\phi}} \\
+    0 & 0 & 0 & -\frac{\omega^3}{\sqrt{\phi}} & \frac{\omega^3}{\sqrt{\phi}} \\
+    0 & \omega^4 \sqrt{\phi} & 0 & 0 & \omega^2 \\
+    \phi & \omega^4 \sqrt{\phi} & 0 & 0 & 0 \\
+    \phi^{3/2} & -\omega^4 & -\omega & -\omega^3 & \omega^3+\omega^2 \sqrt{\phi} \\
+  \end{pmatrix}, &
+  \tilde{A}^{(9)} &= \begin{pmatrix}
+    0 & 0 & 0 & -\frac{\omega^3}{\phi^{3/2}} & \frac{\omega^3}{\phi^{3/2}} \\
+    0 & 0 & 0 & 0 & \omega^2 \\
+    0 & \omega^4 & 0 & 0 & 0 \\
+    \phi & 0 & -\omega\sqrt{\phi} & 0 & 0 \\
+    \phi & 0 & 0 & 0 & 0 \\
+    0 & \omega^4 & -\omega\sqrt{\phi} & 0 & 0 \\
+    0 & 0 & -\omega\sqrt{\phi} & 0 & \omega^2 \\
+    \phi^{3/2} & \omega^4 \sqrt{\phi} & \omega & -\frac{\omega^3}{\sqrt{\phi}} & \frac{\omega^3+\omega^2 \phi}{\sqrt{\phi}} \\
+  \end{pmatrix}, \notag \\[2ex]
+  %
+  \tilde{A}^{(10)} &= \begin{pmatrix}
+    1 & 0 & 0 & 0 & 0 \\
+    0 & -\omega^3 & 0 & 0 & 0 \\
+    0 & 0 & \omega^2 & 0 & 0 \\
+    0 & 0 & 0 & -\omega & \omega^4+\omega \\
+    0 & 0 & 0 & 0 & \omega^4 \\
+    0 & 0 & \omega^2 & -\omega & \omega \\
+    0 & -\omega^3 & 0 & -\omega & \omega \\
+    \phi & -\omega^3\sqrt{\phi} & \omega^2 \sqrt{\phi} & \frac{\omega}{\sqrt{\phi}} & \frac{\omega^4 \phi-\omega}{\sqrt{\phi}} \\
+  \end{pmatrix}, &
+  \tilde{A}^{(11)} &= \begin{pmatrix}
+    0 & 0 & 0 & 0 & \frac{\omega^4}{\phi} \\
+    0 & 0 & \omega^2 & 0 & 0 \\
+    0 & 0 & 0 & -\frac{\omega}{\sqrt{\phi}} & \frac{\omega}{\sqrt{\phi}} \\
+    \phi^{3/2} & -\omega^3 & 0 & 0 & 0 \\
+    0 & -\omega^3 & 0 & 0 & 0 \\
+    \phi^{3/2} & 0 & 0 & -\frac{\omega}{\sqrt{\phi}} & \frac{\omega}{\sqrt{\phi}} \\
+    \phi^{3/2} & 0 & \omega^2 & 0 & 0 \\
+    -\phi & -\omega^3\sqrt{\phi} & \omega^2 \sqrt{\phi} & -\omega & \omega^4+\omega \\
+  \end{pmatrix}, \notag \\[2ex]
+  %
+  \tilde{A}^{(12)} &= \begin{pmatrix}
+    0 & -\frac{\omega^3}{\phi} & 0 & 0 & 0 \\
+    0 & 0 & 0 & -\frac{\omega}{\sqrt{\phi}} & \frac{\omega}{\sqrt{\phi}} \\
+    \phi & 0 & 0 & 0 & 0 \\
+    0 & 0 & \omega^2 & 0 & \omega^4 \sqrt{\phi} \\
+    0 & 0 & \omega^2 & 0 & 0 \\
+    \phi & 0 & 0 & 0 & \omega^4 \sqrt{\phi} \\
+    0 & 0 & 0 & -\frac{\omega}{\sqrt{\phi}} & \frac{\omega+\omega^4 \phi}{\sqrt{\phi}} \\
+    \phi^{3/2} & -\omega^3 & \omega^2 \sqrt{\phi} & -\omega & \omega-\omega^4 \\
+  \end{pmatrix}, &
+  \tilde{A}^{(13)} &= \begin{pmatrix}
+    0 & 0 & \frac{\omega^2}{\phi} & 0 & 0 \\
+    \phi & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & \omega^4 \\
+    0 & -\omega^3\sqrt{\phi} & 0 & -\frac{\omega}{\sqrt{\phi}} & \frac{\omega}{\sqrt{\phi}} \\
+    0 & 0 & 0 & -\frac{\omega}{\sqrt{\phi}} & \frac{\omega}{\sqrt{\phi}} \\
+    0 & -\omega^3\sqrt{\phi} & 0 & 0 & \omega^4 \\
+    \phi & -\omega^3\sqrt{\phi} & 0 & 0 & 0 \\
+    \phi^{3/2} & \omega^3 & \omega^2 & -\omega & \omega+\omega^4 \sqrt{\phi} \\
+  \end{pmatrix}, \notag \\[2ex]
+  %
+  \tilde{A}^{(14)} &= \begin{pmatrix}
+    0 & 0 & 0 & -\frac{\omega}{\phi^{3/2}} & \frac{\omega}{\phi^{3/2}} \\
+    0 & 0 & 0 & 0 & \omega^4 \\
+    0 & -\omega^3 & 0 & 0 & 0 \\
+    \phi & 0 & \omega^2 \sqrt{\phi} & 0 & 0 \\
+    \phi & 0 & 0 & 0 & 0 \\
+    0 & -\omega^3 & \omega^2 \sqrt{\phi} & 0 & 0 \\
+    0 & 0 & \omega^2 \sqrt{\phi} & 0 & \omega^4 \\
+    \phi^{3/2} & -\omega^3\sqrt{\phi} & -\omega^2 & -\frac{\omega}{\sqrt{\phi}} & \frac{\omega+\omega^4 \phi}{\sqrt{\phi}} \\
+  \end{pmatrix}, &
+  \tilde{A}^{(15)} &= \begin{pmatrix}
+    1 & 0 & 0 & 0 & 0 \\
+    0 & \omega^2 & 0 & 0 & 0 \\
+    0 & 0 & -\omega^3 & 0 & 0 \\
+    0 & 0 & 0 & \omega^4 & -\omega^4-\omega \\
+    0 & 0 & 0 & 0 & -\omega \\
+    0 & 0 & -\omega^3 & \omega^4 & -\omega^4 \\
+    0 & \omega^2 & 0 & \omega^4 & -\omega^4 \\
+    \phi & \omega^2 \sqrt{\phi} & -\omega^3\sqrt{\phi} & -\frac{\omega^4}{\sqrt{\phi}} & \frac{\omega^4-\omega \phi}{\sqrt{\phi}} \\
+  \end{pmatrix}, \notag \\[2ex]
+  %
+  \tilde{A}^{(16)} &= \begin{pmatrix}
+    0 & 0 & 0 & 0 & -\frac{\omega}{\phi} \\
+    0 & 0 & -\omega^3 & 0 & 0 \\
+    0 & 0 & 0 & \frac{\omega^4}{\sqrt{\phi}} & -\frac{\omega^4}{\sqrt{\phi}} \\
+    \phi^{3/2} & \omega^2 & 0 & 0 & 0 \\
+    0 & \omega^2 & 0 & 0 & 0 \\
+    \phi^{3/2} & 0 & 0 & \frac{\omega^4}{\sqrt{\phi}} & -\frac{\omega^4}{\sqrt{\phi}} \\
+    \phi^{3/2} & 0 & -\omega^3 & 0 & 0 \\
+    -\phi & \omega^2 \sqrt{\phi} & -\omega^3\sqrt{\phi} & \omega^4 & -\omega^4-\omega \\
+  \end{pmatrix}, &
+  \tilde{A}^{(17)} &= \begin{pmatrix}
+    0 & \frac{\omega^2}{\phi} & 0 & 0 & 0 \\
+    0 & 0 & 0 & \frac{\omega^4}{\sqrt{\phi}} & -\frac{\omega^4}{\sqrt{\phi}} \\
+    \phi & 0 & 0 & 0 & 0 \\
+    0 & 0 & -\omega^3 & 0 & -\omega\sqrt{\phi} \\
+    0 & 0 & -\omega^3 & 0 & 0 \\
+    \phi & 0 & 0 & 0 & -\omega\sqrt{\phi} \\
+    0 & 0 & 0 & \frac{\omega^4}{\sqrt{\phi}} & \frac{-\omega^4-\omega \phi}{\sqrt{\phi}} \\
+    \phi^{3/2} & \omega^2 & -\omega^3\sqrt{\phi} & \omega^4 & \omega-\omega^4 \\
+  \end{pmatrix}, \notag \\[2ex]
+  %
+  \tilde{A}^{(18)} &= \begin{pmatrix}
+    0 & 0 & -\frac{\omega^3}{\phi} & 0 & 0 \\
+    \phi & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & -\omega \\
+    0 & \omega^2 \sqrt{\phi} & 0 & \frac{\omega^4}{\sqrt{\phi}} & -\frac{\omega^4}{\sqrt{\phi}} \\
+    0 & 0 & 0 & \frac{\omega^4}{\sqrt{\phi}} & -\frac{\omega^4}{\sqrt{\phi}} \\
+    0 & \omega^2 \sqrt{\phi} & 0 & 0 & -\omega \\
+    \phi & \omega^2 \sqrt{\phi} & 0 & 0 & 0 \\
+    \phi^{3/2} & -\omega^2 & -\omega^3 & \omega^4 & -\omega^4-\omega \sqrt{\phi} \\
+  \end{pmatrix}, &
+  \tilde{A}^{(19)} &= \begin{pmatrix}
+    0 & 0 & 0 & \frac{\omega^4}{\phi^{3/2}} & -\frac{\omega^4}{\phi^{3/2}} \\
+    0 & 0 & 0 & 0 & -\omega \\
+    0 & \omega^2 & 0 & 0 & 0 \\
+    \phi & 0 & -\omega^3\sqrt{\phi} & 0 & 0 \\
+    \phi & 0 & 0 & 0 & 0 \\
+    0 & \omega^2 & -\omega^3\sqrt{\phi} & 0 & 0 \\
+    0 & 0 & -\omega^3\sqrt{\phi} & 0 & -\omega \\
+    \phi^{3/2} & \omega^2 \sqrt{\phi} & \omega^3 & \frac{\omega^4}{\sqrt{\phi}} & \frac{-\omega^4-\omega \phi}{\sqrt{\phi}} \\
+  \end{pmatrix}, \notag \\[2ex]
+  %
+  \tilde{A}^{(20)} &= \begin{pmatrix}
+    1 & 0 & 0 & 0 & 0 \\
+    0 & -\omega & 0 & 0 & 0 \\
+    0 & 0 & \omega^4 & 0 & 0 \\
+    0 & 0 & 0 & \omega^2 & -\omega^3-\omega^2 \\
+    0 & 0 & 0 & 0 & -\omega^3 \\
+    0 & 0 & \omega^4 & \omega^2 & -\omega^2 \\
+    0 & -\omega & 0 & \omega^2 & -\omega^2 \\
+    \phi & -\omega\sqrt{\phi} & \omega^4 \sqrt{\phi} & -\frac{\omega^2}{\sqrt{\phi}} & \frac{\omega^2-\omega^3 \phi}{\sqrt{\phi}} \\
+  \end{pmatrix}, &
+  \tilde{A}^{(21)} &= \begin{pmatrix}
+    0 & 0 & 0 & 0 & -\frac{\omega^3}{\phi} \\
+    0 & 0 & \omega^4 & 0 & 0 \\
+    0 & 0 & 0 & \frac{\omega^2}{\sqrt{\phi}} & -\frac{\omega^2}{\sqrt{\phi}} \\
+    \phi^{3/2} & -\omega & 0 & 0 & 0 \\
+    0 & -\omega & 0 & 0 & 0 \\
+    \phi^{3/2} & 0 & 0 & \frac{\omega^2}{\sqrt{\phi}} & -\frac{\omega^2}{\sqrt{\phi}} \\
+    \phi^{3/2} & 0 & \omega^4 & 0 & 0 \\
+    -\phi & -\omega\sqrt{\phi} & \omega^4 \sqrt{\phi} & \omega^2 & -\omega^3-\omega^2 \\
+  \end{pmatrix}, \notag \\[2ex]
+  %
+  \tilde{A}^{(22)} &= \begin{pmatrix}
+    0 & -\frac{\omega}{\phi} & 0 & 0 & 0 \\
+    0 & 0 & 0 & \frac{\omega^2}{\sqrt{\phi}} & -\frac{\omega^2}{\sqrt{\phi}} \\
+    \phi & 0 & 0 & 0 & 0 \\
+    0 & 0 & \omega^4 & 0 & -\omega^3\sqrt{\phi} \\
+    0 & 0 & \omega^4 & 0 & 0 \\
+    \phi & 0 & 0 & 0 & -\omega^3\sqrt{\phi} \\
+    0 & 0 & 0 & \frac{\omega^2}{\sqrt{\phi}} & \frac{-\omega^3\phi-\omega^2}{\sqrt{\phi}} \\
+    \phi^{3/2} & -\omega & \omega^4 \sqrt{\phi} & \omega^2 & \omega^3-\omega^2 \\
+  \end{pmatrix}, &
+  \tilde{A}^{(23)} &= \begin{pmatrix}
+    0 & 0 & \frac{\omega^4}{\phi} & 0 & 0 \\
+    \phi & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & -\omega^3 \\
+    0 & -\omega\sqrt{\phi} & 0 & \frac{\omega^2}{\sqrt{\phi}} & -\frac{\omega^2}{\sqrt{\phi}} \\
+    0 & 0 & 0 & \frac{\omega^2}{\sqrt{\phi}} & -\frac{\omega^2}{\sqrt{\phi}} \\
+    0 & -\omega\sqrt{\phi} & 0 & 0 & -\omega^3 \\
+    \phi & -\omega\sqrt{\phi} & 0 & 0 & 0 \\
+    \phi^{3/2} & \omega & \omega^4 & \omega^2 & -\omega^3\sqrt{\phi} -\omega^2 \\
+  \end{pmatrix}, \notag \\[2ex]
+  %
+  \tilde{A}^{(24)} &= \begin{pmatrix}
+    0 & 0 & 0 & \frac{\omega^2}{\phi^{3/2}} & -\frac{\omega^2}{\phi^{3/2}} \\
+    0 & 0 & 0 & 0 & -\omega^3 \\
+    0 & -\omega & 0 & 0 & 0 \\
+    \phi & 0 & \omega^4 \sqrt{\phi} & 0 & 0 \\
+    \phi & 0 & 0 & 0 & 0 \\
+    0 & -\omega & \omega^4 \sqrt{\phi} & 0 & 0 \\
+    0 & 0 & \omega^4 \sqrt{\phi} & 0 & -\omega^3 \\
+    \phi^{3/2} & -\omega\sqrt{\phi} & -\omega^4 & \frac{\omega^2}{\sqrt{\phi}} & \frac{-\omega^3\phi-\omega^2}{\sqrt{\phi}} \\
+  \end{pmatrix}.
+  \label{eq:2+1d-fib-solution-2}
+\end{align}
+\endgroup

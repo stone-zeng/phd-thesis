@@ -1619,11 +1619,6 @@ FUNCTION {format.eprint}
   's :=
   s empty$ not
     { s ": \eprint{" *
-      url empty$ not
-        { url }
-        { "https://" s "l" change.case$ * ".org/abs/" * eprint * }
-      if$
-      * "}{" *
       eprint * "}" *
     }
     { eprint }
@@ -2403,34 +2398,12 @@ FUNCTION {begin.bib}
   if$
   "\def\doi#1{\href{https://doi.org/#1}{\nolinkurl{#1}}}"
   write$ newline$
-  "\let\eprint\href"
+  "\def\eprint#1{\href{https://arxiv.org/abs/#1}{#1}}"
   write$ newline$
   "\urlstyle{same}"
   write$ newline$
   "\small"
   write$ newline$
-  % "\providecommand{\natexlab}[1]{#1}"
-  % write$ newline$
-  % "\providecommand{\url}[1]{#1}"
-  % write$ newline$
-  % "\expandafter\ifx\csname urlstyle\endcsname\relax\else"
-  % write$ newline$
-  % "  \urlstyle{same}\fi"
-  % write$ newline$
-  % "\expandafter\ifx\csname href\endcsname\relax"
-  % write$ newline$
-  % "  \DeclareUrlCommand\doi{\urlstyle{rm}}"
-  % write$ newline$
-  % "  \def\eprint#1#2{#2}"
-  % write$ newline$
-  % "\else"
-  % write$ newline$
-  % "  \def\doi#1{\href{https://doi.org/#1}{\nolinkurl{#1}}}"
-  % write$ newline$
-  % "  \let\eprint\href"
-  % write$ newline$
-  % "\fi"
-  % write$ newline$
 }
 
 FUNCTION {end.bib}

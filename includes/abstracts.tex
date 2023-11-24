@@ -6,7 +6,7 @@
 
 在全息张量网络中，我们常需要对不同层中的算符进行操作。因而本文关注的另一个问题即为张量网络中 Virasoro 和 Kac--Moody 算符的构造。我们以 Ising 模型和 dimer 模型为例，给出了构造与验证 Virasoro 和 Kac--Moody 算符的主要步骤，并说明即使是在尺寸较小的系统中，也可以得到比较好的精度。而对于有限尺寸效应较大的系统（如 Fibonacci 模型），我们还引入了拓扑投影算符，从而准确地识别出能动量张量，并构造对应的 Virasoro 算符。
 
-最后，本文还研究了在全息张量网络中实现算符推移的方案。我们利用体算符来重建边界算符，并且得到了边界算符为广义自由场的条件。对 1+1 维和 2+1 维中的几类不同模型，我们给出了具体的计算结果。
+最后，本文还研究了在全息张量网络中实现算符推移的方案。我们利用体算符来重建边界算符，并且得到了边界算符为广义自由场的条件。在 Abelian Dijkgraaf--Witten 模型（如 1+1 维的 $Z_n$ 和 $S_3$ 群以及 2+1 维的 $Z_n$ 群）中，我们发现广义自由场的数目与群的阶数一致；而在非 Abelian 的融合范畴（如 Fibonacci 模型）中，计算结果则表明其中并不存在非平凡的广义自由场。
 
 \end{abstract}
 
@@ -18,6 +18,6 @@ In this thesis, we generalize the concept of strange correlators to arbitrary di
 
 One important aspect of holographic tensor networks is the manipulation of operators in different layers. Hence, another focus of this thesis is the implementation of Virasoro and Kac--Moody operators in generic tensor networks. Taking the Ising model and dimer model as examples, we provide the main steps for constructing and verifying Virasoro and Kac-Moody operators, which work to high accuracy even with a relatively small system size. For systems suffering from far more finite size effects (e.g.\ Fibonacci model), we introduce the topological projectors to identify the energy-momentum tensors and build the corresponding Virasoro generators.
 
-Finally, we investigate the operator pushing in holographic tensor networks. We reconstruct boundary operators using bulk operators and obtain the conditions for boundary operators to be generalized free fields. Numerical results are presented for some explicit examples in 1+1 and 2+1 dimensions.
+Finally, we investigate the operator pushing in holographic tensor networks. We reconstruct boundary operators using bulk operators and obtain the conditions for boundary operators to be generalized free fields. In Abelian Dijkgraaf--Witten models (e.g.\ $Z_n$ and $S_3$ group in 1+1d as well as $Z_n$ group in 2+1d), we find that the number of generalized free fields scale with the rank of the group; while in non-Abelian fusion categories (e.g.\ Fibonacci model), we show that the RG tensor network admits no generalized free field.
 
 \end{abstract*}
