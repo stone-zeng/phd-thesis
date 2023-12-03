@@ -219,13 +219,13 @@
 \begin{equation}
   x = \bigoplus_{i\in I} n_i x_i, \quad \forall x \in \mathcal{C},
 \end{equation}
-其中 $x_i\in\mathcal{C}$ 是简单对象，$I$ 是由非零简单对象（等价类）构成的指标集，而系数 $n_i\in\Z_+$，则称 $\mathcal{C}$ 是一个\emph{半单范畴} (semi-simple category)。简单对象的例子包括向量空间范畴 $\mathbf{Vec}$ 中的一维空间（直线），以及 Abel 群范畴 $\mathbf{Ab}$ 中的单群。
+其中 $x_i\in\mathcal{C}$ 是简单对象，$I$ 是由非零简单对象（等价类）构成的指标集，而系数 $n_i\in\Z^*$，则称 $\mathcal{C}$ 是一个\emph{半单范畴} (semi-simple category)。简单对象的例子包括向量空间范畴 $\mathbf{Vec}$ 中的一维空间（直线），以及 Abel 群范畴 $\mathbf{Ab}$ 中的单群。
 
 若张量范畴 $\mathcal{C}$ 同时也是半单的，并且简单对象只有有限多个，那么这样的 $\mathcal{C}$ 称为\emph{融合范畴} (fusion category)\cite{bakalov2001lectures,kitaev2006anyons,bruillard2016rank,aasen2020topological,lou2021dummy}。此时简单对象的张量积可以写成：
 \begin{equation}
-  x_a \otimes x_b = \bigoplus_c N_{ab}^c x_c,
+  a \otimes b = \bigoplus_c N_{ab}^c c,
 \end{equation}
-其中 $N_{ab}^c\in\Z_+$，称为\emph{融合系数} (fusion coefficient)。在物理学中一般可以假设 $N_{ab}^c$ 只能取到 0 或 1，即是否允许该融合发生。所有允许的融合称为\emph{融合规则} (fusion rule)。融合范畴还要与张量范畴的结构相容，这意味着
+其中 $a$、$b$、$c$ 均为简单对象，而 $N_{ab}^c\in\Z^*$ 称为\emph{融合系数} (fusion coefficient)。在物理学中一般假设 $N_{ab}^c$ 只能取到 0 或 1，即是否允许该融合发生。所有允许的融合称为\emph{融合规则} (fusion rule)。融合范畴还要与张量范畴的结构相容，这意味着
 \begin{equation}
   N_{\1 a}^b = N_{a\1}^b = \delta_{ab}, \quad
   \sum_x N_{ax}^z N_{bc}^x = \sum_y N_{ab}^y N_{yc}^z.
