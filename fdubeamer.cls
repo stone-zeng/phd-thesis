@@ -6,7 +6,7 @@
 \RequirePackage[no-math]{fontspec}
 \RequirePackage{gbt7714}
 \RequirePackage{tikz}
-% \RequirePackage{unicode-math}
+\RequirePackage{unicode-math}
 
 \definecolor{FudanBlue}{HTML}{0E419C}
 \definecolor{FudanRed}{HTML}{CC1A1A}
@@ -99,5 +99,7 @@
 ]
 \linespread{1.2}
 \selectfont
+
+\unimathsetup{math-style=ISO, bold-style=ISO}
 
 \endinput

@@ -5,6 +5,10 @@
   x = 1em,
   y = 1em,
   node font = \footnotesize,
+  morphism box/.style = {draw, fill = white, anchor = base},
+  tensor box/.style = {semithick, FudanRed, fill=FudanRed!30},
+  tensor leg/.style = {semithick, MaterialGrey},
+  covered tensor leg/.style = {semithick, dashed, MaterialGrey300},
   ->-/.style = {
     decoration = {
       markings,
@@ -13,8 +17,38 @@
     postaction = {decorate},
   },
 }
+\newcommand{\Tetrahedron}[6]{
+  \begin{tikzpicture}[baseline=1ex]
+    \draw [covered tensor leg, MaterialGrey] (0,0) -- (3.2,0);
+    \draw [tensor leg]
+          (0,0) -- (2,2.5) -- (3.2,0) -- (2,-0.8) -- cycle
+          (2,2.5) -- (2,-0.8);
+    \draw (0.6, 1.7) node {$#1$}
+          (3.2, 1.7) node {$#2$}
+          (0.6,-0.9) node {$#3$}
+          (3  ,-0.9) node {$#4$}
+          (1.1, 0.5) node {$#5$}
+          (2.4, 0.8) node {$#6$};
+  \end{tikzpicture}
+}
+\newcommand{\Triangle}[6]{
+  \begin{tikzpicture}[baseline=-0.5ex]
+    \draw [tensor box]
+          ( 90:1.5) -- (210:1.5) -- (330:1.5) -- cycle;
+    \foreach \x in {90, 210, 330}
+      \draw [tensor leg]
+          (\x-40:1.7) .. controls (\x-20:0.8) and (\x+20:0.8) .. (\x+40:1.7)
+          (\x-60:0.4) -- (\x-60:1.6);
+    \draw ( 30:2) node {$#1$}
+          (150:2) node {$#2$}
+          (270:2) node {$#3$}
+          ( 90:2) node {$#4$}
+          (210:2) node {$#5$}
+          (330:2) node {$#6$};
+  \end{tikzpicture}
+}
 \newcommand{\tikzinput}[1]{\input{includes/tikz/#1.tex}}
-\newcommand{\1}{\mathbf{1}}
+\newcommand{\1}{\mathbb{1}}
 \NewDocumentCommand{\ket}{som}{%
   \IfBooleanTF{#1}{|#3\rangle}{%
     \IfValueTF{#2}{#2|#3#2\rangle}{\left|#3\right\rangle}}}
@@ -42,7 +76,7 @@
   \item Strange correlators and holographic tensor networks
 
     \begin{itemize}
-      \item Tensor network representations of string-net models
+      \item Tensor network representation of string-net model
       \item Strange correlators and MPO symmetries
       \item Construction of holographic tensor networks
       \item Operator pushing
@@ -63,7 +97,7 @@
 
 \begin{frame}{Motivation: AdS/CFT correspondence}
 
-\begin{columns}[T]
+\begin{columns}[c]
 
   \column{0.6\textwidth}
 
@@ -251,6 +285,107 @@
 \end{itemize}
 
 \end{frame}
+
+\begin{frame}{Tensor networks}
+
+\begin{columns}[c]
+
+  \column{0.6\textwidth}
+
+    \begin{itemize}
+      \item Tensor: a multi-dimensional array
+      \item Contraction and decomposition (SVD)
+      \item Why efficient?
+
+        \begin{itemize}
+          \item Only keep the relevant (i.e.\ entanglement) degrees of freedom
+          \item Area-law: $S\sim\partial A$
+        \end{itemize}
+
+      \item Algorithms:
+
+        \begin{itemize}
+          \item MPS/MPO based: DMRG, TEBD, etc.
+
+            \begin{itemize}
+              \item 2d generalization: PEPS/PEPO
+            \end{itemize}
+
+          \item Coarse-graining: TRG, TNR, HOTRG, etc.
+          \item MERA: holographic geometry
+        \end{itemize}
+    \end{itemize}
+
+  \column{0.4\textwidth}
+
+    \centering
+    \tikzinput{tensor-network/tensor-networks}
+
+\end{columns}
+
+\footnotetext{Image credit: \citet{orus2019tensor} (with modification)}
+
+\end{frame}
+
+\section{Strange correlators \& \\ holographic tensor networks}
+
+\begin{frame}{Tensor network representation of string-net model}
+
+\begin{columns}[c]
+
+  \column{0.5\textwidth}
+
+    \begin{itemize}
+      \item Construct ground state: is given by 
+
+        \begin{itemize}
+          \item Apply $B_p$ on vacuum state $\ket{\diameter}$
+          \item Weighted by quantum dimensions
+          \item Use \textit{F}-moves to simplify
+        \end{itemize}
+
+      \item PEPS structure:
+
+        \begin{itemize}
+          \item Virtual indices: summed over \\
+            \mbox{\qquad} (outside two legs: $\alpha,\beta,\gamma$)
+          \item Physical indices: left uncontracted
+            \mbox{\qquad} (inner one leg: $i,j,k$)
+        \end{itemize}
+
+      \item Tetrahedral symmetry: $A_4$ group
+    \end{itemize}
+
+  \column{0.5\textwidth}
+
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/string-net-peps.pdf}
+    \begingroup
+      \scriptsize
+      \setlength{\arraycolsep}{1.5pt}
+      \tikzset{x=1em, y=1em, node font=\tiny}
+      \begin{gather*}
+          \Triangle jki\alpha\beta\gamma
+        = \frac{1}{D} (d_i d_j d_k)^{-\frac14} (d_\alpha d_\beta d_\gamma)^{-\frac13}
+          \Tetrahedron ik\gamma\alpha\beta j \\
+          \bigl[ F^{abc}_d \bigr]_{xy}
+        = \sqrt{d_x d_y} \begin{bmatrix} a & b & x\, \\ c & d & y\, \end{bmatrix}
+        = \frac{1}{\sqrt{d_a d_b d_c d_d}} \, \Tetrahedron xbdyca
+      \end{gather*}
+    \endgroup
+    \vspace*{-4em}
+
+\end{columns}
+
+\footnotetext{Image credit: \citet{buerschaper2009explicit}}
+
+\end{frame}
+
+\begin{frame}{Strange correlators}
+
+\end{frame}
+
+\section{Tensor network representations of \\ Virasoro \& Kac--Moody algebra}
 
 \begin{frame}{References}
   \tiny

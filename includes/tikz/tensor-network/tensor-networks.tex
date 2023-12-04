@@ -1,0 +1,83 @@
+\begin{tikzpicture}[
+  semithick,
+  node font=\tiny,
+  draw=MaterialGrey,
+  vector box/.style={FudanBlue, fill=FudanBlue!30},
+  tensor box/.style={FudanRed, fill=FudanRed!30}
+]
+  \begin{scope}
+    \draw (0,0) -- (4,0);
+    \foreach \x in {0, ..., 4} {
+      \draw (\x,0) -- (\x,-0.75);
+      \draw [tensor box] (\x,0) circle [radius=0.2];
+    }
+    \node at (2,-1.5) {MPS};
+  \end{scope}
+  \begin{scope}[xshift=6em]
+    \draw (0,0) -- (4,0);
+    \foreach \x in {0, ..., 4} {
+      \draw (\x,0.75) -- (\x,-0.75);
+      \draw [tensor box] (\x,0) circle [radius=0.2];
+    }
+    \node at (2,-1.5) {MPO};
+  \end{scope}
+  \begin{scope}[xshift=-0.3em, yshift=-3.5em]
+    \foreach \x in {0, ..., 3}
+      \draw (\x,0) -- ++(1.6,-2);
+    \foreach \y in {0, 1, 2} {
+      \draw (0.8*\y,-\y) -- (3+0.8*\y,-\y);
+      \foreach \x in {0, ..., 3} {
+        \draw (\x+0.8*\y,-\y) -- ++(0,-0.6);
+        \draw [tensor box] (\x+0.8*\y,-\y) circle [radius=0.2];
+      }
+    }
+    \node at (2.3,-3.5) {PEPS};
+  \end{scope}
+  \begin{scope}[xshift=5.7em, yshift=-3.5em]
+    \foreach \x in {0, ..., 3}
+      \draw (\x,0) -- ++(1.6,-2);
+    \foreach \y in {0, 1, 2} {
+      \draw (0.8*\y,-\y) -- (3+0.8*\y,-\y);
+      \foreach \x in {0, ..., 3} {
+        \draw (\x+0.8*\y,-\y+0.6) -- ++(0,-1.2);
+        \draw [tensor box] (\x+0.8*\y,-\y) circle [radius=0.2];
+      }
+    }
+    \node at (2.3,-3.5) {PEPO};
+  \end{scope}
+  \begin{scope}[xshift=1em, yshift=-13.5em]
+    \foreach \x in {0, ..., 7} {
+      \draw (\x,0) -- ++( 0.5,1)
+            (\x,0) -- ++(-0.5,1)
+            (\x,0) -- ++( 0.3,-0.75)
+            (\x,0) -- ++(-0.3,-0.75);
+      \draw [tensor box] (\x,0) circle [radius=0.2];
+    }
+    \foreach \x in {0, ..., 3} {
+      \draw (2*\x+1,2) -- ++( 0.5,-1)
+            (2*\x+1,2) -- ++(-0.5,-1)
+            (2*\x+1,2) -- ++( 1,1)
+            (2*\x+1,2) -- ++(-1,1);
+      \draw [tensor box] (2*\x+1,2) circle [radius=0.2];
+    }
+    \foreach \x in {0, 1} {
+      \draw (4*\x+1,4) -- ++( 1,-1)
+            (4*\x+1,4) -- ++(-1,-1)
+            (4*\x+1,4) -- ++( 2,1)
+            (4*\x+1,4) -- ++(-2,1);
+      \draw [tensor box] (4*\x+1,4) circle [radius=0.2];
+    }
+    \draw (0,3) -- (-1,2) (7,5) -- (9,4);
+    \foreach \x in {0, ..., 6}
+      \draw [vector box] (\x+0.5,1) circle [radius=0.2];
+    \foreach \x in {0, ..., 3}
+      \draw [vector box] (2*\x,3) circle [radius=0.2];
+    \foreach \x in {0, 1}
+      \draw [vector box] (4*\x+3,5) circle [radius=0.2];
+    \foreach \p in {(-0.5,1), (7.5,1), (-1,2), (8,3)}
+      \fill [white] \p circle [radius=0.4];
+    \foreach \p in {(9,4), (-1,5)}
+      \fill [white] \p circle [radius=0.8];
+    \node at (4,-1.5) {MERA};
+  \end{scope}
+\end{tikzpicture}
