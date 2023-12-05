@@ -1,5 +1,10 @@
 \documentclass{fdubeamer}
 
+\definecolor{MaterialGrey}{HTML}{9E9E9E}
+\definecolor{MaterialGrey300}{HTML}{E0E0E0}
+\definecolor{MaterialIndigo}{HTML}{9C27B0} % MaterialPurple
+\definecolor{MaterialTeal}{HTML}{FF5722}   % MaterialDeepOrange
+
 \usetikzlibrary{arrows.meta, calc, decorations.markings}
 \tikzset{
   x = 1em,
@@ -382,6 +387,95 @@
 \end{frame}
 
 \begin{frame}{Strange correlators}
+
+\begin{itemize}
+  \item Original definition: $C(r,r') = \ket{\Omega|\phi(r)\phi(r')|\Psi} / \ket{\Omega|\Psi}$
+
+    \begin{itemize}
+      \item $\ket{\Psi}$: a non-trivial short-range entangled (SPT) state
+      \item $\ket{\Omega}$: a direct product state
+    \end{itemize}
+
+  \item In string-net model:
+
+    \begin{itemize}
+      \item $\ket{\Psi_\text{SN}}$: PEPS wave function for string-net ground state
+      \item $\ket{\Omega}$: some specific product state $\ket{\omega}^{\otimes N}$
+      \item Partition function: $Z=\langle\Omega|\Psi_\text{SN}\rangle=\tikzinput{strange-correlator}$
+
+        \begin{itemize}
+          \item Virtual indices (gray): summed over
+          \item Physical indices (orange): fixed to some certain values (boundary conditions)
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Examples}
+
+\begin{itemize}
+  \item Fibonacci
+
+    \begin{itemize}
+      \item Boundary conditions: $\ket{\omega}=\ket{\tau}$
+      \item Tensor unit:
+        \begingroup
+          \scriptsize
+          \tikzset{x=1em, y=1em, node font=\tiny}
+          $
+              \Triangle \tau\tau\tau\tau\tau\tau
+            = \varphi^{\frac14} \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{\tau\tau} = -\varphi^{-\frac34}, \,
+              \Triangle \tau\tau\tau\1\tau\tau
+            = \varphi^{\frac{7}{12}} \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{\tau\1} = \varphi^{\frac{1}{12}}
+          $
+        \endgroup
+    \end{itemize}
+
+  \item Ising
+
+    \begin{itemize}
+      \item Boundary conditions: $\ket{\omega(\beta)} = \sqrt2 \, \bigl( \cosh\beta\ket{\1} + \sinh\beta\ket{\psi} \bigr)$
+      \item Tensor unit:
+        \begingroup
+          \scriptsize
+          \tikzset{x=1em, y=1em, node font=\tiny}
+          $
+              A_{ijkl} = \tikzinput{ising/octagon} \enspace \text{where} \enspace
+              i, j, k, l = \1 \text{ or } \psi, \enspace
+              \tikzinput{ising/line-sigma} \, = \sigma, \enspace
+              \tikzinput{ising/line-omega} \, = \omega
+          $
+        \endgroup
+      \item Kramers--Wannier duality: shifted by 1/2 unit \textrightarrow{} $\beta_{\text{c}}=\frac12\log(1+\sqrt{2})$
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Application: calculation of central charge}
+
+\begin{itemize}
+  \item Use $A_{ijkl}$ as iMPO unit and perform iTEBD \textrightarrow{} $\{\Gamma,\lambda\}$
+  \item Physical quantities:
+
+    \begin{itemize}
+      \item Correlation length: $\xi = -1 / \log|\lambda_2/\lambda_1|$
+      \item Entanglement entropy: $S_{\!A} = \sum_i \lambda_i^2 \log \lambda_i^2$
+    \end{itemize}
+
+  \item Fit with $S_{\!A} \sim \frac{c}{6} \log \xi$ for different bond dimension $\chi$
+\end{itemize}
+
+\begin{center}
+  \scriptsize
+  \begin{tabular}{cc}
+    \includegraphics[width=0.3\textwidth]{images/fib-central-charge.png} &
+    \includegraphics[width=0.3\textwidth]{images/ising-central-charge.png} \\
+    Fibonacci: $c \simeq 0.792 \pm 0.004$ &
+    Ising:     $c \simeq 0.499 \pm 0.004$
+  \end{tabular}
+\end{center}
 
 \end{frame}
 

@@ -20,7 +20,7 @@
 \setbeamerfont{frametitle}{size=\Large, series=\bfseries}
 \setbeamertemplate{itemize items}{\textbullet}
 \setbeamertemplate{footnote}{%
-  \parindent1em\tiny\color{lightgray}%
+  \parindent1em\tiny\color[HTML]{9E9E9E}%
   \insertfootnotetext\par}
 \renewcommand{\footnoterule}{}
 \renewcommand{\metropolis@frametitlestrut@start}{\rule{0pt}{2.5em}}
