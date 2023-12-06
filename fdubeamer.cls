@@ -19,6 +19,7 @@
 \setbeamerfont{section title}{size=\LARGE, series=\bfseries}
 \setbeamerfont{frametitle}{size=\Large, series=\bfseries}
 \setbeamertemplate{itemize items}{\textbullet}
+\setbeamertemplate{enumerate item}{(\alph{enumi})}
 \setbeamertemplate{footnote}{%
   \parindent1em\tiny\color[HTML]{9E9E9E}%
   \insertfootnotetext\par}
