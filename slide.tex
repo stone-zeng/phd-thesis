@@ -4,6 +4,8 @@
 \definecolor{MaterialGrey300}{HTML}{E0E0E0}
 \definecolor{MaterialIndigo}{HTML}{9C27B0} % MaterialPurple
 \definecolor{MaterialTeal}{HTML}{FF5722}   % MaterialDeepOrange
+\definecolor{MaterialBlue}{HTML}{0E419C}   % FudanBlue
+\definecolor{MaterialRed}{HTML}{CC1A1A}    % FudanRed
 
 \usetikzlibrary{arrows.meta, calc, decorations.markings}
 \tikzset{
@@ -214,18 +216,18 @@
 
     \begin{itemize}
       \item Basis in vector space $\operatorname{Hom}_{\mathcal{C}}(a\otimes b,c)$:
-            {\small \tikzinput{category/fusion-tree-1}}
+            \tikzinput{category/fusion-tree-1}
       \item \textit{F}-move:
-            {\small $\tikzinput{category/f-symbol-1} = \sum_y \, \bigl[ F^{abc}_d \bigr]_{xy} \tikzinput{category/f-symbol-2}$}
+            $\tikzinput{category/f-symbol-1} = \sum_y \, \bigl[ F^{abc}_d \bigr]_{xy} \tikzinput{category/f-symbol-2}$
       \item Constraints: pentagon equations
-      \item Bubble removal:
-            \mbox{\qquad}{\small $\tikzinput{category/loop-removal}$}
+      \item Bubble removal: \\
+            \mbox{\qquad} $\tikzinput{category/loop-removal}$
     \end{itemize}
 
   \column{0.4\textwidth}
 
     \centering
-    {\small \tikzinput{category/f-symbols-pentagon-equation-narrow}}
+    \tikzinput{category/f-symbols-pentagon-equation-narrow}
 
 \end{columns}
 
@@ -368,9 +370,8 @@
 
   \column{0.5\textwidth}
 
-    \centering
-    \includegraphics[width=0.7\textwidth]{images/string-net-peps.pdf}
-    \begingroup
+    \begin{center}
+      \includegraphics[width=0.7\textwidth]{images/string-net-peps.pdf}
       \scriptsize
       \setlength{\arraycolsep}{1.5pt}
       \tikzset{x=1em, y=1em, node font=\tiny}
@@ -382,8 +383,8 @@
         = \sqrt{d_x d_y} \begin{bmatrix} a & b & x\, \\ c & d & y\, \end{bmatrix}
         = \frac{1}{\sqrt{d_a d_b d_c d_d}} \, \Tetrahedron xbdyca
       \end{gather*}
-    \endgroup
-    \vspace*{-4em}
+    \end{center}
+    \vspace*{-2em}
 
 \end{columns}
 
@@ -660,6 +661,66 @@
 \end{columns}
 
 \footnotetext{Image credit: \citet{chen2022exact}}
+
+\end{frame}
+
+\begin{frame}{Generalization: 1+1d}
+
+\begin{itemize}
+  \item Dijkgraaf--Witten model characterized by group $G$
+  \item Triangulation: $\alpha_2(g_1, g_2) \in H^2 \bigl(G, U(1)\bigr), \, g_1 \times g_2 = g_3$
+  \item Associativity condition:
+
+    \begin{itemize}
+      \item $\alpha(g_1, g_2) \, \alpha(g_1 g_2, g_3) = \alpha(g_1, g_2 g_3) \, \alpha(g_2, g_3)$ \quad
+        \begingroup
+          \tikzset{x=0.6em, y=0.6em}
+          \tikzinput{associativity-condition}
+        \endgroup
+      \item Convert the boundary circle with $2N$ edges to $N$ edges
+    \end{itemize}
+\end{itemize}
+
+\begin{center}
+  \scriptsize
+  \tikzset{x=1em, y=1em, node font=\tiny}
+  \tikzinput{rg-1+1d-disk}
+\end{center}
+
+\footnotetext{Image credit: \citet{chen2022exact}}
+
+\end{frame}
+
+\begin{frame}{Generalization: 3+1d}
+
+\begin{itemize}
+  \item 3+1d $\mathbb{Z}_2$ Dijkgraaf--Witten model (toric code) \textrightarrow{} 3d Ising model
+  \item RG procedure:
+
+    \begin{itemize}
+      \item Smallest self-repeating unit: 2\texttimes 2\texttimes 2 cubes
+      \item Eliminate edge centers \textrightarrow{} eliminate face centers \textrightarrow{} eliminate body centers
+    \end{itemize}
+\end{itemize}
+
+\begin{columns}[c]
+
+  \column{0.35\textwidth}
+
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/holographic/3+1d-cube-1.png} \\[1ex]
+    \includegraphics[width=0.7\textwidth]{images/holographic/3+1d-cube-2.png}
+    \vspace{-1em}
+
+  \column{0.65\textwidth}
+
+    \centering
+    \includegraphics[width=0.45\textwidth]{images/holographic/rg-3+1d.png} \quad
+    \includegraphics[width=0.45\textwidth]{images/holographic/rg-3+1d-step-1.png} \\
+    \includegraphics[width=0.45\textwidth]{images/holographic/rg-3+1d-step-2.png} \quad
+    \includegraphics[width=0.45\textwidth]{images/holographic/rg-3+1d-step-3.png}
+
+\end{columns}
 
 \end{frame}
 

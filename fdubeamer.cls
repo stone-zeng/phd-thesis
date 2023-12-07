@@ -90,13 +90,14 @@
     \bookmark[page=\the\c@page,level=4]{#1}\fi}}{}{}
 
 \setsansfont{MonaSans}[
-  Path         = fonts/,
-  Extension    = .otf,
-  UprightFont  = *-Light,
-  BoldFont     = *-SemiBold,
-  ItalicFont   = *-LightItalic,
-  Ligatures    = CommonOff,
-  StylisticSet = 1,
+  Path           = fonts/,
+  Extension      = .otf,
+  UprightFont    = *-Light,
+  BoldFont       = *-SemiBold,
+  ItalicFont     = *-LightItalic,
+  BoldItalicFont = *-SemiBoldItalic,
+  Ligatures      = CommonOff,
+  StylisticSet   = 1,
 ]
 \linespread{1.2}
 \selectfont

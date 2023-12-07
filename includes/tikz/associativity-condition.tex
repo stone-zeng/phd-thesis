@@ -1,11 +1,11 @@
-\begin{tikzpicture}
+\begin{tikzpicture}[baseline=-0.5ex]
   \def\a{1.5}
   \def\b{2}
   \draw [thick, MaterialGrey]
     (\a,0) -- (0,\b) -- (-\a,0) -- (0,-\b) -- cycle
     (-\a,0) -- (\a,0);
-  \draw [thick, MaterialGrey, xshift=4*\a em]
-    (\a,0) -- (0,\b) -- (-\a,0) -- (0,-\b) -- cycle
-    (0,-\b) -- (0,\b);
+  \draw [thick, MaterialGrey]
+    (5*\a,0) -- (4*\a,\b) -- (3*\a,0) -- (4*\a,-\b) -- cycle
+    (4*\a,-\b) -- (4*\a,\b);
   \draw (2*\a,0) node {=};
 \end{tikzpicture}

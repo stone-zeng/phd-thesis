@@ -566,23 +566,23 @@ $F$ 符号为
 \subsection{2+1 维：基于 Turaev--Viro 理论}
 \label{subsec:holographic-tensor-network-2+1d}
 
-2+1 维的情况实际上就对应了奇异关联子的原始定义（\ref{sec:strange-correlator} 节）。我们考虑一个对应于融合范畴 $\mathcal{C}$ 的 Turaev--Viro TQFT。对于球面 $S^2$ 上的基态波函数，它可由一个三维球 $B^3$ 上的路径积分给出，利用三角剖分则可将 $B^3$ 变为四面体的形式。方便起见，我们不妨令剖分得到的截面与图~\ref{fig:dw-triangulation} 中的情形相同，即球面 $S^2$ 被三角形所覆盖，而三角形的每个顶点都有一条边延伸至球心。每条边被赋予了 $\mathcal{C}$ 中的一个对象，而每个四面体则被赋予一个四面体符号的值，它由 $\mathcal{C}$ 中对象的融合关系所定义。这样，我们就获得了基态波函数的张量网络表示（见图~\ref{fig:ground-state-wave-function}，也可参考 \ref{subsec:string-net-ground-state} 小节）。这些四面体符号之间满足的关系在 \ref{subsec:tetrahedral-symmetry} 小节中也已经讨论过了，此处我们重新整理在图~\ref{fig:tetrahedra-symbols} 中。
+2+1 维的情况实际上就对应了奇异关联子的原始定义（\ref{sec:strange-correlator} 节）。我们考虑一个对应于融合范畴 $\mathcal{C}$ 的 Turaev--Viro TQFT。对于球面 $S^2$ 上的基态波函数，它可由一个三维球 $B^3$ 上的路径积分给出，利用三角剖分则可将 $B^3$ 变为四面体的形式。方便起见，我们不妨令剖分得到的截面与图~\ref{fig:dw-triangulation} 中的情形相同，即球面 $S^2$ 被三角形所覆盖，而三角形的每个顶点都有一条边延伸至球心。每条边被赋予了 $\mathcal{C}$ 中的一个对象，而每个四面体则被赋予一个四面体符号的值，它由 $\mathcal{C}$ 中对象的融合关系所定义。这样，我们就获得了基态波函数的张量网络表示（见图~\ref{fig:ground-state-wave-function}，也可参考 \ref{subsec:string-net-ground-state} 小节）。这些四面体符号之间满足的关系在 \ref{subsec:tetrahedral-symmetry} 小节中也已经讨论过了，此处我们重新整理在图~\ref{fig:tetrahedra-relations} 中。
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=0.4\textwidth]{images/holographic/ground-state-wave-function.png}
+  \includegraphics[width=0.3\textwidth]{images/holographic/ground-state-wave-function.png}
   \caption[2+1 维 Turaev--Viro TQFT 中基态波函数的张量网络表示]{2+1 维 Turaev--Viro TQFT 中基态波函数的张量网络表示。蓝线代表物理指标，而红点代表垂直于 $S^2$ 面的辅助指标，它们对应了 $\mathcal{C}$ 中对象按量子维数的加权和。图片来源：\parencite{chen2022exact}。}
   \label{fig:ground-state-wave-function}
 \end{figure}
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=0.9\textwidth]{images/holographic/tetrahedra-symbols.png}
-  \caption[四面体符号]{张量单元的取值由四面体符号给出，而五边形方程则相当于在原来四面体的表面（即两个三角形）上叠加一个新的四面体，从而改变了表面的三角剖分。图片来源：\parencite{chen2022exact}。}
-  \label{fig:tetrahedra-symbols}
+  \includegraphics[width=0.9\textwidth]{images/holographic/tetrahedra-relations.png}
+  \caption[四面体符号与表面的三角剖分]{张量单元的取值由四面体符号给出，而五边形方程则相当于在原来四面体的表面（即两个三角形）上叠加一个新的四面体，从而改变了表面的三角剖分。图片来源：\parencite{chen2022exact}。}
+  \label{fig:tetrahedra-relations}
 \end{figure}
 
-与 1+1 维的情况类似，在 2+1 维中重整化算符同样通过连接两个不同格点间距的边界来构造。如图~\ref{fig:rg-2+1d} 所示，我们可以利用一系列的 $F$ 移动及相应的变换关系（图~\ref{fig:tetrahedra-symbols}）来得到重整化算符 $U(\mathcal{C})$\cite{vanhove2018mapping}。它可以表示为一系列四面体的组合，并会将第 $N$ 次粗粒近似的波函数映射到第 $N+1$ 次上。可以发现，$U(\mathcal{C})$ 完全由融合范畴 $\mathcal{C}$ 中的数据所决定，而重复作用 $U(\mathcal{C})$ 将得到 Euclidean AdS 空间的一个离散化表示。
+与 1+1 维的情况类似，在 2+1 维中重整化算符同样通过连接两个不同格点间距的边界来构造。如图~\ref{fig:rg-2+1d} 所示，我们可以利用一系列的 $F$ 移动及相应的变换关系（图~\ref{fig:tetrahedra-relations}）来得到重整化算符 $U(\mathcal{C})$\cite{vanhove2018mapping}。它可以表示为一系列四面体的组合，并会将第 $N$ 次粗粒近似的波函数映射到第 $N+1$ 次上。可以发现，$U(\mathcal{C})$ 完全由融合范畴 $\mathcal{C}$ 中的数据所决定，而重复作用 $U(\mathcal{C})$ 将得到 Euclidean AdS 空间的一个离散化表示。
 
 \begin{figure}[htb]
   \centering
