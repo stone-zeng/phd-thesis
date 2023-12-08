@@ -4,8 +4,10 @@
 \definecolor{MaterialGrey300}{HTML}{E0E0E0}
 \definecolor{MaterialIndigo}{HTML}{9C27B0} % MaterialPurple
 \definecolor{MaterialTeal}{HTML}{FF5722}   % MaterialDeepOrange
-\definecolor{MaterialBlue}{HTML}{0E419C}   % FudanBlue
-\definecolor{MaterialRed}{HTML}{CC1A1A}    % FudanRed
+\colorlet{MaterialBlue}{FudanBlue}
+\colorlet{MaterialRed}{FudanRed}
+\colorlet{MaterialBlue100}{FudanBlue!30}
+\colorlet{MaterialRed100}{FudanRed!30}
 
 \usetikzlibrary{arrows.meta, calc, decorations.markings}
 \tikzset{
@@ -55,7 +57,14 @@
   \end{tikzpicture}
 }
 \newcommand{\tikzinput}[1]{\input{includes/tikz/#1.tex}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\id}{\mathrm{id}}
 \newcommand{\1}{\mathbb{1}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\trans}{{\mathrm{T}}}
 \NewDocumentCommand{\bra}{som}{%
   \IfBooleanTF{#1}{\langle#3|}{%
     \IfValueTF{#2}{#2\langle#3#2|}{\left\langle#3\right|}}}
@@ -119,7 +128,7 @@
       \item Ryu--Takayanagi formula:
 
         \begin{itemize}
-          \item $S_A = \operatorname{Area}(\gamma_A) / 4G^{(d+1)}$
+          \item $S_A = \operatorname{area}(\gamma_A) / 4G^{(d+1)}$
           \item Entanglement is geometry
         \end{itemize}
 
@@ -189,7 +198,7 @@
     \begin{itemize}
       \item Simple objects $a,b$: different types of anyon
       \item Fusion: can't be distinguished at long distance
-      \item Fusion coefficients: $N_{ab}^c\in\mathbb{Z}^*$
+      \item Fusion coefficients: $N_{ab}^c\in\Z^*$
       \item Quantum dimension $d_a$: max eigenvalue of matrix $(N_a)_{bc}=N_{ab}^c$
     \end{itemize}
 
@@ -694,7 +703,7 @@
 \begin{frame}{Generalization: 3+1d}
 
 \begin{itemize}
-  \item 3+1d $\mathbb{Z}_2$ Dijkgraaf--Witten model (toric code) \textrightarrow{} 3d Ising model
+  \item 3+1d $\Z_2$ Dijkgraaf--Witten model (toric code) \textrightarrow{} 3d Ising model
   \item RG procedure:
 
     \begin{itemize}
@@ -721,6 +730,226 @@
     \includegraphics[width=0.45\textwidth]{images/holographic/rg-3+1d-step-3.png}
 
 \end{columns}
+
+\end{frame}
+
+\begin{frame}{Bulk operator reconstruction \& operator pushing}
+
+\begin{columns}[c]
+
+  \column{0.65\textwidth}
+
+    \begin{itemize}
+      \item Generalized free fields
+
+        \begin{itemize}
+          \item Correlation functions are computed approximately by Wick contraction
+          \item Can be decomposed as a sum of \emph{simple operators}
+        \end{itemize}
+
+      \item Operator pushing: $\mathcal{O} \bigl( \mathbb{V}^H \bigr) \cdot M = M \cdot \mathcal{O} \bigl( \mathbb{V}^K \bigr)$
+        \begin{itemize}
+          \item Bulk operator: $\mathcal{O} \bigl( \mathbb{V}^H \bigr)$ \\
+            \mbox{\quad}
+            $
+              = \I_1 \otimes \cdots \otimes \I_{i-1} \otimes X_i \otimes \I_{i+1} \otimes \dots \otimes \I_{H}
+            $
+          \item Boundary operator: $\mathcal{O} \bigl( \mathbb{V}^K \bigr)$ \\
+            \mbox{\quad}
+            $
+              = \sum_{i=1}^K \alpha_i \, \bigl(
+                  \I_1 \otimes \cdots \otimes \I_{i-1} \otimes X_i \otimes \I_{i+1} \otimes \dots \otimes \I_{K}
+                \bigr)
+            $
+        \end{itemize}
+    \end{itemize}
+
+  \column{0.35\textwidth}
+
+    \begin{center}
+      \scriptsize
+      \tikzset{x=1em, y=1em, node font=\tiny}
+      \tikzinput{operator-pushing/operator-pushing-narrow}
+    \end{center}
+
+\end{columns}
+
+\footnotetext{Image credit: \citet{zeng2023bulk}}
+
+\end{frame}
+
+\begin{frame}{Operator pushing in 1+1d}
+
+\linespread{1.4}
+\selectfont
+
+\begin{itemize}
+  \item Find operator $A$ for given $B$, s.t. \\[0.8ex]
+    \mbox{\qquad}
+    \begingroup
+      \scriptsize
+      \tikzset{x=1em, y=1em, node font=\tiny}
+      \tikzinput{operator-pushing/constraint-1+1d}
+    \endgroup
+    \quad\textrightarrow\quad
+    $A_{(ij), (i'j')} M^{i'j'}_{ k} = M^{ij}_{k'} B_{k'k}$
+  \item Generalized Pauli matrices: $\sigma_\mu \coloneq \sigma_{ns+t} = X^t Z^s$ where \\[1ex]
+    \mbox{\qquad}
+    $
+      X = \left( \begin{smallmatrix}
+        0      & 1      & 0      & \cdots & 0      \\
+        0      & 0      & 1      & \cdots & 0      \\
+        \vdots & \vdots & \vdots & \ddots & \vdots \\
+        0      & 0      & 0      & \cdots & 1      \\
+        1      & 0      & 0      & \cdots & 0
+      \end{smallmatrix} \right)\!, \,
+      Z = \left( \begin{smallmatrix}
+        1      & 0      & \cdots & 0            & 0      \\
+        0      & \omega & \cdots & 0            & 0      \\
+        \vdots & \vdots & \ddots & \vdots       & \vdots \\
+        0      & 0      & \cdots & \omega^{n-2} & 0      \\
+        0      & 0      & \cdots & 0            & \omega^{n-1}
+      \end{smallmatrix} \right)
+    $
+    \vspace{0.5ex}
+  \item Constraint equation: $A_{(ij), (i'j')} \delta_{G(i',j'), k} = \delta_{G(i,j), k'} B_{k'k} = (\sigma_\mu)_{G(i,j), k}$
+
+    \begin{itemize}
+      \item One specific solution: $A^{(\mu)}_{(ij), (0j')} = (\sigma_\mu)_{G(i,j), j'}$
+    \end{itemize}
+
+  \item For simple form $A$: $\tilde{A}_{ii'} \delta_{G(i',j), k} - \sum_\mu \alpha_\mu (\sigma_\mu)_{G(i,j), k} \coloneq \tilde{M}(\cdots) = 0$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Invitation: \texorpdfstring{$\Z_2$}{ℤ₂}}
+
+\begin{itemize}
+  \item Tensor unit:
+    $
+      M = \delta_{G(i,j),k} = \delta_{(i+j)\bmod 2,k} = \left( \begin{smallmatrix}
+        1 & 0 \\  0 & 1 \\ 0 & 1 \\ 1 & 0 
+      \end{smallmatrix} \right)
+    $
+  \item Null space:
+    $
+      \{ v^{(p)} \} = \left\{ \,
+        \left( \begin{smallmatrix} 1 \\ 0 \\ 0 \\ -1 \end{smallmatrix} \right)\!, \,
+        \left( \begin{smallmatrix} 0 \\ 1 \\ -1 \\ 0 \end{smallmatrix} \right) \,
+      \right\}
+      \implies
+      A^* = \left( \begin{smallmatrix}
+        \beta_{0,0} & \beta_{0,1} & -\beta_{0,1} & -\beta_{0,0} \\
+        \beta_{1,0} & \beta_{1,1} & -\beta_{1,1} & -\beta_{1,0} \\
+        \beta_{2,0} & \beta_{2,1} & -\beta_{2,1} & -\beta_{2,0} \\
+        \beta_{3,0} & \beta_{3,1} & -\beta_{3,1} & -\beta_{3,0}
+      \end{smallmatrix} \right)
+    $
+  \item Full solution:
+    $
+      \left\{
+      \begin{aligned}
+        &B = \I           \implies A = A^* + \left( \begin{smallmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 1 & 0 & 0 & 0 \end{smallmatrix} \right) \\
+        &B = \sigma_x     \implies A = A^* + \left( \begin{smallmatrix} 0 & 1 & 0 & 0 \\ 1 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \end{smallmatrix} \right)
+                          \implies A = \I \otimes \sigma_x \text{ or } \sigma_x \otimes \I \\
+        &B = \sigma_z     \implies A = A^* + \left( \begin{smallmatrix} 1 &  0 & 0 & 0 \\ 0 & -1 & 0 & 0 \\ 0 & -1 & 0 & 0 \\ 1 &  0 & 0 & 0 \end{smallmatrix} \right) \\
+        &B = -\ii\sigma_y \implies A = A^* + \left( \begin{smallmatrix} 0 & -1 & 0 & 0 \\ 1 &  0 & 0 & 0 \\ 1 &  0 & 0 & 0 \\ 0 & -1 & 0 & 0 \end{smallmatrix} \right)
+      \end{aligned}
+      \right.
+    $
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Abelian example: \texorpdfstring{$\Z_n$}{ℤₙ}}
+
+\linespread{1.4}
+\selectfont
+
+\begin{itemize}
+  \item Fusion rules: $G(i,j) = (i+j)\bmod n$
+  \item General solution:
+
+    \begin{itemize}
+      \item General part:
+        $
+          A^* = \left( \begin{smallmatrix}
+            \beta_{0,0} v^{(0)} + \dots + \beta_{0,n^2-n-1} v^{(n^2-n-1)} \\[0.5ex]
+            \vdots \\
+            \beta_{n^2-1,0} v^{(0)} + \dots + \beta_{n^2-1,n^2-n-1} v^{(n^2-n-1)}
+          \end{smallmatrix} \right)
+        $
+      \item Specific part: $A^{(\mu)}_{(ij), (0j')} = (\sigma_\mu)_{(i+j)\bmod n, j'}$
+    \end{itemize}
+
+  \item Simple form solution:
+
+    \begin{itemize}
+      \item $\operatorname{size}(\tilde{M})=n^3\times2n^2, \, \operatorname{rank}(\tilde{M})=2n^2-n$
+      \item $n$ solutions: $\tilde{A}^{(k)}_{ii'} = (\sigma_k)_{ii'}, \, \alpha^{(k)}_\mu = \delta_{k\mu}$
+      \item Generalized free fields $B=\sigma_k$ \textrightarrow{} $A=\sigma_k\otimes\I$ or $\I\otimes\sigma_k$
+      \item Tensor network of $L$ layers: $A_L = \I^{\otimes L-l-1} \otimes \sigma_k \otimes \I^{\otimes l}$
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Non-abelian example: \texorpdfstring{$S_3$}{𝑆₃}}
+
+\linespread{1.4}
+\selectfont
+
+\begin{itemize}
+  \item Group multiplication table:
+    \begingroup
+      \tiny
+      \setlength{\arraycolsep}{4pt}
+      $
+        \begin{array}{c|cccccc}
+          & g_0 & g_1 & g_2 & g_3 & g_4 & g_5 \\
+          \hline
+          g_0 & g_0 & g_1 & g_2 & g_3 & g_4 & g_5 \\
+          g_1 & g_1 & g_0 & g_3 & g_2 & g_5 & g_4 \\
+          g_2 & g_2 & g_4 & g_0 & g_5 & g_1 & g_3 \\
+          g_3 & g_3 & g_5 & g_1 & g_4 & g_0 & g_2 \\
+          g_4 & g_4 & g_2 & g_5 & g_0 & g_3 & g_1 \\
+          g_5 & g_5 & g_3 & g_4 & g_1 & g_2 & g_0
+        \end{array}
+      $
+    \endgroup
+  \item Null space: spanned by $v^{(p)}=\bigl( \tilde{v}^{(p)}, \, \hat{v}^{(p)} \bigr)^\trans$
+
+    \begin{itemize}
+      \item $\tilde{v}^{(1)}=(1,0,0,0,0,0)^\trans, \, \tilde{v}^{(2)}=(0,0,0,1,0,0)^\trans, \, \cdots; \enspace \hat{v}^{(p)}_q=\delta_{pq}$
+    \end{itemize}
+
+  \item Simple form solution:
+
+    \begin{itemize}
+      \item $\operatorname{size}(\tilde{M})=216\times72, \, \operatorname{rank}(\tilde{M})=66$
+      \item 6 solutions:
+        $
+          \tilde{A}^{(0)}_{L/R} = B^{(0)}_{L/R} = \left( \begin{smallmatrix}
+            1 & 0 & 0 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 0 & 0 & 0 \\
+            0 & 0 & 1 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 1 & 0 & 0 \\
+            0 & 0 & 0 & 0 & 1 & 0 \\
+            0 & 0 & 0 & 0 & 0 & 1
+          \end{smallmatrix} \right)\!, \,
+          \tilde{A}^{(1)}_{L/R} = B^{(1)}_{L/R} = \left( \begin{smallmatrix}
+            0 & 1 & 1 & 1 & 1 & 1 \\
+            1 & 0 & 1 & 1 & 1 & 1 \\
+            1 & 1 & 0 & 1 & 1 & 1 \\
+            1 & 1 & 1 & 0 & 1 & 1 \\
+            1 & 1 & 1 & 1 & 0 & 1 \\
+            1 & 1 & 1 & 1 & 1 & 0
+          \end{smallmatrix} \right)\!, \, \cdots
+        $
+      \item Possible $\Z_2$ subgroup structure
+    \end{itemize}
+\end{itemize}
 
 \end{frame}
 
