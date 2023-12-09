@@ -1,0 +1,24 @@
+\begin{tikzpicture}
+  \begin{scope}
+    \draw [thick, MaterialBlue]
+      (0,2) -- (0,-2);
+    \draw [thick, MaterialGrey]
+      (0,2) -- (2,0) -- (0,-2) -- (-2,0) -- cycle;
+  \end{scope}
+  \begin{scope}[xshift=4.5em, yshift=1.5em, scale=0.8]
+    \draw [thick, dashed, MaterialRed]
+      (0,0) -- (3.8,0.5);
+    \draw [thick, MaterialBlue]
+      (2,2.8) -- (2.4,-1.1);
+    \draw [thick, MaterialGrey]
+      (0,0) -- (2.4,-1.1) -- (3.8,0.5) -- (2,2.8) -- cycle;
+  \end{scope}
+  \begin{scope}[xshift=12em]
+    \draw [thick, MaterialRed]
+      (-2,0) -- (2,0);
+    \draw [thick, MaterialGrey]
+      (0,2) -- (2,0) -- (0,-2) -- (-2,0) -- cycle;
+  \end{scope}
+  \draw [-Stealth] (3,0) -- (9,0);
+  \draw (6, -1) node {\textit{F}-move};
+\end{tikzpicture}

@@ -74,6 +74,12 @@
 \NewDocumentCommand{\ev}{som}{%
   \IfBooleanTF{#1}{\langle#3\rangle}{%
     \IfValueTF{#2}{#2\langle#3#2\rangle}{\left\langle#3\right\rangle}}}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
 \title{Aspects on Tensor Networks for Topological Orders}
 \author{Xiangdong Zeng}
 \institute{Supervisor: Prof.\ Ling-Yan Hung}
@@ -123,7 +129,7 @@
   \column{0.6\textwidth}
 
     \begin{itemize}
-      \item Duality between a gravity theory in AdS\textsubscript{\textit{d}+1} spacetime (bulk) and a CFT\textsubscript{\textit{d}+1} (boundary)
+      \item Duality between a gravity theory in AdS\textsubscript{\textit{d}+1} spacetime (bulk)and a CFT\textsubscript{\textit{d}+1} (boundary)
       \item AdS/CFT dictionary: $Z_{\mathrm{CFT}}=Z_{\mathrm{bulk}}$
       \item Ryu--Takayanagi formula:
 
@@ -498,8 +504,10 @@
 
 \begin{itemize}
   \item $\ket{\Psi}$ is invariant under scaling transformation $\mathcal{H}_{\!\mathcal{C}}$
-  \item Partition function is also invariant: $Z = \langle\Omega|\Psi\rangle = \langle\Omega|\exp(z\mathcal{H}_{\!\mathcal{C}})|\Psi\rangle$
-  \item Eigenvalue problem: $\bra{\Omega}\exp(z\mathcal{H}_{\!\mathcal{C}}) = \bra{\Omega}FFF\cdots = \bra{\Omega}$
+  \item Partition function is also invariant:
+    $Z = \langle\Omega|\Psi\rangle = \langle\Omega|\exp(z\mathcal{H}_{\!\mathcal{C}})|\Psi\rangle$
+  \item Eigenvalue problem:
+    $\bra{\Omega}\exp(z\mathcal{H}_{\!\mathcal{C}}) = \bra{\Omega}FFF\cdots = \bra{\Omega}$
 
     \begin{itemize}
       \item Discrete Euclidean AdS space
@@ -784,7 +792,7 @@
 \selectfont
 
 \begin{itemize}
-  \item Find operator $A$ for given $B$, s.t. \\[0.8ex]
+  \item Find boundary operator $A$ for given bulk operator $B$, s.t. \\[0.8ex]
     \mbox{\qquad}
     \begingroup
       \scriptsize
@@ -812,7 +820,7 @@
       \end{smallmatrix} \right)
     $
     \vspace{0.5ex}
-  \item Constraint equation: $A_{(ij), (i'j')} \delta_{G(i',j'), k} = \delta_{G(i,j), k'} B_{k'k} = (\sigma_\mu)_{G(i,j), k}$
+  \item Constraint equations: $A_{(ij), (i'j')} \delta_{G(i',j'), k} = \delta_{G(i,j), k'} B_{k'k} = (\sigma_\mu)_{G(i,j), k}$
 
     \begin{itemize}
       \item One specific solution: $A^{(\mu)}_{(ij), (0j')} = (\sigma_\mu)_{G(i,j), j'}$
@@ -846,17 +854,23 @@
         \beta_{3,0} & \beta_{3,1} & -\beta_{3,1} & -\beta_{3,0}
       \end{smallmatrix} \right)
     $
-  \item Full solution:
+  \item Full solutions:
     $
-      \left\{
-      \begin{aligned}
-        &B = \I           \implies A = A^* + \left( \begin{smallmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 1 & 0 & 0 & 0 \end{smallmatrix} \right) \\
-        &B = \sigma_x     \implies A = A^* + \left( \begin{smallmatrix} 0 & 1 & 0 & 0 \\ 1 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \end{smallmatrix} \right)
-                          \implies A = \I \otimes \sigma_x \text{ or } \sigma_x \otimes \I \\
-        &B = \sigma_z     \implies A = A^* + \left( \begin{smallmatrix} 1 &  0 & 0 & 0 \\ 0 & -1 & 0 & 0 \\ 0 & -1 & 0 & 0 \\ 1 &  0 & 0 & 0 \end{smallmatrix} \right) \\
-        &B = -\ii\sigma_y \implies A = A^* + \left( \begin{smallmatrix} 0 & -1 & 0 & 0 \\ 1 &  0 & 0 & 0 \\ 1 &  0 & 0 & 0 \\ 0 & -1 & 0 & 0 \end{smallmatrix} \right)
-      \end{aligned}
-      \right.
+      \left\{ \begin{aligned}
+        & B = \I \implies A = A^* + \left( \begin{smallmatrix}
+            1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 1 & 0 & 0 & 0
+        \end{smallmatrix} \right) \\
+        & B = \sigma_x \implies A = A^* + \left( \begin{smallmatrix}
+          0 & 1 & 0 & 0 \\ 1 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0
+        \end{smallmatrix} \right)
+        \implies A = \I \otimes \sigma_x \text{ or } \sigma_x \otimes \I \\
+        & B = \sigma_z \implies A = A^* + \left( \begin{smallmatrix}
+          1 &  0 & 0 & 0 \\ 0 & -1 & 0 & 0 \\ 0 & -1 & 0 & 0 \\ 1 &  0 & 0 & 0
+        \end{smallmatrix} \right) \\
+        & B = -\ii\sigma_y \implies A = A^* + \left( \begin{smallmatrix}
+          0 & -1 & 0 & 0 \\ 1 &  0 & 0 & 0 \\ 1 &  0 & 0 & 0 \\ 0 & -1 & 0 & 0
+        \end{smallmatrix} \right)
+      \end{aligned} \right.
     $
 \end{itemize}
 
@@ -869,7 +883,7 @@
 
 \begin{itemize}
   \item Fusion rules: $G(i,j) = (i+j)\bmod n$
-  \item General solution:
+  \item General solutions:
 
     \begin{itemize}
       \item General part:
@@ -883,10 +897,10 @@
       \item Specific part: $A^{(\mu)}_{(ij), (0j')} = (\sigma_\mu)_{(i+j)\bmod n, j'}$
     \end{itemize}
 
-  \item Simple form solution:
+  \item Simple form solutions:
 
     \begin{itemize}
-      \item $\operatorname{size}(\tilde{M})=n^3\times2n^2, \, \operatorname{rank}(\tilde{M})=2n^2-n$
+      \item $\operatorname{size}(\tilde{M})=n^3\times2n^2, \, \rank(\tilde{M})=2n^2-n$
       \item $n$ solutions: $\tilde{A}^{(k)}_{ii'} = (\sigma_k)_{ii'}, \, \alpha^{(k)}_\mu = \delta_{k\mu}$
       \item Generalized free fields $B=\sigma_k$ \textrightarrow{} $A=\sigma_k\otimes\I$ or $\I\otimes\sigma_k$
       \item Tensor network of $L$ layers: $A_L = \I^{\otimes L-l-1} \otimes \sigma_k \otimes \I^{\otimes l}$
@@ -896,9 +910,6 @@
 \end{frame}
 
 \begin{frame}{Non-abelian example: \texorpdfstring{$S_3$}{𝑆₃}}
-
-\linespread{1.4}
-\selectfont
 
 \begin{itemize}
   \item Group multiplication table:
@@ -924,12 +935,12 @@
       \item $\tilde{v}^{(1)}=(1,0,0,0,0,0)^\trans, \, \tilde{v}^{(2)}=(0,0,0,1,0,0)^\trans, \, \cdots; \enspace \hat{v}^{(p)}_q=\delta_{pq}$
     \end{itemize}
 
-  \item Simple form solution:
+  \item Simple form solutions:
 
     \begin{itemize}
-      \item $\operatorname{size}(\tilde{M})=216\times72, \, \operatorname{rank}(\tilde{M})=66$
-      \item 6 solutions:
-        $
+      \item $\operatorname{size}(\tilde{M})=216\times72, \, \rank(\tilde{M})=66$
+        \textrightarrow{} has 6 solutions \\[1ex]
+      \item $
           \tilde{A}^{(0)}_{L/R} = B^{(0)}_{L/R} = \left( \begin{smallmatrix}
             1 & 0 & 0 & 0 & 0 & 0 \\
             0 & 1 & 0 & 0 & 0 & 0 \\
@@ -946,8 +957,124 @@
             1 & 1 & 1 & 1 & 0 & 1 \\
             1 & 1 & 1 & 1 & 1 & 0
           \end{smallmatrix} \right)\!, \, \cdots
-        $
+        $ \\[1ex]
       \item Possible $\Z_2$ subgroup structure
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Operator pushing in 2+1d}
+
+\begin{columns}[c]
+
+  \column{0.62\textwidth}
+
+    \begin{itemize}
+      \item Tetrahedra:
+
+        \begin{itemize}
+          \item Single: \textit{F}-moves, change triangulation
+          \item Multiple: RG operators, boundary \textrightarrow{} bulk
+        \end{itemize}
+
+      \item RG operator:
+
+        \begin{itemize}
+          \item Map $i,j,m,n$ (blue) \textrightarrow{} $a$ (red)
+          \item Keep $b,c,d,e$ unchanged
+        \end{itemize}
+
+      \item Constraint equations:
+
+        \begin{itemize}
+          \item $A_{(ijk), (i'j'k')} M_{(i'j'k'), I} = M_{(ijk), I'} B_{I'I}, \, B=\sigma_\mu$ \\[0.5ex]
+          \item $I=\Phi(b,c,a)$: face index, $\Phi$: fusion rules
+          \item $M_{(ijk), I} = M_{(ijk), \Phi(b,c,a)} = \sqrt{d_j d_k d_b d_c} \, \bigl[ F^{jkb}_c \bigr]_{ia}$
+        \end{itemize}
+    \end{itemize}
+
+  \column{0.38\textwidth}
+
+    \begin{center}
+      \scriptsize
+      \tikzset{x=1em, y=1em, node font=\tiny}
+      \tikzinput{operator-pushing/rg-2+1d-f-move-alt} \\[1ex]
+      \tikzinput{operator-pushing/rg-2+1d-rg} \\[1ex]
+      \tikzinput{operator-pushing/tetrahedra-double-1} \quad
+      \tikzinput{operator-pushing/tetrahedra-single}
+    \end{center}
+
+\end{columns}
+
+\footnotetext{Image credit: \citet{zeng2023bulk}}
+
+\end{frame}
+
+\begin{frame}{Example: \texorpdfstring{$\Z_n$}{ℤₙ}}
+
+\begin{itemize}
+  \item Trivial $\Z_n$ Dijkgraaf--Witten models: $F=1$
+  \item Face index: $I = nb + c = n [(i+j)\bmod n] + [(i+k)\bmod n]$
+  \item General solutions:
+
+    \begin{itemize}
+      \item Null space:
+        $
+            v^{(p)}_q = \delta_{n [(- \lfloor p/n\rfloor - \lfloor p/n^2 \rfloor - 2) \bmod n] + [(- \lfloor p/n^2 \rfloor - 2) \bmod n], q}
+          - \delta_{n^3-p-1, q}
+        $
+      \item Specific part:
+        $A^{(\mu)}_{(ijk), (0j'k')} = (\sigma_\mu)_{n[(i+j)\bmod n]+[(i+k)\bmod n], nj'+k'}$
+    \end{itemize}
+
+  \item Simple form solutions:
+
+    \begin{itemize}
+      \item $\operatorname{size}(\tilde{M})=n^5\times(n^4+n^2), \, \rank(\tilde{M})=n^4+n^2-n$
+        \textrightarrow{} has $n$ solutions
+      \item For small $n$ (e.g.\ $\Z_2, \Z_3$):
+        $B^{(i)} = \sigma_i \otimes \sigma_i, \, \tilde{A}^{(i)} = \sigma_i, \, A^{(i)} = \sigma_i \otimes \I \otimes \I$
+      \item Can be further iterated since $B$ can be decomposed on edges
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Example: Fibonacci}
+
+\begin{itemize}
+  \item Fusion rules: $
+      \1 \times \1 = \1, \,
+      \1 \times \tau = \tau \times \1 = \tau, \,
+      \tau \times \tau = \1 + \tau
+    $
+  \item \textit{F}-symbols: $
+      [F^{\tau\tau\tau}_\tau]_{ij} = \left( \begin{smallmatrix}
+        \varphi^{-1}   &  \varphi^{-1/2} \\
+        \varphi^{-1/2} & -\varphi^{-1}
+      \end{smallmatrix} \right)
+    $ \\[1ex]
+  \item $
+      M_{(ijk), I} = \left( \begin{smallmatrix}
+        1 & 0 & 0 & 0 & 0 \\
+        0 & 0 & \varphi & 0 & 0 \\
+        0 & 0 & 0 & \varphi & 0 \\
+        0 & \varphi & 0 & 0 & \varphi^{3/2} \\
+        0 & \varphi & 0 & 0 & 0 \\
+        0 & 0 & 0 & \varphi & \varphi^{3/2} \\
+        0 & 0 & \varphi & 0 & \varphi^{3/2} \\
+        \varphi & \varphi^{3/2} & \varphi^{3/2} & \varphi^{3/2} & -\varphi
+      \end{smallmatrix} \right)\!, \,
+      \rank(M) = 5
+    $ \\[1ex]
+
+  \item Simple form solutions:
+
+    \begin{itemize}
+      \item $\operatorname{size}(\tilde{M})=40\times29, \, \rank(\tilde{M})=28$
+        \textrightarrow{} only has one solution
+      \item No non-trivial generalized free field
     \end{itemize}
 \end{itemize}
 

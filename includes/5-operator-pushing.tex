@@ -476,7 +476,7 @@ $\Z_n$ 的群乘法是可交换的，这会给我们的推导过程带来一定�
 \begin{equation}
   M_{(ijk), I} = M_{(ijk), \Phi(b,c,a)} = \sqrt{d_j d_k d_b d_c} \, \bigl[ F^{jkb}_c \bigr]_{ia},
 \end{equation}
-其中 $[F^{jkb}_c]_{ia}$ 为 $F$ 符号，而 $q_i$ 则为融合范畴中简单对象 $i$ 对应的量子维数。
+其中 $[F^{jkb}_c]_{ia}$ 为 $F$ 符号，而 $d_i$ 则为融合范畴中简单对象 $i$ 对应的量子维数。
 
 同理，为了检查 $A$ 是否能表示为简单算符的形式，我们考虑如下形式的 $A$：
 \begin{equation}
@@ -622,19 +622,19 @@ $\Z_n$ 的群乘法是可交换的，这会给我们的推导过程带来一定�
 \begin{equation}
   M_{(ijk), I} = \begin{pmatrix}
     1 & 0 & 0 & 0 & 0 \\
-    0 & 0 & \phi & 0 & 0 \\
-    0 & 0 & 0 & \phi & 0 \\
-    0 & \phi & 0 & 0 & \phi^{3/2} \\
-    0 & \phi & 0 & 0 & 0 \\
-    0 & 0 & 0 & \phi & \phi^{3/2} \\
-    0 & 0 & \phi & 0 & \phi^{3/2} \\
-    \phi & \phi^{3/2} & \phi^{3/2} & \phi^{3/2} & -\phi
+    0 & 0 & \varphi & 0 & 0 \\
+    0 & 0 & 0 & \varphi & 0 \\
+    0 & \varphi & 0 & 0 & \varphi^{3/2} \\
+    0 & \varphi & 0 & 0 & 0 \\
+    0 & 0 & 0 & \varphi & \varphi^{3/2} \\
+    0 & 0 & \varphi & 0 & \varphi^{3/2} \\
+    \varphi & \varphi^{3/2} & \varphi^{3/2} & \varphi^{3/2} & -\varphi
   \end{pmatrix}.
 \end{equation}
 可以知道 $\rank(M)=5$，而 $M^\trans$ 的零空间则由向量组
 \begin{equation}
   \{ v^{(p)} \} = \Biggl\{ \,
-    \begin{pmatrix} \phi^{1/2} \\ 1 \\ 1 \\ -\phi^{-1} \\ \phi \\ 0 \\ 0 \\ -\phi^{1/2} \end{pmatrix}, \,
+    \begin{pmatrix} \varphi^{1/2} \\ 1 \\ 1 \\ -\varphi^{-1} \\ \varphi \\ 0 \\ 0 \\ -\varphi^{1/2} \end{pmatrix}, \,
     \begin{pmatrix} 0 \\ 1 \\ 0 \\ 1 \\ -1 \\  0 \\ -1 \\ 0 \end{pmatrix}, \,
     \begin{pmatrix} 0 \\ 0 \\ 1 \\ 1 \\ -1 \\ -1 \\  0 \\ 0 \end{pmatrix} \,
   \Biggr\}
