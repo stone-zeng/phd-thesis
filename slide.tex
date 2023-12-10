@@ -2,6 +2,8 @@
 
 \definecolor{MaterialGrey}{HTML}{9E9E9E}
 \definecolor{MaterialGrey300}{HTML}{E0E0E0}
+\definecolor{MaterialOrange}{HTML}{FF9800}
+\definecolor{MaterialOrange100}{HTML}{FFE0B2}
 \definecolor{MaterialIndigo}{HTML}{9C27B0} % MaterialPurple
 \definecolor{MaterialTeal}{HTML}{FF5722}   % MaterialDeepOrange
 \colorlet{MaterialBlue}{FudanBlue}
@@ -15,7 +17,8 @@
   y = 1em,
   node font = \footnotesize,
   morphism box/.style = {draw, fill = white, anchor = base},
-  tensor box/.style = {semithick, FudanRed, fill=FudanRed!30},
+  vector box/.style = {thick, MaterialBlue, fill = MaterialBlue100},
+  tensor box/.style = {semithick, MaterialRed, fill=MaterialRed100},
   tensor leg/.style = {semithick, MaterialGrey},
   covered tensor leg/.style = {semithick, dashed, MaterialGrey300},
   ->-/.style = {
@@ -173,7 +176,7 @@
 
     \begin{itemize}
       \item Ground state degeneracy
-      \item Non-Abelian geometric phase
+      \item Non-abelian geometric phase
     \end{itemize}
 
   \item Microscopic origin:
@@ -1076,6 +1079,314 @@
         \textrightarrow{} only has one solution
       \item No non-trivial generalized free field
     \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\section{Tensor network representations of \\ Virasoro \& Kac--Moody algebra}
+
+\begin{frame}{Review of 2d CFT}
+
+\linespread{1.4}
+\selectfont
+
+\begin{itemize}
+  \item OPE of primary field $\phi$
+
+    \begin{itemize}
+      \item $T(z) \phi(w,\bar{z}) \sim \frac{h}{(z-w)^2} \phi(w,\bar{z}) + \frac{1}{z-w} \partial_w\phi(w,\bar{z})$
+      \item $T(z) T(w) \sim \frac{c/2}{(z-w)^4} + \frac{2}{(z-w)^2} T(w) + \frac{1}{z-w} \partial_w T(w)$
+      \item $h$: conformal dimension, $c$: central charge
+    \end{itemize}
+
+  \item Virasoro algebra
+
+    \begin{itemize}
+      \item Mode expansion of energy-momentum tensor: $L_n  = \frac{1}{2\pi\ii} \oint z^{n+1} T(z) \, \dd z$
+      \item $\bigl[ L_m, L_n \bigr] = (m-n) L_{m+n} + \frac{c}{12} m \bigl( m^2-1 \bigr) \delta_{m+n,0}$
+    \end{itemize}
+
+  \item Kac--Moody algebra
+
+    \begin{itemize}
+      \item Mode expansion of current operator: $J^\alpha_n = \frac{1}{2\pi\ii} \oint z^{n+1} J^\alpha(z) \, \dd z$
+      \item $
+          \bigl[ J^\alpha_m, J^\beta_n \bigr] = \ii \sum_\gamma f^{\alpha\beta\gamma} J^\gamma_{m+n} + km \delta^{\alpha\beta} \delta_{m+n,0}, \,
+          \bigl[ L_m, J^\alpha_n \bigr] = -n J^\alpha_{m+n}
+        $
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Torus partition function}
+
+\linespread{1.4}
+\selectfont
+
+\begin{itemize}
+  \item $
+      Z = \tr \Bigl[ \exp \bigl( -2\pi\tau_2 H \bigr) \exp \bigl( 2\pi\ii\tau_1 P \bigr) \Bigr]
+        = \sum_\alpha \exp \Bigl[ - 2\pi \tau_2 \Bigl(\Delta_\alpha - \frac{c}{12} \Bigr) + 2\pi\ii\tau_1 s_\alpha \Bigr]
+    $
+
+    \begin{itemize}
+      \item $\tau=\tau_1+\ii\tau_2$: torus parameter
+      \item $\Delta_\alpha$: scaling dimension, $s_\alpha$: conformal spin
+    \end{itemize}
+
+  \item Lattice approximation on $m\times n$ grid
+
+    \begin{itemize}
+      \item $
+          Z = \sum_\alpha \exp \Bigl[
+                - 2\pi \frac mn \Bigl(\Delta_\alpha - \frac{c}{12} \Bigr)
+                + mnf + \mathcal{O} \Bigl( \frac{m}{n^\gamma} \Bigr)
+              \Bigr]
+            = \tr M^m
+        $
+      \item Eigenvalue of $M$: $
+              \lambda_\alpha = \exp \Bigl[
+            - \frac{2\pi}{n} \Bigl(\Delta_\alpha - \frac{c}{12} \Bigr)
+            + nf + \mathcal{O} \Bigl( \frac{1}{n^\gamma} \Bigr)
+          \Bigr]
+        $
+      \item Fix $\Delta_{\1}=0$ and $\Delta_T=2$:
+        $\Delta_\alpha = \frac{2}{\log\lambda_0 - \log\lambda_T} \bigl( \log\lambda_0 - \log \lambda_\alpha \bigr)$
+    \end{itemize}
+
+  \item Translation operator:
+    \begingroup
+      \tikzset{x=1em, y=1em, node font=\tiny}
+      $P_{i_1 i_2 \cdots i_n, \, j_1 j_2 \cdots j_n} = \tikzinput{translation-operator}$
+    \endgroup
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Construction of Virasoro \& Kac--Moody algebra}
+
+\begin{columns}[c]
+
+  \column{0.45\textwidth}
+
+    \begin{itemize}
+      \item Lattice Virasoro operator: \\
+        \mbox{\quad} $L_n \sim \sum_{j=1}^N \ee^{ \ii j n \frac{2\pi}{N}} T(j)$
+      \item Lattice Kac--Moody operator: \\
+        \mbox{\quad} $J_n \sim \sum_{j=1}^N \ee^{ \ii j n \frac{2\pi}{N}} J(j)$
+      \item Algorithm:
+
+        \begin{enumerate}
+          \item Build tensor network with $A_{ijkl}$
+          \item Calculate $\ket{\phi_T}$ or $\ket{\phi_J}$ from cylinder eigenstate
+          \item Reshape $\ket{\phi_T}$ / $\ket{\phi_J}$ to $T$ / $J$
+          \item Insert $T$ / $J$ into a new cylinder with coefficients $\ee^{\pm2\pi\ii j n/N}$
+        \end{enumerate}
+    \end{itemize}
+
+  \column{0.55\textwidth}
+
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/virasoro/construction.pdf}
+
+\end{columns}
+
+\footnotetext{Image credit: \citet{wang2022virasoro}}
+
+\end{frame}
+
+\begin{frame}{Example: Virasoro algebra in Ising model}
+
+\begin{columns}[T]
+
+  \column{0.5\textwidth}
+
+    \begin{itemize}
+      \item Tensor unit:
+
+        \begin{itemize}
+          \item $A_{ijkl} = \ee^{-\beta (\sigma_i\sigma_j + \sigma_j\sigma_k + \sigma_k\sigma_l + \sigma_l\sigma_i)}$
+          \item Use blocking or TRG/TNR
+        \end{itemize}
+
+      \item Can be verified by applying $L_n$ on cylinder eigenstates $\ket{\phi_\alpha}$ and checking $\langle\phi_\beta|L_n|\phi_\alpha\rangle$
+      \item Numerical results:
+
+        \begin{itemize}
+          \item $N=8, \chi=4$ cylinder \\[1ex]
+          \item $
+              \frac{\lVert \langle\phi_\beta|L_n|\phi_\alpha\rangle \rVert}{\lVert \ket*{\phi_\beta} \rVert \cdot \lVert L_n\ket*{\phi_\alpha} \rVert} \gtrsim 0.9, \quad
+              n=\pm1, \pm2.
+            $
+        \end{itemize}
+    \end{itemize}
+
+  \column{0.5\textwidth}
+
+    \vspace{1em}
+    \includegraphics[width=\textwidth]{images/virasoro/ising-spectrum.pdf}
+
+\end{columns}
+
+\footnotetext{Image credit: \citet{wang2022virasoro}}
+
+\end{frame}
+
+\begin{frame}{Example: Kac--Moody algebra in dimer model}
+
+\begin{columns}[T]
+
+  \column{0.5\textwidth}
+
+    \begin{itemize}
+      \item Tensor unit:
+
+        \begin{itemize}
+          \item $B_{1111,2211,2121,1212,2222} = 1$
+          \item $B_{1122} = 2$
+        \end{itemize}
+
+      \item Analysis of errors:
+
+        \begin{itemize}
+          \item Mixing of different Kac--Moody towers: lowest eigenstate is polluted by other primary states
+          \item Mixing of lowering/raising actions within same towers: holomorphic and anti-holomorphic part are not fully separated
+        \end{itemize}
+    \end{itemize}
+
+  \column{0.5\textwidth}
+
+    \vspace{1em}
+    \includegraphics[width=\textwidth]{images/virasoro/dimer-spectrum.pdf}
+
+\end{columns}
+
+\footnotetext{Image credit: \citet{wang2022virasoro}}
+
+\end{frame}
+
+\begin{frame}{Fibonacci model: CFT spectrum}
+
+\begin{columns}[T]
+
+  \column{0.55\textwidth}
+
+    \begin{itemize}
+      \item Tensor unit and transfer matrix:
+
+        \begin{itemize}
+          \item
+            \begingroup
+              \tikzset{x=0.6em, y=0.6em, node font=\tiny}
+              $
+                  A_{ijkl}
+                = \raisebox{0.4em}{\tikzinput{fibonacci/square-1}}
+                = {\fontsize{0.6em}{1em}\selectfont \tikzinput{fibonacci/square-2}}
+              $
+            \endgroup
+          \item
+            \begingroup
+              \tikzset{x=0.8em, y=0.8em, node font=\tiny}
+              $\tilde{M}_{i_1 \cdots i_n, \, j_1 \cdots j_n} = \tikzinput{fibonacci/cylinder}$
+            \endgroup
+          \item Eliminate phases: $M = \tilde{M}\tilde{M}^\dagger$
+        \end{itemize}
+
+      \item Use matrix-free linear operator methods to solve the eigensystem
+      \item Reduce level-crossing: assume $\Delta=A+B/n$ and optimize fitting results
+    \end{itemize}
+
+  \column{0.45\textwidth}
+
+    \centering
+    \includegraphics[width=0.85\textwidth]{images/fibonacci/fib-spectrum.pdf} \\[1ex]
+    \includegraphics[width=0.95\textwidth]{images/fibonacci/fib-fitting.pdf}
+
+\end{columns}
+
+\footnotetext{Image credit: \citet{zeng2023virasoro}}
+
+\end{frame}
+
+\begin{frame}{Fibonacci model: topological projectors}
+
+\begin{itemize}
+  \item Project transfer matrix to certain topological sector of the CFT
+  \item How to identify $T$:
+
+    \begin{itemize}
+      \item Descendant of the vacuum state \textrightarrow{} using the idempotent for trivial sector
+    \end{itemize}
+
+  \item Tensor network representation:
+
+    \begingroup
+      \scriptsize
+      \tikzset{x=1em, y=1em, node font=\tiny}
+      \begin{itemize}
+        \item $
+            \mathcal{P}_{\!1} = \frac{1}{\sqrt5}
+            \left( \frac{1}{\phi} \, \mathcal{T}^{\,\1}_{\!\1\1} + \sqrt{\phi} \, \mathcal{T}^{\,\tau}_{\!\tau\1} \right), \enspace
+            \mathcal{T}^{c}_{ab} = \raisebox{0.2em}{\tikzinput{tube-algebra-basis}}
+          $
+        \item $
+              \raisebox{0.5em}{\tikzinput{idempotents-mpo-1}} \!\!
+            = (d_\alpha d_\beta d_\gamma d_\delta)^{\frac14} G^{\beta i\gamma}_{j\alpha\delta}, \enspace
+              \raisebox{0.5em}{\tikzinput{idempotents-mpo-2}} \!\!
+            = (d_\alpha d_\beta d_\gamma d_\delta d_i d_j d_k)^{\frac14}
+              G^{k\beta\delta}_{ij\alpha} G^{i\gamma\beta}_{kj\delta}
+          $
+        \item $
+              G^{abc}_{ijk}
+            = \frac{1}{\sqrt{d_j d_c}} \bigl[ F^{aik}_b \bigr]_{jc}
+            = \frac{1}{\sqrt{d_a d_b d_c d_i d_j d_k}} \, \Tetrahedron jibcka
+          $
+      \end{itemize}
+    \endgroup
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Fibonacci model: Virasoro algebra}
+
+\begin{columns}[T]
+
+  \column{0.55\textwidth}
+
+    \begin{itemize}
+      \item Reshape $T$:
+        \begingroup
+          \scriptsize
+          \tikzset{x=1em, y=1em, node font=\tiny}
+          $
+            \begin{aligned}
+              \tikzinput{fibonacci/padded-tensor-1} &= \tikzinput{fibonacci/padded-tensor-2} \\
+              &\to \tikzinput{fibonacci/padded-tensor-3}
+            \end{aligned}
+          $
+        \endgroup
+      \item Cylinder size:
+
+        \begin{itemize}
+          \item Eigenstates: $n=18, \chi=2$
+          \item Virasoro operators: $N=3, \chi=2^{n/3}$
+        \end{itemize}
+    \end{itemize}
+
+  \column{0.45\textwidth}
+
+    \vspace{1em}
+    \includegraphics[width=\textwidth]{images/fibonacci/fib-virasoro.pdf}
+
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Summary}
+
+\begin{itemize}
+  \item 
 \end{itemize}
 
 \end{frame}
