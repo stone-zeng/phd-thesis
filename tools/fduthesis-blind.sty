@@ -1,0 +1,42 @@
+\GetIdInfo $Id: fduthesis.dtx 0.9a 2023-05-27 12:00:00Z Xiangdong Zeng <xdzeng96@gmail.com> $
+  {Thesis template for Fudan University}
+\ProvidesExplPackage{\ExplFileName-blind}
+  {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
+\cs_set_protected:Npn \__fdu_cover_id_tabular:n #1
+  {
+    \exp_args:Nnx \begin{tabular} { \c__fdu_cover_id_align_tl }
+      #1
+      \__fdu_cover_id_aux:n { school_id  }
+    \end{tabular}
+  }
+\tl_set:Nn \c__fdu_name_student_id_tl { 编号 }
+\cs_set_protected:Npn \__fdu_cover_info:
+  {
+    \group_begin:
+      \zihao { 4 }
+      \tl_if_eq:NnT \l__fdu_info_degree_type_tl { professional }
+        {
+          \tl_set_eq:NN
+            \c__fdu_name_major_tl \c__fdu_name_major_professional_tl
+        }
+      \clist_clear:N \l__fdu_tmpa_clist
+      \clist_map_inline:nn { student_id, major, department }
+        {
+          \clist_gput_right:Nn \l__fdu_tmpa_clist
+            {
+              \exp_args:Nx \__fdu_cover_info_left:n
+                { \tl_use:c { c__fdu_name_ ##1 _tl } }
+              &
+              \tl_use:c { l__fdu_info_ ##1 _tl }
+            }
+        }
+      \exp_args:Nnx \begin{tabular} { \c__fdu_cover_info_align_tl }
+        \clist_use:Nn \l__fdu_tmpa_clist { \\ [ 1 ex ] }
+        \\ [ 3 ex ]
+        \exp_args:Nx \__fdu_cover_info_left:n { \c__fdu_name_date_tl }
+        &
+        \l__fdu_info_date_tl
+      \end{tabular}
+    \group_end:
+  }
+\ctex_at_end_preamble:n { \hypersetup { pdfauthor = {} } }
