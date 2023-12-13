@@ -3,6 +3,37 @@
 \usepackage{xcolor-material}
 \input{definitions}
 
+\def\CreditsData{
+  buerschaper2009explicit = {
+    {https://doi.org/10.1103/PhysRevB.79.085119}
+    {Buerschaper et~al., \textit{Phys. Rev. B} \textbf{79}: 085119 (2009)}
+  },
+  nishioka2009holographic = {
+    {https://doi.org/10.1088/1751-8113/42/50/504008}
+    {Nishioka et~al., \textit{J. Phys. A: Math. Theor.} \textbf{42}: 504008 (2009)}
+  },
+  orus2019tensor = {
+    {https://doi.org/10.1038/s42254-019-0086-7}
+    {Orús, \textit{Nat. Rev. Phys.} \textbf{1}: 538--550 (2019)}
+  },
+  chen2022exact = {
+    {https://arxiv.org/abs/2210.12127}
+    {Chen et~al., arXiv:2210.12127 (2022)}
+  },
+  wang2022virasoro = {
+    {https://doi.org/10.1103/PhysRevB.106.115116}
+    {Wang et~al., \textit{Phys. Rev. B} \textbf{106}: 115116 (2022)}
+  },
+  zeng2023virasoro = {
+    {https://doi.org/10.1103/PhysRevB.107.245146}
+    {Zeng et~al., \textit{Phys. Rev. B} \textbf{107}: 245146 (2023)}
+  },
+  zeng2023bulk = {
+    {https://doi.org/10.3390/e25111543}
+    {Zeng et~al., \textit{Entropy} \textbf{25}: 1543 (2023)}
+  },
+}
+
 \title{Aspects on Tensor Networks for Topological Orders}
 \author{Xiangdong Zeng}
 \institute{Supervisor: Prof.\ Ling-Yan Hung}
@@ -52,7 +83,7 @@
   \column{0.6\textwidth}
 
     \begin{itemize}
-      \item Duality between a gravity theory in AdS\textsubscript{\textit{d}+1} spacetime (bulk)and a CFT\textsubscript{\textit{d}+1} (boundary)
+      \item Duality between a gravity theory in AdS\textsubscript{\textit{d}+1} spacetime (bulk) and a CFT\textsubscript{\textit{d}} (boundary)
       \item AdS/CFT dictionary: $Z_{\mathrm{CFT}}=Z_{\mathrm{bulk}}$
       \item Ryu--Takayanagi formula:
 
@@ -480,7 +511,8 @@
 \end{frame}
 
 % TODO: Fixed points & Frobenius algebra
-\begin{frame}{Example: \texorpdfstring{$\mathcal{A}_{k+1}$}{𝒜ₖ₊₁} model [[TODO]]}
+% \begin{frame}{Example: \texorpdfstring{$\mathcal{A}_{k+1}$}{𝒜ₖ₊₁} model [[TODO]]}
+\begin{frame}{Example: \texorpdfstring{$\mathcal{A}_{k+1}$}{𝒜ₖ₊₁} model}
 
 \begin{itemize}
   \item Boundary state: \\
@@ -1301,19 +1333,24 @@
 
 \end{columns}
 
+\footnotetext{Image credit: \citet{zeng2023virasoro}}
+
 \end{frame}
 
-\begin{frame}{Summary}
+\begin{frame}{Summary \& outlook}
 
 \begin{itemize}
-  \item 
+  \item RG operators determined by topological orders realize a \alert{holographic tensor network}, and the eigenstates give rise to the boundary conditions
+  \item Operator pushing in holographic tensor networks gives the condition for the existence of \alert{generalized free fields} in the bulk
+  \item Tensor network representation of Virasoro and Kac--Moody algebra can be built from \alert{cylinder eigenstates} without explicitly knowing the Hamiltonian
+  \item Possible future directions:
+
+    \begin{itemize}
+      \item Generalization to higher dimensions and more complicated models
+      \item More (numerical and analytical) evidence for AdS/CFT correspondence
+    \end{itemize}
 \end{itemize}
 
-\end{frame}
-
-\begin{frame}{References}
-  \tiny
-  \bibliography{main}
 \end{frame}
 
 \begingroup

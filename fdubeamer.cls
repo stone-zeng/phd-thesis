@@ -4,7 +4,6 @@
 
 \RequirePackage{bookmark}
 \RequirePackage[no-math]{fontspec}
-\RequirePackage{gbt7714}
 \RequirePackage{tikz}
 \RequirePackage{unicode-math}
 
@@ -74,21 +73,24 @@
   }
 }
 
-\setbeamertemplate{caption}{%
-  \scriptsize
-  % \color{gray}
-  \insertcaption
-}
-
-% References
-\bibliographystyle{gbt7714-author-year}
-\renewcommand{\bibsection}{}
-
 % PDF bookmark
 \apptocmd{\beamer@@frametitle}{%
   \only<1>{\expandafter\ifnum\insertcontinuationcount<2\relax
     \bookmark[page=\the\c@page,level=4]{#1}\fi}}{}{}
 
+% Image credits
+\ExplSyntaxOn
+\AtBeginDocument{
+  \exp_args:NNo \prop_set_from_keyval:Nn \g_tmpa_prop { \CreditsData }
+  \DeclareDocumentCommand \citet { m }
+    {
+      \prop_get:NnN \g_tmpa_prop {#1} \l_tmpa_tl
+      \exp_last_unbraced:No \href { \l_tmpa_tl }
+    }
+}
+\ExplSyntaxOff
+
+% Fonts
 \setsansfont{MonaSans}[
   Path           = fonts/,
   Extension      = .otf,
@@ -101,7 +103,6 @@
 ]
 \linespread{1.2}
 \selectfont
-
 \unimathsetup{math-style=ISO, bold-style=ISO}
 
 \endinput
