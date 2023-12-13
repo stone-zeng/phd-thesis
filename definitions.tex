@@ -1,0 +1,115 @@
+% This file contains shared definitions for main.tex and slide.tex.
+
+% tikz
+\usetikzlibrary{arrows.meta, calc, decorations.markings}
+\tikzset{
+  x = 1em,
+  y = 1em,
+  node font = \footnotesize,
+  morphism box/.style = {draw, fill = white, anchor = base},
+  vector box/.style = {thick, MaterialTeal, fill = MaterialTeal100},
+  tensor box/.style = {thick, MaterialBlue, fill = MaterialBlue100},
+  tensor leg/.style = {semithick, MaterialGrey},
+  covered tensor leg/.style = {semithick, dashed, MaterialGrey300},
+  ->-/.style = {
+    decoration = {
+      markings,
+      mark = at position #1 with {\arrow{Stealth}},
+    },
+    postaction = {decorate},
+  },
+}
+\ifdefined\tikzcdset
+  \tikzcdset{
+    arrow style = tikz,
+    diagrams = {>=Stealth},
+    arrows = {thin},
+    labels = {font = \footnotesize},
+  }
+\fi
+\newcommand{\tikzinput}[1]{\input{includes/tikz/#1.tex}}
+\newcommand{\Vertex}[3]{
+  \begin{tikzpicture}[baseline=0, thick]
+    \draw (0,0) -- (90:1)  node [above] {$#1$}
+          (0,0) -- (210:1) node [left]  {$#2$}
+          (0,0) -- (330:1) node [right] {$#3$};
+  \end{tikzpicture}
+}
+\newcommand{\Tetrahedron}[6]{
+  \begin{tikzpicture}[baseline=1ex]
+    \draw [covered tensor leg, MaterialGrey] (0,0) -- (3.2,0);
+    \draw [tensor leg]
+          (0,0) -- (2,2.5) -- (3.2,0) -- (2,-0.8) -- cycle
+          (2,2.5) -- (2,-0.8);
+    \draw (0.6, 1.7) node {$#1$}
+          (3.2, 1.7) node {$#2$}
+          (0.6,-0.9) node {$#3$}
+          (3  ,-0.9) node {$#4$}
+          (1.1, 0.5) node {$#5$}
+          (2.4, 0.8) node {$#6$};
+  \end{tikzpicture}
+}
+\newcommand{\Triangle}[6]{
+  \begin{tikzpicture}[baseline=-0.5ex]
+    \draw [tensor box]
+          ( 90:1.5) -- (210:1.5) -- (330:1.5) -- cycle;
+    \foreach \x in {90, 210, 330}
+      \draw [tensor leg]
+          (\x-40:1.7) .. controls (\x-20:0.8) and (\x+20:0.8) .. (\x+40:1.7)
+          (\x-60:0.4) -- (\x-60:1.6);
+    \draw ( 30:2) node {$#1$}
+          (150:2) node {$#2$}
+          (270:2) node {$#3$}
+          ( 90:2) node {$#4$}
+          (210:2) node {$#5$}
+          (330:2) node {$#6$};
+  \end{tikzpicture}
+}
+\newcommand{\VirutalHexagon}[1]{
+  \begin{tikzpicture}[baseline=-0.2em]
+    \draw [thick, dotted]
+      (30:1.2) -- (90:1.2) -- (150:1.2) -- (210:1.2) -- (270:1.2) -- (330:1.2) -- cycle;
+    #1;
+  \end{tikzpicture}
+}
+\newcommand{\Fusion}[3]{
+  \begin{tikzpicture}[baseline=-0.5em]
+    \draw [thick, MaterialGrey]
+      (0:0) -- ( 30:1.2)
+      (0:0) -- (150:1.2)
+      (0:0) -- (270:1.2);
+    \draw
+      ( 1.2,1.3) node {#1}
+      (-1.2,1.3) node {#2}
+      ( 0, -1.8) node {#3};
+  \end{tikzpicture}
+}
+
+% Math commands
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\1}{\mathbb{1}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\trans}{{\symsfup{T}}}
+\newcommand{\bm}[1]{\symbf{#1}}
+\newcommand{\ldual}[1]{{}^*\mspace{-2mu}#1}
+\newcommand{\dv}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+\newcommand{\pdv}[2]{\frac{\partial#1}{\partial#2}}
+\renewcommand{\triangle}{\text{\scalebox{1.6}{$\bigtriangleup$}}}
+\NewDocumentCommand{\bra}{som}{%
+  \IfBooleanTF{#1}{\langle#3|}{%
+    \IfValueTF{#2}{#2\langle#3#2|}{\left\langle#3\right|}}}
+\NewDocumentCommand{\ket}{som}{%
+  \IfBooleanTF{#1}{|#3\rangle}{%
+    \IfValueTF{#2}{#2|#3#2\rangle}{\left|#3\right\rangle}}}
+\NewDocumentCommand{\ev}{som}{%
+  \IfBooleanTF{#1}{\langle#3\rangle}{%
+    \IfValueTF{#2}{#2\langle#3#2\rangle}{\left\langle#3\right\rangle}}}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator*{\argmin}{arg\,min}
