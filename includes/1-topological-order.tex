@@ -57,10 +57,12 @@
 态射也可记为 $f\in\Hom_{\mathcal{C}}(x,y)$，其中 $\Hom_{\mathcal{C}}(x,y)$ 称为同态集 (hom-set)。如果 $x=y$，则称 $f$ 为\emph{自同态} (endomorphism)，记为 $f\in\End_{\mathcal{C}}(x)$。
 
 \emph{函子} (functor) 是范畴之间保结构的映射。具体而言，对于范畴 $\mathcal{C}$、$\mathcal{D}$，函子 $F\colon\mathcal{C}\to\mathcal{D}$ 会将 $\mathcal{C}$ 中的对象 $x$ 映射到 $\mathcal{D}$ 中的对象 $F(x)$，而将 $\mathcal{C}$ 中的态射 $f\colon x\to y$ 映射到 $\mathcal{D}$ 中的态射 $F_f\colon F(x)\to F(y)$，并且保持复合性与单位元的成立，即
-\begin{align}
-  F_{\id_x} &= \id_{F(x)} \colon F(x) \to F(x), \quad \forall x\in\mathcal{C}, \\
-  F_{g\circ f} &= F_g \circ F_f \colon F(x) \to F(z), \quad \forall f\colon x\to y, \, g\colon y\to z.
-\end{align}
+\begin{equation}
+  \begin{aligned}
+    F_{\id_x} &= \id_{F(x)} \colon F(x) \to F(x), \quad \forall x\in\mathcal{C}, \\
+    F_{g\circ f} &= F_g \circ F_f \colon F(x) \to F(z), \quad \forall f\colon x\to y, \, g\colon y\to z.
+  \end{aligned}
+\end{equation}
 
 在函子之上可进一步定义\emph{自然变换} (natural transformation)。对于两个函子 $F\colon\mathcal{C}\to\mathcal{D}$ 和 $G\colon\mathcal{C}\to\mathcal{D}$，自然变换 $\tau\colon F\Rightarrow G$ 由其分量 $\tau_x$（这是范畴 $\mathcal{D}$ 中的一个态射）定义：
 \begin{equation}
@@ -335,7 +337,7 @@
     $。
 \end{itemize}
 
-这里的 $\varphi=(1+\sqrt5)/2$ 是黄金比\cite{trebst2008short}。
+这里的 $\varphi=(1+\sqrt5)/2$ 是黄金比\cite{feiguin2007interacting,trebst2008short}。
 
 \paragraph{Ising}
 
@@ -605,8 +607,7 @@ $e$ 和 $m$ 分别绕对方一圈（例如使用 $\sigma^z$ 组成的 $e$ 闭弦
   \end{gathered}
 \end{equation}
 
-% TODO: quantum double
-可以发现，这里的融合规则与 \ref{subsec:fusion-category-examples} 小节中 toric code 范畴中的融合规则是完全相同的。实际上，toric code 模型是基于 $\Z_2$ 群的 quantum double 模型，其进一步推广则可以得到基于张量融合范畴的弦网模型。
+可以发现，这里的融合规则与 \ref{subsec:fusion-category-examples} 小节中 toric code 范畴中的融合规则是完全相同的。实际上，toric code 模型是基于 $\Z_2$ 群的 quantum double 模型，利用 Fourier 变换可将其映射为基于张量融合范畴的弦网模型。
 
 \section{弦网模型}
 
@@ -628,13 +629,13 @@ $e$ 和 $m$ 分别绕对方一圈（例如使用 $\sigma^z$ 组成的 $e$ 闭弦
   \caption[弦网模型中弦的取向与分支规则]{弦网模型中弦的取向 (a) 与分支规则 (b)。}
 \end{figure}
 
-根据张量融合范畴的精神，弦网模型的基态波函数 $\Phi$ 可通过下面的局域约束条件\cite{levin2005string}
+根据张量融合范畴的精神，弦网模型的基态波函数 $\Phi$ 可通过下面的局域约束条件来确定\cite{levin2005string}：
 \begin{equation}
   % TODO: update image and conventions
-  \includegraphics{images/string-net-wave-function.pdf}
+  \vcenter{\hbox{\includegraphics{images/string-net-wave-function.pdf}}}
   \label{eq:string-net-local-rules}
 \end{equation}
-来确定，其中阴影部分表示波函数的剩余部分，而系数 $F^{ijm}_{kln}$ 满足
+其中阴影部分表示波函数的剩余部分，而系数 $F^{ijm}_{kln}$ 满足
 \begin{equation}
   \begin{gathered}
     F^{ijk}_{j^* i^* 0} = \sqrt{\frac{d_k}{d_i d_j}} \delta_{ijk}, \\
@@ -666,19 +667,29 @@ $F^{ijm}_{kln}$ 是 $F$ 符号的另一种记法，它与 $[F^{ijk}_l]_{mn}$ 的
   B_p = \sum_{s=0}^N \frac{d_s}{D^2} B_p^s, \quad D = \sqrt{\sum_{s=0}^N d_s^2}.
 \end{equation}
 这里 $D$ 是总量子维数，它使得 $(B_p)^2=B_p$；而 $B_p^s$ 满足
+\begingroup
+\def\Hexagon{
+  \def\Prime{}
+  \tikzinput{string-net/hexagon}
+}
+\def\HexagonPrime{
+  \def\Prime{'}
+  \tikzinput{string-net/hexagon}
+}
 \begin{align}
-     B_p^s \, \ket[\Bigg]{\def\Prime{}\tikzinput{string-net/hexagon}}
+     B_p^s \, \ket[\Bigg]{\Hexagon}
   &= \sum_{m,\dots,r} B_{p,ghijkl}^{s,g'h'i'j'k'l'}(abcdef) \,
-     \ket[\Bigg]{\def\Prime{'}\tikzinput{string-net/hexagon}} \notag \\
+     \ket[\Bigg]{\HexagonPrime} \notag \\
   &= F^{al^*g}_{s^*g'l'^*}
      F^{bg^*h}_{s^*h'g'^*}
      F^{ch^*i}_{s^*i'h'^*}
      F^{di^*j}_{s^*j'i'^*}
      F^{ej^*k}_{s^*k'j'^*}
      F^{fk^*l}_{s^*l'k'^*} \,
-     \ket[\Bigg]{\def\Prime{'}\tikzinput{string-net/hexagon}}.
+     \ket[\Bigg]{\HexagonPrime}.
   \label{eq:string-net-bp}
 \end{align}
+\endgroup
 当 $F$ 符号还满足幺正条件
 \begin{equation}
   F^{i^* j^* m^*}_{k^* l^* n^*} = \bigl( F^{ijm}_{kln} \bigr)^*
@@ -693,14 +704,13 @@ $F^{ijm}_{kln}$ 是 $F$ 符号的另一种记法，它与 $[F^{ijk}_l]_{mn}$ 的
 \end{equation}
 对于开放边界条件（亏格 $g=0$），可有 $\mathit{GSD}=1$；而对于周期性边界条件（即 $g=1$ 的环面），有 $\mathit{GSD}=N^2$。由此可见与 toric code 类似，弦网模型的基态简并度也依赖于空间拓扑。
 
-% TODO: total quantum dimension
 在区域 $A$ 上，弦网模型的纠缠熵为\cite{levin2006detecting}
 \begin{equation}
-  S_A = -j \log D - n \sum_{s=0}^N \frac{d_s^2}{D} \log \frac{d_s^2}{D},
+  S_A = -2j \log D - n \sum_{s=0}^N \frac{d_s^2}{D^2} \log \frac{d_s^2}{D^2},
 \end{equation}
-其中 $n$ 是位于边界 $\partial A$ 上自旋的数目，$j$ 则是 $\partial A$ 中不连通的边界数。对于图~\ref{fig:topological-entanglement-entropy} 中的区域 $A_1$、$A_2$、$A_3$、$A_4$，在 $R,r\to\infty$ 的极限下，可以计算得到
+其中 $n$ 是位于边界 $\partial A$ 上自旋的数目，$j$ 则是 $\partial A$ 中不连通的边界数\footnote{文献 \parencite{levin2006detecting} 中总量子维数的定义与本文相差一个根号。}。对于图~\ref{fig:topological-entanglement-entropy} 中的区域 $A_1$、$A_2$、$A_3$、$A_4$，在 $R,r\to\infty$ 的极限下，可以计算得到
 \begin{equation}
-  \bigl( S_{A_1} - S_{A_2} \bigr) - \bigl( S_{A_3} - S_{A_4} \bigr) = -\log \bigl( D^2 \bigr).
+  \bigl( S_{A_1} - S_{A_2} \bigr) - \bigl( S_{A_3} - S_{A_4} \bigr) = -2\log \bigl( D^2 \bigr).
 \end{equation}
 这被称为\emph{拓扑纠缠熵} (topological entanglement entropy)，它进一步反应了体系中存在着长程纠缠。
 
@@ -711,7 +721,6 @@ $F^{ijm}_{kln}$ 是 $F$ 符号的另一种记法，它与 $[F^{ijk}_l]_{mn}$ 的
   \label{fig:topological-entanglement-entropy}
 \end{figure}
 
-% TODO: quasiparticle excitations
 最后，通过构建弦算符的方式，我们可以获得弦网模型中的准粒子激发及对应的分数统计\cite{levin2005string,lin2014generalizations}。对于沿路径 $P_1$、$P_2$ 的弦算符 $W_\alpha$ 和 $W_\beta$，有
 \begin{equation}
   W_\beta(P_2) W_\alpha(P_1) \ket{\Psi} = \ee^{\ii\theta_{\alpha\beta}} W_\alpha(P_1) W_\beta(P_2) \ket{\Psi},

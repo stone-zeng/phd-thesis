@@ -47,19 +47,21 @@
   = \frac{1}{\sqrt{d_a d_b d_c d_i d_j d_k}} \, \Tetrahedron cbjkia
 \end{equation}
 称为\emph{四面体符号} (tetrahedral symbol) 或 \emph{$6j$ 符号} ($6j$-symbol)，它的对称性（以及相应 $F$ 符号的对称性）可以从四面体的几何性质中获得：
-\begin{align}
-     \begin{bmatrix} a & b & c \\ i & j & k \end{bmatrix}
-  &= \begin{bmatrix} b & c & a \\ j & k & i \end{bmatrix}
-   = \begin{bmatrix} c & a & b \\ k & i & j \end{bmatrix}, \\
-     \begin{bmatrix} a & b & c \\ i & j & k \end{bmatrix}
-  &= \begin{bmatrix} a & c & b \\ i & k & j \end{bmatrix}
-   = \begin{bmatrix} c & b & a \\ k & j & i \end{bmatrix}
-   = \begin{bmatrix} b & a & c \\ j & i & k \end{bmatrix}, \\
-     \begin{bmatrix} a & b & c \\ i & j & k \end{bmatrix}
-  &= \begin{bmatrix} a & j & k \\ i & b & c \end{bmatrix}
-   = \begin{bmatrix} i & b & k \\ a & j & c \end{bmatrix}
-   = \begin{bmatrix} i & j & c \\ a & b & k \end{bmatrix}.
-\end{align}
+\begin{equation}
+  \begin{aligned}
+       \begin{bmatrix} a & b & c \\ i & j & k \end{bmatrix}
+    &= \begin{bmatrix} b & c & a \\ j & k & i \end{bmatrix}
+     = \begin{bmatrix} c & a & b \\ k & i & j \end{bmatrix}, \\
+       \begin{bmatrix} a & b & c \\ i & j & k \end{bmatrix}
+    &= \begin{bmatrix} a & c & b \\ i & k & j \end{bmatrix}
+     = \begin{bmatrix} c & b & a \\ k & j & i \end{bmatrix}
+     = \begin{bmatrix} b & a & c \\ j & i & k \end{bmatrix}, \\
+       \begin{bmatrix} a & b & c \\ i & j & k \end{bmatrix}
+    &= \begin{bmatrix} a & j & k \\ i & b & c \end{bmatrix}
+     = \begin{bmatrix} i & b & k \\ a & j & c \end{bmatrix}
+     = \begin{bmatrix} i & j & c \\ a & b & k \end{bmatrix}.
+  \end{aligned}
+\end{equation}
 以上三组等式分别对应了四面体对称群 $A_4$ 中绕顶角的旋转（列轮换）、镜像（交换两列）和绕对边连线的旋转（交换两行的部分）。注意整行的交换一般来说并不相等。这一性质为\emph{四面体对称性} (tetrahedral symmetry)\cite{aasen2020topological,fuchs2023tetrahedral}。利用 $F$ 移动和环路消除，还可以得到下面的关系式：
 \begin{equation}
     \tikzinput{string-net/vertex-2}
@@ -190,7 +192,7 @@ $F$ 符号为
   &= \sqrt{d_\tau d_\tau d_\tau d_\tau} \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{mn}
    = \varphi^2 \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{mn}, \displaybreak[0] \\
      \Triangle \tau\tau mn\tau\tau
-  &= (d_\tau d_\tau d_m)^{-\frac14} (d_\tau d_\tau d_n)^{-\frac13} \Tetrahedron \tau mn\tau\tau\tau \\
+  &= (d_\tau d_\tau d_m)^{-\frac14} (d_\tau d_\tau d_n)^{-\frac13} \Tetrahedron \tau mn\tau\tau\tau \notag \\
   &= \varphi^{\frac56} d_m^{-\frac14} d_n^{-\frac13} \bigl[ F^{\tau\tau\tau}_\tau \bigr]_{mn}, \enspace
      m,n \in \{\1,\tau\}.
 \end{align}
@@ -220,24 +222,26 @@ $F$ 符号为
   i,j \in \{\1, \psi\}.
 \end{equation}
 于是四面体和三角形张量为：
-\begin{align}
-     \Triangle \sigma\sigma\1\1\sigma\sigma
-  &= (d_{\1} d_\sigma d_\sigma)  ^{-\frac14} (d_{\1} d_\sigma d_\sigma)  ^{-\frac13}
-     \Tetrahedron \1\sigma\sigma\1\sigma\sigma
-     = 2^{-\frac{1}{12}}, \notag \displaybreak[0] \\
-     \Triangle \sigma\sigma\1\psi\sigma\sigma
-  &= (d_{\1} d_\sigma d_\sigma)  ^{-\frac14} (d_\sigma d_\sigma d_\psi)^{-\frac13}
-     \Tetrahedron \1\sigma\sigma\psi\sigma\sigma
-     = 2^{-\frac{1}{12}}, \notag \displaybreak[0] \\
-     \Triangle \sigma\sigma\psi\1\sigma\sigma
-  &= (d_\sigma d_\sigma d_\psi)^{-\frac14} (d_{\1} d_\sigma d_\sigma)  ^{-\frac13}
-     \Tetrahedron \psi\sigma\sigma\1\sigma\sigma
-     = 2^{-\frac{1}{12}}, \notag \displaybreak[0] \\
-     \Triangle \sigma\sigma\psi\psi\sigma\sigma
-  &= (d_\sigma d_\sigma d_\psi)^{-\frac14} (d_\sigma d_\sigma d_\psi)^{-\frac13}
-     \Tetrahedron \psi\sigma\sigma\psi\sigma\sigma
-     = -2^{-\frac{1}{12}}.
-\end{align}
+\begin{equation}
+  \begin{aligned}
+       \Triangle \sigma\sigma\1\1\sigma\sigma
+    &= (d_{\1} d_\sigma d_\sigma)  ^{-\frac14} (d_{\1} d_\sigma d_\sigma)  ^{-\frac13}
+       \Tetrahedron \1\sigma\sigma\1\sigma\sigma
+       = 2^{-\frac{1}{12}}, \\
+       \Triangle \sigma\sigma\1\psi\sigma\sigma
+    &= (d_{\1} d_\sigma d_\sigma)  ^{-\frac14} (d_\sigma d_\sigma d_\psi)^{-\frac13}
+       \Tetrahedron \1\sigma\sigma\psi\sigma\sigma
+       = 2^{-\frac{1}{12}}, \\
+       \Triangle \sigma\sigma\psi\1\sigma\sigma
+    &= (d_\sigma d_\sigma d_\psi)^{-\frac14} (d_{\1} d_\sigma d_\sigma)  ^{-\frac13}
+       \Tetrahedron \psi\sigma\sigma\1\sigma\sigma
+       = 2^{-\frac{1}{12}}, \\
+       \Triangle \sigma\sigma\psi\psi\sigma\sigma
+    &= (d_\sigma d_\sigma d_\psi)^{-\frac14} (d_\sigma d_\sigma d_\psi)^{-\frac13}
+       \Tetrahedron \psi\sigma\sigma\psi\sigma\sigma
+       = -2^{-\frac{1}{12}}.
+  \end{aligned}
+\end{equation}
 在 Ising 模型的奇异关联子构造中，我们需要将物理指标投影到直积态
 \begin{equation}
   \bra{\omega(\beta)} = \sqrt2 \, \bigl( \cosh\beta \bra{\1} + \sinh\beta \bra{\psi} \bigr)
@@ -279,7 +283,6 @@ $F$ 符号为
   \tilde{A}_{ijkl} = \, \tikzinput{ising/dual-octagon} \quad \text{where} \quad
   i, j, k, l = \1 \text{ or } \psi.
 \end{equation}
-% TODO: dual lattice
 % 此时
 % \begin{equation}
 %   \tikzinput{ising/dual-triangles-1} = \tikzinput{ising/dual-triangles-2} =
@@ -326,7 +329,6 @@ $F$ 符号为
 这与对应 CFT 给出的理论值 $1/2$ 和 $4/5$ 是非常接近的，说明通过奇异关联子的确可以从弦网模型基态波函数出发得到正确的 CFT 不动点张量。
 
 \begin{figure}[htb]
-  % TODO: update image
   \centering
   \subcaptionbox{Ising 模型}{%
     \includegraphics[width=0.45\textwidth]{images/ising-central-charge.png}} \quad
@@ -335,9 +337,6 @@ $F$ 符号为
   \caption[中心荷拟合结果]{中心荷拟合结果。横坐标：关联长度的对数 $\log\xi$，纵坐标：纠缠熵 $S_A$。使用的连接维数为 $\chi\in\{8,9,\dots,27\}$。}
   \label{fig:central-charge}
 \end{figure}
-
-% \subsection{高度模型}
-% TODO: \emph{高度模型} (height model)
 
 \section{MPO 对称性}
 
@@ -402,8 +401,6 @@ $F$ 符号为
   \caption[PEPS 张量网络与其中的 MPO]{PEPS 张量网络与其中的 MPO。图片来源：\parencite{williamson2017symmetry}。}
   \label{fig:peps-mpo}
 \end{figure}
-
-% TODO: MPO and topological properties
 
 \subsection{管状代数与中心幂等元}
 \label{subsec:tube-algebra-idempotents}
@@ -471,8 +468,6 @@ $F$ 符号为
 
 \section{全息张量网络}
 \label{sec:holographic-tensor-network}
-
-% 首先，我们将奇异关联子的概念推广到了任意维度（$1\leqslant D\leqslant 3$），并且给出了一种系统的方法用以构造配分函数和搜寻临界点。我们的方法基于对 $\bra{\Omega}$ 的理解。根据融合范畴 $\mathcal{C}$ 及其对应的范畴对称性 $\mathcal{Z}(\mathcal{C})$，我们可以构造一套重整化算符，并将其作为全息张量网络。它可以对拓扑序的基态波函数 $\ket{\Psi}$ 进行粗粒近似。为了使 $\langle\Omega|\Psi\rangle$ 能够表示对应共形场论的配分函数，$\bra{\Omega}$ 需要是重整化算符的本征态。实际上，带有范畴对称性 $\mathcal{Z}(\mathcal{C})$ 的 $D$ 维共形场论，也就相当于由 $D+1$ 维拓扑序所确定的重整化算符的本征态。我们发现，对于中心为 $\mathcal{Z}(\mathcal{C})$ 的输入范畴 $\mathcal{C}$，其中的每一个 \emph{Frobenius 代数} (Frobenius algebra) 都确定了一个 $D+1$ 维的格点拓扑模型，它们对应了重整化算符的本征态，能给出一个 $D$ 维的对称 TQFT，而 CFT 就位于这些 TQFT 的相变点处。我们可以在相变点两侧各取一个 Frobenius 代数，而描述 CFT 的边界条件即可通过这两个 Frobenius 代数对应的边界条件插值得到。而在远离 CFT 不动点处，重复作用这些重整化算符将会给出 $\mathcal{C}$ 的 Frobenius 代数。从数值角度上看，当我们对三维的配分函数不断作用重整化算符时，实际上也就相当于实现了类似于三维 TRG 算法的操作。这种全息张量网络与 $p$-adic 张量网络也存在相似之处。后者中的张量单元由 $p$-adic CFT 融合范畴中结合代数的乘积/余积结构给出，而前者则需要利用 $D-1$ 维融合范畴中的 Frobenius 代数结构，这正是结合代数的自然推广。
 
 我们在 \ref{sec:strange-correlator} 节中所介绍的奇异关联子也可以被推广到任意维度。对于一个 $D+1$ 维的拓扑序，它可以用一个 $D+1$ 维球 $B^{D+1}$ 上的融合范畴 $\mathcal{C}$ 来描述，其基态波函数为 $\ket{\Psi}$。指定 $D$ 维球面 $S^D$ 上的边界条件，就相当于将 $\ket{\Psi}$ 与某一直积态 $\bra{\Omega}$ 作内积，即
 \begin{equation}
@@ -582,7 +577,7 @@ $F$ 符号为
   \label{fig:tetrahedra-relations}
 \end{figure}
 
-与 1+1 维的情况类似，在 2+1 维中重整化算符同样通过连接两个不同格点间距的边界来构造。如图~\ref{fig:rg-2+1d} 所示，我们可以利用一系列的 $F$ 移动及相应的变换关系（图~\ref{fig:tetrahedra-relations}）来得到重整化算符 $U(\mathcal{C})$\cite{vanhove2018mapping}。它可以表示为一系列四面体的组合，并会将第 $N$ 次粗粒近似的波函数映射到第 $N+1$ 次上。可以发现，$U(\mathcal{C})$ 完全由融合范畴 $\mathcal{C}$ 中的数据所决定，而重复作用 $U(\mathcal{C})$ 将得到 Euclidean AdS 空间的一个离散化表示。
+与 1+1 维的情况类似，在 2+1 维中重整化算符同样通过连接两个不同格点间距的边界来构造。如图~\ref{fig:rg-2+1d} 所示，我们可以利用一系列的 $F$ 移动及相应的变换关系（图~\ref{fig:tetrahedra-relations}）来得到重整化算符 $U(\mathcal{C})$\cite{vanhove2018mapping}。它可以表示为一系列四面体的组合，并会将第 $N$ 次粗粒近似的波函数映射到第 $N+1$ 次上。可以发现，$U(\mathcal{C})$ 完全由融合范畴 $\mathcal{C}$ 中的数据所决定，而重复作用 $U(\mathcal{C})$ 将得到 Euclidean AdS 空间的一个离散化表示。根据张量范畴学的理论，重整化算符的精确本征值可通过\emph{可分 Frobenius 代数} (separable Frobenius algebra) 给出，它们之间的相变点则对应了相应的 CFT。
 
 \begin{figure}[htb]
   \centering
@@ -590,8 +585,6 @@ $F$ 符号为
   \caption[利用五边形方程来实现粗粒近似]{利用五边形方程来实现粗粒近似。重整化算符可以视为一系列四面体的组合，例如第一幅图中的四个三角形在作用一组四面体后（标记为灰色），就变为了两个三角形。图片来源：\parencite{chen2022exact}。}
   \label{fig:rg-2+1d}
 \end{figure}
-
-% TODO: Frobenius Algebra
 
 特别值得关注的是位于临界点处的配分函数。当非对易的拓扑对称性同时守恒时，即为临界点。由于配分函数 $Z(\mathcal{C})$ 是局域的，因而 $\bra{\Omega}$ 可以表示为一个 PEPS 张量网络。我们将张量单元 $T^{a_1 a_2 a_3}_{I_1 I_2 I_3}$ 取在三角形上，其中 $a_i\in\mathcal{C}$ 为物理指标，而 $I_i$ 为辅助指标，连接维数为 $\chi$。在重整化开始前，$\bra{\Omega}$ 是一个直积态，即所有 $I_i$ 都是平凡的；随着重整化的进行，相应的数据会“流入” $I_i$，得到非平凡的 PEPS 结构。
 
@@ -605,8 +598,6 @@ $F$ 符号为
 \end{figure}
 
 需要注意的是，对于有限大小的 $\chi$，临界点是不稳定的，而从重整化过程中获得的 $T$ 序列最终会流向某个拓扑不动点。因此我们认为，在重整化过程中，如果观察到 $T$ 开始向拓扑不动点的方向收敛，即达到了临界点。而对于固定的 $\chi$，总能利用这种方式找到一组 $T$ 使其最接近临界态。
-
-% TODO: \mathfrak{su}(2)_k / SU(2)_k / A_{k+1}
 
 接下来我们以 $\mathcal{A}_{k+1}$ 模型（见 \ref{subsec:a-k+1-category} 小节）为例给出一些具体的数值计算结果。如图~\ref{fig:a-k+1-boundary-condition} 所示，$\mathcal{A}_{k+1}$ 中的边界态可以取为
 \begin{equation}
@@ -760,7 +751,6 @@ $F$ 符号为
 形式的\emph{体—边传播子} (bulk-boundary propagator)\cite{witten1998anti}。式中，$x$ 为两算符间的距离，$z$ 为体到边界的距离，而 $\Delta$ 则是相应的标度维数（见 \ref{sec:conformal-symmetry} 小节）。这里所展示的只是一个初步结果，我们还需要对其他模型以及不同标度维数的算符进行进一步的检验。
 
 \begin{figure}[htb]
-  % TODO: update image
   \centering
   \includegraphics[width=0.45\textwidth]{images/holographic/bulk-boundary-propagator-1.png}
   \includegraphics[width=0.45\textwidth]{images/holographic/bulk-boundary-propagator-2.png}

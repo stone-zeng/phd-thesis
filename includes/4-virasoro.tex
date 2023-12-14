@@ -162,7 +162,6 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
 \end{align}
 其中 $H$ 和 $P$ 分别是 Hamilton 算符和动量算符：
 \begin{equation}
-% TODO: why c/12; how about c-bar
   H = L_0 + \bar{L}_0 - \frac{c}{12}, \quad P = \ii \bigl( L_0 - \bar{L}_0 \bigr),
 \end{equation}
 而 $c$ 是中心荷。设场 $\phi_\alpha$ 的共形维数为 $(h_\alpha,\bar{h}_\alpha)$，由 Virasoro 代数可知
@@ -181,27 +180,6 @@ Virasoro 与 Kac--Moody 生成元之间也满足对易关系：
 
 \subsection{格点近似}
 \label{subsec:lattice-approximation}
-
-% TODO:
-% 临界格点模型的配分函数可以通过张量网络来描述。以只包含最邻近相互作用的模型为例，其配分函数为
-% \begin{equation}
-%   Z = \sum_{\sigma_i} \prod_{\langle i,j \rangle} \ee^{-\beta E_{ij}}.
-% \end{equation}
-% 考虑一个方块附近的四个自由度 $\sigma_i$、$\sigma_j$、$\sigma_k$、$\sigma_l$，令
-% \begin{equation}
-%   A_{ijkl} = \ee^{-\beta (H_{ij}+H_{jk}+H_{kl}+H_{li})},
-% \end{equation}
-% 则 $Z$ 可以写成
-% \begin{equation}
-%   Z = ...
-% \end{equation}
-% 四个指标的张量 $A_{ijkl}$ 可以排列成一个 $m\times n$ 的网格
-
-% 由于在二维 CFT 中存在态—算符对应，不妨先假想一个以原点为圆心的圆盘，当我们在原点插入一个算符时，圆盘边界处便会产生一个量子态。如果插入的算符是初级场或其后代，那么对应的量子态将会是缩放算符 (dilation operator) 的本征态。利用式~\eqref{eq:radial-quantization} 的逆映射
-% \begin{equation}
-%   \xi = \frac{l}{2\pi} \log z
-% \end{equation}
-% 可将复平面变为圆柱，而此时的缩放算符即为沿圆柱轴向的路径积分。
 
 如图~\ref{fig:partition-function-tensor-network} 所示，临界格点模型的配分函数 $Z$ 可以通过张量网络来描述：
 \begin{equation}
