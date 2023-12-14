@@ -37,7 +37,7 @@
 \title{Aspects on Tensor Networks for Topological Orders}
 \author{Xiangdong Zeng}
 \institute{Supervisor: Prof.\ Ling-Yan Hung}
-% \date{\today}
+\date{December 15, 2023}
 
 \begin{document}
 
@@ -58,7 +58,7 @@
 
     \begin{itemize}
       \item Tensor network representation of string-net model
-      \item Strange correlators and MPO symmetries
+      \item Strange correlators and partition functions of minimal CFTs
       \item Construction of holographic tensor networks
       \item Operator pushing
     \end{itemize}
@@ -83,20 +83,19 @@
   \column{0.6\textwidth}
 
     \begin{itemize}
+      \item Holographic principle
       \item Duality between a gravity theory in AdS\textsubscript{\textit{d}+1} spacetime (bulk) and a CFT\textsubscript{\textit{d}} (boundary)
-      \item AdS/CFT dictionary: $Z_{\mathrm{CFT}}=Z_{\mathrm{bulk}}$
+      \item AdS/CFT dictionary:
+
+        \begin{itemize}
+          \item $Z_{\mathrm{CFT}}=Z_{\mathrm{bulk}}$
+        \end{itemize}
+
       \item Ryu--Takayanagi formula:
 
         \begin{itemize}
           \item $S_A = \operatorname{area}(\gamma_A) / 4G^{(d+1)}$
           \item Entanglement is geometry
-        \end{itemize}
-
-      \item AdS/CFT and machine learning
-
-        \begin{itemize}
-          \item Mapping to Boltzmann machine
-          \item CNN as RG flow
         \end{itemize}
 
       \item \textit{p}-adic AdS/CFT and Einstein equation
@@ -146,6 +145,13 @@
 \begin{frame}{Tensor \& fusion categories}
 
 \begin{itemize}
+  \item Basic of category theory:
+
+    \begin{itemize}
+      \item Objects and morphisms
+      \item Functors, natural transformations, etc.
+    \end{itemize}
+
   \item Tensor product: $\otimes$
 
     \begin{itemize}
@@ -160,13 +166,6 @@
       \item Fusion: can't be distinguished at long distance
       \item Fusion coefficients: $N_{ab}^c\in\Z^*$
       \item Quantum dimension $d_a$: max eigenvalue of matrix $(N_a)_{bc}=N_{ab}^c$
-    \end{itemize}
-
-  \item Examples:
-
-    \begin{itemize}
-      \item Decomposition of direct product of group representations
-      \item Operator product expansion (OPE) in CFT
     \end{itemize}
 
   \item More structures: dual, braiding, ribbon, non-degeneracy, etc.
@@ -380,7 +379,7 @@
 
         \begin{itemize}
           \item Virtual indices (gray): summed over
-          \item Physical indices (orange): fixed to some certain values (boundary conditions)
+          \item Physical indices (green): fixed to some certain values (boundary conditions)
         \end{itemize}
     \end{itemize}
 \end{itemize}
@@ -425,32 +424,6 @@
       \item Kramers--Wannier duality: shifted by 1/2 unit \textrightarrow{} $\beta_{\mathrm{c}}=\frac12\log(1+\sqrt{2})$
     \end{itemize}
 \end{itemize}
-
-\end{frame}
-
-\begin{frame}{Application: calculation of central charge}
-
-\begin{itemize}
-  \item Use $A_{ijkl}$ as iMPO unit and perform iTEBD \textrightarrow{} $\{\Gamma,\lambda\}$
-  \item Physical quantities:
-
-    \begin{itemize}
-      \item Correlation length: $\xi = -1 / \log|\lambda_2/\lambda_1|$
-      \item Entanglement entropy: $S_{\!A} = \sum_i \lambda_i^2 \log \lambda_i^2$
-    \end{itemize}
-
-  \item Fit with $S_{\!A} \sim \frac{c}{6} \log \xi$ for different bond dimension $\chi$
-\end{itemize}
-
-\begin{center}
-  \scriptsize
-  \begin{tabular}{cc}
-    \includegraphics[width=0.3\textwidth]{images/fib-central-charge.png} &
-    \includegraphics[width=0.3\textwidth]{images/ising-central-charge.png} \\
-    Fibonacci: $c \simeq 0.792 \pm 0.004$ &
-    Ising:     $c \simeq 0.499 \pm 0.004$
-  \end{tabular}
-\end{center}
 
 \end{frame}
 
@@ -510,86 +483,6 @@
 
 \end{frame}
 
-% TODO: Fixed points & Frobenius algebra
-% \begin{frame}{Example: \texorpdfstring{$\mathcal{A}_{k+1}$}{𝒜ₖ₊₁} model [[TODO]]}
-\begin{frame}{Example: \texorpdfstring{$\mathcal{A}_{k+1}$}{𝒜ₖ₊₁} model}
-
-\begin{itemize}
-  \item Boundary state: \\
-    \begingroup
-      \scriptsize
-      \mbox{\qquad}
-      $
-        \bra{\Omega} = \sum_{\{a\}} \prod_{a_i} T^{a_1 a_2 a_3} \bra{\{a\}}, \quad 
-        T^{a_1 a_2 a_3} = \begin{cases}
-          1, & a_1 = a_3 = \frac12, \, a_2 = 0; \\
-          r, & a_1 = a_3 = \frac12, \, a_2 = 1; \\
-          0, & \mathrm{otherwise}
-        \end{cases}
-      $
-    \endgroup
-
-  \item Fixed points
-
-    \begin{itemize}
-      \item Classified by Frobenius algebra
-      \item $T$ will eventually flow to a \emph{topological} fixed point for finite $\chi$
-      \item \emph{Conformal} fixed point occurs when $T$ starts to converge to the topological one
-    \end{itemize}
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}{Numerical results}
-
-\begin{columns}[T]
-
-  \column{0.5\textwidth}
-
-    \begin{itemize}
-      \item Fixed point tensor (at $\chi=1$)
-      \item Small $r$
-
-        \begin{itemize}
-          \item Non-vanishing component: $T^{000}$
-          \item Frobenius algebra: $\mathcal{A}_0=\{0\}$
-        \end{itemize}
-
-      \item Large $r$
-
-        \begin{itemize}
-          \item Non-vanishing component: \\
-            \mbox{\quad} $T^{000}=T^{110}=T^{101}=T^{011}$
-          \item Also exists $T^{111}$ at $k>2$
-          \item Frobenius algebra: $\mathcal{A}_1=\{0,1\}$
-          \item Ratio:
-            $
-              \dfrac{T^{000}}{T^{111}} \simeq \begin{cases}
-                1.43463, & k = 3; \\[-0.5ex]
-                1.18921, & k = 4
-              \end{cases}
-            $
-        \end{itemize}
-    \end{itemize}
-
-  \column{0.5\textwidth}
-
-    \vspace{-0.85em}
-    \begin{itemize}
-      \item Critical coupling:
-        $r_{\!\mathrm{c}} = \frac{\sqrt[4]{2\cos\left(\frac{2\pi}{k+2}\right) + 1}}{\sqrt{2\cos\left(\frac{\pi}{k+2}\right) + 1}}$
-      \item Recover to about 1 significant figure
-    \end{itemize}
-
-    \centering
-    \includegraphics[width=0.9\textwidth]{images/holographic/a-k+1-coupling.png}
-
-\end{columns}
-
-\footnotetext{Image credit: \citet{chen2022exact}}
-
-\end{frame}
-
 \begin{frame}{Bulk-boundary propagators in 2d Ising model}
 
 \begin{columns}[T]
@@ -636,66 +529,6 @@
 
 \end{frame}
 
-\begin{frame}{Generalization: 1+1d}
-
-\begin{itemize}
-  \item Dijkgraaf--Witten model characterized by group $G$
-  \item Triangulation: $\alpha_2(g_1, g_2) \in H^2 \bigl(G, U(1)\bigr), \, g_1 \times g_2 = g_3$
-  \item Associativity condition:
-
-    \begin{itemize}
-      \item $\alpha(g_1, g_2) \, \alpha(g_1 g_2, g_3) = \alpha(g_1, g_2 g_3) \, \alpha(g_2, g_3)$ \quad
-        \begingroup
-          \tikzset{x=0.6em, y=0.6em}
-          \tikzinput{associativity-condition}
-        \endgroup
-      \item Convert the boundary circle with $2N$ edges to $N$ edges
-    \end{itemize}
-\end{itemize}
-
-\begin{center}
-  \scriptsize
-  \tikzset{x=1em, y=1em, node font=\tiny}
-  \tikzinput{rg-1+1d-disk}
-\end{center}
-
-\footnotetext{Image credit: \citet{chen2022exact}}
-
-\end{frame}
-
-\begin{frame}{Generalization: 3+1d}
-
-\begin{itemize}
-  \item 3+1d $\Z_2$ Dijkgraaf--Witten model (toric code) \textrightarrow{} 3d Ising model
-  \item RG procedure:
-
-    \begin{itemize}
-      \item Smallest self-repeating unit: 2\texttimes 2\texttimes 2 cubes
-      \item Eliminate edge centers \textrightarrow{} eliminate face centers \textrightarrow{} eliminate body centers
-    \end{itemize}
-\end{itemize}
-
-\begin{columns}[c]
-
-  \column{0.35\textwidth}
-
-    \centering
-    \includegraphics[width=0.4\textwidth]{images/holographic/3+1d-cube-1.png} \\[1ex]
-    \includegraphics[width=0.7\textwidth]{images/holographic/3+1d-cube-2.png}
-    \vspace{-1em}
-
-  \column{0.65\textwidth}
-
-    \centering
-    \includegraphics[width=0.45\textwidth]{images/holographic/rg-3+1d.png} \quad
-    \includegraphics[width=0.45\textwidth]{images/holographic/rg-3+1d-step-1.png} \\
-    \includegraphics[width=0.45\textwidth]{images/holographic/rg-3+1d-step-2.png} \quad
-    \includegraphics[width=0.45\textwidth]{images/holographic/rg-3+1d-step-3.png}
-
-\end{columns}
-
-\end{frame}
-
 \begin{frame}{Bulk operator reconstruction \& operator pushing}
 
 \begin{columns}[c]
@@ -706,7 +539,7 @@
       \item Generalized free fields
 
         \begin{itemize}
-          \item Correlation functions are computed approximately by Wick contraction
+          \item Correlation functions satisfy Wick's theorem
           \item Can be decomposed as a sum of \emph{simple operators}
         \end{itemize}
 
@@ -1131,9 +964,9 @@
 
         \begin{enumerate}
           \item Build tensor network with $A_{ijkl}$
-          \item Calculate $\ket{\phi_T}$ or $\ket{\phi_J}$ from cylinder eigenstate
+          \item Calculate $\ket{\phi_T}$ or $\ket{\phi_J}$ from cylinder eigenstates
           \item Reshape $\ket{\phi_T}$ / $\ket{\phi_J}$ to $T$ / $J$
-          \item Insert $T$ / $J$ into a new cylinder with coefficients $\ee^{\pm2\pi\ii j n/N}$
+          \item Insert $T$ / $J$ into a new cylinder with factor $\ee^{\pm2\pi\ii j n/N}$
         \end{enumerate}
     \end{itemize}
 
@@ -1368,5 +1201,171 @@
     \vspace{-8em}
   \end{frame}
 \endgroup
+
+\appendix
+
+\begin{frame}{Application: calculation of central charge}
+
+\begin{itemize}
+  \item Use $A_{ijkl}$ as iMPO unit and perform iTEBD \textrightarrow{} $\{\Gamma,\lambda\}$
+  \item Physical quantities:
+
+    \begin{itemize}
+      \item Correlation length: $\xi = -1 / \log|\lambda_2/\lambda_1|$
+      \item Entanglement entropy: $S_{\!A} = \sum_i \lambda_i^2 \log \lambda_i^2$
+    \end{itemize}
+
+  \item Fit with $S_{\!A} \sim \frac{c}{6} \log \xi$ for different bond dimension $\chi$
+\end{itemize}
+
+\begin{center}
+  \scriptsize
+  \begin{tabular}{cc}
+    \includegraphics[width=0.3\textwidth]{images/fib-central-charge.png} &
+    \includegraphics[width=0.3\textwidth]{images/ising-central-charge.png} \\
+    Fibonacci: $c \simeq 0.792 \pm 0.004$ &
+    Ising:     $c \simeq 0.499 \pm 0.004$
+  \end{tabular}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Example: \texorpdfstring{$\mathcal{A}_{k+1}$}{𝒜ₖ₊₁} model}
+
+\begin{itemize}
+  \item Boundary state: \\
+    \begingroup
+      \scriptsize
+      \mbox{\qquad}
+      $
+        \bra{\Omega} = \sum_{\{a\}} \prod_{a_i} T^{a_1 a_2 a_3} \bra{\{a\}}, \quad 
+        T^{a_1 a_2 a_3} = \begin{cases}
+          1, & a_1 = a_3 = \frac12, \, a_2 = 0; \\
+          r, & a_1 = a_3 = \frac12, \, a_2 = 1; \\
+          0, & \mathrm{otherwise}
+        \end{cases}
+      $
+    \endgroup
+
+  \item Fixed points
+
+    \begin{itemize}
+      \item Classified by Frobenius algebra
+      \item $T$ will eventually flow to a \emph{topological} fixed point for finite $\chi$
+      \item \emph{Conformal} fixed point occurs when $T$ starts to converge to the topological one
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Numerical results}
+
+\begin{columns}[T]
+
+  \column{0.5\textwidth}
+
+    \begin{itemize}
+      \item Fixed point tensor (at $\chi=1$)
+      \item Small $r$
+
+        \begin{itemize}
+          \item Non-vanishing component: $T^{000}$
+          \item Frobenius algebra: $\mathcal{A}_0=\{0\}$
+        \end{itemize}
+
+      \item Large $r$
+
+        \begin{itemize}
+          \item Non-vanishing component: \\
+            \mbox{\quad} $T^{000}=T^{110}=T^{101}=T^{011}$
+          \item Also exists $T^{111}$ at $k>2$
+          \item Frobenius algebra: $\mathcal{A}_1=\{0,1\}$
+          \item Ratio:
+            $
+              \dfrac{T^{000}}{T^{111}} \simeq \begin{cases}
+                1.43463, & k = 3; \\[-0.5ex]
+                1.18921, & k = 4
+              \end{cases}
+            $
+        \end{itemize}
+    \end{itemize}
+
+  \column{0.5\textwidth}
+
+    \vspace{-0.85em}
+    \begin{itemize}
+      \item Critical coupling:
+        $r_{\!\mathrm{c}} = \frac{\sqrt[4]{2\cos\left(\frac{2\pi}{k+2}\right) + 1}}{\sqrt{2\cos\left(\frac{\pi}{k+2}\right) + 1}}$
+      \item Recover to about 1 significant figure
+    \end{itemize}
+
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/holographic/a-k+1-coupling.png}
+
+\end{columns}
+
+\footnotetext{Image credit: \citet{chen2022exact}}
+
+\end{frame}
+
+\begin{frame}{Generalization: 1+1d}
+
+\begin{itemize}
+  \item Dijkgraaf--Witten model characterized by group $G$
+  \item Triangulation: $\alpha_2(g_1, g_2) \in H^2 \bigl(G, U(1)\bigr), \, g_1 \times g_2 = g_3$
+  \item Associativity condition:
+
+    \begin{itemize}
+      \item $\alpha(g_1, g_2) \, \alpha(g_1 g_2, g_3) = \alpha(g_1, g_2 g_3) \, \alpha(g_2, g_3)$ \quad
+        \begingroup
+          \tikzset{x=0.6em, y=0.6em}
+          \tikzinput{associativity-condition}
+        \endgroup
+      \item Convert the boundary circle with $2N$ edges to $N$ edges
+    \end{itemize}
+\end{itemize}
+
+\begin{center}
+  \scriptsize
+  \tikzset{x=1em, y=1em, node font=\tiny}
+  \tikzinput{rg-1+1d-disk}
+\end{center}
+
+\footnotetext{Image credit: \citet{chen2022exact}}
+
+\end{frame}
+
+\begin{frame}{Generalization: 3+1d}
+
+\begin{itemize}
+  \item 3+1d $\Z_2$ Dijkgraaf--Witten model (toric code) \textrightarrow{} 3d Ising model
+  \item RG procedure:
+
+    \begin{itemize}
+      \item Smallest self-repeating unit: 2\texttimes 2\texttimes 2 cubes
+      \item Eliminate edge centers \textrightarrow{} eliminate face centers \textrightarrow{} eliminate body centers
+    \end{itemize}
+\end{itemize}
+
+\begin{columns}[c]
+
+  \column{0.35\textwidth}
+
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/holographic/3+1d-cube-1.png} \\[1ex]
+    \includegraphics[width=0.7\textwidth]{images/holographic/3+1d-cube-2.png}
+    \vspace{-1em}
+
+  \column{0.65\textwidth}
+
+    \centering
+    \includegraphics[width=0.45\textwidth]{images/holographic/rg-3+1d.png} \quad
+    \includegraphics[width=0.45\textwidth]{images/holographic/rg-3+1d-step-1.png} \\
+    \includegraphics[width=0.45\textwidth]{images/holographic/rg-3+1d-step-2.png} \quad
+    \includegraphics[width=0.45\textwidth]{images/holographic/rg-3+1d-step-3.png}
+
+\end{columns}
+
+\end{frame}
 
 \end{document}
