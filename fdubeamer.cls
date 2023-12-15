@@ -22,7 +22,7 @@
 \setbeamertemplate{footnote}{%
   \parindent1em\tiny\color[HTML]{9E9E9E}%
   \insertfootnotetext\par}
-\renewcommand{\appendixname}{}
+\renewcommand{\appendixname}{Appendix}
 \renewcommand{\footnoterule}{}
 \renewcommand{\metropolis@frametitlestrut@start}{\rule{0pt}{2.5em}}
 \renewcommand{\metropolis@frametitlestrut@end}{\rule[-0.5em]{0pt}{2.5em}}
